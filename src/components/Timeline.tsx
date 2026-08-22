@@ -425,16 +425,58 @@ export function Timeline() {
   const rows = useMemo(buildRows, []);
   const { railRef, nodeRefs, progress, statuses } = useTimelineScroll(rows.length, reduced);
 
-  // year shown in the sticky marker = most recent milestone reached
-  const currentLabel = useMemo(() => {
-    let label = milestones[0]?.period ?? "";
+  // continuous, smoothly counting year derived from scroll progress
+  const anchors = useMemo(() => {
+    const list: { at: number; year: number }[] = [];
+    const last = Math.max(rows.length - 1, 1);
     rows.forEach((row, i) => {
-      if (row.kind === "milestone" && statuses[i] !== "upcoming") {
-        label = row.entry.now ? "NOW" : row.entry.period;
-      }
+      if (row.kind !== "milestone") return;
+      const match = row.entry.period.match(/\d{4}/);
+      const year = row.entry.now ? 2026 : match ? Number(match[0]) : 2026;
+      list.push({ at: i / last, year });
     });
-    return label;
-  }, [rows, statuses]);
+    return list;
+  }, [rows]);
+
+  const targetYear = useMemo(() => {
+    if (anchors.length === 0) return 2003;
+    if (progress <= anchors[0]!.at) return anchors[0]!.year;
+    for (let i = 0; i < anchors.length - 1; i += 1) {
+      const a = anchors[i]!;
+      const b = anchors[i + 1]!;
+      if (progress <= b.at) {
+        const t = (progress - a.at) / Math.max(b.at - a.at, 0.0001);
+        return a.year + (b.year - a.year) * t;
+      }
+    }
+    return anchors[anchors.length - 1]!.year;
+  }, [anchors, progress]);
+
+  const [shownYear, setShownYear] = useState(targetYear);
+  const shownRef = useRef(targetYear);
+  const targetRef = useRef(targetYear);
+  targetRef.current = targetYear;
+
+  useEffect(() => {
+    if (reduced) {
+      shownRef.current = targetYear;
+      setShownYear(targetYear);
+      return;
+    }
+    let raf = 0;
+    const tick = () => {
+      const next = shownRef.current + (targetRef.current - shownRef.current) * 0.12;
+      shownRef.current = Math.abs(targetRef.current - next) < 0.01 ? targetRef.current : next;
+      setShownYear(shownRef.current);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [reduced, targetYear]);
+
+  const atNow = progress > 0.97;
+  const currentLabel = atNow ? "NOW" : String(Math.round(shownYear));
+
 
   return (
     <div ref={railRef} className="relative">

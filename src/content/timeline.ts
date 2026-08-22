@@ -27,15 +27,6 @@ export const milestones: TimelineMilestone[] = [
     side: "left",
   },
   {
-    id: "bsc-start",
-    period: "2023–2025",
-    title: "Computer Science / Intelligent Systems",
-    detail:
-      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside the senior technical advisor role.",
-    track: "development",
-    side: "right",
-  },
-  {
     id: "national-expert",
     period: "2013–2020",
     title: "Support Engineer / National Technical Expert",
@@ -59,6 +50,16 @@ export const milestones: TimelineMilestone[] = [
       { label: "S:t Eriks Eye Center", slug: "st-eriks" },
     ],
   },
+  {
+    id: "bsc-start",
+    period: "2023–2025",
+    title: "Computer Science / Intelligent Systems",
+    detail:
+      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside the senior technical advisor role.",
+    track: "development",
+    side: "right",
+  },
+
   {
     id: "applied-ai",
     period: "2023–2025",
