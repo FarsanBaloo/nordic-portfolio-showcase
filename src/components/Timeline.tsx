@@ -26,7 +26,7 @@ type Panel =
   | { kind: "group"; roleId: string; group: string };
 
 type Row =
-  | { kind: "milestone"; key: string; entry: TimelineMilestone; roleId?: string }
+  | { kind: "milestone"; key: string; entry: TimelineMilestone; roleId?: string | undefined }
   | {
       kind: "point";
       key: string;
