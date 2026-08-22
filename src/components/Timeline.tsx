@@ -59,16 +59,16 @@ function buildRows(): Row[] {
 function useTimelineScroll(count: number, years: number[], reduced: boolean) {
   const railRef = useRef<HTMLDivElement | null>(null);
   const nodeRefs = useRef<(HTMLElement | null)[]>([]);
-  const [smoothProgress, setSmoothProgress] = useState(0);
-  const [label, setLabel] = useState<string>(String(years[0] ?? 2003));
+  // DOM nodes written directly every frame (no React re-render → no jank)
+  const fillRef = useRef<HTMLDivElement | null>(null);
+  const markerRef = useRef<HTMLSpanElement | null>(null);
+  const labelRef = useRef<HTMLSpanElement | null>(null);
   const [statuses, setStatuses] = useState<Status[]>(() =>
     Array.from({ length: count }, () => "upcoming" as Status),
   );
   const smoothRef = useRef(0);
   const shownRef = useRef(years[0] ?? 2003);
   const anchorsRef = useRef<{ at: number; year: number }[]>([]);
-  // last values actually pushed into React state — used to skip no-op re-renders
-  const lastP = useRef(0);
   const lastLabel = useRef<string>("");
 
   useEffect(() => {
@@ -77,15 +77,16 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
         at: count > 1 ? i / (count - 1) : 0,
         year: y,
       }));
-      setSmoothProgress(1);
+      if (fillRef.current) fillRef.current.style.transform = "scaleY(1)";
+      if (labelRef.current) labelRef.current.textContent = "NOW";
       setStatuses(Array.from({ length: count }, () => "completed" as Status));
-      setLabel("NOW");
       return;
     }
 
     let raf = 0;
     let prevStatusKey = "";
-    let prevAnchorKey = "";
+    let last = performance.now();
+    let frame = 0;
 
     const targetYearFor = (p: number) => {
       const a = anchorsRef.current;
@@ -100,82 +101,81 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
       return a[a.length - 1]!.year;
     };
 
-    const tick = () => {
-      // Reschedule FIRST so no transient error in the body can ever kill the
-      // loop (a thrown exception would otherwise silently stop the rAF chain
-      // and freeze the marker mid-scroll).
+    const tick = (now: number) => {
+      // Reschedule FIRST so a transient error can never kill the loop.
       raf = requestAnimationFrame(tick);
       try {
-      const rail = railRef.current;
-      const vh = window.innerHeight || 1;
-      let raw = smoothRef.current;
-      if (rail) {
-        const rect = rail.getBoundingClientRect();
-        raw = Math.min(
-          1,
-          Math.max(0, (vh * 0.5 - rect.top) / Math.max(rect.height, 1)),
-        );
+        // frame-rate independent easing (stable on 60Hz and 120Hz displays)
+        const dt = Math.min(64, Math.max(1, now - last));
+        last = now;
+        frame += 1;
 
-        if (rect.height > 1) {
-          const pts: { at: number; year: number }[] = [];
-          const next: Status[] = [];
-          let sKey = "";
-          for (let i = 0; i < nodeRefs.current.length; i += 1) {
-            const el = nodeRefs.current[i];
-            if (!el) {
-              next.push("upcoming");
-              sKey += "u";
-              continue;
+        const rail = railRef.current;
+        const vh = window.innerHeight || 1;
+        let raw = smoothRef.current;
+        if (rail) {
+          const rect = rail.getBoundingClientRect();
+          raw = Math.min(
+            1,
+            Math.max(0, (vh * 0.5 - rect.top) / Math.max(rect.height, 1)),
+          );
+
+          // node measurement is the expensive part — do it every 3rd frame
+          if (rect.height > 1 && frame % 3 === 0) {
+            const pts: { at: number; year: number }[] = [];
+            const next: Status[] = [];
+            let sKey = "";
+            for (let i = 0; i < nodeRefs.current.length; i += 1) {
+              const el = nodeRefs.current[i];
+              if (!el) {
+                next.push("upcoming");
+                sKey += "u";
+                continue;
+              }
+              const r = el.getBoundingClientRect();
+              const center = r.top + r.height / 2;
+              const at = Math.min(1, Math.max(0, (center - rect.top) / rect.height));
+              const y = years[i];
+              if (Number.isFinite(at) && y != null) pts.push({ at, year: y });
+              const st: Status =
+                center < vh * 0.42
+                  ? "completed"
+                  : center <= vh * 0.6
+                    ? "active"
+                    : "upcoming";
+              next.push(st);
+              sKey += st[0];
             }
-            const r = el.getBoundingClientRect();
-            const center = r.top + r.height / 2;
-            const at = Math.min(1, Math.max(0, (center - rect.top) / rect.height));
-            const y = years[i];
-            if (Number.isFinite(at) && y != null) pts.push({ at, year: y });
-            const st: Status =
-              center < vh * 0.42
-                ? "completed"
-                : center <= vh * 0.6
-                  ? "active"
-                  : "upcoming";
-            next.push(st);
-            sKey += st[0];
-          }
-          const aKey = pts.map((p) => `${p.at.toFixed(4)}:${p.year}`).join("|");
-          if (pts.length && aKey !== prevAnchorKey) {
-            prevAnchorKey = aKey;
-            anchorsRef.current = pts;
-          }
-          if (sKey !== prevStatusKey) {
-            prevStatusKey = sKey;
-            setStatuses(next);
+            if (pts.length) anchorsRef.current = pts;
+            if (sKey !== prevStatusKey) {
+              prevStatusKey = sKey;
+              setStatuses(next);
+            }
           }
         }
-      }
 
-      // ease the rail fill / marker position toward the raw progress
-      const sp = smoothRef.current + (raw - smoothRef.current) * 0.14;
-      smoothRef.current = Math.abs(raw - sp) < 0.0005 ? raw : sp;
+        // exponential smoothing, normalised to elapsed time
+        const kp = 1 - Math.pow(1 - 0.14, dt / 16.67);
+        const sp = smoothRef.current + (raw - smoothRef.current) * kp;
+        smoothRef.current = Math.abs(raw - sp) < 0.0005 ? raw : sp;
 
-      // ease the counting year toward its interpolated target
-      const ty = targetYearFor(raw);
-      const sy = shownRef.current + (ty - shownRef.current) * 0.09;
-      shownRef.current = Math.abs(ty - sy) < 0.005 ? ty : sy;
+        const ky = 1 - Math.pow(1 - 0.09, dt / 16.67);
+        const ty = targetYearFor(raw);
+        const sy = shownRef.current + (ty - shownRef.current) * ky;
+        shownRef.current = Math.abs(ty - sy) < 0.005 ? ty : sy;
 
-      // Only push to React state when the *displayed* value changes — this
-      // keeps re-renders tied to visible change (rail fill deltas > 0.15%,
-      // year integer flips) instead of firing 60 re-renders/sec of a heavy
-      // tree, which was causing the marker to stutter and stall mid-scroll.
-      const newLabel =
-        smoothRef.current > 0.97 ? "NOW" : String(Math.round(shownRef.current));
-      if (Math.abs(smoothRef.current - lastP.current) > 0.0015) {
-        lastP.current = smoothRef.current;
-        setSmoothProgress(smoothRef.current);
-      }
-      if (newLabel !== lastLabel.current) {
-        lastLabel.current = newLabel;
-        setLabel(newLabel);
-      }
+        const p = smoothRef.current;
+        if (fillRef.current) fillRef.current.style.transform = `scaleY(${p})`;
+        if (markerRef.current) {
+          const m = markerRef.current;
+          m.style.transform = `translate(-50%, -50%) translate3d(0, ${p * (rail?.offsetHeight ?? 0)}px, 0)`;
+          m.style.opacity = p > 0.002 && p < 0.998 ? "1" : "0";
+        }
+        const newLabel = p > 0.97 ? "NOW" : String(Math.round(shownRef.current));
+        if (newLabel !== lastLabel.current) {
+          lastLabel.current = newLabel;
+          if (labelRef.current) labelRef.current.textContent = newLabel;
+        }
       } catch {
         // ignore transient measurement errors; rAF already rescheduled above
       }
@@ -184,8 +184,9 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
     return () => cancelAnimationFrame(raf);
   }, [count, years, reduced]);
 
-  return { railRef, nodeRefs, smoothProgress, label, statuses };
+  return { railRef, nodeRefs, fillRef, markerRef, labelRef, statuses };
 }
+
 
 function useReveal<T extends HTMLElement>(reduced: boolean) {
   const ref = useRef<T | null>(null);
@@ -537,11 +538,8 @@ export function Timeline() {
     [rows],
   );
 
-  const { railRef, nodeRefs, smoothProgress, label, statuses } = useTimelineScroll(
-    rows.length,
-    years,
-    reduced,
-  );
+  const { railRef, nodeRefs, fillRef, markerRef, labelRef, statuses } =
+    useTimelineScroll(rows.length, years, reduced);
 
   return (
     <div ref={railRef} className="relative">
@@ -552,10 +550,11 @@ export function Timeline() {
       >
         {/* active progress rail */}
         <div
+          ref={fillRef}
           className="w-px origin-top"
           style={{
             height: "100%",
-            transform: `scaleY(${smoothProgress})`,
+            transform: "scaleY(0)",
             transformOrigin: "top",
             willChange: "transform",
             background:
@@ -571,18 +570,24 @@ export function Timeline() {
         className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px md:left-1/2"
       >
         <span
+          ref={markerRef}
           className={[
-            "absolute left-0 block -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
+            "absolute left-0 top-0 block whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
             "font-mono text-base font-semibold uppercase tracking-[0.18em] text-night-foreground",
             "shadow-[0_0_26px_color-mix(in_oklab,var(--aurora-teal)_30%,transparent)] backdrop-blur",
-            "transition-opacity duration-500",
-            smoothProgress > 0.002 && smoothProgress < 0.998 ? "opacity-100" : "opacity-0",
+            "transition-opacity duration-300",
           ].join(" ")}
-          style={{ top: `${smoothProgress * 100}%`, willChange: "top" }}
+          style={{
+            opacity: 0,
+            transform: "translate(-50%, -50%)",
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+          }}
         >
-          {label}
+          <span ref={labelRef}>{String(years[0] ?? 2003)}</span>
         </span>
       </div>
+
 
       <ol className="relative space-y-6 md:space-y-10">
         {rows.map((row, i) => (
