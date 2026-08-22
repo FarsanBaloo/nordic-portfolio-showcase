@@ -36,8 +36,8 @@ export function AuroraBackdrop() {
           <linearGradient id="curtain-glow" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.1" />
             <stop offset="0.3" stopColor="var(--aurora-violet)" stopOpacity="0.14" />
-            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.4" />
-            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.5" />
+            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.16" />
+            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.28" />
             <stop offset="0.95" stopColor="var(--aurora-teal)" stopOpacity="0.16" />
             <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0" />
           </linearGradient>
@@ -98,15 +98,15 @@ export function AuroraBackdrop() {
           />
         </g>
 
-        <g className="aurora-band" transform="translate(0 -150) rotate(-6 800 380)">
+        <g className="aurora-band" opacity="0.34" transform="translate(0 -230) rotate(-6 800 380)">
           <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="1">
             <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
           <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.55">
-            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.5" />
+            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.3" />
             <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="620" fill="url(#aurora-rays)" />
           </g>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="26" opacity="0.28" filter="url(#soft-curtain)">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="20" opacity="0.16" filter="url(#soft-curtain)">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
         </g>
