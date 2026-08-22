@@ -141,6 +141,13 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
         }
       }
 
+      if (typeof window !== "undefined") {
+        (window as unknown as { __tl?: unknown }).__tl = {
+          raw,
+          rectTop: rail ? rail.getBoundingClientRect().top : null,
+          scrollY: window.scrollY,
+        };
+      }
       // ease the rail fill / marker position toward the raw progress
       const sp = smoothRef.current + (raw - smoothRef.current) * 0.14;
       smoothRef.current = Math.abs(raw - sp) < 0.0005 ? raw : sp;
