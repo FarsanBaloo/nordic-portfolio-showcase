@@ -457,25 +457,38 @@ export function Timeline() {
   const targetRef = useRef(targetYear);
   targetRef.current = targetYear;
 
+  const [smoothProgress, setSmoothProgress] = useState(progress);
+  const smoothRef = useRef(progress);
+  const progressRef = useRef(progress);
+  progressRef.current = progress;
+
   useEffect(() => {
     if (reduced) {
-      shownRef.current = targetYear;
-      setShownYear(targetYear);
+      shownRef.current = targetRef.current;
+      smoothRef.current = progressRef.current;
+      setShownYear(targetRef.current);
+      setSmoothProgress(progressRef.current);
       return;
     }
     let raf = 0;
     const tick = () => {
-      const next = shownRef.current + (targetRef.current - shownRef.current) * 0.12;
-      shownRef.current = Math.abs(targetRef.current - next) < 0.01 ? targetRef.current : next;
+      const y = shownRef.current + (targetRef.current - shownRef.current) * 0.09;
+      shownRef.current = Math.abs(targetRef.current - y) < 0.005 ? targetRef.current : y;
       setShownYear(shownRef.current);
+
+      const p = smoothRef.current + (progressRef.current - smoothRef.current) * 0.14;
+      smoothRef.current = Math.abs(progressRef.current - p) < 0.0005 ? progressRef.current : p;
+      setSmoothProgress(smoothRef.current);
+
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [reduced, targetYear]);
+  }, [reduced]);
 
-  const atNow = progress > 0.97;
+  const atNow = smoothProgress > 0.97;
   const currentLabel = atNow ? "NOW" : String(Math.round(shownYear));
+
 
 
   return (
