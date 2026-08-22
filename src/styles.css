@@ -202,7 +202,7 @@
 
 @utility aurora-curtain {
   position: absolute;
-  filter: blur(18px);
+  filter: blur(10px);
   will-change: transform, opacity, background-position;
   transform-origin: 50% 0%;
   mix-blend-mode: screen;
