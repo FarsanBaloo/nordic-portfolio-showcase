@@ -304,10 +304,11 @@ function BranchCard({
         {project.teaser ? (
           <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
         ) : null}
-        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-night-muted">
-          Within {period}
-          {branch.note ? ` · ${branch.note}` : ""}
-        </p>
+        {branch.note ? (
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-night-muted">
+            {branch.note}
+          </p>
+        ) : null}
         <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
           Open case study <span aria-hidden="true">↗</span>
         </span>
