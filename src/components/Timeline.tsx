@@ -3,7 +3,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
 import { ProjectModal } from "./ProjectModal";
-import { milestones, type TimelineMilestone } from "../content/timeline";
+import {
+  milestones,
+  type TimelineBranch,
+  type TimelineMilestone,
+} from "../content/timeline";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -257,17 +261,34 @@ function Node({
   );
 }
 
-function BranchCard({ slug }: { slug: string }) {
-  const project = getProject(slug);
+function BranchCard({
+  branch,
+  status,
+  period,
+}: {
+  branch: TimelineBranch;
+  status: Status;
+  period: string;
+}) {
+  const project = branch.slug ? getProject(branch.slug) : undefined;
   if (!project) return null;
+  const active = status === "active";
   return (
     <ProjectModal slug={project.slug} project={project}>
       <button
         type="button"
-        className="group block w-full rounded-2xl border border-night-border/60 bg-white/[0.035] p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]"
+        className={[
+          "group block w-full rounded-2xl border p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]",
+          active
+            ? "border-aurora-teal/45 bg-white/[0.06] shadow-[0_0_0_1px_color-mix(in_oklab,var(--aurora-teal)_25%,transparent)]"
+            : status === "completed"
+              ? "border-night-border/60 bg-white/[0.035]"
+              : "border-night-border/40 bg-white/[0.02] opacity-70",
+        ].join(" ")}
       >
         <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
-          {project.meta} · {project.type}
+          {branch.span ?? period}
+          <span className="ml-2 text-night-muted">· {project.type}</span>
         </p>
         <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
         {project.subtitle ? (
@@ -276,6 +297,10 @@ function BranchCard({ slug }: { slug: string }) {
         {project.teaser ? (
           <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
         ) : null}
+        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-night-muted">
+          Within {period}
+          {branch.note ? ` · ${branch.note}` : ""}
+        </p>
         <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
           Open case study <span aria-hidden="true">↗</span>
         </span>
@@ -309,7 +334,26 @@ function MilestoneRow({
   const active = status === "active";
 
   return (
-    <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-start md:pl-0">
+    <li
+      data-status={status}
+      className={[
+        "relative pl-12 transition-all duration-500 md:grid md:grid-cols-[1fr_auto_1fr] md:items-start md:pl-0",
+        status === "upcoming" ? "opacity-80" : "opacity-100",
+      ].join(" ")}
+    >
+      {/* active highlight line: a soft horizontal beam across the row */}
+      <span
+        aria-hidden="true"
+        className={[
+          "pointer-events-none absolute left-0 right-0 top-6 h-px transition-opacity duration-500",
+          active ? "opacity-100" : "opacity-0",
+        ].join(" ")}
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, color-mix(in oklab, var(--aurora-teal) 55%, transparent), transparent)",
+          boxShadow: "0 0 18px 1px color-mix(in oklab, var(--aurora-teal) 30%, transparent)",
+        }}
+      />
       <div className="hidden md:block" />
       <span
         ref={nodeRef}
@@ -424,16 +468,18 @@ function MilestoneRow({
       {entry.branches?.length ? (
         <div
           className={[
-            "mt-4 md:mt-0 md:row-start-1 md:self-start",
+            "mt-4 transition-all duration-500 md:mt-0 md:row-start-1 md:self-start",
             left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
           ].join(" ")}
         >
           <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-night-muted">
-            Projects in this role
+            Projects in this role · {entry.period}
           </p>
           <div className="space-y-3">
             {entry.branches.map((b) =>
-              b.slug ? <BranchCard key={b.slug} slug={b.slug} /> : null,
+              b.slug ? (
+                <BranchCard key={b.slug} branch={b} status={status} period={entry.period} />
+              ) : null,
             )}
           </div>
         </div>
