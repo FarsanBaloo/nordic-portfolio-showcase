@@ -71,12 +71,23 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
     const measure = () => {
       frame = 0;
       const rail = railRef.current;
-      if (!rail) return;
+      if (!rail) {
+        (window as unknown as { __tl?: unknown }).__tl = { railExists: false, scrollY: window.scrollY };
+        return;
+      }
 
       const rect = rail.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const anchor = vh * 0.5;
       const raw = (anchor - rect.top) / Math.max(rect.height, 1);
+      (window as unknown as { __tl?: unknown }).__tl = {
+        railExists: true,
+        rectTop: rect.top,
+        rectH: rect.height,
+        vh,
+        raw,
+        scrollY: window.scrollY,
+      };
       setProgress(Math.min(1, Math.max(0, raw)));
 
       // A node's progress-space position is the scroll progress at which the
