@@ -494,27 +494,23 @@ function MilestoneRow({
 function PointRow({
   label,
   side,
-  variant,
-  panel,
+  slug,
   status,
   reduced,
   nodeRef,
-  onOpen,
 }: {
   label: string;
   side: "left" | "right";
-  variant: "role" | "project";
-  panel: Panel;
+  slug: string;
   status: Status;
   reduced: boolean;
   nodeRef: (el: HTMLElement | null) => void;
-  onOpen: (panel: Panel) => void;
 }) {
   const { ref, shown } = useReveal<HTMLDivElement>(reduced);
   const left = side === "left";
   const lit = status !== "upcoming";
-  const project = variant === "project";
-  const accent = project ? "var(--aurora-teal)" : "var(--aurora-green)";
+  const project = slug ? getProject(slug) : undefined;
+  const accent = "var(--aurora-teal)";
 
   return (
     <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:pl-0">
