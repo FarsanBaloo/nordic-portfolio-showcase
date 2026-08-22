@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: prefix each <loc> with the site BASE_URL once a domain is set. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc></url>
+  <url><loc>/journey</loc></url>
+  <url><loc>/projects</loc></url>
+  <url><loc>/education</loc></url>
+  <url><loc>/about</loc></url>
+  <url><loc>/contact</loc></url>
+  <url><loc>/projects/talking-systems</loc></url>
+  <url><loc>/projects/talking-scada</loc></url>
+  <url><loc>/projects/wind-power-forecasting</loc></url>
+  <url><loc>/projects/digital-realty-st06</loc></url>
+  <url><loc>/projects/kth-living-lab</loc></url>
+  <url><loc>/projects/multi-agent-ai</loc></url>
+  <url><loc>/projects/st-eriks</loc></url>
+  <url><loc>/projects/hvac-monitoring</loc></url>
+  <url><loc>/projects/planet-resande</loc></url>
+  <url><loc>/projects/hallbar-halsa</loc></url>
+  <url><loc>/projects/seeing-ai</loc></url>
+  <url><loc>/projects/astrazeneca</loc></url>
+</urlset>
