@@ -161,15 +161,26 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
       // ease the rail fill / marker position toward the raw progress
       const sp = smoothRef.current + (raw - smoothRef.current) * 0.14;
       smoothRef.current = Math.abs(raw - sp) < 0.0005 ? raw : sp;
-      setSmoothProgress(smoothRef.current);
 
       // ease the counting year toward its interpolated target
       const ty = targetYearFor(raw);
       const sy = shownRef.current + (ty - shownRef.current) * 0.09;
       shownRef.current = Math.abs(ty - sy) < 0.005 ? ty : sy;
-       setLabel(
-         smoothRef.current > 0.97 ? "NOW" : String(Math.round(shownRef.current)),
-       );
+
+      // Only push to React state when the *displayed* value changes — this
+      // keeps re-renders tied to visible change (rail fill deltas > 0.15%,
+      // year integer flips) instead of firing 60 re-renders/sec of a heavy
+      // tree, which was causing the marker to stutter and stall mid-scroll.
+      const newLabel =
+        smoothRef.current > 0.97 ? "NOW" : String(Math.round(shownRef.current));
+      if (Math.abs(smoothRef.current - lastP.current) > 0.0015) {
+        lastP.current = smoothRef.current;
+        setSmoothProgress(smoothRef.current);
+      }
+      if (newLabel !== lastLabel.current) {
+        lastLabel.current = newLabel;
+        setLabel(newLabel);
+      }
       } catch {
         // ignore transient measurement errors; rAF already rescheduled above
       }
