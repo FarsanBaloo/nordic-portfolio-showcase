@@ -102,14 +102,14 @@ export function AuroraBackdrop() {
           <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.62">
             <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
-          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.62">
+          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.8">
             <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.22" />
             <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="620" fill="url(#aurora-rays)" />
           </g>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="9" opacity="0.38" filter="url(#soft-curtain)">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="11" opacity="0.5" filter="url(#soft-curtain)">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="1.8" opacity="0.58">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="2.2" opacity="0.72">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
         </g>
