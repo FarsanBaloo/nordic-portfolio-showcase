@@ -247,6 +247,7 @@ function FloatingPanel({ panel, onClose }: { panel: Panel; onClose: () => void }
       body = role.summary;
       items = role.bullets;
       chips = role.tags.slice(0, 6);
+      groups = role.detailGroups;
     } else {
       const group = role.detailGroups.find((g) => g.title === panel.group);
       if (!group) return null;
