@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
-import { milestones, type TimelineBranch, type TimelineMilestone } from "../content/timeline";
+import { milestones, type TimelineMilestone } from "../content/timeline";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
