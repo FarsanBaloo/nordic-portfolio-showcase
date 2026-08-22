@@ -51,8 +51,8 @@ const ribbons: Ribbon[] = [
     cls: "aurora-ribbon-back",
     top: 40,
     bottom: 560,
-    opacity: 0.3,
-    streaks: 0.22,
+    opacity: 0.5,
+    streaks: 0.4,
     shapes: [
       "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 560 L-300 560 Z",
       "M-300 170 C180 190 400 190 740 250 C1060 306 1260 150 1900 120 L1900 560 L-300 560 Z",
@@ -71,8 +71,8 @@ const ribbons: Ribbon[] = [
     cls: "aurora-ribbon-mid",
     top: 90,
     bottom: 620,
-    opacity: 0.42,
-    streaks: 0.55,
+    opacity: 0.62,
+    streaks: 0.8,
     shapes: [
       "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 640 L-300 640 Z",
       "M-300 300 C240 330 470 330 800 400 C1100 464 1320 260 1900 300 L1900 640 L-300 640 Z",
@@ -91,8 +91,8 @@ const ribbons: Ribbon[] = [
     cls: "aurora-ribbon-front",
     top: 150,
     bottom: 600,
-    opacity: 0.34,
-    streaks: 0.85,
+    opacity: 0.5,
+    streaks: 1,
     shapes: [
       "M420 300 C620 250 800 330 1060 280 C1290 236 1450 180 1900 210 L1900 560 L420 560 Z",
       "M420 270 C640 310 820 290 1080 330 C1300 366 1470 220 1900 250 L1900 560 L420 560 Z",
@@ -120,7 +120,7 @@ const morph = (values: string[], dur: string) => (
   />
 );
 
-const durations: Record<string, string> = { back: "58s", mid: "47s", front: "39s" };
+const durations: Record<string, string> = { back: "92s", mid: "76s", front: "63s" };
 
 /**
  * Fixed Scandinavian night sky: near-black backdrop, sparse star field and
@@ -177,15 +177,30 @@ export function AuroraBackdrop() {
         <defs>
           {/* brightness varies along the curtain, and travels slowly sideways */}
           <linearGradient id="aurora-hue" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.1" />
-            <stop offset="0.22" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
-            <stop offset="0.44" stopColor="var(--aurora-green-soft)" stopOpacity="0.4" />
-            <stop offset="0.63" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
-            <stop offset="0.83" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
-            <stop offset="1" stopColor="var(--aurora-green-hex)" stopOpacity="0.12" />
-            <animate attributeName="x1" values="-0.2;0.02;-0.2" dur="54s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0.88;1.08;0.88" dur="54s" repeatCount="indefinite" />
+            <stop offset="0" stopColor="var(--aurora-blue-hex)" stopOpacity="0.12" />
+            <stop offset="0.14" stopColor="var(--aurora-teal-hex)" stopOpacity="0.5" />
+            <stop offset="0.3" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
+            <stop offset="0.46" stopColor="var(--aurora-lime-hex)" stopOpacity="0.55" />
+            <stop offset="0.62" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
+            <stop offset="0.78" stopColor="var(--aurora-green-hex)" stopOpacity="0.55" />
+            <stop offset="0.9" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.3" />
+            <stop offset="1" stopColor="var(--aurora-violet-hex)" stopOpacity="0.12" />
+            <animate attributeName="x1" values="-0.2;-0.09;0.02;-0.09;-0.2" dur="96s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="0.88;0.98;1.08;0.98;0.88" dur="96s" repeatCount="indefinite" />
           </linearGradient>
+
+          {/* vertical colour column: rose/violet crown, green body, teal foot */}
+          {ribbons.map((r) => (
+            <linearGradient key={`v${r.id}`} id={`vhue-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top - 60} x2="0" y2={r.bottom}>
+              <stop offset="0" stopColor="var(--aurora-rose-hex)" stopOpacity="0.55" />
+              <stop offset="0.12" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.5" />
+              <stop offset="0.26" stopColor="var(--aurora-violet-hex)" stopOpacity="0.35" />
+              <stop offset="0.44" stopColor="var(--aurora-green-bright)" stopOpacity="0.75" />
+              <stop offset="0.64" stopColor="var(--aurora-green-hex)" stopOpacity="0.6" />
+              <stop offset="0.84" stopColor="var(--aurora-teal-hex)" stopOpacity="0.32" />
+              <stop offset="1" stopColor="var(--aurora-blue-hex)" stopOpacity="0.1" />
+            </linearGradient>
+          ))}
 
           <linearGradient id="aurora-crown" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--aurora-violet-hex)" stopOpacity="0.32" />
@@ -199,14 +214,20 @@ export function AuroraBackdrop() {
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <pattern id="aurora-streaks" width="167" height="1000" patternUnits="userSpaceOnUse">
-            <rect x="4" width="3" height="1000" fill="url(#streak-fade)" opacity="0.4" />
-            <rect x="19" width="9" height="1000" fill="url(#streak-fade)" opacity="0.24" />
-            <rect x="38" width="2" height="1000" fill="url(#streak-fade)" opacity="0.5" />
-            <rect x="57" width="14" height="1000" fill="url(#streak-fade)" opacity="0.16" />
+            <rect x="2" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.34" />
+            <rect x="9" width="3" height="1000" fill="url(#streak-fade)" opacity="0.4" />
+            <rect x="19" width="9" height="1000" fill="url(#streak-fade)" opacity="0.2" />
+            <rect x="33" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.46" />
+            <rect x="40" width="2" height="1000" fill="url(#streak-fade)" opacity="0.5" />
+            <rect x="52" width="14" height="1000" fill="url(#streak-fade)" opacity="0.13" />
+            <rect x="72" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.3" />
             <rect x="84" width="4" height="1000" fill="url(#streak-fade)" opacity="0.42" />
-            <rect x="101" width="2" height="1000" fill="url(#streak-fade)" opacity="0.3" />
-            <rect x="121" width="11" height="1000" fill="url(#streak-fade)" opacity="0.2" />
-            <rect x="146" width="3" height="1000" fill="url(#streak-fade)" opacity="0.36" />
+            <rect x="95" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.26" />
+            <rect x="103" width="2" height="1000" fill="url(#streak-fade)" opacity="0.3" />
+            <rect x="118" width="11" height="1000" fill="url(#streak-fade)" opacity="0.16" />
+            <rect x="136" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.32" />
+            <rect x="147" width="3" height="1000" fill="url(#streak-fade)" opacity="0.36" />
+            <rect x="158" width="1.8" height="1000" fill="url(#streak-fade)" opacity="0.24" />
           </pattern>
 
           <filter id="aurora-soft" x="-25%" y="-25%" width="150%" height="160%">
@@ -250,7 +271,16 @@ export function AuroraBackdrop() {
         {ribbons.map((r) => (
           <g key={r.id} className={`aurora-ribbon ${r.cls}`} opacity={r.opacity}>
             <g mask={`url(#mask-${r.id})`}>
-              <rect x="-400" y="-200" width="2400" height="1400" fill="url(#aurora-hue)" opacity="0.55" />
+              <rect x="-400" y="-200" width="2400" height="1400" fill="url(#aurora-hue)" opacity="0.5" />
+              <rect
+                className="aurora-colorwash"
+                x="-400"
+                y="-200"
+                width="2400"
+                height="1400"
+                fill={`url(#vhue-${r.id})`}
+                opacity="0.7"
+              />
               <rect
                 className="aurora-streak-sheet"
                 x="-400"
@@ -258,7 +288,7 @@ export function AuroraBackdrop() {
                 width="2400"
                 height="1400"
                 fill="url(#aurora-streaks)"
-                opacity={r.streaks * 0.55}
+                opacity={r.streaks * 0.7}
                 filter="url(#aurora-warp)"
               />
             </g>
