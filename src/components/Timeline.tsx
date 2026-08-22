@@ -41,24 +41,32 @@ function buildRows(): Row[] {
   }));
 }
 
-/** Scroll-linked progress measured against the timeline section itself. */
-function useTimelineScroll(count: number, reduced: boolean) {
+/** Scroll-linked progress measured against the timeline section itself.
+ *  Also derives pixel-accurate year anchors so the counting year tracks the
+ *  real on-screen position of each milestone node (not a uniform row index),
+ *  which keeps the year in sync even when a role card is very tall. */
+function useTimelineScroll(count: number, years: number[], reduced: boolean) {
   const railRef = useRef<HTMLDivElement | null>(null);
   const nodeRefs = useRef<(HTMLElement | null)[]>([]);
   const [progress, setProgress] = useState(0);
   const [statuses, setStatuses] = useState<Status[]>(() =>
     Array.from({ length: count }, () => "upcoming" as Status),
   );
+  const [anchorPoints, setAnchorPoints] = useState<{ at: number; year: number }[]>([]);
 
   useEffect(() => {
     if (reduced) {
       setProgress(1);
       setStatuses(Array.from({ length: count }, () => "completed" as Status));
+      setAnchorPoints(
+        years.map((y, i) => ({ at: count > 1 ? i / (count - 1) : 0, year: y })),
+      );
       return;
     }
 
     let frame = 0;
     let prev: Status[] = [];
+    let prevAnchors = "";
 
     const measure = () => {
       frame = 0;
@@ -70,6 +78,29 @@ function useTimelineScroll(count: number, reduced: boolean) {
       const anchor = vh * 0.5;
       const raw = (anchor - rect.top) / Math.max(rect.height, 1);
       setProgress(Math.min(1, Math.max(0, raw)));
+
+      // A node's progress-space position is the scroll progress at which the
+      // node sits in the viewport centre. Because both the node and the rail
+      // shift together on scroll, this offset is stable per layout.
+      if (rect.height > 1) {
+        const points: { at: number; year: number }[] = [];
+        for (let i = 0; i < nodeRefs.current.length; i += 1) {
+          const el = nodeRefs.current[i];
+          if (!el) continue;
+          const r = el.getBoundingClientRect();
+          const center = r.top + r.height / 2;
+          const at = (center - rect.top) / rect.height;
+          const year = years[i];
+          if (Number.isFinite(at) && year != null) {
+            points.push({ at: Math.min(1, Math.max(0, at)), year });
+          }
+        }
+        const key = points.map((p) => `${p.at.toFixed(4)}:${p.year}`).join("|");
+        if (points.length && key !== prevAnchors) {
+          prevAnchors = key;
+          setAnchorPoints(points);
+        }
+      }
 
       const next: Status[] = nodeRefs.current.map((el) => {
         if (!el) return "upcoming";
@@ -97,9 +128,9 @@ function useTimelineScroll(count: number, reduced: boolean) {
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [count, reduced]);
+  }, [count, years, reduced]);
 
-  return { railRef, nodeRefs, progress, statuses };
+  return { railRef, nodeRefs, progress, statuses, anchorPoints };
 }
 
 function useReveal<T extends HTMLElement>(reduced: boolean) {
@@ -308,21 +339,21 @@ function MilestoneRow({
                   </li>
                 ))}
               </ul>
-              <div className="space-y-5 border-t border-night-border/60 pt-5">
+              <div className="mt-5 grid gap-x-6 gap-y-4 border-t border-night-border/60 pt-5 md:grid-cols-2">
                 {role.detailGroups.map((g) => (
                   <section key={g.title}>
-                    <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-aurora-green">
+                    <h4 className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-green">
                       {g.title}
                     </h4>
-                    <ul className="mt-2 space-y-2">
+                    <ul className="mt-1.5 space-y-1">
                       {g.items.map((item) => (
                         <li
                           key={item}
-                          className="flex gap-2 text-sm leading-relaxed text-night-muted"
+                          className="flex gap-1.5 text-xs leading-snug text-night-muted"
                         >
                           <span
                             aria-hidden="true"
-                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
+                            className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
                           />
                           {item}
                         </li>
@@ -364,23 +395,27 @@ function MilestoneRow({
 export function Timeline() {
   const reduced = usePrefersReducedMotion();
   const rows = useMemo(buildRows, []);
-  const { railRef, nodeRefs, progress, statuses } = useTimelineScroll(rows.length, reduced);
+  // start year per milestone, aligned to rows
+  const years = useMemo(
+    () =>
+      rows.map((row) => {
+        const match = row.entry.period.match(/\d{4}/);
+        return row.entry.now ? 2026 : match ? Number(match[0]) : 2026;
+      }),
+    [rows],
+  );
 
-  // continuous, smoothly counting year derived from scroll progress
-  const anchors = useMemo(() => {
-    const list: { at: number; year: number }[] = [];
-    const last = Math.max(rows.length - 1, 1);
-    rows.forEach((row, i) => {
-      if (row.kind !== "milestone") return;
-      const match = row.entry.period.match(/\d{4}/);
-      const year = row.entry.now ? 2026 : match ? Number(match[0]) : 2026;
-      list.push({ at: i / last, year });
-    });
-    return list;
-  }, [rows]);
+  const { railRef, nodeRefs, progress, statuses, anchorPoints } = useTimelineScroll(
+    rows.length,
+    years,
+    reduced,
+  );
 
+  // continuous, smoothly counting year derived from scroll progress and the
+  // real on-screen positions of each milestone node
+  const anchors = anchorPoints;
   const targetYear = useMemo(() => {
-    if (anchors.length === 0) return 2003;
+    if (anchors.length === 0) return years[0] ?? 2003;
     if (progress <= anchors[0]!.at) return anchors[0]!.year;
     for (let i = 0; i < anchors.length - 1; i += 1) {
       const a = anchors[i]!;
@@ -391,7 +426,7 @@ export function Timeline() {
       }
     }
     return anchors[anchors.length - 1]!.year;
-  }, [anchors, progress]);
+  }, [anchors, progress, years]);
 
   const [shownYear, setShownYear] = useState(targetYear);
   const shownRef = useRef(targetYear);
