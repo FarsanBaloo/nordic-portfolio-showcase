@@ -32,8 +32,7 @@ type Row =
       key: string;
       label: string;
       side: "left" | "right";
-      panel: Panel;
-      variant: "role" | "project";
+      slug: string;
     };
 
 const roleIdFor: Record<string, string | undefined> = {
