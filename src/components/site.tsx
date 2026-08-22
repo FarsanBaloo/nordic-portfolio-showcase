@@ -125,7 +125,30 @@ export function NightHero({
   );
 }
 
-export function Section({
+export function PortraitFrame({ className = "" }: { className?: string }) {
+  return (
+    <div className={`relative ${className}`}>
+      <div
+        aria-hidden="true"
+        className="absolute -inset-3 rounded-[1.75rem] bg-aurora-teal/20 blur-2xl"
+      />
+      <div className="relative overflow-hidden rounded-2xl border border-night-border bg-night-soft shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
+        <img
+          src={portraitAsset.url}
+          alt="Portrait of Rickard Sörlin"
+          width={480}
+          height={640}
+          loading="eager"
+          className="aspect-[4/5] h-full w-full object-cover"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10"
+        />
+      </div>
+    </div>
+  );
+}
   id,
   children,
   className = "",
