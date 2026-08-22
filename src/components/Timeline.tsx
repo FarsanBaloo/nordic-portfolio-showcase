@@ -19,15 +19,12 @@ function usePrefersReducedMotion() {
 
 type Status = "upcoming" | "active" | "completed";
 
-type Row =
-  | { kind: "milestone"; key: string; entry: TimelineMilestone; roleId?: string | undefined }
-  | {
-      kind: "point";
-      key: string;
-      label: string;
-      side: "left" | "right";
-      slug: string;
-    };
+type Row = {
+  kind: "milestone";
+  key: string;
+  entry: TimelineMilestone;
+  roleId?: string | undefined;
+};
 
 const roleIdFor: Record<string, string | undefined> = {
   "project-engineer": "project-engineer",
@@ -36,25 +33,12 @@ const roleIdFor: Record<string, string | undefined> = {
 };
 
 function buildRows(): Row[] {
-  const rows: Row[] = [];
-  for (const entry of milestones) {
-    const roleId = roleIdFor[entry.id];
-    rows.push({ kind: "milestone", key: entry.id, entry, roleId });
-
-
-    for (const branch of entry.branches ?? []) {
-      rows.push({
-        kind: "point",
-        key: `${entry.id}-${branch.label}`,
-        label: branch.label,
-        // projects from a role sit on the opposite side of the rail
-        side: entry.side === "left" ? "right" : "left",
-        slug: branch.slug ?? "",
-      });
-    }
-
-  }
-  return rows;
+  return milestones.map((entry) => ({
+    kind: "milestone" as const,
+    key: entry.id,
+    entry,
+    roleId: roleIdFor[entry.id],
+  }));
 }
 
 /** Scroll-linked progress measured against the timeline section itself. */
@@ -192,6 +176,32 @@ function Node({
   );
 }
 
+function BranchCard({ slug }: { slug: string }) {
+  const project = getProject(slug);
+  if (!project) return null;
+  return (
+    <Link
+      to="/projects/$slug"
+      params={{ slug: project.slug }}
+      className="group block rounded-2xl border border-night-border/60 bg-white/[0.035] p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]"
+    >
+      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+        {project.meta} · {project.type}
+      </p>
+      <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
+      {project.subtitle ? (
+        <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
+      ) : null}
+      {project.teaser ? (
+        <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
+      ) : null}
+      <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
+        Explore full case <span aria-hidden="true">→</span>
+      </span>
+    </Link>
+  );
+}
+
 function MilestoneRow({
   entry,
   roleId,
@@ -325,102 +335,31 @@ function MilestoneRow({
           ) : null}
         </div>
       </div>
-    </li>
-  );
-}
 
-function PointRow({
-  label,
-  side,
-  slug,
-  status,
-  reduced,
-  nodeRef,
-}: {
-  label: string;
-  side: "left" | "right";
-  slug: string;
-  status: Status;
-  reduced: boolean;
-  nodeRef: (el: HTMLElement | null) => void;
-}) {
-  const { ref, shown } = useReveal<HTMLDivElement>(reduced);
-  const left = side === "left";
-  const lit = status !== "upcoming";
-  const project = slug ? getProject(slug) : undefined;
-  const accent = "var(--aurora-teal)";
-
-  return (
-    <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:pl-0">
-      <div className="hidden md:block" />
-      {/* connector from rail to label */}
-      <span
-        aria-hidden="true"
-        className={[
-          "absolute left-[13px] top-1/2 h-px w-6 transition-opacity duration-500 md:w-10",
-          lit ? "opacity-80" : "opacity-40",
-          left ? "md:left-auto md:right-1/2" : "md:left-1/2",
-        ].join(" ")}
-        style={{
-          background: `linear-gradient(${left ? "270deg" : "90deg"}, color-mix(in oklab, ${accent} 55%, transparent), transparent)`,
-        }}
-      />
-      <span
-        ref={nodeRef}
-        className="absolute left-[13px] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 md:translate-y-0"
-      >
-        <Node status={status} isNow={false} accent={accent} size="minor" />
-      </span>
-      <div
-        ref={ref}
-        style={{
-          transitionDuration: reduced ? "0ms" : "480ms",
-          transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-        }}
-        className={[
-          "transition-all will-change-transform",
-          shown ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
-          left
-            ? "md:col-start-1 md:row-start-1 md:flex md:justify-end md:pr-14"
-            : "md:col-start-3 md:row-start-1 md:pl-14",
-        ].join(" ")}
-      >
+      {/* projects carried out in this role sit on the opposite side,
+          aligned to the top of the role so they read in the role's
+          opening period (e.g. 2020–2023 for the Senior Technical Advisor) */}
+      {entry.branches?.length ? (
         <div
           className={[
-            "w-full max-w-md rounded-2xl border p-4 text-left transition-all duration-500",
-            lit
-              ? "border-night-border bg-white/[0.035]"
-              : "border-night-border/40 bg-white/[0.015]",
+            "mt-4 md:mt-0 md:row-start-1 md:self-start",
+            left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
           ].join(" ")}
         >
-          {project ? (
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
-              {project.meta} · {project.type}
-            </p>
-          ) : null}
-          <h4 className="mt-1 text-sm font-semibold text-night-foreground">
-            {project?.title ?? label}
-          </h4>
-          {project?.subtitle ? (
-            <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
-          ) : null}
-          {project?.teaser ? (
-            <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
-          ) : null}
-          {project ? (
-            <Link
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity hover:opacity-80"
-            >
-              Explore full case <span aria-hidden="true">→</span>
-            </Link>
-          ) : null}
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-night-muted">
+            Projects in this role
+          </p>
+          <div className="space-y-3">
+            {entry.branches.map((b) =>
+              b.slug ? <BranchCard key={b.slug} slug={b.slug} /> : null,
+            )}
+          </div>
         </div>
-      </div>
+      ) : null}
     </li>
   );
 }
+
 
 export function Timeline() {
   const reduced = usePrefersReducedMotion();
@@ -537,32 +476,18 @@ export function Timeline() {
 
 
       <ol className="relative space-y-6 md:space-y-10">
-        {rows.map((row, i) =>
-          row.kind === "milestone" ? (
-            <MilestoneRow
-              key={row.key}
-              entry={row.entry}
-              roleId={row.roleId}
-              reduced={reduced}
-              status={statuses[i] ?? "upcoming"}
-              nodeRef={(el) => {
-                nodeRefs.current[i] = el;
-              }}
-            />
-          ) : (
-            <PointRow
-              key={row.key}
-              label={row.label}
-              side={row.side}
-              slug={row.slug}
-              reduced={reduced}
-              status={statuses[i] ?? "upcoming"}
-              nodeRef={(el) => {
-                nodeRefs.current[i] = el;
-              }}
-            />
-          ),
-        )}
+        {rows.map((row, i) => (
+          <MilestoneRow
+            key={row.key}
+            entry={row.entry}
+            roleId={row.roleId}
+            reduced={reduced}
+            status={statuses[i] ?? "upcoming"}
+            nodeRef={(el) => {
+              nodeRefs.current[i] = el;
+            }}
+          />
+        ))}
       </ol>
     </div>
   );
