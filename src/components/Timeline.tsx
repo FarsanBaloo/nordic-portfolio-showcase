@@ -563,22 +563,28 @@ export function Timeline() {
         />
       </div>
 
-      {/* sticky year marker — stays centred in the viewport while the story scrolls */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-full">
-        <div className="sticky top-[46vh] flex justify-start pl-[13px] md:justify-center md:pl-0">
-          <span
-            className={[
-              "-translate-x-1/2 rounded-full border border-aurora-teal/45 bg-night-bg/90 px-4 py-1.5",
-              "font-mono text-base font-semibold uppercase tracking-[0.2em] text-aurora-teal",
-              "shadow-[0_0_24px_color-mix(in_oklab,var(--aurora-teal)_28%,transparent)] backdrop-blur",
-              "transition-opacity duration-500 md:translate-x-0",
-              progress > 0.002 && progress < 0.998 ? "opacity-100" : "opacity-0",
-            ].join(" ")}
-          >
-            {currentLabel}
-          </span>
-        </div>
+      {/* year marker riding the progress head */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-[13px] z-20 -translate-y-1/2 md:left-1/2"
+        style={{
+          top: `${progress * 100}%`,
+          transition: reduced ? "none" : "top 90ms linear",
+        }}
+      >
+        <span
+          className={[
+            "block -translate-x-1/2 whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
+            "font-mono text-base font-semibold uppercase tracking-[0.18em] text-aurora-teal",
+            "shadow-[0_0_26px_color-mix(in_oklab,var(--aurora-teal)_30%,transparent)] backdrop-blur",
+            "transition-opacity duration-500",
+            progress > 0.002 && progress < 0.998 ? "opacity-100" : "opacity-0",
+          ].join(" ")}
+        >
+          {currentLabel}
+        </span>
       </div>
+
 
       <ol className="relative space-y-6 md:space-y-10">
         {rows.map((row, i) =>
