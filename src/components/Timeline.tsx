@@ -94,6 +94,11 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
     };
 
     const tick = () => {
+      // Reschedule FIRST so no transient error in the body can ever kill the
+      // loop (a thrown exception would otherwise silently stop the rAF chain
+      // and freeze the marker mid-scroll).
+      raf = requestAnimationFrame(tick);
+      try {
       const rail = railRef.current;
       const vh = window.innerHeight || 1;
       let raw = smoothRef.current;
