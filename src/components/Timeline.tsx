@@ -47,10 +47,12 @@ function buildRows(): Row[] {
         kind: "point",
         key: `${entry.id}-${branch.label}`,
         label: branch.label,
-        side: entry.side,
+        // projects from a role sit on the opposite side of the rail
+        side: entry.side === "left" ? "right" : "left",
         slug: branch.slug ?? "",
       });
     }
+
   }
   return rows;
 }
