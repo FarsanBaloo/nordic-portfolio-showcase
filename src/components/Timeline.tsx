@@ -345,7 +345,7 @@ function MilestoneRow({
   onOpen,
 }: {
   entry: TimelineMilestone;
-  roleId?: string;
+  roleId?: string | undefined;
   status: Status;
   reduced: boolean;
   nodeRef: (el: HTMLElement | null) => void;
