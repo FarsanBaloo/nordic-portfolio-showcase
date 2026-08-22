@@ -19,12 +19,6 @@ function usePrefersReducedMotion() {
 
 type Status = "upcoming" | "active" | "completed";
 
-/** What the floating window shows. */
-type Panel =
-  | { kind: "project"; slug: string }
-  | { kind: "role"; roleId: string }
-  | { kind: "group"; roleId: string; group: string };
-
 type Row =
   | { kind: "milestone"; key: string; entry: TimelineMilestone; roleId?: string | undefined }
   | {
@@ -196,22 +190,18 @@ function Node({
   );
 }
 
-/** Floating window used for projects, roles and role focus areas. */
-
 function MilestoneRow({
   entry,
   roleId,
   status,
   reduced,
   nodeRef,
-  onOpen,
 }: {
   entry: TimelineMilestone;
   roleId?: string | undefined;
   status: Status;
   reduced: boolean;
   nodeRef: (el: HTMLElement | null) => void;
-  onOpen: (panel: Panel) => void;
 }) {
   const { ref, shown } = useReveal<HTMLDivElement>(reduced);
   const role = roleId ? roles.find((r) => r.id === roleId) : undefined;
@@ -434,8 +424,6 @@ export function Timeline() {
   const reduced = usePrefersReducedMotion();
   const rows = useMemo(buildRows, []);
   const { railRef, nodeRefs, progress, statuses } = useTimelineScroll(rows.length, reduced);
-  const [panel, setPanel] = useState<Panel | null>(null);
-  const onOpen = useCallback((next: Panel) => setPanel(next), []);
 
   // year shown in the sticky marker = most recent milestone reached
   const currentLabel = useMemo(() => {
@@ -503,7 +491,6 @@ export function Timeline() {
               nodeRef={(el) => {
                 nodeRefs.current[i] = el;
               }}
-              onOpen={onOpen}
             />
           ) : (
             <PointRow
