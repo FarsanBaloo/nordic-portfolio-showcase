@@ -131,6 +131,9 @@ function Index() {
             </a>
           </div>
         </div>
+        <PortraitFrame className="mx-auto w-full max-w-[300px] lg:sticky lg:top-24" />
+        </div>
+        </div>
       </section>
 
       <section className="relative overflow-hidden night-panel">
