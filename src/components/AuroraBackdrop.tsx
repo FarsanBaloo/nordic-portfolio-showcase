@@ -114,7 +114,7 @@ export function AuroraBackdrop() {
           <filter id="aurora-warp" x="-25%" y="-25%" width="150%" height="150%">
             <feTurbulence
               type="fractalNoise"
-              baseFrequency="0.0025 0.012"
+              baseFrequency="0.0018 0.006"
               numOctaves={2}
               seed={7}
               result="noise"
@@ -122,21 +122,21 @@ export function AuroraBackdrop() {
               <animate
                 attributeName="baseFrequency"
                 dur="21s"
-                values="0.0025 0.012; 0.005 0.018; 0.002 0.009; 0.0025 0.012"
+                values="0.0018 0.006; 0.0032 0.009; 0.0012 0.004; 0.0018 0.006"
                 repeatCount="indefinite"
               />
             </feTurbulence>
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
-              scale={40}
+              scale={18}
               xChannelSelector="R"
               yChannelSelector="G"
             >
               <animate
                 attributeName="scale"
                 dur="13s"
-                values="26;58;34;26"
+                values="12;30;18;12"
                 repeatCount="indefinite"
               />
             </feDisplacementMap>
@@ -155,7 +155,7 @@ export function AuroraBackdrop() {
             height: "56%",
             opacity: 1,
             backgroundImage: rays("var(--aurora-green)", 95),
-            backgroundSize: "200% 100%",
+            backgroundSize: "260% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
@@ -189,7 +189,7 @@ export function AuroraBackdrop() {
             height: "50%",
             opacity: 0.78,
             backgroundImage: rays("var(--aurora-teal)", 85),
-            backgroundSize: "240% 100%",
+            backgroundSize: "300% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
@@ -209,7 +209,7 @@ export function AuroraBackdrop() {
             height: "42%",
             opacity: 0.5,
             backgroundImage: rays("var(--aurora-green)", 70),
-            backgroundSize: "210% 100%",
+            backgroundSize: "280% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
