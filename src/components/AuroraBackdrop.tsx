@@ -153,8 +153,8 @@ export function AuroraBackdrop() {
             left: "-10%",
             width: "82%",
             height: "56%",
-            opacity: 0.85,
-            backgroundImage: rays("var(--aurora-green)", 78),
+            opacity: 1,
+            backgroundImage: rays("var(--aurora-green)", 95),
             backgroundSize: "200% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
@@ -187,8 +187,8 @@ export function AuroraBackdrop() {
             left: "36%",
             width: "66%",
             height: "50%",
-            opacity: 0.6,
-            backgroundImage: rays("var(--aurora-teal)", 66),
+            opacity: 0.78,
+            backgroundImage: rays("var(--aurora-teal)", 85),
             backgroundSize: "240% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
@@ -207,8 +207,8 @@ export function AuroraBackdrop() {
             left: "4%",
             width: "74%",
             height: "42%",
-            opacity: 0.35,
-            backgroundImage: rays("var(--aurora-green)", 55),
+            opacity: 0.5,
+            backgroundImage: rays("var(--aurora-green)", 70),
             backgroundSize: "210% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
@@ -242,7 +242,7 @@ export function AuroraBackdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--night) 55%, transparent) 45%, color-mix(in oklab, var(--night) 80%, transparent) 100%)",
+            "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--night) 25%, transparent) 55%, color-mix(in oklab, var(--night) 60%, transparent) 100%)",
         }}
       />
     </div>
