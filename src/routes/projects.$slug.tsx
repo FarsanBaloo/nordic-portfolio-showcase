@@ -49,7 +49,7 @@ function CaseNotFound() {
 function CaseStudy() {
   const { project } = Route.useLoaderData();
   const index = sortedProjects.findIndex((p) => p.slug === project.slug);
-  const next = sortedProjects[(index + 1) % sortedProjects.length];
+  const next = sortedProjects[(index + 1) % sortedProjects.length] ?? project;
 
   return (
     <>

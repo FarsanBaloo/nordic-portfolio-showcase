@@ -54,7 +54,7 @@ function EducationPage() {
           <SectionHeading
             eyebrow="Postgraduate development"
             title={postgraduate.title}
-            intro={postgraduate.summary}
+            intro={postgraduate.intro}
           />
           <div className="mt-8 space-y-6">
             {postgraduate.entries.map((entry) => (

@@ -181,8 +181,8 @@ export function ImageFrame({
   note,
 }: {
   caption: string;
-  aspect?: string;
-  note?: string;
+  aspect?: string | undefined;
+  note?: string | undefined;
 }) {
   return (
     <figure>

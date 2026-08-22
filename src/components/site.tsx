@@ -107,7 +107,7 @@ export function NightHero({
 }: {
   eyebrow: string;
   title: string;
-  intro?: string;
+  intro?: string | undefined;
   children?: ReactNode;
 }) {
   return (

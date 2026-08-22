@@ -34,7 +34,7 @@ function JourneyPage() {
       <NightHero
         eyebrow="The journey"
         title="A continuous line from industrial reality to product and AI"
-        intro={journeyIntro[0]}
+        intro={journeyIntro[0] ?? ""}
       />
 
       <section className="relative overflow-hidden night-panel">
