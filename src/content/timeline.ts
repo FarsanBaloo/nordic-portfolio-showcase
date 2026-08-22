@@ -1,74 +1,100 @@
-export type TimelineEntry = {
+export type TimelineBranch = {
+  label: string;
+  slug?: string;
+  note?: string;
+};
+
+export type TimelineMilestone = {
+  id: string;
   period: string;
   title: string;
   detail: string;
   track: "professional" | "development";
-  order: number;
+  side: "left" | "right";
+  branches?: TimelineBranch[];
+  roles?: string[];
+  now?: boolean;
 };
 
-export const timeline: TimelineEntry[] = [
+export const milestones: TimelineMilestone[] = [
   {
+    id: "project-engineer",
     period: "2003–2013",
-    title: "Customer-Facing Engineering & Technical Delivery",
+    title: "Project Engineer",
     detail:
-      "Project Engineer at Schneider Electric — requirements, system design, programming, integration, commissioning and operational handover.",
+      "Customer-facing engineering and technical delivery at Schneider Electric — requirements, system design, programming, integration, commissioning and operational handover.",
     track: "professional",
-    order: 1,
+    side: "left",
   },
   {
-    period: "2013–2020",
-    title: "Customer-Facing Platform Expertise & Product Lifecycle",
-    detail:
-      "National technical expert for Sweden — complex platform environments, QA, release validation and deployment readiness.",
-    track: "professional",
-    order: 3,
-  },
-  {
-    period: "2020–2025",
-    title: "Discovery · Architecture · Technical Ownership · Business Value",
-    detail:
-      "Senior Technical Advisor — technical discovery, requirements, alternative architectures and technical/commercial trade-offs.",
-    track: "professional",
-    order: 5,
-  },
-  {
-    period: "Before 2025",
+    id: "bsc-start",
+    period: "Parallel track",
     title: "Computer Science / Intelligent Systems",
     detail:
-      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — applied AI focus.",
+      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside full-time engineering work.",
     track: "development",
-    order: 2,
+    side: "right",
   },
   {
-    period: "2024",
-    title: "Interaction Design",
+    id: "national-expert",
+    period: "2013–2020",
+    title: "Support Engineer / National Technical Expert",
     detail:
-      "Human-centred design, prototyping, user testing, accessibility and heuristic evaluation.",
-    track: "development",
-    order: 4,
+      "National technical expert for Sweden — complex platform environments, QA, release validation, escalation ownership and deployment readiness.",
+    track: "professional",
+    side: "right",
+    branches: [{ label: "AstraZeneca platform environment", slug: "astrazeneca" }],
   },
   {
-    period: "2025",
-    title: "Industrial AI + Wind Power Thesis",
+    id: "senior-advisor",
+    period: "2020–2025",
+    title: "Senior Technical Advisor",
     detail:
-      "Talking Systems at MITC and a bachelor thesis on uncertainty-aware 48-hour wind power forecasting.",
-    track: "development",
-    order: 6,
+      "Technical discovery, requirements, alternative architectures and technical/commercial trade-offs — end-to-end technical ownership tied to business value.",
+    track: "professional",
+    side: "left",
+    branches: [
+      { label: "Digital Realty ST06", slug: "digital-realty-st06" },
+      { label: "KTH Living Lab", slug: "kth-living-lab" },
+      { label: "S:t Eriks Eye Center", slug: "st-eriks" },
+    ],
   },
   {
+    id: "applied-ai",
+    period: "2024–2025",
+    title: "Interaction Design · Applied AI · Thesis",
+    detail:
+      "Human-centred design, prototyping and accessibility, then applied industrial AI at MITC and a bachelor thesis on uncertainty-aware 48-hour wind power forecasting.",
+    track: "development",
+    side: "right",
+    branches: [
+      { label: "Talking Systems", slug: "talking-systems" },
+      { label: "Wind Power Forecasting", slug: "wind-power-forecasting" },
+      { label: "Seeing AI — UX evaluation", slug: "seeing-ai" },
+    ],
+  },
+  {
+    id: "postgraduate",
     period: "Aug 2025 – Jul 2026",
     title: "Advanced AI · Innovation · Product Management",
     detail:
       "Postgraduate development across advanced AI, Innovation Management, Industrial Economics, Product Management, Requirements, Strategy and Leadership.",
     track: "development",
-    order: 7,
+    side: "left",
+    branches: [
+      { label: "Talking SCADA", slug: "talking-scada" },
+      { label: "Multi-Agent AI decision support", slug: "multi-agent-ai" },
+    ],
   },
   {
+    id: "now",
     period: "Now",
     title: "Product & AI Direction",
     detail:
       "Focused on AI-enabled product roles where industrial domain depth, customer understanding and product thinking meet.",
-    track: "development",
-    order: 8,
+    track: "professional",
+    side: "right",
+    roles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
+    now: true,
   },
 ];
