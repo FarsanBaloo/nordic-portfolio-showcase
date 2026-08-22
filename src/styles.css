@@ -167,6 +167,7 @@
 .aurora-field {
   overflow: visible;
   mix-blend-mode: screen;
+  filter: saturate(1.35) brightness(1.15);
 }
 
 .aurora-band {
