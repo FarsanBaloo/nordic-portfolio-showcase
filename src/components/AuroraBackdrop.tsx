@@ -51,8 +51,8 @@ const ribbons: Ribbon[] = [
     cls: "aurora-ribbon-back",
     top: 40,
     bottom: 560,
-    opacity: 0.3,
-    streaks: 0.22,
+    opacity: 0.5,
+    streaks: 0.4,
     shapes: [
       "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 560 L-300 560 Z",
       "M-300 170 C180 190 400 190 740 250 C1060 306 1260 150 1900 120 L1900 560 L-300 560 Z",
@@ -71,8 +71,8 @@ const ribbons: Ribbon[] = [
     cls: "aurora-ribbon-mid",
     top: 90,
     bottom: 620,
-    opacity: 0.42,
-    streaks: 0.55,
+    opacity: 0.62,
+    streaks: 0.8,
     shapes: [
       "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 640 L-300 640 Z",
       "M-300 300 C240 330 470 330 800 400 C1100 464 1320 260 1900 300 L1900 640 L-300 640 Z",
@@ -91,8 +91,8 @@ const ribbons: Ribbon[] = [
     cls: "aurora-ribbon-front",
     top: 150,
     bottom: 600,
-    opacity: 0.34,
-    streaks: 0.85,
+    opacity: 0.5,
+    streaks: 1,
     shapes: [
       "M420 300 C620 250 800 330 1060 280 C1290 236 1450 180 1900 210 L1900 560 L420 560 Z",
       "M420 270 C640 310 820 290 1080 330 C1300 366 1470 220 1900 250 L1900 560 L420 560 Z",
@@ -288,7 +288,7 @@ export function AuroraBackdrop() {
                 width="2400"
                 height="1400"
                 fill="url(#aurora-streaks)"
-                opacity={r.streaks * 0.55}
+                opacity={r.streaks * 0.7}
                 filter="url(#aurora-warp)"
               />
             </g>
