@@ -28,10 +28,10 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "bsc-start",
-    period: "Parallel track",
+    period: "2023–2025",
     title: "Computer Science / Intelligent Systems",
     detail:
-      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside full-time engineering work.",
+      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside the senior technical advisor role.",
     track: "development",
     side: "right",
   },
