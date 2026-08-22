@@ -212,6 +212,7 @@ export const roles: Role[] = [
       "Led customer-facing technical discovery and solution definition for complex digital-platform initiatives.",
       "Translated customer, operational and project needs into structured technical requirements, alternative architectures and scalable solution designs.",
       "Held end-to-end technical ownership from problem definition and requirements through architecture, integration, validation and delivery.",
+      "Provided informal technical leadership — guiding engineering teams, peers and stakeholders toward sound technical direction through influence, mentorship and trusted authority rather than formal line management.",
       "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing lifecycle risk, technical feasibility, cost and commercial value.",
       "Influenced technical prioritisation, solution direction, product selection and architectural trade-offs by balancing customer value, integration risk, scalability, reliability and operational constraints.",
     ],
@@ -264,13 +265,14 @@ export const roles: Role[] = [
         ],
       },
       {
-        title: "Mentoring",
+        title: "Informal technical leadership",
         items: [
-          "Platform capabilities",
-          "System integration and solution design",
-          "Technical constraints",
-          "Consistency, scalability and maintainability",
-          "Delivery quality",
+          "Guided engineering teams and peers through influence, not authority",
+          "Set technical direction across roles and teams without formal line management",
+          "Trusted technical authority and sounding board for architects and developers",
+          "Aligned stakeholders around feasible, scalable architecture decisions",
+          "Championed consistency, scalability and maintainability across solutions",
+          "Mentored on platform capabilities, system integration and solution design",
         ],
       },
     ],
@@ -282,6 +284,10 @@ export const roles: Role[] = [
       {
         label: "Evaluating alternatives",
         body: "Evaluated alternative architectures and product / solution options while balancing lifecycle risk, technical feasibility, cost and commercial value.",
+      },
+      {
+        label: "Informal technical leadership",
+        body: "Acted as the de-facto technical authority across teams and disciplines — shaping architecture and direction through trusted expertise, mentorship and influence rather than a formal management mandate.",
       },
       {
         label: "Risk reduction",
