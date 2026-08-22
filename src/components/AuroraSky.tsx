@@ -25,7 +25,10 @@ const curtainMask =
  * Pure CSS — respects prefers-reduced-motion.
  */
 export function AuroraSky({ subtle = false }: Props) {
-  const k = subtle ? 0.5 : 1;
+  const k = subtle ? 0.45 : 1;
+  // In long content bands, cap the aurora to a band near the top instead of
+  // scaling it with the section height (which would flood the whole page).
+  const h = (pct: string, px: string) => (subtle ? px : pct);
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -57,7 +60,7 @@ export function AuroraSky({ subtle = false }: Props) {
           top: "-18%",
           left: "-10%",
           width: "80%",
-          height: "42%",
+          height: h("42%", "420px"),
           opacity: 0.32 * k,
           background:
             "radial-gradient(60% 55% at 50% 60%, color-mix(in oklab, var(--aurora-green) 60%, transparent) 0%, transparent 72%)",
@@ -70,7 +73,7 @@ export function AuroraSky({ subtle = false }: Props) {
           top: "-10%",
           left: "34%",
           width: "62%",
-          height: "34%",
+          height: h("34%", "340px"),
           opacity: 0.2 * k,
           background:
             "radial-gradient(60% 55% at 50% 60%, color-mix(in oklab, var(--aurora-teal) 55%, transparent) 0%, transparent 74%)",
@@ -86,7 +89,7 @@ export function AuroraSky({ subtle = false }: Props) {
           top: "-12%",
           left: "-8%",
           width: "72%",
-          height: "44%",
+          height: h("44%", "440px"),
           opacity: 0.3 * k,
           backgroundImage: rays("var(--aurora-green)", 48),
           backgroundSize: "200% 100%",
@@ -103,7 +106,7 @@ export function AuroraSky({ subtle = false }: Props) {
           top: "-16%",
           left: "30%",
           width: "58%",
-          height: "36%",
+          height: h("36%", "360px"),
           opacity: 0.18 * k,
           backgroundImage: rays("var(--aurora-teal)", 42),
           backgroundSize: "230% 100%",
@@ -123,7 +126,7 @@ export function AuroraSky({ subtle = false }: Props) {
           top: "-24%",
           left: "0%",
           width: "70%",
-          height: "26%",
+          height: h("26%", "260px"),
           opacity: 0.14 * k,
           background:
             "radial-gradient(60% 60% at 50% 70%, color-mix(in oklab, var(--aurora-violet) 60%, transparent) 0%, transparent 75%)",
