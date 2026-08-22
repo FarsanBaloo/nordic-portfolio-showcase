@@ -285,7 +285,7 @@ function BranchCard({
       <button
         type="button"
         className={[
-          "group block w-full rounded-2xl border p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]",
+          "group relative block w-full min-w-0 rounded-2xl border p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05] sm:p-5",
           active
             ? "border-aurora-teal/45 bg-white/[0.06] shadow-[0_0_0_1px_color-mix(in_oklab,var(--aurora-teal)_25%,transparent)]"
             : status === "completed"
@@ -293,9 +293,22 @@ function BranchCard({
               : "border-night-border/40 bg-white/[0.02] opacity-70",
         ].join(" ")}
       >
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+        <span
+          aria-hidden="true"
+          className="absolute left-[-29px] top-7 h-1.5 w-1.5 rounded-full transition-colors duration-500 md:hidden"
+          style={{
+            backgroundColor:
+              status === "upcoming"
+                ? "color-mix(in oklab, var(--aurora-teal) 30%, transparent)"
+                : "var(--aurora-teal)",
+          }}
+        />
+        <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-aurora-teal sm:text-[11px]">
           {branch.span ?? period}
-          <span className="ml-2 text-night-muted">· {project.type}</span>
+          <span className="ml-2 block text-night-muted sm:ml-2 sm:inline">
+            <span className="hidden sm:inline">· </span>
+            {project.type}
+          </span>
         </p>
         <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
         {project.subtitle ? (
@@ -388,7 +401,7 @@ function MilestoneRow({
       >
         <div
           className={[
-            "rounded-2xl border p-5 backdrop-blur-sm transition-all duration-500",
+            "rounded-2xl border p-4 backdrop-blur-sm transition-all duration-500 sm:p-5",
             active || status === "completed"
               ? "border-night-border bg-white/[0.055]"
               : "border-night-border/50 bg-white/[0.02]",
@@ -483,7 +496,12 @@ function MilestoneRow({
             left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
           ].join(" ")}
         >
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-night-muted">
+          <p
+            className={[
+              "mb-3 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-night-muted sm:text-[11px]",
+              left ? "md:text-left" : "md:text-right",
+            ].join(" ")}
+          >
             Projects in this role · {entry.period}
           </p>
           <div className="space-y-3">
