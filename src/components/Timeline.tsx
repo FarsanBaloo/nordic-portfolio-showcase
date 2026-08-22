@@ -664,20 +664,16 @@ export function Timeline() {
               key={row.key}
               label={row.label}
               side={row.side}
-              variant={row.variant}
-              panel={row.panel}
+              slug={row.slug}
               reduced={reduced}
               status={statuses[i] ?? "upcoming"}
               nodeRef={(el) => {
                 nodeRefs.current[i] = el;
               }}
-              onOpen={onOpen}
             />
           ),
         )}
       </ol>
-
-      {panel ? <FloatingPanel panel={panel} onClose={() => setPanel(null)} /> : null}
     </div>
   );
 }
