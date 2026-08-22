@@ -225,6 +225,8 @@ function FloatingPanel({ panel, onClose }: { panel: Panel; onClose: () => void }
   let items: string[] = [];
   let chips: string[] = [];
   let href: { slug: string } | null = null;
+  let groups: { title: string; items: string[] }[] = [];
+
 
   if (panel.kind === "project") {
     const project = getProject(panel.slug);
