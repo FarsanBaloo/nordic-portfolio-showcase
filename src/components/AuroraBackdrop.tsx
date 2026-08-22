@@ -120,7 +120,7 @@ const morph = (values: string[], dur: string) => (
   />
 );
 
-const durations: Record<string, string> = { back: "34s", mid: "27s", front: "21s" };
+const durations: Record<string, string> = { back: "58s", mid: "47s", front: "39s" };
 
 /**
  * Fixed Scandinavian night sky: near-black backdrop, sparse star field and
@@ -183,8 +183,8 @@ export function AuroraBackdrop() {
             <stop offset="0.63" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
             <stop offset="0.83" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
             <stop offset="1" stopColor="var(--aurora-green-hex)" stopOpacity="0.12" />
-            <animate attributeName="x1" values="-0.25;0.1;-0.25" dur="31s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0.85;1.2;0.85" dur="31s" repeatCount="indefinite" />
+            <animate attributeName="x1" values="-0.2;0.02;-0.2" dur="54s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="0.88;1.08;0.88" dur="54s" repeatCount="indefinite" />
           </linearGradient>
 
           <linearGradient id="aurora-crown" x1="0" y1="0" x2="0" y2="1">
@@ -217,10 +217,10 @@ export function AuroraBackdrop() {
           </filter>
           <filter id="aurora-warp" x="-15%" y="-15%" width="130%" height="140%">
             <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.006" numOctaves="2" seed="7" result="n">
-              <animate attributeName="baseFrequency" values="0.0016 0.006;0.0026 0.009;0.0013 0.005;0.0016 0.006" dur="29s" repeatCount="indefinite" />
+              <animate attributeName="baseFrequency" values="0.0016 0.006;0.0021 0.0072;0.0014 0.0055;0.0016 0.006" dur="52s" repeatCount="indefinite" />
             </feTurbulence>
             <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G">
-              <animate attributeName="scale" values="9;18;11;9" dur="23s" repeatCount="indefinite" />
+              <animate attributeName="scale" values="10;14;11;10" dur="44s" repeatCount="indefinite" />
             </feDisplacementMap>
           </filter>
 
