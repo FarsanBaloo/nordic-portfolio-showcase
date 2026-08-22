@@ -368,6 +368,7 @@ function MilestoneRow({
   onOpen: (panel: Panel) => void;
 }) {
   const { ref, shown } = useReveal<HTMLDivElement>(reduced);
+  const role = roleId ? roles.find((r) => r.id === roleId) : undefined;
   const isPro = entry.track === "professional";
   const accent = entry.now
     ? "var(--aurora-teal)"
