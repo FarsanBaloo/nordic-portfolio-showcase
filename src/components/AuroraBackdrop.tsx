@@ -34,11 +34,17 @@ export function AuroraBackdrop() {
       >
         <defs>
           <linearGradient id="curtain-glow" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--aurora-green)" stopOpacity="0" />
-            <stop offset="0.42" stopColor="var(--aurora-green)" stopOpacity="0.02" />
-            <stop offset="0.78" stopColor="var(--aurora-green)" stopOpacity="0.32" />
-            <stop offset="0.93" stopColor="var(--aurora-teal)" stopOpacity="0.12" />
+            <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.1" />
+            <stop offset="0.3" stopColor="var(--aurora-violet)" stopOpacity="0.14" />
+            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.4" />
+            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.95" />
+            <stop offset="0.95" stopColor="var(--aurora-teal)" stopOpacity="0.16" />
             <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="violet-veil" x1="0" y1="0" x2="0.35" y2="1">
+            <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.26" />
+            <stop offset="0.55" stopColor="var(--aurora-violet)" stopOpacity="0.12" />
+            <stop offset="1" stopColor="var(--aurora-violet)" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="ray-fade" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="white" stopOpacity="0" />
@@ -48,9 +54,9 @@ export function AuroraBackdrop() {
           </linearGradient>
           <linearGradient id="aurora-color" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stopColor="var(--aurora-green)" stopOpacity="0.18" />
-            <stop offset="0.2" stopColor="var(--aurora-green)" stopOpacity="0.8" />
-            <stop offset="0.43" stopColor="var(--aurora-teal)" stopOpacity="0.38" />
-            <stop offset="0.65" stopColor="var(--aurora-green)" stopOpacity="0.72" />
+            <stop offset="0.2" stopColor="var(--aurora-green)" stopOpacity="1" />
+            <stop offset="0.43" stopColor="var(--aurora-teal)" stopOpacity="0.6" />
+            <stop offset="0.65" stopColor="var(--aurora-green)" stopOpacity="0.95" />
             <stop offset="0.84" stopColor="var(--aurora-violet)" stopOpacity="0.18" />
             <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0.14" />
             <animate attributeName="x1" values="-0.2;0.18;-0.2" dur="19s" repeatCount="indefinite" />
@@ -67,7 +73,7 @@ export function AuroraBackdrop() {
             <rect x="104" width="3" height="1000" fill="url(#ray-fade)" opacity="0.2" />
           </pattern>
           <filter id="soft-curtain" x="-20%" y="-20%" width="140%" height="150%">
-            <feGaussianBlur stdDeviation="18" />
+            <feGaussianBlur stdDeviation="11" />
           </filter>
           <filter id="ray-ripple" x="-15%" y="-15%" width="130%" height="140%">
             <feTurbulence type="fractalNoise" baseFrequency="0.0022 0.011" numOctaves="2" seed="11" result="noise">
@@ -84,18 +90,26 @@ export function AuroraBackdrop() {
           </clipPath>
         </defs>
 
-        <g className="aurora-band">
-          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.48">
+        {/* magenta/violet high-altitude veil above the green band, as in real displays */}
+        <g className="aurora-veil" opacity="0.85" filter="url(#soft-curtain)">
+          <path
+            d="M-200 -120 C260 -60 520 120 900 150 C1240 176 1460 90 1800 30 L1800 -160 L-200 -160 Z"
+            fill="url(#violet-veil)"
+          />
+        </g>
+
+        <g className="aurora-band" transform="rotate(-6 800 380)">
+          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="1">
             <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
-          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.62">
-            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.22" />
+          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.8">
+            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.5" />
             <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="620" fill="url(#aurora-rays)" />
           </g>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="9" opacity="0.38" filter="url(#soft-curtain)">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="14" opacity="0.75" filter="url(#soft-curtain)">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="1.8" opacity="0.58">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="2.6" opacity="0.95">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
         </g>
