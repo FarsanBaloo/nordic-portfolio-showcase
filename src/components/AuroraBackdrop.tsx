@@ -271,7 +271,16 @@ export function AuroraBackdrop() {
         {ribbons.map((r) => (
           <g key={r.id} className={`aurora-ribbon ${r.cls}`} opacity={r.opacity}>
             <g mask={`url(#mask-${r.id})`}>
-              <rect x="-400" y="-200" width="2400" height="1400" fill="url(#aurora-hue)" opacity="0.55" />
+              <rect x="-400" y="-200" width="2400" height="1400" fill="url(#aurora-hue)" opacity="0.5" />
+              <rect
+                className="aurora-colorwash"
+                x="-400"
+                y="-200"
+                width="2400"
+                height="1400"
+                fill={`url(#vhue-${r.id})`}
+                opacity="0.7"
+              />
               <rect
                 className="aurora-streak-sheet"
                 x="-400"
