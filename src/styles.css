@@ -72,8 +72,8 @@
   --input: oklch(0.9 0.006 106);
   --ring: oklch(0.52 0.09 197);
 
-  --night: oklch(0.19 0.045 265);
-  --night-soft: oklch(0.25 0.045 265);
+  --night: oklch(0.07 0.018 265);
+  --night-soft: oklch(0.12 0.03 265);
   --night-foreground: oklch(0.97 0.005 240);
   --night-muted: oklch(0.76 0.02 250);
   --night-border: oklch(1 0 0 / 14%);
