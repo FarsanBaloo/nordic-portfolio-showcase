@@ -164,11 +164,12 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
       const ty = targetYearFor(raw);
       const sy = shownRef.current + (ty - shownRef.current) * 0.09;
       shownRef.current = Math.abs(ty - sy) < 0.005 ? ty : sy;
-      setLabel(
-        smoothRef.current > 0.97 ? "NOW" : String(Math.round(shownRef.current)),
-      );
-
-      raf = requestAnimationFrame(tick);
+       setLabel(
+         smoothRef.current > 0.97 ? "NOW" : String(Math.round(shownRef.current)),
+       );
+      } catch {
+        // ignore transient measurement errors; rAF already rescheduled above
+      }
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
