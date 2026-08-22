@@ -1,122 +1,276 @@
-const stars =
-  "radial-gradient(1px 1px at 7% 18%, white, transparent), radial-gradient(1px 1px at 18% 7%, white, transparent), radial-gradient(1.2px 1.2px at 31% 27%, white, transparent), radial-gradient(0.8px 0.8px at 42% 11%, white, transparent), radial-gradient(1px 1px at 57% 23%, white, transparent), radial-gradient(1.3px 1.3px at 72% 8%, white, transparent), radial-gradient(0.8px 0.8px at 86% 30%, white, transparent), radial-gradient(1px 1px at 96% 13%, white, transparent), radial-gradient(0.8px 0.8px at 12% 49%, white, transparent), radial-gradient(1px 1px at 25% 65%, white, transparent), radial-gradient(0.8px 0.8px at 39% 42%, white, transparent), radial-gradient(1.2px 1.2px at 54% 58%, white, transparent), radial-gradient(0.8px 0.8px at 68% 45%, white, transparent), radial-gradient(1px 1px at 81% 69%, white, transparent), radial-gradient(0.8px 0.8px at 93% 53%, white, transparent), radial-gradient(1px 1px at 5% 83%, white, transparent), radial-gradient(0.8px 0.8px at 34% 89%, white, transparent), radial-gradient(1px 1px at 62% 81%, white, transparent), radial-gradient(0.8px 0.8px at 89% 91%, white, transparent)";
+import { useEffect, useState } from "react";
 
-const mainShape = [
-  "M-180 205 C100 170 250 345 480 320 C690 298 770 165 985 180 C1220 195 1400 360 1780 300 L1780 515 C1410 560 1230 395 990 382 C750 368 660 505 430 490 C180 474 20 300 -180 330 Z",
-  "M-180 235 C70 135 280 320 505 300 C720 282 805 205 1020 214 C1250 224 1440 330 1780 270 L1780 490 C1435 575 1240 430 995 420 C760 410 650 485 425 462 C175 438 20 285 -180 350 Z",
-  "M-180 205 C100 170 250 345 480 320 C690 298 770 165 985 180 C1220 195 1400 360 1780 300 L1780 515 C1410 560 1230 395 990 382 C750 368 660 505 430 490 C180 474 20 300 -180 330 Z",
-].join(";");
+/* ---------- stars: deterministic sparse field, mostly 1px ---------- */
+function mulberry(seed: number) {
+  let t = seed;
+  return () => {
+    t += 0x6d2b79f5;
+    let r = Math.imul(t ^ (t >>> 15), 1 | t);
+    r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+}
 
-const edgeShape = [
-  "M-180 330 C20 300 180 474 430 490 C660 505 750 368 990 382 C1230 395 1410 560 1780 515",
-  "M-180 350 C20 285 175 438 425 462 C650 485 760 410 995 420 C1240 430 1435 575 1780 490",
-  "M-180 330 C20 300 180 474 430 490 C660 505 750 368 990 382 C1230 395 1410 560 1780 515",
-].join(";");
+type Star = { x: number; y: number; r: number; o: number; d: number; bright: boolean };
+
+function makeStars(count: number): Star[] {
+  const rand = mulberry(20260822);
+  const out: Star[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const bright = rand() > 0.9;
+    out.push({
+      x: Math.round(rand() * 1600 * 100) / 100,
+      y: Math.round(rand() * 1000 * 100) / 100,
+      r: bright ? 0.9 + rand() * 0.5 : 0.4 + rand() * 0.25,
+      o: bright ? 0.55 + rand() * 0.25 : 0.22 + rand() * 0.34,
+      d: 14 + Math.round(rand() * 30),
+      bright,
+    });
+  }
+  return out;
+}
+
+const starsFar = makeStars(96);
+const starsNear = makeStars(38).map((s) => ({ ...s, x: (s.x + 640) % 1600, y: (s.y + 310) % 1000 }));
+
+/* ---------- ribbon geometry: asymmetric arcs in the upper sky ---------- */
+type Ribbon = {
+  id: string;
+  cls: string;
+  shapes: string[];
+  edges: string[];
+  top: number;
+  bottom: number;
+  opacity: number;
+  streaks: number;
+};
+
+const ribbons: Ribbon[] = [
+  {
+    id: "back",
+    cls: "aurora-ribbon-back",
+    top: 40,
+    bottom: 560,
+    opacity: 0.3,
+    streaks: 0.22,
+    shapes: [
+      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 560 L-300 560 Z",
+      "M-300 170 C180 190 400 190 740 250 C1060 306 1260 150 1900 120 L1900 560 L-300 560 Z",
+      "M-300 240 C140 100 360 280 700 200 C1010 128 1240 130 1900 200 L1900 560 L-300 560 Z",
+      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 560 L-300 560 Z",
+    ],
+    edges: [
+      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170",
+      "M-300 170 C180 190 400 190 740 250 C1060 306 1260 150 1900 120",
+      "M-300 240 C140 100 360 280 700 200 C1010 128 1240 130 1900 200",
+      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170",
+    ],
+  },
+  {
+    id: "mid",
+    cls: "aurora-ribbon-mid",
+    top: 90,
+    bottom: 620,
+    opacity: 0.42,
+    streaks: 0.55,
+    shapes: [
+      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 640 L-300 640 Z",
+      "M-300 300 C240 330 470 330 800 400 C1100 464 1320 260 1900 300 L1900 640 L-300 640 Z",
+      "M-300 350 C200 230 410 420 760 330 C1060 254 1290 270 1900 230 L1900 640 L-300 640 Z",
+      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 640 L-300 640 Z",
+    ],
+    edges: [
+      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260",
+      "M-300 300 C240 330 470 330 800 400 C1100 464 1320 260 1900 300",
+      "M-300 350 C200 230 410 420 760 330 C1060 254 1290 270 1900 230",
+      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260",
+    ],
+  },
+  {
+    id: "front",
+    cls: "aurora-ribbon-front",
+    top: 150,
+    bottom: 600,
+    opacity: 0.34,
+    streaks: 0.85,
+    shapes: [
+      "M420 300 C620 250 800 330 1060 280 C1290 236 1450 180 1900 210 L1900 560 L420 560 Z",
+      "M420 270 C640 310 820 290 1080 330 C1300 366 1470 220 1900 250 L1900 560 L420 560 Z",
+      "M420 320 C600 230 790 350 1040 260 C1280 174 1440 230 1900 180 L1900 560 L420 560 Z",
+      "M420 300 C620 250 800 330 1060 280 C1290 236 1450 180 1900 210 L1900 560 L420 560 Z",
+    ],
+    edges: [
+      "M420 300 C620 250 800 330 1060 280 C1290 236 1450 180 1900 210",
+      "M420 270 C640 310 820 290 1080 330 C1300 366 1470 220 1900 250",
+      "M420 320 C600 230 790 350 1040 260 C1280 174 1440 230 1900 180",
+      "M420 300 C620 250 800 330 1060 280 C1290 236 1450 180 1900 210",
+    ],
+  },
+];
+
+const morph = (values: string[], dur: string) => (
+  <animate
+    attributeName="d"
+    values={values.join(";")}
+    dur={dur}
+    calcMode="spline"
+    keyTimes="0;0.33;0.66;1"
+    keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"
+    repeatCount="indefinite"
+  />
+);
+
+const durations: Record<string, string> = { back: "34s", mid: "27s", front: "21s" };
 
 /**
- * A fixed northern sky based on real auroral arcs: a folded lower edge,
- * irregular field-aligned rays, and brightness that travels along the band.
+ * Fixed Scandinavian night sky: near-black backdrop, sparse star field and
+ * three translucent aurora curtains that drift, fold and breathe independently.
  */
 export function AuroraBackdrop() {
+  const [fade, setFade] = useState(1);
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const h = window.innerHeight || 1;
+      const p = Math.min(1, Math.max(0, window.scrollY / h));
+      setFade(1 - p * 0.68);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <div aria-hidden="true" className="aurora-sky pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="aurora-stars absolute inset-0" style={{ backgroundImage: stars }} />
-      <div
-        className="aurora-stars aurora-stars-far absolute inset-0"
-        style={{ backgroundImage: stars, backgroundSize: "71% 59%" }}
-      />
+      {/* stars */}
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <g className="aurora-starfield aurora-starfield-far">
+          {starsFar.map((s, i) => (
+            <circle key={`f${i}`} cx={s.x} cy={s.y} r={s.r} fill="var(--star)" opacity={s.o}>
+              {s.bright ? <animate attributeName="opacity" values={`${s.o};${s.o * 0.55};${s.o}`} dur={`${s.d}s`} repeatCount="indefinite" /> : null}
+            </circle>
+          ))}
+        </g>
+        <g className="aurora-starfield aurora-starfield-near">
+          {starsNear.map((s, i) => (
+            <circle key={`n${i}`} cx={s.x} cy={s.y} r={s.r} fill="var(--star)" opacity={s.o} />
+          ))}
+        </g>
+      </svg>
 
+      {/* aurora */}
       <svg
         className="aurora-field absolute inset-0 h-full w-full"
         viewBox="0 0 1600 1000"
         preserveAspectRatio="xMidYMid slice"
+        style={{ opacity: fade }}
         focusable="false"
       >
         <defs>
-          <linearGradient id="curtain-glow" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.1" />
-            <stop offset="0.3" stopColor="var(--aurora-violet)" stopOpacity="0.14" />
-            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.16" />
-            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.28" />
-            <stop offset="0.95" stopColor="var(--aurora-teal)" stopOpacity="0.16" />
-            <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0" />
+          {/* brightness varies along the curtain, and travels slowly sideways */}
+          <linearGradient id="aurora-hue" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.1" />
+            <stop offset="0.22" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
+            <stop offset="0.44" stopColor="var(--aurora-green-soft)" stopOpacity="0.4" />
+            <stop offset="0.63" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
+            <stop offset="0.83" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
+            <stop offset="1" stopColor="var(--aurora-green-hex)" stopOpacity="0.12" />
+            <animate attributeName="x1" values="-0.25;0.1;-0.25" dur="31s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="0.85;1.2;0.85" dur="31s" repeatCount="indefinite" />
           </linearGradient>
-          <linearGradient id="violet-veil" x1="0" y1="0" x2="0.35" y2="1">
-            <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.26" />
-            <stop offset="0.55" stopColor="var(--aurora-violet)" stopOpacity="0.12" />
-            <stop offset="1" stopColor="var(--aurora-violet)" stopOpacity="0" />
+
+          <linearGradient id="aurora-crown" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="var(--aurora-violet-hex)" stopOpacity="0.32" />
+            <stop offset="1" stopColor="var(--aurora-violet-hex)" stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="ray-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="white" stopOpacity="0" />
-            <stop offset="0.35" stopColor="white" stopOpacity="0.03" />
-            <stop offset="0.82" stopColor="white" stopOpacity="0.72" />
+
+          {/* vertical folds inside the curtain */}
+          <linearGradient id="streak-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="white" stopOpacity="0.85" />
+            <stop offset="0.55" stopColor="white" stopOpacity="0.35" />
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="aurora-color" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--aurora-green)" stopOpacity="0.18" />
-            <stop offset="0.2" stopColor="var(--aurora-green)" stopOpacity="1" />
-            <stop offset="0.43" stopColor="var(--aurora-teal)" stopOpacity="0.6" />
-            <stop offset="0.65" stopColor="var(--aurora-green)" stopOpacity="0.95" />
-            <stop offset="0.84" stopColor="var(--aurora-violet)" stopOpacity="0.18" />
-            <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0.14" />
-            <animate attributeName="x1" values="-0.2;0.18;-0.2" dur="19s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0.8;1.18;0.8" dur="19s" repeatCount="indefinite" />
-          </linearGradient>
-          <pattern id="aurora-rays" width="113" height="1000" patternUnits="userSpaceOnUse">
-            <rect x="3" width="2" height="1000" fill="url(#ray-fade)" opacity="0.25" />
-            <rect x="13" width="7" height="1000" fill="url(#ray-fade)" opacity="0.48" />
-            <rect x="24" width="2" height="1000" fill="url(#ray-fade)" opacity="0.18" />
-            <rect x="41" width="11" height="1000" fill="url(#ray-fade)" opacity="0.3" />
-            <rect x="58" width="3" height="1000" fill="url(#ray-fade)" opacity="0.55" />
-            <rect x="72" width="1.5" height="1000" fill="url(#ray-fade)" opacity="0.3" />
-            <rect x="87" width="8" height="1000" fill="url(#ray-fade)" opacity="0.42" />
-            <rect x="104" width="3" height="1000" fill="url(#ray-fade)" opacity="0.2" />
+          <pattern id="aurora-streaks" width="167" height="1000" patternUnits="userSpaceOnUse">
+            <rect x="4" width="3" height="1000" fill="url(#streak-fade)" opacity="0.4" />
+            <rect x="19" width="9" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="38" width="2" height="1000" fill="url(#streak-fade)" opacity="0.5" />
+            <rect x="57" width="14" height="1000" fill="url(#streak-fade)" opacity="0.16" />
+            <rect x="84" width="4" height="1000" fill="url(#streak-fade)" opacity="0.42" />
+            <rect x="101" width="2" height="1000" fill="url(#streak-fade)" opacity="0.3" />
+            <rect x="121" width="11" height="1000" fill="url(#streak-fade)" opacity="0.2" />
+            <rect x="146" width="3" height="1000" fill="url(#streak-fade)" opacity="0.36" />
           </pattern>
-          <filter id="soft-curtain" x="-20%" y="-20%" width="140%" height="150%">
+
+          <filter id="aurora-soft" x="-25%" y="-25%" width="150%" height="160%">
             <feGaussianBlur stdDeviation="26" />
           </filter>
-          <filter id="ray-ripple" x="-15%" y="-15%" width="130%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.0022 0.011" numOctaves="2" seed="11" result="noise">
-              <animate attributeName="baseFrequency" values="0.0022 0.011;0.0035 0.014;0.0018 0.009;0.0022 0.011" dur="17s" repeatCount="indefinite" />
+          <filter id="aurora-mask-blur" x="-25%" y="-25%" width="150%" height="160%">
+            <feGaussianBlur stdDeviation="14" />
+          </filter>
+          <filter id="aurora-warp" x="-15%" y="-15%" width="130%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.006" numOctaves="2" seed="7" result="n">
+              <animate attributeName="baseFrequency" values="0.0016 0.006;0.0026 0.009;0.0013 0.005;0.0016 0.006" dur="29s" repeatCount="indefinite" />
             </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="G">
-              <animate attributeName="scale" values="13;27;17;13" dur="11s" repeatCount="indefinite" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G">
+              <animate attributeName="scale" values="9;18;11;9" dur="23s" repeatCount="indefinite" />
             </feDisplacementMap>
           </filter>
-          <clipPath id="curtain-clip">
-            <path d="M-180 205 C100 170 250 345 480 320 C690 298 770 165 985 180 C1220 195 1400 360 1780 300 L1780 515 C1410 560 1230 395 990 382 C750 368 660 505 430 490 C180 474 20 300 -180 330 Z">
-              <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
-            </path>
-          </clipPath>
+
+          {ribbons.map((r) => (
+            <linearGradient key={r.id} id={`fall-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top} x2="0" y2={r.bottom}>
+              <stop offset="0" stopColor="white" stopOpacity="0.95" />
+              <stop offset="0.32" stopColor="white" stopOpacity="0.5" />
+              <stop offset="0.72" stopColor="white" stopOpacity="0.16" />
+              <stop offset="1" stopColor="white" stopOpacity="0" />
+            </linearGradient>
+          ))}
+
+          {ribbons.map((r) => (
+            <mask key={r.id} id={`mask-${r.id}`} maskUnits="userSpaceOnUse" x="-400" y="-200" width="2400" height="1400">
+              <path fill={`url(#fall-${r.id})`} filter="url(#aurora-mask-blur)" d={r.shapes[0]}>
+                {morph(r.shapes, durations[r.id] ?? "27s")}
+              </path>
+            </mask>
+          ))}
         </defs>
 
-        {/* magenta/violet high-altitude veil above the green band, as in real displays */}
-        <g className="aurora-veil" opacity="0.5" filter="url(#soft-curtain)">
-          <path
-            d="M-200 -120 C260 -60 520 120 900 150 C1240 176 1460 90 1800 30 L1800 -160 L-200 -160 Z"
-            fill="url(#violet-veil)"
-          />
+        {/* faint violet crown above the highest curtain */}
+        <g className="aurora-crown" opacity="0.5" filter="url(#aurora-soft)">
+          <path d="M-300 -60 C240 40 520 160 940 150 C1290 142 1520 60 1900 -10 L1900 -220 L-300 -220 Z" fill="url(#aurora-crown)" />
         </g>
 
-        <g className="aurora-band" opacity="0.34" transform="translate(0 -230) rotate(-6 800 380)">
-          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="1">
-            <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
-          </path>
-          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.55">
-            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.3" />
-            <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="620" fill="url(#aurora-rays)" />
+        {ribbons.map((r) => (
+          <g key={r.id} className={`aurora-ribbon ${r.cls}`} opacity={r.opacity}>
+            <g mask={`url(#mask-${r.id})`}>
+              <rect x="-400" y="-200" width="2400" height="1400" fill="url(#aurora-hue)" opacity="0.55" />
+              <rect
+                className="aurora-streak-sheet"
+                x="-400"
+                y="-200"
+                width="2400"
+                height="1400"
+                fill="url(#aurora-streaks)"
+                opacity={r.streaks * 0.55}
+                filter="url(#aurora-warp)"
+              />
+            </g>
+            <path fill="none" stroke="url(#aurora-hue)" strokeWidth="4" opacity="0.3" filter="url(#aurora-mask-blur)" d={r.edges[0]}>
+              {morph(r.edges, durations[r.id] ?? "27s")}
+            </path>
           </g>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="20" opacity="0.16" filter="url(#soft-curtain)">
-            <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
-          </path>
-        </g>
-
-        <g className="aurora-distant" opacity="0.18" transform="translate(180 470) scale(.72)">
-          <path d="M-300 160 C120 40 310 230 620 180 C920 132 1100 10 1900 190 L1900 430 C1200 300 930 390 620 360 C280 330 80 205 -300 355 Z" fill="url(#curtain-glow)" filter="url(#soft-curtain)" />
-        </g>
+        ))}
       </svg>
 
-      <div className="aurora-horizon absolute inset-0" />
+      {/* keeps content readable: darkens the lower sky and the reading column */}
+      <div className="aurora-veil-dark absolute inset-0" />
     </div>
   );
 }

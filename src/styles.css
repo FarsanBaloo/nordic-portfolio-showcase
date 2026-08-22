@@ -81,6 +81,12 @@
   --aurora-green: oklch(0.82 0.15 162);
   --aurora-teal: oklch(0.78 0.11 200);
   --aurora-violet: oklch(0.66 0.13 300);
+  --aurora-green-hex: #43e68a;
+  --aurora-green-soft: #78ffb0;
+  --aurora-green-bright: #8affc1;
+  --aurora-teal-hex: #27c7b8;
+  --aurora-violet-hex: #846dff;
+  --star: #ffffff;
 }
 
 @layer base {
@@ -136,68 +142,93 @@
   }
 }
 
-@keyframes aurora-drift {
-  0%, 100% { transform: translate3d(-2.5%, -1%, 0) scale(1.04); opacity: 0.95; }
-  35% { transform: translate3d(1.5%, 1.5%, 0) scale(1.07); opacity: 1; }
-  68% { transform: translate3d(3.5%, -0.5%, 0) scale(1.02); opacity: 0.86; }
+@keyframes aurora-drift-a {
+  0%, 100% { transform: translate3d(-26px, 0, 0) scaleY(1); opacity: 0.72; }
+  40% { transform: translate3d(18px, -8px, 0) scaleY(1.05); opacity: 1; }
+  70% { transform: translate3d(38px, 4px, 0) scaleY(0.97); opacity: 0.82; }
 }
 
-@keyframes aurora-flow {
-  from { transform: translate3d(-80px, 0, 0); }
-  to { transform: translate3d(33px, 0, 0); }
+@keyframes aurora-drift-b {
+  0%, 100% { transform: translate3d(30px, 4px, 0) scaleY(1.02); opacity: 0.8; }
+  45% { transform: translate3d(-22px, -6px, 0) scaleY(0.96); opacity: 1; }
+  75% { transform: translate3d(-48px, 6px, 0) scaleY(1.06); opacity: 0.68; }
+}
+
+@keyframes aurora-drift-c {
+  0%, 100% { transform: translate3d(12px, -4px, 0) scaleY(1); opacity: 0.62; }
+  35% { transform: translate3d(-30px, 6px, 0) scaleY(1.07); opacity: 0.95; }
+  72% { transform: translate3d(46px, -2px, 0) scaleY(0.95); opacity: 0.74; }
+}
+
+@keyframes aurora-streaks {
+  0%, 100% { transform: translate3d(-24px, 0, 0) scaleY(1); }
+  50% { transform: translate3d(26px, 0, 0) scaleY(1.08); }
+}
+
+@keyframes star-parallax {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(10px, -6px, 0); }
 }
 
 .aurora-sky {
   background:
-    radial-gradient(ellipse at 50% 18%, color-mix(in oklab, var(--night-soft) 65%, transparent), transparent 58%),
-    var(--night);
+    radial-gradient(ellipse at 62% 8%, #07101a 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 40%, #040812 0%, transparent 65%),
+    #020407;
 }
 
-.aurora-stars {
-  opacity: 0.58;
-  animation: star-breathe 11s ease-in-out infinite;
+.aurora-starfield-far {
+  opacity: 0.75;
 }
 
-.aurora-stars-far {
-  opacity: 0.28;
-  animation-duration: 17s;
-  animation-direction: reverse;
+.aurora-starfield-near {
+  opacity: 0.6;
+  will-change: transform;
+  animation: star-parallax 90s ease-in-out infinite;
 }
 
 .aurora-field {
   overflow: visible;
   mix-blend-mode: screen;
-  filter: saturate(1.2) brightness(1);
+  transition: opacity 240ms linear;
 }
 
-.aurora-band {
-  transform-origin: center top;
+.aurora-ribbon {
   will-change: transform, opacity;
-  animation: aurora-drift 21s ease-in-out infinite;
+  transform-origin: 50% 20%;
 }
 
-.aurora-ray-sheet {
+.aurora-ribbon-back { animation: aurora-drift-a 34s ease-in-out infinite; }
+.aurora-ribbon-mid { animation: aurora-drift-b 27s ease-in-out infinite; }
+.aurora-ribbon-front { animation: aurora-drift-c 21s ease-in-out infinite; }
+
+.aurora-streak-sheet {
   will-change: transform;
-  animation: aurora-flow 9s ease-in-out infinite alternate;
+  transform-origin: 50% 0;
+  animation: aurora-streaks 24s ease-in-out infinite;
 }
 
-.aurora-ray-detail {
-  animation-duration: 5.5s;
-  animation-direction: alternate-reverse;
+.aurora-ribbon-mid .aurora-streak-sheet { animation-duration: 19s; animation-direction: reverse; }
+.aurora-ribbon-front .aurora-streak-sheet { animation-duration: 15s; }
+
+.aurora-veil-dark {
+  background:
+    radial-gradient(ellipse 70% 55% at 24% 45%, rgb(2 4 7 / 0.72), transparent 70%),
+    linear-gradient(to bottom, transparent 0 52%, rgb(2 4 7 / 0.55) 82%, #020407 100%);
 }
 
-.aurora-horizon {
-  background: linear-gradient(to bottom, transparent 0 74%, color-mix(in oklab, var(--night) 35%, transparent) 90%, var(--night) 100%);
+@media (max-width: 640px) {
+  .aurora-ribbon-front { display: none; }
+  .aurora-streak-sheet { filter: none; }
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .aurora-band,
-  .aurora-ray-sheet,
-  .aurora-stars {
+  .aurora-ribbon,
+  .aurora-streak-sheet,
+  .aurora-starfield-near {
     animation: none;
   }
   *,
