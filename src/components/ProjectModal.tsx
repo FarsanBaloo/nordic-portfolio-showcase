@@ -7,11 +7,20 @@ import type { Project } from "../content/projects";
 /** A compact, self-contained render of a full case study, reused by the
  *  timeline's in-place modal so clicking a project never leaves the
  *  timeline view. */
-function CaseStudyBody({ project }: { project: Project }) {
+function CaseStudyBody({
+  project,
+  roleContext,
+  span,
+}: {
+  project: Project;
+  roleContext?: string | undefined;
+  span?: string | undefined;
+}) {
   return (
     <div className="space-y-8">
       <header className="space-y-3">
         <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+          {span ? `${span} · ` : ""}
           {project.meta} · {project.type}
         </p>
         <h3 className="text-2xl font-semibold text-night-foreground">{project.title}</h3>
@@ -24,10 +33,21 @@ function CaseStudyBody({ project }: { project: Project }) {
             {project.highlight}
           </p>
         ) : null}
-        <div className="pt-1">
+      </header>
+
+      {roleContext ? (
+        <section className="rounded-xl border border-night-border/60 bg-white/[0.03] p-5">
+          <Eyebrow>My role</Eyebrow>
+          <p className="mt-2 text-[15px] leading-relaxed text-night-muted">{roleContext}</p>
+        </section>
+      ) : null}
+
+      <section>
+        <Eyebrow>Key technologies &amp; methods</Eyebrow>
+        <div className="mt-3">
           <TagList items={project.tags} night />
         </div>
-      </header>
+      </section>
 
       {project.sections.map((section) => (
         <section key={section.heading} className="space-y-3">
@@ -98,10 +118,14 @@ export function ProjectModal({
   slug,
   project,
   children,
+  roleContext,
+  span,
 }: {
   slug: string;
   project: Project;
   children: ReactNode;
+  roleContext?: string | undefined;
+  span?: string | undefined;
 }) {
   return (
     <Dialog>
@@ -114,7 +138,7 @@ export function ProjectModal({
         }}
       >
         <DialogTitle className="sr-only">{project.title}</DialogTitle>
-        <CaseStudyBody project={project} />
+        <CaseStudyBody project={project} roleContext={roleContext} span={span} />
         <p className="border-t border-night-border/50 pt-4 text-[11px] text-night-muted">
           Showing case study for <span className="text-aurora-teal">{slug}</span> — press Esc or
           click outside to return to the timeline.

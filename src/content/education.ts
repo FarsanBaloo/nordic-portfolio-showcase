@@ -66,7 +66,7 @@ export const postgraduate = {
       institution: "Linköping University",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Natural Language Processing",
-      period: "2025 – 2026",
+      period: "Aug 2025 – Jan 2026",
       body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
       topics: [
         "Natural Language Processing",
@@ -89,7 +89,7 @@ export const postgraduate = {
       institution: "Umeå University",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Autonomous Systems & Perception",
-      period: "2025 – 2026",
+      period: "Jan 2026 – Jun 2026",
       body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control. Explored how perception, prediction, planning and control are integrated to enable data-driven autonomous systems to interpret dynamic environments and support real-time decision-making.",
       topics: [
         "Multi-sensor fusion",

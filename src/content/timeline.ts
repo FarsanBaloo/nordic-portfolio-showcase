@@ -76,8 +76,8 @@ export const milestones: TimelineMilestone[] = [
     track: "development",
     side: "left",
     branches: [
-      { label: "Talking SCADA", slug: "talking-scada", span: "Sep–Dec 2025" },
-      { label: "Multi-Agent AI decision support", slug: "multi-agent-ai", span: "Jan–Jul 2026" },
+      { label: "Talking SCADA", slug: "talking-scada", span: "Aug 2025 – Jan 2026" },
+      { label: "Multi-Agent AI decision support", slug: "multi-agent-ai", span: "Jan–Jun 2026" },
     ],
   },
   {

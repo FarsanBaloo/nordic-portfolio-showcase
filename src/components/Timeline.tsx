@@ -265,16 +265,23 @@ function BranchCard({
   branch,
   status,
   period,
+  roleContext,
 }: {
   branch: TimelineBranch;
   status: Status;
   period: string;
+  roleContext?: string | undefined;
 }) {
   const project = branch.slug ? getProject(branch.slug) : undefined;
   if (!project) return null;
   const active = status === "active";
   return (
-    <ProjectModal slug={project.slug} project={project}>
+    <ProjectModal
+      slug={project.slug}
+      project={project}
+      roleContext={roleContext}
+      span={branch.span ?? period}
+    >
       <button
         type="button"
         className={[
@@ -297,10 +304,11 @@ function BranchCard({
         {project.teaser ? (
           <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
         ) : null}
-        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-night-muted">
-          Within {period}
-          {branch.note ? ` · ${branch.note}` : ""}
-        </p>
+        {branch.note ? (
+          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-night-muted">
+            {branch.note}
+          </p>
+        ) : null}
         <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
           Open case study <span aria-hidden="true">↗</span>
         </span>
@@ -332,12 +340,15 @@ function MilestoneRow({
       : "var(--aurora-violet)";
   const left = entry.side === "left";
   const active = status === "active";
+  const roleContext = role
+    ? `${role.title} (${entry.period}) — ${role.summary}`
+    : `${entry.title} (${entry.period}) — ${entry.detail}`;
 
   return (
     <li
       data-status={status}
       className={[
-        "relative pl-12 transition-all duration-500 md:grid md:grid-cols-[1fr_auto_1fr] md:items-start md:pl-0",
+        "relative pl-10 transition-all duration-500 sm:pl-12 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-start md:pl-0",
         status === "upcoming" ? "opacity-80" : "opacity-100",
       ].join(" ")}
     >
@@ -368,7 +379,7 @@ function MilestoneRow({
           transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
         }}
         className={[
-          "transition-all will-change-transform",
+          "min-w-0 transition-all will-change-transform",
           shown ? "translate-y-0 scale-100 opacity-100" : "translate-y-6 scale-[0.98] opacity-0",
           left
             ? "md:col-start-1 md:row-start-1 md:pr-14 md:text-right"
@@ -468,7 +479,7 @@ function MilestoneRow({
       {entry.branches?.length ? (
         <div
           className={[
-            "mt-4 transition-all duration-500 md:mt-0 md:row-start-1 md:self-start",
+            "mt-5 min-w-0 transition-all duration-500 md:mt-0 md:row-start-1 md:self-start",
             left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
           ].join(" ")}
         >
@@ -478,7 +489,13 @@ function MilestoneRow({
           <div className="space-y-3">
             {entry.branches.map((b) =>
               b.slug ? (
-                <BranchCard key={b.slug} branch={b} status={status} period={entry.period} />
+                <BranchCard
+                  key={b.slug}
+                  branch={b}
+                  status={status}
+                  period={entry.period}
+                  roleContext={roleContext}
+                />
               ) : null,
             )}
           </div>
