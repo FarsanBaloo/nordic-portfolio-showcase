@@ -145,61 +145,81 @@ export function AuroraBackdrop() {
       </svg>
 
       <div className="absolute inset-0" style={{ filter: "url(#aurora-warp)" }}>
-        {/* curtain rays — thin vertical striations, top and lower band */}
+        {/* main curtain: rays standing up from a bright lower border */}
         <div
           className="aurora-curtain"
           style={{
-            top: "-10%",
-            left: "-8%",
-            width: "78%",
-            height: "62%",
-            opacity: 0.42,
-            backgroundImage: rays("var(--aurora-green)", 46),
+            top: "-6%",
+            left: "-10%",
+            width: "82%",
+            height: "56%",
+            opacity: 0.85,
+            backgroundImage: rays("var(--aurora-green)", 78),
             backgroundSize: "200% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
             maskComposite: "intersect",
-            animationDuration: "44s, 34s",
+            animationDuration: "26s, 11s",
           }}
         />
+        {/* bright lower border of that curtain */}
         <div
           className="aurora-curtain"
           style={{
-            top: "2%",
-            left: "34%",
-            width: "62%",
-            height: "54%",
-            opacity: 0.3,
-            backgroundImage: rays("var(--aurora-teal)", 40),
-            backgroundSize: "230% 100%",
+            top: "34%",
+            left: "-10%",
+            width: "82%",
+            height: "18%",
+            opacity: 0.6,
+            filter: "blur(26px)",
+            background:
+              "linear-gradient(to top, transparent 0%, color-mix(in oklab, var(--aurora-green) 55%, transparent) 55%, transparent 100%)",
+            animationDuration: "26s, 11s",
+          }}
+        />
+
+        {/* second, teal curtain drifting out of phase */}
+        <div
+          className="aurora-curtain"
+          style={{
+            top: "0%",
+            left: "36%",
+            width: "66%",
+            height: "50%",
+            opacity: 0.6,
+            backgroundImage: rays("var(--aurora-teal)", 66),
+            backgroundSize: "240% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
             maskComposite: "intersect",
-            animationDuration: "60s, 45s",
-            animationDelay: "-21s, -9s",
+            animationDuration: "34s, 15s",
+            animationDelay: "-13s, -6s",
           }}
         />
+
+        {/* faint distant curtain low in the sky */}
         <div
           className="aurora-curtain"
           style={{
-            bottom: "-14%",
-            left: "6%",
-            width: "70%",
-            height: "46%",
-            opacity: 0.22,
-            backgroundImage: rays("var(--aurora-green)", 38),
+            bottom: "-10%",
+            left: "4%",
+            width: "74%",
+            height: "42%",
+            opacity: 0.35,
+            backgroundImage: rays("var(--aurora-green)", 55),
             backgroundSize: "210% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
             maskComposite: "intersect",
-            animationDuration: "76s, 52s",
-            animationDelay: "-37s, -14s",
+            animationDuration: "46s, 21s",
+            animationDelay: "-24s, -9s",
           }}
         />
       </div>
+
 
       {/* faint violet fringe */}
       <div
