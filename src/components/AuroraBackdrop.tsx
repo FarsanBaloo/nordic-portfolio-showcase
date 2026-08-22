@@ -90,8 +90,16 @@ export function AuroraBackdrop() {
           </clipPath>
         </defs>
 
-        <g className="aurora-band">
-          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.48">
+        {/* magenta/violet high-altitude veil above the green band, as in real displays */}
+        <g className="aurora-veil" opacity="0.5" filter="url(#soft-curtain)">
+          <path
+            d="M-200 -120 C260 -60 520 120 900 150 C1240 176 1460 90 1800 30 L1800 -160 L-200 -160 Z"
+            fill="url(#violet-veil)"
+          />
+        </g>
+
+        <g className="aurora-band" transform="rotate(-6 800 380)">
+          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.62">
             <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
           <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.62">
