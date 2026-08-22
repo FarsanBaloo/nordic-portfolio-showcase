@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+import portraitAsset from "../assets/rickard-portrait.png.asset.json";
 import { profile } from "../content/profile";
 
 const nav = [
