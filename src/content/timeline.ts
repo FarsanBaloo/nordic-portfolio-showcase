@@ -61,7 +61,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "applied-ai",
-    period: "2024–2025",
+    period: "2023–2025",
     title: "Interaction Design · Applied AI · Thesis",
     detail:
       "Human-centred design, prototyping and accessibility, then applied industrial AI at MITC and a bachelor thesis on uncertainty-aware 48-hour wind power forecasting.",

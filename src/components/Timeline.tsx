@@ -48,19 +48,6 @@ function buildRows(): Row[] {
     const roleId = roleIdFor[entry.id];
     rows.push({ kind: "milestone", key: entry.id, entry, roleId });
 
-    if (roleId) {
-      const role = roles.find((r) => r.id === roleId);
-      for (const group of role?.detailGroups ?? []) {
-        rows.push({
-          kind: "point",
-          key: `${entry.id}-${group.title}`,
-          label: group.title,
-          side: entry.side,
-          panel: { kind: "group", roleId, group: group.title },
-          variant: "role",
-        });
-      }
-    }
 
     for (const branch of entry.branches ?? []) {
       rows.push({
@@ -238,6 +225,8 @@ function FloatingPanel({ panel, onClose }: { panel: Panel; onClose: () => void }
   let items: string[] = [];
   let chips: string[] = [];
   let href: { slug: string } | null = null;
+  let groups: { title: string; items: string[] }[] = [];
+
 
   if (panel.kind === "project") {
     const project = getProject(panel.slug);
@@ -258,6 +247,7 @@ function FloatingPanel({ panel, onClose }: { panel: Panel; onClose: () => void }
       body = role.summary;
       items = role.bullets;
       chips = role.tags.slice(0, 6);
+      groups = role.detailGroups;
     } else {
       const group = role.detailGroups.find((g) => g.title === panel.group);
       if (!group) return null;
@@ -307,6 +297,32 @@ function FloatingPanel({ panel, onClose }: { panel: Panel; onClose: () => void }
               </li>
             ))}
           </ul>
+        ) : null}
+
+        {groups.length ? (
+          <div className="mt-6 space-y-5 border-t border-night-border/60 pt-5">
+            {groups.map((g) => (
+              <section key={g.title}>
+                <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-aurora-green">
+                  {g.title}
+                </h4>
+                <ul className="mt-2 space-y-2">
+                  {g.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-2 text-sm leading-relaxed text-night-muted"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
         ) : null}
 
         {chips.length ? (
