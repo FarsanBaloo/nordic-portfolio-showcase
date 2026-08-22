@@ -149,6 +149,8 @@ export function PortraitFrame({ className = "" }: { className?: string }) {
     </div>
   );
 }
+
+export function Section({
   id,
   children,
   className = "",
