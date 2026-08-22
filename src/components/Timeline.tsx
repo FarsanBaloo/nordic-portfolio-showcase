@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { milestones, type TimelineMilestone } from "../content/timeline";
+import { getProject } from "../content/projects";
+import { milestones, type TimelineBranch, type TimelineMilestone } from "../content/timeline";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -17,10 +18,28 @@ function usePrefersReducedMotion() {
 
 type Status = "upcoming" | "active" | "completed";
 
-/**
- * Scroll-linked progress for the timeline rail, measured against the timeline
- * section itself (first node -> last node), not the whole page.
- */
+type Row =
+  | { kind: "milestone"; key: string; entry: TimelineMilestone }
+  | { kind: "branch"; key: string; branch: TimelineBranch; side: "left" | "right"; period: string };
+
+function buildRows(): Row[] {
+  const rows: Row[] = [];
+  for (const entry of milestones) {
+    rows.push({ kind: "milestone", key: entry.id, entry });
+    for (const branch of entry.branches ?? []) {
+      rows.push({
+        kind: "branch",
+        key: `${entry.id}-${branch.label}`,
+        branch,
+        side: entry.side,
+        period: entry.period,
+      });
+    }
+  }
+  return rows;
+}
+
+/** Scroll-linked progress measured against the timeline section itself. */
 function useTimelineScroll(count: number, reduced: boolean) {
   const railRef = useRef<HTMLDivElement | null>(null);
   const nodeRefs = useRef<(HTMLElement | null)[]>([]);
@@ -58,7 +77,6 @@ function useTimelineScroll(count: number, reduced: boolean) {
         if (center <= vh * 0.62) return "active";
         return "upcoming";
       });
-      // keep completed sticky: once passed, never regress to upcoming while scrolling down
       if (next.length !== prev.length || next.some((s, i) => s !== prev[i])) {
         prev = next;
         setStatuses(next);
@@ -106,7 +124,7 @@ function useReveal<T extends HTMLElement>(reduced: boolean) {
           }
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.2 },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.15 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -119,32 +137,34 @@ function Node({
   status,
   isNow,
   accent,
-  secondary,
+  size,
 }: {
   status: Status;
   isNow: boolean;
   accent: string;
-  secondary: boolean;
+  size: "major" | "minor";
 }) {
   const lit = status !== "upcoming";
-  const size = secondary ? "h-3 w-3" : "h-4 w-4";
+  const major = size === "major";
   return (
     <span
       aria-hidden="true"
       className={[
         "relative block rounded-full border transition-all duration-500 ease-out",
-        size,
+        major ? "h-5 w-5 border-2" : "h-2.5 w-2.5",
         lit ? "scale-100" : "scale-90",
       ].join(" ")}
       style={{
-        backgroundColor: lit ? accent : "transparent",
-        borderColor: lit ? accent : "color-mix(in oklab, var(--aurora-teal) 35%, transparent)",
-        boxShadow: lit ? `0 0 14px 1px color-mix(in oklab, ${accent} 60%, transparent)` : "none",
+        backgroundColor: lit ? (major ? accent : `color-mix(in oklab, ${accent} 70%, transparent)`) : "var(--night-bg, #0b1120)",
+        borderColor: lit ? accent : "color-mix(in oklab, var(--aurora-teal) 30%, transparent)",
+        boxShadow: lit
+          ? `0 0 ${major ? 18 : 8}px 1px color-mix(in oklab, ${accent} ${major ? 70 : 45}%, transparent)`
+          : "none",
       }}
     >
       {isNow && lit ? (
         <span
-          className="absolute inset-0 animate-ping rounded-full opacity-40"
+          className="absolute -inset-1 animate-ping rounded-full opacity-40"
           style={{ backgroundColor: accent, animationDuration: "2.6s" }}
         />
       ) : null}
@@ -152,39 +172,93 @@ function Node({
   );
 }
 
-function Branches({ items }: { items: NonNullable<TimelineMilestone["branches"]> }) {
+/** Floating quick-view window for a project branch. */
+function ProjectDialog({ slug, onClose }: { slug: string; onClose: () => void }) {
+  const project = getProject(slug);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  if (!project) return null;
+
   return (
-    <ul className="mt-4 space-y-1.5 border-l border-night-border/60 pl-4">
-      {items.map((b) =>
-        b.slug ? (
-          <li key={b.label}>
-            <Link
-              to="/projects/$slug"
-              params={{ slug: b.slug }}
-              className="group inline-flex items-center gap-2 text-sm text-night-muted transition-colors hover:text-aurora-teal"
+    <div
+      className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.title}
+    >
+      <button
+        type="button"
+        aria-label="Close"
+        onClick={onClose}
+        className="absolute inset-0 cursor-default bg-black/60 backdrop-blur-sm animate-fade-in"
+      />
+      <div className="relative w-full max-w-lg animate-scale-in rounded-3xl border border-night-border bg-night-bg/95 p-6 shadow-2xl">
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-4 rounded-full border border-night-border px-2 py-0.5 text-sm text-night-muted transition-colors hover:text-night-foreground"
+        >
+          ✕
+        </button>
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-aurora-teal">
+          {project.meta} · {project.type}
+        </p>
+        <h3 className="mt-2 pr-8 text-xl font-semibold text-night-foreground">{project.title}</h3>
+        {project.subtitle ? (
+          <p className="mt-1 text-sm text-night-muted">{project.subtitle}</p>
+        ) : null}
+        <p className="mt-4 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
+
+        {project.metrics?.length ? (
+          <ul className="mt-4 grid grid-cols-2 gap-3">
+            {project.metrics.slice(0, 4).map((m) => (
+              <li key={m.label} className="rounded-xl border border-night-border/70 p-3">
+                <p className="text-sm font-semibold text-night-foreground">{m.value}</p>
+                <p className="text-xs text-night-muted">{m.label}</p>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {project.tags.slice(0, 6).map((t) => (
+            <li
+              key={t}
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-xs text-night-muted"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-aurora-teal/60" aria-hidden="true" />
-              {b.label}
-              <span
-                aria-hidden="true"
-                className="opacity-0 transition-opacity group-hover:opacity-100"
-              >
-                →
-              </span>
-            </Link>
-          </li>
-        ) : (
-          <li key={b.label} className="flex items-center gap-2 text-sm text-night-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-night-border" aria-hidden="true" />
-            {b.label}
-          </li>
-        ),
-      )}
-    </ul>
+              {t}
+            </li>
+          ))}
+        </ul>
+
+        <Link
+          to="/projects/$slug"
+          params={{ slug: project.slug }}
+          className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/50 px-4 py-2 text-sm text-night-foreground transition-colors hover:bg-aurora-teal/10"
+        >
+          Explore full case <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </div>
   );
 }
 
-function Entry({
+function MilestoneRow({
   entry,
   status,
   reduced,
@@ -206,17 +280,14 @@ function Entry({
   const active = status === "active";
 
   return (
-    <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-start md:gap-0 md:pl-0">
-      {/* left column (desktop) */}
-      <div className={left ? "md:pr-12 md:text-right" : "hidden md:block"} />
-      {/* node column */}
+    <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-start md:pl-0">
+      <div className="hidden md:block" />
       <span
         ref={nodeRef}
-        className="absolute left-[13px] top-3 -translate-x-1/2 md:relative md:left-auto md:top-1.5 md:translate-x-0"
+        className="absolute left-[13px] top-3 z-10 -translate-x-1/2 md:relative md:left-auto md:top-1.5 md:translate-x-0"
       >
-        <Node status={status} isNow={!!entry.now} accent={accent} secondary={!isPro} />
+        <Node status={status} isNow={!!entry.now} accent={accent} size="major" />
       </span>
-      {/* card */}
       <div
         ref={ref}
         style={{
@@ -237,8 +308,9 @@ function Entry({
             active || status === "completed"
               ? "border-night-border bg-white/[0.055]"
               : "border-night-border/50 bg-white/[0.02]",
-            active ? "shadow-[0_0_0_1px_color-mix(in_oklab,var(--aurora-teal)_25%,transparent)]" : "",
-            isPro ? "" : "md:max-w-[92%] " + (left ? "md:ml-auto" : ""),
+            active
+              ? "shadow-[0_0_0_1px_color-mix(in_oklab,var(--aurora-teal)_25%,transparent)]"
+              : "",
           ].join(" ")}
         >
           <p
@@ -248,9 +320,7 @@ function Entry({
             ].join(" ")}
           >
             {entry.now ? "Now" : entry.period}
-            <span className="ml-2 text-night-muted">
-              {isPro ? "· Experience" : "· Development"}
-            </span>
+            <span className="ml-2 text-night-muted">{isPro ? "· Experience" : "· Development"}</span>
           </p>
           <h3
             className={[
@@ -263,12 +333,7 @@ function Entry({
           <p className="mt-2 text-sm leading-relaxed text-night-muted">{entry.detail}</p>
 
           {entry.roles ? (
-            <ul
-              className={[
-                "mt-4 flex flex-wrap gap-2",
-                left ? "md:justify-end" : "",
-              ].join(" ")}
-            >
+            <ul className={["mt-4 flex flex-wrap gap-2", left ? "md:justify-end" : ""].join(" ")}>
               {entry.roles.map((role) => (
                 <li
                   key={role}
@@ -279,13 +344,88 @@ function Entry({
               ))}
             </ul>
           ) : null}
-
-          {entry.branches ? (
-            <div className={left ? "md:flex md:justify-end md:text-left" : ""}>
-              <Branches items={entry.branches} />
-            </div>
-          ) : null}
         </div>
+      </div>
+    </li>
+  );
+}
+
+function BranchRow({
+  branch,
+  side,
+  status,
+  reduced,
+  nodeRef,
+  onOpen,
+}: {
+  branch: TimelineBranch;
+  side: "left" | "right";
+  status: Status;
+  reduced: boolean;
+  nodeRef: (el: HTMLElement | null) => void;
+  onOpen: (slug: string) => void;
+}) {
+  const { ref, shown } = useReveal<HTMLDivElement>(reduced);
+  const left = side === "left";
+  const lit = status !== "upcoming";
+
+  const inner = (
+    <span
+      className={[
+        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm transition-all duration-500",
+        lit
+          ? "border-night-border bg-white/[0.04] text-night-foreground"
+          : "border-night-border/50 text-night-muted",
+        branch.slug ? "hover:border-aurora-teal/60 hover:bg-aurora-teal/10" : "",
+      ].join(" ")}
+    >
+      {branch.label}
+      {branch.slug ? (
+        <span aria-hidden="true" className="text-aurora-teal">
+          ↗
+        </span>
+      ) : null}
+    </span>
+  );
+
+  return (
+    <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:pl-0">
+      <div className="hidden md:block" />
+      {/* connector */}
+      <span
+        aria-hidden="true"
+        className={[
+          "absolute left-[13px] top-1/2 hidden h-px bg-night-border/60 md:block",
+          left ? "md:left-auto md:right-1/2 md:w-10" : "md:left-1/2 md:w-10",
+        ].join(" ")}
+      />
+      <span
+        ref={nodeRef}
+        className="absolute left-[13px] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 md:translate-y-0"
+      >
+        <Node status={status} isNow={false} accent="var(--aurora-teal)" size="minor" />
+      </span>
+      <div
+        ref={ref}
+        style={{
+          transitionDuration: reduced ? "0ms" : "500ms",
+          transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
+        className={[
+          "transition-all will-change-transform",
+          shown ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
+          left
+            ? "md:col-start-1 md:row-start-1 md:pr-16 md:text-right"
+            : "md:col-start-3 md:row-start-1 md:pl-16",
+        ].join(" ")}
+      >
+        {branch.slug ? (
+          <button type="button" onClick={() => onOpen(branch.slug!)} className="text-left">
+            {inner}
+          </button>
+        ) : (
+          inner
+        )}
       </div>
     </li>
   );
@@ -293,7 +433,21 @@ function Entry({
 
 export function Timeline() {
   const reduced = usePrefersReducedMotion();
-  const { railRef, nodeRefs, progress, statuses } = useTimelineScroll(milestones.length, reduced);
+  const rows = useMemo(buildRows, []);
+  const { railRef, nodeRefs, progress, statuses } = useTimelineScroll(rows.length, reduced);
+  const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const onOpen = useCallback((slug: string) => setOpenSlug(slug), []);
+
+  // the label shown in the travelling year marker = last reached milestone
+  const currentLabel = useMemo(() => {
+    let label = milestones[0]?.period ?? "";
+    rows.forEach((row, i) => {
+      if (row.kind === "milestone" && statuses[i] !== "upcoming") {
+        label = row.entry.now ? "NOW" : row.entry.period;
+      }
+    });
+    return label;
+  }, [rows, statuses]);
 
   return (
     <div ref={railRef} className="relative">
@@ -315,19 +469,51 @@ export function Timeline() {
         />
       </div>
 
-      <ol className="relative space-y-12 md:space-y-20">
-        {milestones.map((entry, i) => (
-          <Entry
-            key={entry.id}
-            entry={entry}
-            reduced={reduced}
-            status={statuses[i] ?? "upcoming"}
-            nodeRef={(el) => {
-              nodeRefs.current[i] = el;
-            }}
-          />
-        ))}
+      {/* travelling year marker riding the progress head */}
+      {progress > 0.001 && progress < 0.999 ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-[13px] z-20 -translate-x-1/2 -translate-y-1/2 md:left-1/2"
+          style={{
+            top: `${progress * 100}%`,
+            transition: reduced ? "none" : "top 120ms linear",
+          }}
+        >
+          <span className="whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/90 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-aurora-teal shadow-[0_0_18px_color-mix(in_oklab,var(--aurora-teal)_35%,transparent)] backdrop-blur">
+            {currentLabel}
+          </span>
+        </div>
+      ) : null}
+
+      <ol className="relative space-y-8 md:space-y-14">
+        {rows.map((row, i) =>
+          row.kind === "milestone" ? (
+            <MilestoneRow
+              key={row.key}
+              entry={row.entry}
+              reduced={reduced}
+              status={statuses[i] ?? "upcoming"}
+              nodeRef={(el) => {
+                nodeRefs.current[i] = el;
+              }}
+            />
+          ) : (
+            <BranchRow
+              key={row.key}
+              branch={row.branch}
+              side={row.side}
+              reduced={reduced}
+              status={statuses[i] ?? "upcoming"}
+              nodeRef={(el) => {
+                nodeRefs.current[i] = el;
+              }}
+              onOpen={onOpen}
+            />
+          ),
+        )}
       </ol>
+
+      {openSlug ? <ProjectDialog slug={openSlug} onClose={() => setOpenSlug(null)} /> : null}
     </div>
   );
 }
