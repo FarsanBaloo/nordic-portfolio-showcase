@@ -66,8 +66,8 @@ export const postgraduate = {
       institution: "Linköping University",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Natural Language Processing",
-      period: "First postgraduate stage",
-      body: "Strengthened understanding of how modern transformer models can be adapted to specialised domain tasks.",
+      period: "2025 – 2026",
+      body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
       topics: [
         "Natural Language Processing",
         "Transformer architectures",
@@ -89,8 +89,8 @@ export const postgraduate = {
       institution: "Umeå University",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Autonomous Systems & Perception",
-      period: "First postgraduate stage",
-      body: "Explored how perception, prediction, planning and control are integrated to enable intelligent systems to interpret dynamic environments and support real-time decision-making.",
+      period: "2025 – 2026",
+      body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control. Explored how perception, prediction, planning and control are integrated to enable data-driven autonomous systems to interpret dynamic environments and support real-time decision-making.",
       topics: [
         "Multi-sensor fusion",
         "3D perception",
@@ -116,8 +116,13 @@ export const postgraduate = {
       institution: "University of Skövde",
       title: "Advanced-Level Studies in Innovation Management",
       subtitle: "Innovation in Practice",
-      period: "August 2025 – January 2026",
-      body: "Strategic innovation, applied innovation processes, implementation and innovation leadership. This work established the initial opportunity, problem framing and concept foundation for Talking SCADA.",
+      period: "Aug 2025 – Jan 2026",
+      body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership.",
+      projectCase: {
+        title: "Course project — Talking SCADA (concept origin)",
+        period: "Aug 2025 – Jan 2026",
+        body: "Developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could turn complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation later developed further through product management and requirements work.",
+      },
       topics: [
         "Strategic innovation",
         "Applied innovation processes",
@@ -132,10 +137,16 @@ export const postgraduate = {
       title:
         "Advanced-Level Specialisation in Industrial Economics, Product & Requirements Management",
       subtitle: "Product · Requirements · Strategy · Leadership",
-      period: "August 2025 – June 2026",
+      period: "Aug 2025 – Jun 2026",
       body: "Advanced-level specialisation covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organisations.",
+      projectCase: {
+        title: "Course project — Talking SCADA (product & requirements case)",
+        period: "Aug 2025 – Jun 2026",
+        body: "Used Talking SCADA as a recurring academic product case to apply New Product Development, product discovery, digital product strategy and requirements engineering to an AI-enabled decision-support concept for building automation and SCADA/BMS environments. Applied methods across opportunity identification, product vision and value proposition, structured requirements management, feature prioritisation, MVP definition, product development governance, portfolio considerations, business model development and go-to-market planning — connecting customer needs and technical feasibility with sustainable business value.",
+      },
       topics: [],
       relevance: [],
+
       groups: [
         {
           title: "Product & Portfolio",

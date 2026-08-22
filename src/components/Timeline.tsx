@@ -457,25 +457,38 @@ export function Timeline() {
   const targetRef = useRef(targetYear);
   targetRef.current = targetYear;
 
+  const [smoothProgress, setSmoothProgress] = useState(progress);
+  const smoothRef = useRef(progress);
+  const progressRef = useRef(progress);
+  progressRef.current = progress;
+
   useEffect(() => {
     if (reduced) {
-      shownRef.current = targetYear;
-      setShownYear(targetYear);
+      shownRef.current = targetRef.current;
+      smoothRef.current = progressRef.current;
+      setShownYear(targetRef.current);
+      setSmoothProgress(progressRef.current);
       return;
     }
     let raf = 0;
     const tick = () => {
-      const next = shownRef.current + (targetRef.current - shownRef.current) * 0.12;
-      shownRef.current = Math.abs(targetRef.current - next) < 0.01 ? targetRef.current : next;
+      const y = shownRef.current + (targetRef.current - shownRef.current) * 0.09;
+      shownRef.current = Math.abs(targetRef.current - y) < 0.005 ? targetRef.current : y;
       setShownYear(shownRef.current);
+
+      const p = smoothRef.current + (progressRef.current - smoothRef.current) * 0.14;
+      smoothRef.current = Math.abs(progressRef.current - p) < 0.0005 ? progressRef.current : p;
+      setSmoothProgress(smoothRef.current);
+
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [reduced, targetYear]);
+  }, [reduced]);
 
-  const atNow = progress > 0.97;
+  const atNow = smoothProgress > 0.97;
   const currentLabel = atNow ? "NOW" : String(Math.round(shownYear));
+
 
 
   return (
@@ -487,10 +500,12 @@ export function Timeline() {
       >
         {/* active progress rail */}
         <div
-          className="w-px origin-top will-change-[height]"
+          className="w-px origin-top"
           style={{
-            height: `${progress * 100}%`,
-            transition: reduced ? "none" : "height 90ms linear",
+            height: "100%",
+            transform: `scaleY(${smoothProgress})`,
+            transformOrigin: "top",
+            willChange: "transform",
             background:
               "linear-gradient(180deg, var(--aurora-teal), var(--aurora-green) 55%, var(--aurora-violet))",
             boxShadow: "0 0 12px 1px color-mix(in oklab, var(--aurora-green) 40%, transparent)",
@@ -501,24 +516,22 @@ export function Timeline() {
       {/* year marker riding the progress head */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-[13px] z-20 -translate-y-1/2 md:left-1/2"
-        style={{
-          top: `${progress * 100}%`,
-          transition: reduced ? "none" : "top 90ms linear",
-        }}
+        className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px md:left-1/2"
       >
         <span
           className={[
-            "block -translate-x-1/2 whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
-            "font-mono text-base font-semibold uppercase tracking-[0.18em] text-aurora-teal",
+            "absolute left-0 block -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
+            "font-mono text-base font-semibold uppercase tracking-[0.18em] text-night-foreground",
             "shadow-[0_0_26px_color-mix(in_oklab,var(--aurora-teal)_30%,transparent)] backdrop-blur",
             "transition-opacity duration-500",
-            progress > 0.002 && progress < 0.998 ? "opacity-100" : "opacity-0",
+            smoothProgress > 0.002 && smoothProgress < 0.998 ? "opacity-100" : "opacity-0",
           ].join(" ")}
+          style={{ top: `${smoothProgress * 100}%`, willChange: "top" }}
         >
           {currentLabel}
         </span>
       </div>
+
 
 
       <ol className="relative space-y-6 md:space-y-10">

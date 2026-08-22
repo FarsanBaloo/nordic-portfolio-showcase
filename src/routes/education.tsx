@@ -68,11 +68,23 @@ function EducationPage() {
                 <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
                   {entry.body}
                 </p>
+                {"projectCase" in entry && entry.projectCase ? (
+                  <div className="mt-5 rounded-lg border border-border bg-secondary/40 p-5">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                      {entry.projectCase.period}
+                    </p>
+                    <h4 className="mt-1 text-sm font-semibold">{entry.projectCase.title}</h4>
+                    <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                      {entry.projectCase.body}
+                    </p>
+                  </div>
+                ) : null}
                 {entry.topics.length ? (
                   <div className="mt-5">
                     <TagList items={entry.topics} />
                   </div>
                 ) : null}
+
                 {"groups" in entry && entry.groups?.length ? (
                   <div className="mt-6 grid gap-5 sm:grid-cols-2">
                     {entry.groups.map((group) => (
