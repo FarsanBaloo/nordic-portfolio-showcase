@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
+import { ProjectModal } from "./ProjectModal";
 import { milestones, type TimelineMilestone } from "../content/timeline";
 
 function usePrefersReducedMotion() {
