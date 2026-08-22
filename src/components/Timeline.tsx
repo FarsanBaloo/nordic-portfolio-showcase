@@ -445,14 +445,44 @@ function MilestoneRow({
             </ul>
           ) : null}
 
-          {roleId ? (
-            <button
-              type="button"
-              onClick={() => onOpen({ kind: "role", roleId })}
-              className="mt-4 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 px-3.5 py-1.5 text-xs text-night-foreground transition-colors hover:bg-aurora-teal/10"
-            >
-              Open role <span aria-hidden="true">↗</span>
-            </button>
+          {role ? (
+            <div className={["mt-5 space-y-5", left ? "md:text-left" : ""].join(" ")}>
+              <p className="text-sm leading-relaxed text-night-muted">{role.summary}</p>
+              <ul className="space-y-2">
+                {role.bullets.map((b) => (
+                  <li key={b} className="flex gap-2 text-sm leading-relaxed text-night-muted">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-teal"
+                    />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <div className="space-y-5 border-t border-night-border/60 pt-5">
+                {role.detailGroups.map((g) => (
+                  <section key={g.title}>
+                    <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-aurora-green">
+                      {g.title}
+                    </h4>
+                    <ul className="mt-2 space-y-2">
+                      {g.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2 text-sm leading-relaxed text-night-muted"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </div>
           ) : null}
         </div>
       </div>
