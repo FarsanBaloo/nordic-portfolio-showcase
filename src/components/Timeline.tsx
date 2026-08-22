@@ -63,6 +63,9 @@ function useTimelineScroll(count: number, years: number[], reduced: boolean) {
   const smoothRef = useRef(0);
   const shownRef = useRef(years[0] ?? 2003);
   const anchorsRef = useRef<{ at: number; year: number }[]>([]);
+  // last values actually pushed into React state — used to skip no-op re-renders
+  const lastP = useRef(0);
+  const lastLabel = useRef<string>("");
 
   useEffect(() => {
     if (reduced) {
