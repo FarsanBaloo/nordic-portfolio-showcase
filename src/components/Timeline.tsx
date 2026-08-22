@@ -360,98 +360,6 @@ function MilestoneRow({
   );
 }
 
-function PointRow({
-  label,
-  side,
-  slug,
-  status,
-  reduced,
-  nodeRef,
-}: {
-  label: string;
-  side: "left" | "right";
-  slug: string;
-  status: Status;
-  reduced: boolean;
-  nodeRef: (el: HTMLElement | null) => void;
-}) {
-  const { ref, shown } = useReveal<HTMLDivElement>(reduced);
-  const left = side === "left";
-  const lit = status !== "upcoming";
-  const project = slug ? getProject(slug) : undefined;
-  const accent = "var(--aurora-teal)";
-
-  return (
-    <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:pl-0">
-      <div className="hidden md:block" />
-      {/* connector from rail to label */}
-      <span
-        aria-hidden="true"
-        className={[
-          "absolute left-[13px] top-1/2 h-px w-6 transition-opacity duration-500 md:w-10",
-          lit ? "opacity-80" : "opacity-40",
-          left ? "md:left-auto md:right-1/2" : "md:left-1/2",
-        ].join(" ")}
-        style={{
-          background: `linear-gradient(${left ? "270deg" : "90deg"}, color-mix(in oklab, ${accent} 55%, transparent), transparent)`,
-        }}
-      />
-      <span
-        ref={nodeRef}
-        className="absolute left-[13px] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 md:translate-y-0"
-      >
-        <Node status={status} isNow={false} accent={accent} size="minor" />
-      </span>
-      <div
-        ref={ref}
-        style={{
-          transitionDuration: reduced ? "0ms" : "480ms",
-          transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
-        }}
-        className={[
-          "transition-all will-change-transform",
-          shown ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
-          left
-            ? "md:col-start-1 md:row-start-1 md:flex md:justify-end md:pr-14"
-            : "md:col-start-3 md:row-start-1 md:pl-14",
-        ].join(" ")}
-      >
-        <div
-          className={[
-            "w-full max-w-md rounded-2xl border p-4 text-left transition-all duration-500",
-            lit
-              ? "border-night-border bg-white/[0.035]"
-              : "border-night-border/40 bg-white/[0.015]",
-          ].join(" ")}
-        >
-          {project ? (
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
-              {project.meta} · {project.type}
-            </p>
-          ) : null}
-          <h4 className="mt-1 text-sm font-semibold text-night-foreground">
-            {project?.title ?? label}
-          </h4>
-          {project?.subtitle ? (
-            <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
-          ) : null}
-          {project?.teaser ? (
-            <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
-          ) : null}
-          {project ? (
-            <Link
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity hover:opacity-80"
-            >
-              Explore full case <span aria-hidden="true">→</span>
-            </Link>
-          ) : null}
-        </div>
-      </div>
-    </li>
-  );
-}
 
 export function Timeline() {
   const reduced = usePrefersReducedMotion();
@@ -568,32 +476,18 @@ export function Timeline() {
 
 
       <ol className="relative space-y-6 md:space-y-10">
-        {rows.map((row, i) =>
-          row.kind === "milestone" ? (
-            <MilestoneRow
-              key={row.key}
-              entry={row.entry}
-              roleId={row.roleId}
-              reduced={reduced}
-              status={statuses[i] ?? "upcoming"}
-              nodeRef={(el) => {
-                nodeRefs.current[i] = el;
-              }}
-            />
-          ) : (
-            <PointRow
-              key={row.key}
-              label={row.label}
-              side={row.side}
-              slug={row.slug}
-              reduced={reduced}
-              status={statuses[i] ?? "upcoming"}
-              nodeRef={(el) => {
-                nodeRefs.current[i] = el;
-              }}
-            />
-          ),
-        )}
+        {rows.map((row, i) => (
+          <MilestoneRow
+            key={row.key}
+            entry={row.entry}
+            roleId={row.roleId}
+            reduced={reduced}
+            status={statuses[i] ?? "upcoming"}
+            nodeRef={(el) => {
+              nodeRefs.current[i] = el;
+            }}
+          />
+        ))}
       </ol>
     </div>
   );
