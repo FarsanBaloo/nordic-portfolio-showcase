@@ -538,11 +538,8 @@ export function Timeline() {
     [rows],
   );
 
-  const { railRef, nodeRefs, smoothProgress, label, statuses } = useTimelineScroll(
-    rows.length,
-    years,
-    reduced,
-  );
+  const { railRef, nodeRefs, fillRef, markerRef, labelRef, statuses } =
+    useTimelineScroll(rows.length, years, reduced);
 
   return (
     <div ref={railRef} className="relative">
@@ -553,10 +550,11 @@ export function Timeline() {
       >
         {/* active progress rail */}
         <div
+          ref={fillRef}
           className="w-px origin-top"
           style={{
             height: "100%",
-            transform: `scaleY(${smoothProgress})`,
+            transform: "scaleY(0)",
             transformOrigin: "top",
             willChange: "transform",
             background:
@@ -572,18 +570,24 @@ export function Timeline() {
         className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px md:left-1/2"
       >
         <span
+          ref={markerRef}
           className={[
-            "absolute left-0 block -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
+            "absolute left-0 top-0 block whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
             "font-mono text-base font-semibold uppercase tracking-[0.18em] text-night-foreground",
             "shadow-[0_0_26px_color-mix(in_oklab,var(--aurora-teal)_30%,transparent)] backdrop-blur",
-            "transition-opacity duration-500",
-            smoothProgress > 0.002 && smoothProgress < 0.998 ? "opacity-100" : "opacity-0",
+            "transition-opacity duration-300",
           ].join(" ")}
-          style={{ top: `${smoothProgress * 100}%`, willChange: "top" }}
+          style={{
+            opacity: 0,
+            transform: "translate(-50%, -50%)",
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+          }}
         >
-          {label}
+          <span ref={labelRef}>{String(years[0] ?? 2003)}</span>
         </span>
       </div>
+
 
       <ol className="relative space-y-6 md:space-y-10">
         {rows.map((row, i) => (
