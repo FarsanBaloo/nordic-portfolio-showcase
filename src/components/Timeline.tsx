@@ -1,8 +1,8 @@
-import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
+import { ProjectModal } from "./ProjectModal";
 import { milestones, type TimelineMilestone } from "../content/timeline";
 
 function usePrefersReducedMotion() {
@@ -261,25 +261,26 @@ function BranchCard({ slug }: { slug: string }) {
   const project = getProject(slug);
   if (!project) return null;
   return (
-    <Link
-      to="/projects/$slug"
-      params={{ slug: project.slug }}
-      className="group block rounded-2xl border border-night-border/60 bg-white/[0.035] p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]"
-    >
-      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
-        {project.meta} · {project.type}
-      </p>
-      <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
-      {project.subtitle ? (
-        <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
-      ) : null}
-      {project.teaser ? (
-        <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
-      ) : null}
-      <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
-        Explore full case <span aria-hidden="true">→</span>
-      </span>
-    </Link>
+    <ProjectModal slug={project.slug} project={project}>
+      <button
+        type="button"
+        className="group block w-full rounded-2xl border border-night-border/60 bg-white/[0.035] p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]"
+      >
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+          {project.meta} · {project.type}
+        </p>
+        <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
+        {project.subtitle ? (
+          <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
+        ) : null}
+        {project.teaser ? (
+          <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
+        ) : null}
+        <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
+          Open case study <span aria-hidden="true">↗</span>
+        </span>
+      </button>
+    </ProjectModal>
   );
 }
 
