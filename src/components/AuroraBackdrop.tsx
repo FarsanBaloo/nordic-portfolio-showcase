@@ -1,16 +1,26 @@
-/** Vertical striations of a real aurora curtain: thin, irregular, mostly transparent. */
-const rays = (color: string, alpha: number) =>
-  [
-    `repeating-linear-gradient(94deg,`,
-    ` transparent 0 11px,`,
-    ` color-mix(in oklab, ${color} ${alpha}%, transparent) 13px,`,
-    ` transparent 16px 27px,`,
-    ` color-mix(in oklab, ${color} ${Math.round(alpha * 0.5)}%, transparent) 29px,`,
-    ` transparent 33px 52px)`,
+/**
+ * Vertical striations of a real aurora curtain: irregular ray widths with
+ * bright cores and soft shoulders — the structure you actually see in a
+ * nordic display, where rays stand up from a sharper lower border.
+ */
+const rays = (color: string, alpha: number) => {
+  const c = (a: number) => `color-mix(in oklab, ${color} ${Math.round(a)}%, transparent)`;
+  return [
+    "repeating-linear-gradient(92deg,",
+    ` transparent 0 9px, ${c(alpha * 0.35)} 12px, ${c(alpha)} 14px, ${c(alpha * 0.3)} 17px,`,
+    ` transparent 21px 30px, ${c(alpha * 0.55)} 33px, ${c(alpha * 0.15)} 36px,`,
+    ` transparent 40px 47px, ${c(alpha * 0.85)} 50px, ${c(alpha * 0.25)} 53px,`,
+    " transparent 58px 74px)",
   ].join("");
+};
 
+/**
+ * Real curtains are brightest along their lower border and dissolve upward
+ * into rays, with soft lateral falloff — never a hard-edged box.
+ */
 const curtainMask =
-  "radial-gradient(120% 100% at 50% 0%, black 0%, rgba(0,0,0,0.75) 45%, transparent 88%), linear-gradient(to bottom, transparent 0%, black 20%, rgba(0,0,0,0.5) 65%, transparent 100%)";
+  "linear-gradient(to top, black 0%, rgba(0,0,0,0.92) 18%, rgba(0,0,0,0.55) 52%, rgba(0,0,0,0.18) 80%, transparent 100%), radial-gradient(85% 120% at 50% 100%, black 20%, rgba(0,0,0,0.6) 60%, transparent 92%)";
+
 
 const stars =
   "radial-gradient(1px 1px at 12% 22%, white, transparent), radial-gradient(1px 1px at 28% 8%, white, transparent), radial-gradient(1.4px 1.4px at 46% 30%, white, transparent), radial-gradient(1px 1px at 63% 12%, white, transparent), radial-gradient(1px 1px at 78% 26%, white, transparent), radial-gradient(1.2px 1.2px at 88% 6%, white, transparent), radial-gradient(1px 1px at 8% 52%, white, transparent), radial-gradient(1px 1px at 36% 62%, white, transparent), radial-gradient(1px 1px at 70% 55%, white, transparent), radial-gradient(1.3px 1.3px at 94% 44%, white, transparent), radial-gradient(1px 1px at 20% 38%, white, transparent), radial-gradient(1px 1px at 55% 45%, white, transparent), radial-gradient(0.8px 0.8px at 33% 18%, white, transparent), radial-gradient(0.8px 0.8px at 5% 14%, white, transparent), radial-gradient(0.8px 0.8px at 84% 60%, white, transparent), radial-gradient(0.9px 0.9px at 41% 74%, white, transparent), radial-gradient(0.8px 0.8px at 66% 68%, white, transparent), radial-gradient(1px 1px at 98% 18%, white, transparent), radial-gradient(0.9px 0.9px at 16% 86%, white, transparent), radial-gradient(0.8px 0.8px at 52% 92%, white, transparent), radial-gradient(1px 1px at 74% 84%, white, transparent), radial-gradient(0.8px 0.8px at 90% 76%, white, transparent)";
