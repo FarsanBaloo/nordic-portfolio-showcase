@@ -212,6 +212,7 @@ export const roles: Role[] = [
       "Led customer-facing technical discovery and solution definition for complex digital-platform initiatives.",
       "Translated customer, operational and project needs into structured technical requirements, alternative architectures and scalable solution designs.",
       "Held end-to-end technical ownership from problem definition and requirements through architecture, integration, validation and delivery.",
+      "Provided informal technical leadership — guiding engineering teams, peers and stakeholders toward sound technical direction through influence, mentorship and trusted authority rather than formal line management.",
       "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing lifecycle risk, technical feasibility, cost and commercial value.",
       "Influenced technical prioritisation, solution direction, product selection and architectural trade-offs by balancing customer value, integration risk, scalability, reliability and operational constraints.",
     ],
