@@ -248,11 +248,6 @@
     linear-gradient(to bottom, transparent 0 52%, rgb(2 4 7 / 0.55) 82%, #020407 100%);
 }
 
-.aurora-veil-dark {
-  background:
-    radial-gradient(ellipse 70% 55% at 24% 45%, rgb(2 4 7 / 0.72), transparent 70%),
-    linear-gradient(to bottom, transparent 0 52%, rgb(2 4 7 / 0.55) 82%, #020407 100%);
-}
 
 @media (max-width: 640px) {
   .aurora-ribbon-front { display: none; }
