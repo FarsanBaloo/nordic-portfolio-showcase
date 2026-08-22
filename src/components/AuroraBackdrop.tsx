@@ -36,8 +36,8 @@ export function AuroraBackdrop() {
           <linearGradient id="curtain-glow" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.1" />
             <stop offset="0.3" stopColor="var(--aurora-violet)" stopOpacity="0.14" />
-            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.16" />
-            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.46" />
+            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.4" />
+            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.95" />
             <stop offset="0.95" stopColor="var(--aurora-teal)" stopOpacity="0.16" />
             <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0" />
           </linearGradient>
@@ -91,7 +91,7 @@ export function AuroraBackdrop() {
         </defs>
 
         {/* magenta/violet high-altitude veil above the green band, as in real displays */}
-        <g className="aurora-veil" opacity="0.5" filter="url(#soft-curtain)">
+        <g className="aurora-veil" opacity="0.85" filter="url(#soft-curtain)">
           <path
             d="M-200 -120 C260 -60 520 120 900 150 C1240 176 1460 90 1800 30 L1800 -160 L-200 -160 Z"
             fill="url(#violet-veil)"
@@ -99,11 +99,11 @@ export function AuroraBackdrop() {
         </g>
 
         <g className="aurora-band" transform="rotate(-6 800 380)">
-          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.62">
+          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="1">
             <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
           <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.8">
-            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.22" />
+            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.5" />
             <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="620" fill="url(#aurora-rays)" />
           </g>
           <path fill="none" stroke="url(#aurora-color)" strokeWidth="11" opacity="0.5" filter="url(#soft-curtain)">
