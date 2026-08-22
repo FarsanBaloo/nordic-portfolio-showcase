@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
-import { milestones, type TimelineBranch, type TimelineMilestone } from "../content/timeline";
+import { milestones, type TimelineMilestone } from "../content/timeline";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -19,12 +19,6 @@ function usePrefersReducedMotion() {
 
 type Status = "upcoming" | "active" | "completed";
 
-/** What the floating window shows. */
-type Panel =
-  | { kind: "project"; slug: string }
-  | { kind: "role"; roleId: string }
-  | { kind: "group"; roleId: string; group: string };
-
 type Row =
   | { kind: "milestone"; key: string; entry: TimelineMilestone; roleId?: string | undefined }
   | {
@@ -32,8 +26,7 @@ type Row =
       key: string;
       label: string;
       side: "left" | "right";
-      panel: Panel;
-      variant: "role" | "project";
+      slug: string;
     };
 
 const roleIdFor: Record<string, string | undefined> = {
@@ -55,10 +48,7 @@ function buildRows(): Row[] {
         key: `${entry.id}-${branch.label}`,
         label: branch.label,
         side: entry.side,
-        panel: branch.slug
-          ? { kind: "project", slug: branch.slug }
-          : { kind: "project", slug: "" },
-        variant: "project",
+        slug: branch.slug ?? "",
       });
     }
   }
@@ -200,174 +190,21 @@ function Node({
   );
 }
 
-/** Floating window used for projects, roles and role focus areas. */
-function FloatingPanel({ panel, onClose }: { panel: Panel; onClose: () => void }) {
-  const closeRef = useRef<HTMLButtonElement | null>(null);
-
-  useEffect(() => {
-    closeRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose]);
-
-  let eyebrow = "";
-  let title = "";
-  let subtitle: string | undefined;
-  let body: string | undefined;
-  let items: string[] = [];
-  let chips: string[] = [];
-  let href: { slug: string } | null = null;
-  let groups: { title: string; items: string[] }[] = [];
-
-
-  if (panel.kind === "project") {
-    const project = getProject(panel.slug);
-    if (!project) return null;
-    eyebrow = `${project.meta} · ${project.type}`;
-    title = project.title;
-    subtitle = project.subtitle;
-    body = project.teaser;
-    chips = project.tags.slice(0, 6);
-    href = { slug: project.slug };
-  } else {
-    const role = roles.find((r) => r.id === panel.roleId);
-    if (!role) return null;
-    if (panel.kind === "role") {
-      eyebrow = `${role.period} · ${role.company}`;
-      title = role.title;
-      subtitle = role.subtitle ?? role.stage;
-      body = role.summary;
-      items = role.bullets;
-      chips = role.tags.slice(0, 6);
-      groups = role.detailGroups;
-    } else {
-      const group = role.detailGroups.find((g) => g.title === panel.group);
-      if (!group) return null;
-      eyebrow = `${role.period} · ${role.title}`;
-      title = group.title;
-      items = group.items;
-    }
-  }
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center"
-      role="dialog"
-      aria-modal="true"
-      aria-label={title}
-    >
-      <button
-        type="button"
-        aria-label="Close"
-        onClick={onClose}
-        className="absolute inset-0 animate-fade-in cursor-default bg-black/65 backdrop-blur-sm"
-      />
-      <div className="relative max-h-[85vh] w-full max-w-lg animate-scale-in overflow-y-auto rounded-3xl border border-night-border bg-night-bg/95 p-6 shadow-2xl">
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          className="absolute right-4 top-4 rounded-full border border-night-border px-2 py-0.5 text-sm text-night-muted transition-colors hover:text-night-foreground"
-        >
-          ✕
-        </button>
-        <p className="pr-10 font-mono text-xs uppercase tracking-[0.18em] text-aurora-teal">
-          {eyebrow}
-        </p>
-        <h3 className="mt-2 pr-8 text-xl font-semibold text-night-foreground">{title}</h3>
-        {subtitle ? <p className="mt-1 text-sm text-night-muted">{subtitle}</p> : null}
-        {body ? (
-          <p className="mt-4 text-sm leading-relaxed text-night-muted">{body}</p>
-        ) : null}
-
-        {items.length ? (
-          <ul className="mt-4 space-y-2">
-            {items.map((item) => (
-              <li key={item} className="flex gap-2 text-sm leading-relaxed text-night-muted">
-                <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-teal" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        {groups.length ? (
-          <div className="mt-6 space-y-5 border-t border-night-border/60 pt-5">
-            {groups.map((g) => (
-              <section key={g.title}>
-                <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-aurora-green">
-                  {g.title}
-                </h4>
-                <ul className="mt-2 space-y-2">
-                  {g.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-2 text-sm leading-relaxed text-night-muted"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-        ) : null}
-
-        {chips.length ? (
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {chips.map((t) => (
-              <li
-                key={t}
-                className="rounded-full border border-night-border px-2.5 py-0.5 text-xs text-night-muted"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        {href ? (
-          <Link
-            to="/projects/$slug"
-            params={{ slug: href.slug }}
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/50 px-4 py-2 text-sm text-night-foreground transition-colors hover:bg-aurora-teal/10"
-          >
-            Explore full case <span aria-hidden="true">→</span>
-          </Link>
-        ) : null}
-      </div>
-    </div>
-  );
-}
-
 function MilestoneRow({
   entry,
   roleId,
   status,
   reduced,
   nodeRef,
-  onOpen,
 }: {
   entry: TimelineMilestone;
   roleId?: string | undefined;
   status: Status;
   reduced: boolean;
   nodeRef: (el: HTMLElement | null) => void;
-  onOpen: (panel: Panel) => void;
 }) {
   const { ref, shown } = useReveal<HTMLDivElement>(reduced);
+  const role = roleId ? roles.find((r) => r.id === roleId) : undefined;
   const isPro = entry.track === "professional";
   const accent = entry.now
     ? "var(--aurora-teal)"
@@ -445,14 +282,44 @@ function MilestoneRow({
             </ul>
           ) : null}
 
-          {roleId ? (
-            <button
-              type="button"
-              onClick={() => onOpen({ kind: "role", roleId })}
-              className="mt-4 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 px-3.5 py-1.5 text-xs text-night-foreground transition-colors hover:bg-aurora-teal/10"
-            >
-              Open role <span aria-hidden="true">↗</span>
-            </button>
+          {role ? (
+            <div className="mt-5 space-y-5 text-left">
+              <p className="text-sm leading-relaxed text-night-muted">{role.summary}</p>
+              <ul className="space-y-2">
+                {role.bullets.map((b) => (
+                  <li key={b} className="flex gap-2 text-sm leading-relaxed text-night-muted">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-teal"
+                    />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <div className="space-y-5 border-t border-night-border/60 pt-5">
+                {role.detailGroups.map((g) => (
+                  <section key={g.title}>
+                    <h4 className="font-mono text-xs uppercase tracking-[0.16em] text-aurora-green">
+                      {g.title}
+                    </h4>
+                    <ul className="mt-2 space-y-2">
+                      {g.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2 text-sm leading-relaxed text-night-muted"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </div>
           ) : null}
         </div>
       </div>
@@ -463,27 +330,23 @@ function MilestoneRow({
 function PointRow({
   label,
   side,
-  variant,
-  panel,
+  slug,
   status,
   reduced,
   nodeRef,
-  onOpen,
 }: {
   label: string;
   side: "left" | "right";
-  variant: "role" | "project";
-  panel: Panel;
+  slug: string;
   status: Status;
   reduced: boolean;
   nodeRef: (el: HTMLElement | null) => void;
-  onOpen: (panel: Panel) => void;
 }) {
   const { ref, shown } = useReveal<HTMLDivElement>(reduced);
   const left = side === "left";
   const lit = status !== "upcoming";
-  const project = variant === "project";
-  const accent = project ? "var(--aurora-teal)" : "var(--aurora-green)";
+  const project = slug ? getProject(slug) : undefined;
+  const accent = "var(--aurora-teal)";
 
   return (
     <li className="relative pl-12 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:pl-0">
@@ -520,22 +383,38 @@ function PointRow({
             : "md:col-start-3 md:row-start-1 md:pl-14",
         ].join(" ")}
       >
-        <button
-          type="button"
-          onClick={() => onOpen(panel)}
+        <div
           className={[
-            "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs transition-all duration-500",
+            "w-full max-w-md rounded-2xl border p-4 text-left transition-all duration-500",
             lit
-              ? "border-night-border bg-white/[0.035] text-night-foreground"
-              : "border-night-border/40 text-night-muted",
-            "hover:border-aurora-teal/60 hover:bg-aurora-teal/10",
+              ? "border-night-border bg-white/[0.035]"
+              : "border-night-border/40 bg-white/[0.015]",
           ].join(" ")}
         >
-          {label}
-          <span aria-hidden="true" className="text-aurora-teal/80">
-            ↗
-          </span>
-        </button>
+          {project ? (
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+              {project.meta} · {project.type}
+            </p>
+          ) : null}
+          <h4 className="mt-1 text-sm font-semibold text-night-foreground">
+            {project?.title ?? label}
+          </h4>
+          {project?.subtitle ? (
+            <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
+          ) : null}
+          {project?.teaser ? (
+            <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
+          ) : null}
+          {project ? (
+            <Link
+              to="/projects/$slug"
+              params={{ slug: project.slug }}
+              className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity hover:opacity-80"
+            >
+              Explore full case <span aria-hidden="true">→</span>
+            </Link>
+          ) : null}
+        </div>
       </div>
     </li>
   );
@@ -545,8 +424,6 @@ export function Timeline() {
   const reduced = usePrefersReducedMotion();
   const rows = useMemo(buildRows, []);
   const { railRef, nodeRefs, progress, statuses } = useTimelineScroll(rows.length, reduced);
-  const [panel, setPanel] = useState<Panel | null>(null);
-  const onOpen = useCallback((next: Panel) => setPanel(next), []);
 
   // year shown in the sticky marker = most recent milestone reached
   const currentLabel = useMemo(() => {
@@ -614,27 +491,22 @@ export function Timeline() {
               nodeRef={(el) => {
                 nodeRefs.current[i] = el;
               }}
-              onOpen={onOpen}
             />
           ) : (
             <PointRow
               key={row.key}
               label={row.label}
               side={row.side}
-              variant={row.variant}
-              panel={row.panel}
+              slug={row.slug}
               reduced={reduced}
               status={statuses[i] ?? "upcoming"}
               nodeRef={(el) => {
                 nodeRefs.current[i] = el;
               }}
-              onOpen={onOpen}
             />
           ),
         )}
       </ol>
-
-      {panel ? <FloatingPanel panel={panel} onClose={() => setPanel(null)} /> : null}
     </div>
   );
 }
