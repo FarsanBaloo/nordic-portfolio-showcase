@@ -447,7 +447,7 @@ function MilestoneRow({
           ) : null}
 
           {role ? (
-            <div className={["mt-5 space-y-5", left ? "md:text-left" : ""].join(" ")}>
+            <div className="mt-5 space-y-5 text-left">
               <p className="text-sm leading-relaxed text-night-muted">{role.summary}</p>
               <ul className="space-y-2">
                 {role.bullets.map((b) => (
