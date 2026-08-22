@@ -177,11 +177,11 @@ export function AuroraBackdrop() {
         <defs>
           {/* brightness varies along the curtain, and travels slowly sideways */}
           <linearGradient id="aurora-hue" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.15" />
+            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.1" />
             <stop offset="0.22" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
             <stop offset="0.44" stopColor="var(--aurora-green-soft)" stopOpacity="0.4" />
             <stop offset="0.63" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
-            <stop offset="0.83" stopColor="var(--aurora-teal-hex)" stopOpacity="0.35" />
+            <stop offset="0.83" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
             <stop offset="1" stopColor="var(--aurora-green-hex)" stopOpacity="0.12" />
             <animate attributeName="x1" values="-0.25;0.1;-0.25" dur="31s" repeatCount="indefinite" />
             <animate attributeName="x2" values="0.85;1.2;0.85" dur="31s" repeatCount="indefinite" />
