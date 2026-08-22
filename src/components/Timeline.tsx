@@ -48,19 +48,6 @@ function buildRows(): Row[] {
     const roleId = roleIdFor[entry.id];
     rows.push({ kind: "milestone", key: entry.id, entry, roleId });
 
-    if (roleId) {
-      const role = roles.find((r) => r.id === roleId);
-      for (const group of role?.detailGroups ?? []) {
-        rows.push({
-          kind: "point",
-          key: `${entry.id}-${group.title}`,
-          label: group.title,
-          side: entry.side,
-          panel: { kind: "group", roleId, group: group.title },
-          variant: "role",
-        });
-      }
-    }
 
     for (const branch of entry.branches ?? []) {
       rows.push({
