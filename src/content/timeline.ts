@@ -2,6 +2,8 @@ export type TimelineBranch = {
   label: string;
   slug?: string;
   note?: string;
+  /** Month span within the parent milestone period, e.g. "Aug–Oct 2022" */
+  span?: string;
 };
 
 export type TimelineMilestone = {
@@ -34,7 +36,7 @@ export const milestones: TimelineMilestone[] = [
       "National technical expert for Sweden — complex platform environments, QA, release validation, escalation ownership and deployment readiness.",
     track: "professional",
     side: "right",
-    branches: [{ label: "AstraZeneca platform environment", slug: "astrazeneca" }],
+    branches: [{ label: "AstraZeneca platform environment", slug: "astrazeneca", span: "Mar–Nov 2018" }],
   },
   {
     id: "senior-advisor",
@@ -45,9 +47,9 @@ export const milestones: TimelineMilestone[] = [
     track: "professional",
     side: "left",
     branches: [
-      { label: "Digital Realty ST06", slug: "digital-realty-st06" },
-      { label: "KTH Living Lab", slug: "kth-living-lab" },
-      { label: "S:t Eriks Eye Center", slug: "st-eriks" },
+      { label: "Digital Realty ST06", slug: "digital-realty-st06", span: "Aug–Dec 2021" },
+      { label: "KTH Living Lab", slug: "kth-living-lab", span: "Feb–Sep 2022" },
+      { label: "S:t Eriks Eye Center", slug: "st-eriks", span: "Jan–Jun 2023" },
     ],
   },
   {
@@ -59,10 +61,10 @@ export const milestones: TimelineMilestone[] = [
     track: "development",
     side: "right",
     branches: [
-      { label: "Interaction Design · Development", slug: "interaction-design" },
-      { label: "Seeing AI — UX evaluation", slug: "seeing-ai" },
-      { label: "Talking Systems", slug: "talking-systems" },
-      { label: "Thesis — Wind Power Forecasting", slug: "wind-power-forecasting", note: "Done last · 2025" },
+      { label: "Interaction Design · Development", slug: "interaction-design", span: "Sep–Dec 2023" },
+      { label: "Seeing AI — UX evaluation", slug: "seeing-ai", span: "Jan–Mar 2024" },
+      { label: "Talking Systems", slug: "talking-systems", span: "Sep 2024 – Jan 2025" },
+      { label: "Thesis — Wind Power Forecasting", slug: "wind-power-forecasting", note: "Done last", span: "Mar–Jun 2025" },
     ],
   },
   {
@@ -74,8 +76,8 @@ export const milestones: TimelineMilestone[] = [
     track: "development",
     side: "left",
     branches: [
-      { label: "Talking SCADA", slug: "talking-scada" },
-      { label: "Multi-Agent AI decision support", slug: "multi-agent-ai" },
+      { label: "Talking SCADA", slug: "talking-scada", span: "Sep–Dec 2025" },
+      { label: "Multi-Agent AI decision support", slug: "multi-agent-ai", span: "Jan–Jul 2026" },
     ],
   },
   {
