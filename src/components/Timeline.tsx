@@ -340,7 +340,7 @@ function MilestoneRow({
   const left = entry.side === "left";
   const active = status === "active";
   const roleContext = role
-    ? `${role.title}${role.org ? ` · ${role.org}` : ""} (${entry.period}) — ${role.summary}`
+    ? `${role.title} (${entry.period}) — ${role.summary}`
     : `${entry.title} (${entry.period}) — ${entry.detail}`;
 
   return (
