@@ -286,6 +286,10 @@ export const roles: Role[] = [
         body: "Evaluated alternative architectures and product / solution options while balancing lifecycle risk, technical feasibility, cost and commercial value.",
       },
       {
+        label: "Informal technical leadership",
+        body: "Acted as the de-facto technical authority across teams and disciplines — shaping architecture and direction through trusted expertise, mentorship and influence rather than a formal management mandate.",
+      },
+      {
         label: "Risk reduction",
         body: "Identified integration constraints, technical dependencies and long-term consequences early in order to reduce delivery risk, lifecycle risk and avoid unnecessary cost.",
       },
