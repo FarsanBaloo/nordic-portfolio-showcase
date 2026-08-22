@@ -34,11 +34,17 @@ export function AuroraBackdrop() {
       >
         <defs>
           <linearGradient id="curtain-glow" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--aurora-green)" stopOpacity="0" />
-            <stop offset="0.42" stopColor="var(--aurora-green)" stopOpacity="0.02" />
-            <stop offset="0.78" stopColor="var(--aurora-green)" stopOpacity="0.32" />
-            <stop offset="0.93" stopColor="var(--aurora-teal)" stopOpacity="0.12" />
+            <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.1" />
+            <stop offset="0.3" stopColor="var(--aurora-violet)" stopOpacity="0.14" />
+            <stop offset="0.58" stopColor="var(--aurora-green)" stopOpacity="0.16" />
+            <stop offset="0.82" stopColor="var(--aurora-green)" stopOpacity="0.46" />
+            <stop offset="0.95" stopColor="var(--aurora-teal)" stopOpacity="0.16" />
             <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="violet-veil" x1="0" y1="0" x2="0.35" y2="1">
+            <stop offset="0" stopColor="var(--aurora-violet)" stopOpacity="0.26" />
+            <stop offset="0.55" stopColor="var(--aurora-violet)" stopOpacity="0.12" />
+            <stop offset="1" stopColor="var(--aurora-violet)" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="ray-fade" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="white" stopOpacity="0" />
