@@ -52,25 +52,25 @@
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(0.985 0.004 106);
-  --foreground: oklch(0.24 0.02 255);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.02 255);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.24 0.02 255);
-  --primary: oklch(0.52 0.09 197);
-  --primary-foreground: oklch(0.99 0.005 190);
-  --secondary: oklch(0.955 0.006 106);
-  --secondary-foreground: oklch(0.3 0.02 255);
-  --muted: oklch(0.955 0.006 106);
-  --muted-foreground: oklch(0.51 0.015 255);
-  --accent: oklch(0.94 0.02 195);
-  --accent-foreground: oklch(0.3 0.04 220);
-  --destructive: oklch(0.55 0.19 27);
+  --background: transparent;
+  --foreground: oklch(0.97 0.005 240);
+  --card: oklch(1 0 0 / 6%);
+  --card-foreground: oklch(0.97 0.005 240);
+  --popover: oklch(0.12 0.03 265);
+  --popover-foreground: oklch(0.97 0.005 240);
+  --primary: oklch(0.78 0.11 200);
+  --primary-foreground: oklch(0.07 0.018 265);
+  --secondary: oklch(1 0 0 / 8%);
+  --secondary-foreground: oklch(0.97 0.005 240);
+  --muted: oklch(1 0 0 / 6%);
+  --muted-foreground: oklch(0.76 0.02 250);
+  --accent: oklch(1 0 0 / 10%);
+  --accent-foreground: oklch(0.97 0.005 240);
+  --destructive: oklch(0.62 0.19 27);
   --destructive-foreground: oklch(0.99 0.003 106);
-  --border: oklch(0.9 0.006 106);
-  --input: oklch(0.9 0.006 106);
-  --ring: oklch(0.52 0.09 197);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.78 0.11 200);
 
   --night: oklch(0.07 0.018 265);
   --night-soft: oklch(0.12 0.03 265);
@@ -92,8 +92,12 @@
     scroll-behavior: smooth;
   }
 
+  html {
+    background-color: var(--color-night);
+  }
+
   body {
-    background-color: var(--color-background);
+    background-color: transparent;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -114,7 +118,7 @@
 }
 
 @utility night-panel {
-  background-color: var(--color-night);
+  background-color: transparent;
   color: var(--color-night-foreground);
 }
 

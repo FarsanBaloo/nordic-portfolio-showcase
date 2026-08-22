@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { AuroraSky } from "../components/AuroraSky";
 import { ExperienceCard } from "../components/ExperienceCard";
 import { ProjectCard } from "../components/ProjectCard";
 import { Section } from "../components/site";
@@ -61,7 +60,6 @@ function Index() {
   return (
     <>
       <section className="relative overflow-hidden night-panel">
-        <AuroraSky />
         <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
             {profile.location}
@@ -134,7 +132,6 @@ function Index() {
       </section>
 
       <section className="relative overflow-hidden night-panel">
-        <AuroraSky subtle />
         <div className="relative mx-auto max-w-6xl px-5 py-20">
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
             The journey
