@@ -2,15 +2,15 @@ const stars =
   "radial-gradient(1px 1px at 7% 18%, white, transparent), radial-gradient(1px 1px at 18% 7%, white, transparent), radial-gradient(1.2px 1.2px at 31% 27%, white, transparent), radial-gradient(0.8px 0.8px at 42% 11%, white, transparent), radial-gradient(1px 1px at 57% 23%, white, transparent), radial-gradient(1.3px 1.3px at 72% 8%, white, transparent), radial-gradient(0.8px 0.8px at 86% 30%, white, transparent), radial-gradient(1px 1px at 96% 13%, white, transparent), radial-gradient(0.8px 0.8px at 12% 49%, white, transparent), radial-gradient(1px 1px at 25% 65%, white, transparent), radial-gradient(0.8px 0.8px at 39% 42%, white, transparent), radial-gradient(1.2px 1.2px at 54% 58%, white, transparent), radial-gradient(0.8px 0.8px at 68% 45%, white, transparent), radial-gradient(1px 1px at 81% 69%, white, transparent), radial-gradient(0.8px 0.8px at 93% 53%, white, transparent), radial-gradient(1px 1px at 5% 83%, white, transparent), radial-gradient(0.8px 0.8px at 34% 89%, white, transparent), radial-gradient(1px 1px at 62% 81%, white, transparent), radial-gradient(0.8px 0.8px at 89% 91%, white, transparent)";
 
 const mainShape = [
-  "M-180 80 C100 120 240 350 480 320 C690 292 760 110 980 128 C1220 148 1380 370 1780 280 L1780 720 C1400 735 1230 535 990 515 C735 494 650 680 420 650 C170 618 15 390 -180 405 Z",
-  "M-180 125 C80 60 275 310 500 285 C720 260 790 165 1010 175 C1250 188 1430 330 1780 225 L1780 685 C1440 760 1240 570 995 555 C760 540 650 625 430 610 C175 590 20 345 -180 430 Z",
-  "M-180 80 C100 120 240 350 480 320 C690 292 760 110 980 128 C1220 148 1380 370 1780 280 L1780 720 C1400 735 1230 535 990 515 C735 494 650 680 420 650 C170 618 15 390 -180 405 Z",
+  "M-180 205 C100 170 250 345 480 320 C690 298 770 165 985 180 C1220 195 1400 360 1780 300 L1780 515 C1410 560 1230 395 990 382 C750 368 660 505 430 490 C180 474 20 300 -180 330 Z",
+  "M-180 235 C70 135 280 320 505 300 C720 282 805 205 1020 214 C1250 224 1440 330 1780 270 L1780 490 C1435 575 1240 430 995 420 C760 410 650 485 425 462 C175 438 20 285 -180 350 Z",
+  "M-180 205 C100 170 250 345 480 320 C690 298 770 165 985 180 C1220 195 1400 360 1780 300 L1780 515 C1410 560 1230 395 990 382 C750 368 660 505 430 490 C180 474 20 300 -180 330 Z",
 ].join(";");
 
 const edgeShape = [
-  "M-180 405 C15 390 170 618 420 650 C650 680 735 494 990 515 C1230 535 1400 735 1780 720",
-  "M-180 430 C20 345 175 590 430 610 C650 625 760 540 995 555 C1240 570 1440 760 1780 685",
-  "M-180 405 C15 390 170 618 420 650 C650 680 735 494 990 515 C1230 535 1400 735 1780 720",
+  "M-180 330 C20 300 180 474 430 490 C660 505 750 368 990 382 C1230 395 1410 560 1780 515",
+  "M-180 350 C20 285 175 438 425 462 C650 485 760 410 995 420 C1240 430 1435 575 1780 490",
+  "M-180 330 C20 300 180 474 430 490 C660 505 750 368 990 382 C1230 395 1410 560 1780 515",
 ].join(";");
 
 /**
@@ -35,15 +35,15 @@ export function AuroraBackdrop() {
         <defs>
           <linearGradient id="curtain-glow" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--aurora-green)" stopOpacity="0" />
-            <stop offset="0.38" stopColor="var(--aurora-green)" stopOpacity="0.08" />
-            <stop offset="0.72" stopColor="var(--aurora-green)" stopOpacity="0.5" />
-            <stop offset="0.9" stopColor="var(--aurora-teal)" stopOpacity="0.18" />
+            <stop offset="0.42" stopColor="var(--aurora-green)" stopOpacity="0.02" />
+            <stop offset="0.78" stopColor="var(--aurora-green)" stopOpacity="0.32" />
+            <stop offset="0.93" stopColor="var(--aurora-teal)" stopOpacity="0.12" />
             <stop offset="1" stopColor="var(--aurora-green)" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="ray-fade" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="white" stopOpacity="0" />
-            <stop offset="0.28" stopColor="white" stopOpacity="0.12" />
-            <stop offset="0.78" stopColor="white" stopOpacity="0.95" />
+            <stop offset="0.35" stopColor="white" stopOpacity="0.03" />
+            <stop offset="0.82" stopColor="white" stopOpacity="0.72" />
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="aurora-color" x1="0" y1="0" x2="1" y2="0">
@@ -78,24 +78,24 @@ export function AuroraBackdrop() {
             </feDisplacementMap>
           </filter>
           <clipPath id="curtain-clip">
-            <path d="M-180 80 C100 120 240 350 480 320 C690 292 760 110 980 128 C1220 148 1380 370 1780 280 L1780 720 C1400 735 1230 535 990 515 C735 494 650 680 420 650 C170 618 15 390 -180 405 Z">
+            <path d="M-180 205 C100 170 250 345 480 320 C690 298 770 165 985 180 C1220 195 1400 360 1780 300 L1780 515 C1410 560 1230 395 990 382 C750 368 660 505 430 490 C180 474 20 300 -180 330 Z">
               <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
             </path>
           </clipPath>
         </defs>
 
         <g className="aurora-band">
-          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.72">
+          <path fill="url(#curtain-glow)" filter="url(#soft-curtain)" opacity="0.48">
             <animate attributeName="d" values={mainShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
-          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.85">
-            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="760" fill="url(#aurora-color)" />
-            <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="760" fill="url(#aurora-rays)" />
+          <g clipPath="url(#curtain-clip)" filter="url(#ray-ripple)" opacity="0.62">
+            <rect className="aurora-ray-sheet" x="-250" y="20" width="2200" height="620" fill="url(#aurora-color)" opacity="0.22" />
+            <rect className="aurora-ray-sheet aurora-ray-detail" x="-250" y="20" width="2200" height="620" fill="url(#aurora-rays)" />
           </g>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="10" opacity="0.55" filter="url(#soft-curtain)">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="9" opacity="0.38" filter="url(#soft-curtain)">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
-          <path fill="none" stroke="url(#aurora-color)" strokeWidth="2.2" opacity="0.72">
+          <path fill="none" stroke="url(#aurora-color)" strokeWidth="1.8" opacity="0.58">
             <animate attributeName="d" values={edgeShape} dur="16s" calcMode="spline" keySplines=".42 0 .58 1;.42 0 .58 1" repeatCount="indefinite" />
           </path>
         </g>
