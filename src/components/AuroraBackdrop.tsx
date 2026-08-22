@@ -1,16 +1,26 @@
-/** Vertical striations of a real aurora curtain: thin, irregular, mostly transparent. */
-const rays = (color: string, alpha: number) =>
-  [
-    `repeating-linear-gradient(94deg,`,
-    ` transparent 0 11px,`,
-    ` color-mix(in oklab, ${color} ${alpha}%, transparent) 13px,`,
-    ` transparent 16px 27px,`,
-    ` color-mix(in oklab, ${color} ${Math.round(alpha * 0.5)}%, transparent) 29px,`,
-    ` transparent 33px 52px)`,
+/**
+ * Vertical striations of a real aurora curtain: irregular ray widths with
+ * bright cores and soft shoulders — the structure you actually see in a
+ * nordic display, where rays stand up from a sharper lower border.
+ */
+const rays = (color: string, alpha: number) => {
+  const c = (a: number) => `color-mix(in oklab, ${color} ${Math.round(a)}%, transparent)`;
+  return [
+    "repeating-linear-gradient(92deg,",
+    ` transparent 0 9px, ${c(alpha * 0.35)} 12px, ${c(alpha)} 14px, ${c(alpha * 0.3)} 17px,`,
+    ` transparent 21px 30px, ${c(alpha * 0.55)} 33px, ${c(alpha * 0.15)} 36px,`,
+    ` transparent 40px 47px, ${c(alpha * 0.85)} 50px, ${c(alpha * 0.25)} 53px,`,
+    " transparent 58px 74px)",
   ].join("");
+};
 
+/**
+ * Real curtains are brightest along their lower border and dissolve upward
+ * into rays, with soft lateral falloff — never a hard-edged box.
+ */
 const curtainMask =
-  "radial-gradient(120% 100% at 50% 0%, black 0%, rgba(0,0,0,0.75) 45%, transparent 88%), linear-gradient(to bottom, transparent 0%, black 20%, rgba(0,0,0,0.5) 65%, transparent 100%)";
+  "linear-gradient(to top, black 0%, rgba(0,0,0,0.92) 18%, rgba(0,0,0,0.55) 52%, rgba(0,0,0,0.18) 80%, transparent 100%), radial-gradient(85% 120% at 50% 100%, black 20%, rgba(0,0,0,0.6) 60%, transparent 92%)";
+
 
 const stars =
   "radial-gradient(1px 1px at 12% 22%, white, transparent), radial-gradient(1px 1px at 28% 8%, white, transparent), radial-gradient(1.4px 1.4px at 46% 30%, white, transparent), radial-gradient(1px 1px at 63% 12%, white, transparent), radial-gradient(1px 1px at 78% 26%, white, transparent), radial-gradient(1.2px 1.2px at 88% 6%, white, transparent), radial-gradient(1px 1px at 8% 52%, white, transparent), radial-gradient(1px 1px at 36% 62%, white, transparent), radial-gradient(1px 1px at 70% 55%, white, transparent), radial-gradient(1.3px 1.3px at 94% 44%, white, transparent), radial-gradient(1px 1px at 20% 38%, white, transparent), radial-gradient(1px 1px at 55% 45%, white, transparent), radial-gradient(0.8px 0.8px at 33% 18%, white, transparent), radial-gradient(0.8px 0.8px at 5% 14%, white, transparent), radial-gradient(0.8px 0.8px at 84% 60%, white, transparent), radial-gradient(0.9px 0.9px at 41% 74%, white, transparent), radial-gradient(0.8px 0.8px at 66% 68%, white, transparent), radial-gradient(1px 1px at 98% 18%, white, transparent), radial-gradient(0.9px 0.9px at 16% 86%, white, transparent), radial-gradient(0.8px 0.8px at 52% 92%, white, transparent), radial-gradient(1px 1px at 74% 84%, white, transparent), radial-gradient(0.8px 0.8px at 90% 76%, white, transparent)";
@@ -104,7 +114,7 @@ export function AuroraBackdrop() {
           <filter id="aurora-warp" x="-25%" y="-25%" width="150%" height="150%">
             <feTurbulence
               type="fractalNoise"
-              baseFrequency="0.006 0.02"
+              baseFrequency="0.0018 0.006"
               numOctaves={2}
               seed={7}
               result="noise"
@@ -112,21 +122,21 @@ export function AuroraBackdrop() {
               <animate
                 attributeName="baseFrequency"
                 dur="21s"
-                values="0.006 0.02; 0.013 0.031; 0.004 0.016; 0.006 0.02"
+                values="0.0018 0.006; 0.0032 0.009; 0.0012 0.004; 0.0018 0.006"
                 repeatCount="indefinite"
               />
             </feTurbulence>
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
-              scale={90}
+              scale={18}
               xChannelSelector="R"
               yChannelSelector="G"
             >
               <animate
                 attributeName="scale"
                 dur="13s"
-                values="70;130;85;70"
+                values="12;30;18;12"
                 repeatCount="indefinite"
               />
             </feDisplacementMap>
@@ -134,62 +144,82 @@ export function AuroraBackdrop() {
         </defs>
       </svg>
 
-      <div className="absolute inset-0" style={{ filter: "url(#aurora-warp)" }}>
-        {/* curtain rays — thin vertical striations, top and lower band */}
-        <div
-          className="aurora-curtain"
-          style={{
-            top: "-10%",
-            left: "-8%",
-            width: "78%",
-            height: "62%",
-            opacity: 0.42,
-            backgroundImage: rays("var(--aurora-green)", 46),
-            backgroundSize: "200% 100%",
-            WebkitMaskImage: curtainMask,
-            maskImage: curtainMask,
-            WebkitMaskComposite: "source-in",
-            maskComposite: "intersect",
-            animationDuration: "44s, 34s",
-          }}
-        />
+      <div className="absolute inset-0" style={{ filter: "url(#aurora-warp) saturate(1.25) brightness(1.45)" }}>
+        {/* main curtain: rays standing up from a bright lower border */}
         <div
           className="aurora-curtain"
           style={{
             top: "2%",
-            left: "34%",
-            width: "62%",
-            height: "54%",
-            opacity: 0.3,
-            backgroundImage: rays("var(--aurora-teal)", 40),
-            backgroundSize: "230% 100%",
+            left: "-10%",
+            width: "82%",
+            height: "56%",
+            opacity: 1,
+            backgroundImage: rays("var(--aurora-green)", 95),
+            backgroundSize: "260% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
             maskComposite: "intersect",
-            animationDuration: "60s, 45s",
-            animationDelay: "-21s, -9s",
+            animationDuration: "26s, 11s",
           }}
         />
+        {/* bright lower border of that curtain */}
         <div
           className="aurora-curtain"
           style={{
-            bottom: "-14%",
-            left: "6%",
-            width: "70%",
-            height: "46%",
-            opacity: 0.22,
-            backgroundImage: rays("var(--aurora-green)", 38),
-            backgroundSize: "210% 100%",
+            top: "34%",
+            left: "-10%",
+            width: "82%",
+            height: "18%",
+            opacity: 0.6,
+            filter: "blur(26px)",
+            background:
+              "linear-gradient(to top, transparent 0%, color-mix(in oklab, var(--aurora-green) 55%, transparent) 55%, transparent 100%)",
+            animationDuration: "26s, 11s",
+          }}
+        />
+
+        {/* second, teal curtain drifting out of phase */}
+        <div
+          className="aurora-curtain"
+          style={{
+            top: "0%",
+            left: "36%",
+            width: "66%",
+            height: "50%",
+            opacity: 0.78,
+            backgroundImage: rays("var(--aurora-teal)", 85),
+            backgroundSize: "300% 100%",
             WebkitMaskImage: curtainMask,
             maskImage: curtainMask,
             WebkitMaskComposite: "source-in",
             maskComposite: "intersect",
-            animationDuration: "76s, 52s",
-            animationDelay: "-37s, -14s",
+            animationDuration: "34s, 15s",
+            animationDelay: "-13s, -6s",
+          }}
+        />
+
+        {/* faint distant curtain low in the sky */}
+        <div
+          className="aurora-curtain"
+          style={{
+            bottom: "-10%",
+            left: "4%",
+            width: "74%",
+            height: "42%",
+            opacity: 0.5,
+            backgroundImage: rays("var(--aurora-green)", 70),
+            backgroundSize: "280% 100%",
+            WebkitMaskImage: curtainMask,
+            maskImage: curtainMask,
+            WebkitMaskComposite: "source-in",
+            maskComposite: "intersect",
+            animationDuration: "46s, 21s",
+            animationDelay: "-24s, -9s",
           }}
         />
       </div>
+
 
       {/* faint violet fringe */}
       <div
@@ -212,7 +242,7 @@ export function AuroraBackdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--night) 55%, transparent) 45%, color-mix(in oklab, var(--night) 80%, transparent) 100%)",
+            "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--night) 15%, transparent) 55%, color-mix(in oklab, var(--night) 45%, transparent) 100%)",
         }}
       />
     </div>
