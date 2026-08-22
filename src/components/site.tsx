@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import { profile } from "../content/profile";
-import { AuroraSky } from "./AuroraSky";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -46,7 +45,6 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden night-panel">
-      <AuroraSky subtle />
       <div className="relative mx-auto max-w-6xl px-5 py-14">
         <p className="font-display text-2xl font-semibold text-night-foreground">
           {profile.name}
@@ -112,7 +110,6 @@ export function NightHero({
 }) {
   return (
     <section className="relative overflow-hidden night-panel">
-      <AuroraSky />
       <div className="relative mx-auto max-w-6xl px-5 py-20 sm:py-28">
         <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">{eyebrow}</p>
         <h1 className="mt-4 max-w-3xl text-balance-tight text-4xl font-semibold text-night-foreground sm:text-5xl">

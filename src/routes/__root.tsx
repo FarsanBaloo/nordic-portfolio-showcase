@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { Header, Footer } from "../components/site";
+import { AuroraBackdrop } from "../components/AuroraBackdrop";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -124,6 +125,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
+        <AuroraBackdrop />
         <ScrollProgress />
         <Header />
         <div className="flex-1">

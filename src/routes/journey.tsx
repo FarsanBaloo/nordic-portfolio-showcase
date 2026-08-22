@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { AuroraSky } from "../components/AuroraSky";
 import { ExperienceCard } from "../components/ExperienceCard";
 import { NightHero, Page } from "../components/site";
 import { Timeline } from "../components/Timeline";
@@ -38,7 +37,6 @@ function JourneyPage() {
       />
 
       <section className="relative overflow-hidden night-panel">
-        <AuroraSky subtle />
         <div className="relative mx-auto max-w-6xl px-5 py-20">
           <div className="max-w-3xl space-y-4">
             {journeyIntro.slice(1).map((p) => (
