@@ -51,27 +51,18 @@ export const milestones: TimelineMilestone[] = [
     ],
   },
   {
-    id: "bsc-start",
+    id: "bsc-development",
     period: "2023–2025",
     title: "Computer Science / Intelligent Systems",
     detail:
-      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside the senior technical advisor role.",
-    track: "development",
-    side: "right",
-  },
-
-  {
-    id: "applied-ai",
-    period: "2023–2025",
-    title: "Interaction Design · Applied AI · Thesis",
-    detail:
-      "Human-centred design, prototyping and accessibility, then applied industrial AI at MITC and a bachelor thesis on uncertainty-aware 48-hour wind power forecasting.",
+      "BSc in Computer Science with a specialisation in Intelligent Systems, Mälardalen University — an applied AI foundation built alongside the senior technical advisor role. The programme moved from Interaction Design development, through the Seeing AI assignment and the Talking Systems AI projects, and concluded with the bachelor thesis.",
     track: "development",
     side: "right",
     branches: [
-      { label: "Talking Systems", slug: "talking-systems" },
-      { label: "Wind Power Forecasting", slug: "wind-power-forecasting" },
+      { label: "Interaction Design · Development", slug: "interaction-design" },
       { label: "Seeing AI — UX evaluation", slug: "seeing-ai" },
+      { label: "Talking Systems", slug: "talking-systems" },
+      { label: "Thesis — Wind Power Forecasting", slug: "wind-power-forecasting", note: "Done last · 2025" },
     ],
   },
   {
