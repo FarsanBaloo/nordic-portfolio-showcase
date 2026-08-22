@@ -144,12 +144,12 @@ export function AuroraBackdrop() {
         </defs>
       </svg>
 
-      <div className="absolute inset-0" style={{ filter: "url(#aurora-warp)" }}>
+      <div className="absolute inset-0" style={{ filter: "url(#aurora-warp) saturate(1.25) brightness(1.45)" }}>
         {/* main curtain: rays standing up from a bright lower border */}
         <div
           className="aurora-curtain"
           style={{
-            top: "-6%",
+            top: "2%",
             left: "-10%",
             width: "82%",
             height: "56%",
@@ -242,7 +242,7 @@ export function AuroraBackdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--night) 25%, transparent) 55%, color-mix(in oklab, var(--night) 60%, transparent) 100%)",
+            "linear-gradient(to bottom, transparent 0%, color-mix(in oklab, var(--night) 15%, transparent) 55%, color-mix(in oklab, var(--night) 45%, transparent) 100%)",
         }}
       />
     </div>
