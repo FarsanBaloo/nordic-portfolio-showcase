@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { milestones, type TimelineMilestone } from "../content/timeline";
 
@@ -29,7 +29,7 @@ function useTimelineScroll(count: number, reduced: boolean) {
     Array.from({ length: count }, () => "upcoming" as Status),
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (reduced) {
       setProgress(1);
       setStatuses(Array.from({ length: count }, () => "completed" as Status));
