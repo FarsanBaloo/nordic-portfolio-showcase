@@ -54,10 +54,7 @@ function buildRows(): Row[] {
         key: `${entry.id}-${branch.label}`,
         label: branch.label,
         side: entry.side,
-        panel: branch.slug
-          ? { kind: "project", slug: branch.slug }
-          : { kind: "project", slug: "" },
-        variant: "project",
+        slug: branch.slug ?? "",
       });
     }
   }
