@@ -108,7 +108,10 @@ export function ProjectModal({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         aria-describedby={undefined}
-        className="night-surface max-h-[88vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto border-night-border/60 p-6 sm:p-8"
+        className="max-h-[88vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto border-night-border/60 p-6 sm:p-8"
+        style={{
+          backgroundColor: "oklch(0.16 0.02 255)",
+        }}
       >
         <DialogTitle className="sr-only">{project.title}</DialogTitle>
         <CaseStudyBody project={project} />
