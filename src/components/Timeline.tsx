@@ -19,15 +19,12 @@ function usePrefersReducedMotion() {
 
 type Status = "upcoming" | "active" | "completed";
 
-type Row =
-  | { kind: "milestone"; key: string; entry: TimelineMilestone; roleId?: string | undefined }
-  | {
-      kind: "point";
-      key: string;
-      label: string;
-      side: "left" | "right";
-      slug: string;
-    };
+type Row = {
+  kind: "milestone";
+  key: string;
+  entry: TimelineMilestone;
+  roleId?: string | undefined;
+};
 
 const roleIdFor: Record<string, string | undefined> = {
   "project-engineer": "project-engineer",
@@ -36,25 +33,12 @@ const roleIdFor: Record<string, string | undefined> = {
 };
 
 function buildRows(): Row[] {
-  const rows: Row[] = [];
-  for (const entry of milestones) {
-    const roleId = roleIdFor[entry.id];
-    rows.push({ kind: "milestone", key: entry.id, entry, roleId });
-
-
-    for (const branch of entry.branches ?? []) {
-      rows.push({
-        kind: "point",
-        key: `${entry.id}-${branch.label}`,
-        label: branch.label,
-        // projects from a role sit on the opposite side of the rail
-        side: entry.side === "left" ? "right" : "left",
-        slug: branch.slug ?? "",
-      });
-    }
-
-  }
-  return rows;
+  return milestones.map((entry) => ({
+    kind: "milestone" as const,
+    key: entry.id,
+    entry,
+    roleId: roleIdFor[entry.id],
+  }));
 }
 
 /** Scroll-linked progress measured against the timeline section itself. */
@@ -192,6 +176,32 @@ function Node({
   );
 }
 
+function BranchCard({ slug }: { slug: string }) {
+  const project = getProject(slug);
+  if (!project) return null;
+  return (
+    <Link
+      to="/projects/$slug"
+      params={{ slug: project.slug }}
+      className="group block rounded-2xl border border-night-border/60 bg-white/[0.035] p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05]"
+    >
+      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+        {project.meta} · {project.type}
+      </p>
+      <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
+      {project.subtitle ? (
+        <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
+      ) : null}
+      {project.teaser ? (
+        <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
+      ) : null}
+      <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
+        Explore full case <span aria-hidden="true">→</span>
+      </span>
+    </Link>
+  );
+}
+
 function MilestoneRow({
   entry,
   roleId,
@@ -325,6 +335,27 @@ function MilestoneRow({
           ) : null}
         </div>
       </div>
+
+      {/* projects carried out in this role sit on the opposite side,
+          aligned to the top of the role so they read in the role's
+          opening period (e.g. 2020–2023 for the Senior Technical Advisor) */}
+      {entry.branches?.length ? (
+        <div
+          className={[
+            "mt-4 md:mt-0 md:row-start-1 md:self-start",
+            left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
+          ].join(" ")}
+        >
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.16em] text-night-muted">
+            Projects in this role
+          </p>
+          <div className="space-y-3">
+            {entry.branches.map((b) =>
+              b.slug ? <BranchCard key={b.slug} slug={b.slug} /> : null,
+            )}
+          </div>
+        </div>
+      ) : null}
     </li>
   );
 }
