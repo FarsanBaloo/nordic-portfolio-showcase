@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { NightHero, Page, Section } from "../components/site";
+import { NightHero, Page, PortraitFrame, Section } from "../components/site";
 import { BulletList, Callout, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
 import { aboutParagraphs, productPhilosophy, profile, whatIBring } from "../content/profile";
@@ -28,7 +28,27 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <>
-      <NightHero eyebrow="About" title="Understanding the real problem" intro={profile.positioning} />
+      <NightHero eyebrow="About" title="Understanding the real problem" intro={profile.positioning}>
+        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`mailto:${profile.email}`}
+              className="rounded-md bg-aurora-teal px-5 py-2.5 text-sm font-medium text-night transition-opacity hover:opacity-90"
+            >
+              Get in touch
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+            >
+              LinkedIn
+            </a>
+          </div>
+          <PortraitFrame className="w-28 sm:w-32" />
+        </div>
+      </NightHero>
       <Page>
         <Section>
           <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">

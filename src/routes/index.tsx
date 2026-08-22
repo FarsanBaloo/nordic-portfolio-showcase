@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { ExperienceCard } from "../components/ExperienceCard";
 import { ProjectCard } from "../components/ProjectCard";
-import { Section } from "../components/site";
+import { PortraitFrame, Section } from "../components/site";
 import { Timeline } from "../components/Timeline";
 import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities, capabilityNote } from "../content/capabilities";
@@ -61,6 +61,8 @@ function Index() {
     <>
       <section className="relative overflow-hidden night-panel">
         <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
+        <div className="grid gap-12 lg:grid-cols-[1.7fr_0.9fr] lg:items-start">
+        <div>
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
             {profile.location}
           </p>
@@ -128,6 +130,9 @@ function Index() {
               Connect on LinkedIn
             </a>
           </div>
+        </div>
+        <PortraitFrame className="mx-auto w-full max-w-[300px] lg:sticky lg:top-24" />
+        </div>
         </div>
       </section>
 
