@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { ExperienceCard } from "../components/ExperienceCard";
 import { ProjectCard } from "../components/ProjectCard";
-import { Section } from "../components/site";
+import { PortraitFrame, Section } from "../components/site";
 import { Timeline } from "../components/Timeline";
 import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities, capabilityNote } from "../content/capabilities";
