@@ -120,7 +120,7 @@ const morph = (values: string[], dur: string) => (
   />
 );
 
-const durations: Record<string, string> = { back: "58s", mid: "47s", front: "39s" };
+const durations: Record<string, string> = { back: "92s", mid: "76s", front: "63s" };
 
 /**
  * Fixed Scandinavian night sky: near-black backdrop, sparse star field and
