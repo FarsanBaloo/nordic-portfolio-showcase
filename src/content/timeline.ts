@@ -2,6 +2,8 @@ export type TimelineBranch = {
   label: string;
   slug?: string;
   note?: string;
+  /** Month span within the parent milestone period, e.g. "Aug–Oct 2022" */
+  span?: string;
 };
 
 export type TimelineMilestone = {
