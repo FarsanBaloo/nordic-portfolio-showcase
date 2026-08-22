@@ -114,7 +114,7 @@ export function AuroraBackdrop() {
           <filter id="aurora-warp" x="-25%" y="-25%" width="150%" height="150%">
             <feTurbulence
               type="fractalNoise"
-              baseFrequency="0.006 0.02"
+              baseFrequency="0.0025 0.012"
               numOctaves={2}
               seed={7}
               result="noise"
@@ -122,21 +122,21 @@ export function AuroraBackdrop() {
               <animate
                 attributeName="baseFrequency"
                 dur="21s"
-                values="0.006 0.02; 0.013 0.031; 0.004 0.016; 0.006 0.02"
+                values="0.0025 0.012; 0.005 0.018; 0.002 0.009; 0.0025 0.012"
                 repeatCount="indefinite"
               />
             </feTurbulence>
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
-              scale={90}
+              scale={40}
               xChannelSelector="R"
               yChannelSelector="G"
             >
               <animate
                 attributeName="scale"
                 dur="13s"
-                values="70;130;85;70"
+                values="26;58;34;26"
                 repeatCount="indefinite"
               />
             </feDisplacementMap>
