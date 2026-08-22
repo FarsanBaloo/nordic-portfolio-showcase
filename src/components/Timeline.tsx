@@ -41,107 +41,126 @@ function buildRows(): Row[] {
   }));
 }
 
-/** Scroll-linked progress measured against the timeline section itself.
- *  Also derives pixel-accurate year anchors so the counting year tracks the
- *  real on-screen position of each milestone node (not a uniform row index),
- *  which keeps the year in sync even when a role card is very tall. */
+/** Single continuous rAF loop that, every frame, reads the live rail rect and
+ *  node positions. Because it reads on every animation frame (not only on a
+ *  throttled scroll event), progress is always fresh — even for jump scrolls,
+ *  hash-link jumps, and smooth wheel animations where a scroll-event-driven
+ *  rAF would otherwise run before the new scroll position is applied.
+ *
+ *  Each frame it derives: raw progress (rail centred in viewport), the eased
+ *  smoothProgress (rail fill + marker position), the counting year (eased
+ *  toward a target interpolated between the two nearest milestone anchors,
+ *  measured in pixel space so very tall cards stay in sync), and node
+ *  statuses (upcoming/active/completed). */
 function useTimelineScroll(count: number, years: number[], reduced: boolean) {
   const railRef = useRef<HTMLDivElement | null>(null);
   const nodeRefs = useRef<(HTMLElement | null)[]>([]);
-  const [progress, setProgress] = useState(0);
+  const [smoothProgress, setSmoothProgress] = useState(0);
+  const [label, setLabel] = useState<string>(String(years[0] ?? 2003));
   const [statuses, setStatuses] = useState<Status[]>(() =>
     Array.from({ length: count }, () => "upcoming" as Status),
   );
-  const [anchorPoints, setAnchorPoints] = useState<{ at: number; year: number }[]>([]);
+  const smoothRef = useRef(0);
+  const shownRef = useRef(years[0] ?? 2003);
+  const anchorsRef = useRef<{ at: number; year: number }[]>([]);
 
   useEffect(() => {
     if (reduced) {
-      setProgress(1);
+      anchorsRef.current = years.map((y, i) => ({
+        at: count > 1 ? i / (count - 1) : 0,
+        year: y,
+      }));
+      setSmoothProgress(1);
       setStatuses(Array.from({ length: count }, () => "completed" as Status));
-      setAnchorPoints(
-        years.map((y, i) => ({ at: count > 1 ? i / (count - 1) : 0, year: y })),
-      );
+      setLabel("NOW");
       return;
     }
 
-    let frame = 0;
-    let prev: Status[] = [];
-    let prevAnchors = "";
+    let raf = 0;
+    let prevStatusKey = "";
+    let prevAnchorKey = "";
 
-    const measure = () => {
-      frame = 0;
-      const rail = railRef.current;
-      if (!rail) {
-        (window as unknown as { __tl?: unknown }).__tl = { railExists: false, scrollY: window.scrollY };
-        return;
+    const targetYearFor = (p: number) => {
+      const a = anchorsRef.current;
+      if (a.length === 0) return years[0] ?? 2003;
+      if (p <= a[0]!.at) return a[0]!.year;
+      for (let i = 0; i < a.length - 1; i += 1) {
+        if (p <= a[i + 1]!.at) {
+          const t = (p - a[i]!.at) / Math.max(a[i + 1]!.at - a[i]!.at, 0.0001);
+          return a[i]!.year + (a[i + 1]!.year - a[i]!.year) * t;
+        }
       }
+      return a[a.length - 1]!.year;
+    };
 
-      const rect = rail.getBoundingClientRect();
+    const tick = () => {
+      const rail = railRef.current;
       const vh = window.innerHeight || 1;
-      const anchor = vh * 0.5;
-      const raw = (anchor - rect.top) / Math.max(rect.height, 1);
-      (window as unknown as { __tl?: unknown }).__tl = {
-        railExists: true,
-        rectTop: rect.top,
-        rectH: rect.height,
-        vh,
-        raw,
-        scrollY: window.scrollY,
-      };
-      setProgress(Math.min(1, Math.max(0, raw)));
+      let raw = smoothRef.current;
+      if (rail) {
+        const rect = rail.getBoundingClientRect();
+        raw = Math.min(
+          1,
+          Math.max(0, (vh * 0.5 - rect.top) / Math.max(rect.height, 1)),
+        );
 
-      // A node's progress-space position is the scroll progress at which the
-      // node sits in the viewport centre. Because both the node and the rail
-      // shift together on scroll, this offset is stable per layout.
-      if (rect.height > 1) {
-        const points: { at: number; year: number }[] = [];
-        for (let i = 0; i < nodeRefs.current.length; i += 1) {
-          const el = nodeRefs.current[i];
-          if (!el) continue;
-          const r = el.getBoundingClientRect();
-          const center = r.top + r.height / 2;
-          const at = (center - rect.top) / rect.height;
-          const year = years[i];
-          if (Number.isFinite(at) && year != null) {
-            points.push({ at: Math.min(1, Math.max(0, at)), year });
+        if (rect.height > 1) {
+          const pts: { at: number; year: number }[] = [];
+          const next: Status[] = [];
+          let sKey = "";
+          for (let i = 0; i < nodeRefs.current.length; i += 1) {
+            const el = nodeRefs.current[i];
+            if (!el) {
+              next.push("upcoming");
+              sKey += "u";
+              continue;
+            }
+            const r = el.getBoundingClientRect();
+            const center = r.top + r.height / 2;
+            const at = Math.min(1, Math.max(0, (center - rect.top) / rect.height));
+            const y = years[i];
+            if (Number.isFinite(at) && y != null) pts.push({ at, year: y });
+            const st: Status =
+              center < vh * 0.42
+                ? "completed"
+                : center <= vh * 0.6
+                  ? "active"
+                  : "upcoming";
+            next.push(st);
+            sKey += st[0];
+          }
+          const aKey = pts.map((p) => `${p.at.toFixed(4)}:${p.year}`).join("|");
+          if (pts.length && aKey !== prevAnchorKey) {
+            prevAnchorKey = aKey;
+            anchorsRef.current = pts;
+          }
+          if (sKey !== prevStatusKey) {
+            prevStatusKey = sKey;
+            setStatuses(next);
           }
         }
-        const key = points.map((p) => `${p.at.toFixed(4)}:${p.year}`).join("|");
-        if (points.length && key !== prevAnchors) {
-          prevAnchors = key;
-          setAnchorPoints(points);
-        }
       }
 
-      const next: Status[] = nodeRefs.current.map((el) => {
-        if (!el) return "upcoming";
-        const r = el.getBoundingClientRect();
-        const center = r.top + r.height / 2;
-        if (center < vh * 0.42) return "completed";
-        if (center <= vh * 0.6) return "active";
-        return "upcoming";
-      });
-      if (next.length !== prev.length || next.some((s, i) => s !== prev[i])) {
-        prev = next;
-        setStatuses(next);
-      }
-    };
+      // ease the rail fill / marker position toward the raw progress
+      const sp = smoothRef.current + (raw - smoothRef.current) * 0.14;
+      smoothRef.current = Math.abs(raw - sp) < 0.0005 ? raw : sp;
+      setSmoothProgress(smoothRef.current);
 
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(measure);
-    };
+      // ease the counting year toward its interpolated target
+      const ty = targetYearFor(raw);
+      const sy = shownRef.current + (ty - shownRef.current) * 0.09;
+      shownRef.current = Math.abs(ty - sy) < 0.005 ? ty : sy;
+      setLabel(
+        smoothRef.current > 0.97 ? "NOW" : String(Math.round(shownRef.current)),
+      );
 
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
+      raf = requestAnimationFrame(tick);
     };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [count, years, reduced]);
 
-  return { railRef, nodeRefs, progress, statuses, anchorPoints };
+  return { railRef, nodeRefs, smoothProgress, label, statuses };
 }
 
 function useReveal<T extends HTMLElement>(reduced: boolean) {
@@ -416,67 +435,11 @@ export function Timeline() {
     [rows],
   );
 
-  const { railRef, nodeRefs, progress, statuses, anchorPoints } = useTimelineScroll(
+  const { railRef, nodeRefs, smoothProgress, label, statuses } = useTimelineScroll(
     rows.length,
     years,
     reduced,
   );
-
-  // continuous, smoothly counting year derived from scroll progress and the
-  // real on-screen positions of each milestone node
-  const anchors = anchorPoints;
-  const targetYear = useMemo(() => {
-    if (anchors.length === 0) return years[0] ?? 2003;
-    if (progress <= anchors[0]!.at) return anchors[0]!.year;
-    for (let i = 0; i < anchors.length - 1; i += 1) {
-      const a = anchors[i]!;
-      const b = anchors[i + 1]!;
-      if (progress <= b.at) {
-        const t = (progress - a.at) / Math.max(b.at - a.at, 0.0001);
-        return a.year + (b.year - a.year) * t;
-      }
-    }
-    return anchors[anchors.length - 1]!.year;
-  }, [anchors, progress, years]);
-
-  const [shownYear, setShownYear] = useState(targetYear);
-  const shownRef = useRef(targetYear);
-  const targetRef = useRef(targetYear);
-  targetRef.current = targetYear;
-
-  const [smoothProgress, setSmoothProgress] = useState(progress);
-  const smoothRef = useRef(progress);
-  const progressRef = useRef(progress);
-  progressRef.current = progress;
-
-  useEffect(() => {
-    if (reduced) {
-      shownRef.current = targetRef.current;
-      smoothRef.current = progressRef.current;
-      setShownYear(targetRef.current);
-      setSmoothProgress(progressRef.current);
-      return;
-    }
-    let raf = 0;
-    const tick = () => {
-      const y = shownRef.current + (targetRef.current - shownRef.current) * 0.09;
-      shownRef.current = Math.abs(targetRef.current - y) < 0.005 ? targetRef.current : y;
-      setShownYear(shownRef.current);
-
-      const p = smoothRef.current + (progressRef.current - smoothRef.current) * 0.14;
-      smoothRef.current = Math.abs(progressRef.current - p) < 0.0005 ? progressRef.current : p;
-      setSmoothProgress(smoothRef.current);
-
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [reduced]);
-
-  const atNow = smoothProgress > 0.97;
-  const currentLabel = atNow ? "NOW" : String(Math.round(shownYear));
-
-
 
   return (
     <div ref={railRef} className="relative">
@@ -515,11 +478,9 @@ export function Timeline() {
           ].join(" ")}
           style={{ top: `${smoothProgress * 100}%`, willChange: "top" }}
         >
-          {currentLabel}
+          {label}
         </span>
       </div>
-
-
 
       <ol className="relative space-y-6 md:space-y-10">
         {rows.map((row, i) => (
