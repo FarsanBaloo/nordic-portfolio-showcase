@@ -547,22 +547,38 @@ function PointRow({
             : "md:col-start-3 md:row-start-1 md:pl-14",
         ].join(" ")}
       >
-        <button
-          type="button"
-          onClick={() => onOpen(panel)}
+        <div
           className={[
-            "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs transition-all duration-500",
+            "w-full max-w-md rounded-2xl border p-4 text-left transition-all duration-500",
             lit
-              ? "border-night-border bg-white/[0.035] text-night-foreground"
-              : "border-night-border/40 text-night-muted",
-            "hover:border-aurora-teal/60 hover:bg-aurora-teal/10",
+              ? "border-night-border bg-white/[0.035]"
+              : "border-night-border/40 bg-white/[0.015]",
           ].join(" ")}
         >
-          {label}
-          <span aria-hidden="true" className="text-aurora-teal/80">
-            ↗
-          </span>
-        </button>
+          {project ? (
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
+              {project.meta} · {project.type}
+            </p>
+          ) : null}
+          <h4 className="mt-1 text-sm font-semibold text-night-foreground">
+            {project?.title ?? label}
+          </h4>
+          {project?.subtitle ? (
+            <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
+          ) : null}
+          {project?.teaser ? (
+            <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
+          ) : null}
+          {project ? (
+            <Link
+              to="/projects/$slug"
+              params={{ slug: project.slug }}
+              className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity hover:opacity-80"
+            >
+              Explore full case <span aria-hidden="true">→</span>
+            </Link>
+          ) : null}
+        </div>
       </div>
     </li>
   );
