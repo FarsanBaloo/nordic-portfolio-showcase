@@ -177,15 +177,30 @@ export function AuroraBackdrop() {
         <defs>
           {/* brightness varies along the curtain, and travels slowly sideways */}
           <linearGradient id="aurora-hue" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.1" />
-            <stop offset="0.22" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
-            <stop offset="0.44" stopColor="var(--aurora-green-soft)" stopOpacity="0.4" />
-            <stop offset="0.63" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
-            <stop offset="0.83" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
-            <stop offset="1" stopColor="var(--aurora-green-hex)" stopOpacity="0.12" />
-            <animate attributeName="x1" values="-0.2;0.02;-0.2" dur="54s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0.88;1.08;0.88" dur="54s" repeatCount="indefinite" />
+            <stop offset="0" stopColor="var(--aurora-blue-hex)" stopOpacity="0.12" />
+            <stop offset="0.14" stopColor="var(--aurora-teal-hex)" stopOpacity="0.5" />
+            <stop offset="0.3" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
+            <stop offset="0.46" stopColor="var(--aurora-lime-hex)" stopOpacity="0.55" />
+            <stop offset="0.62" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
+            <stop offset="0.78" stopColor="var(--aurora-green-hex)" stopOpacity="0.55" />
+            <stop offset="0.9" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.3" />
+            <stop offset="1" stopColor="var(--aurora-violet-hex)" stopOpacity="0.12" />
+            <animate attributeName="x1" values="-0.2;-0.09;0.02;-0.09;-0.2" dur="96s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="0.88;0.98;1.08;0.98;0.88" dur="96s" repeatCount="indefinite" />
           </linearGradient>
+
+          {/* vertical colour column: rose/violet crown, green body, teal foot */}
+          {ribbons.map((r) => (
+            <linearGradient key={`v${r.id}`} id={`vhue-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top - 60} x2="0" y2={r.bottom}>
+              <stop offset="0" stopColor="var(--aurora-rose-hex)" stopOpacity="0.55" />
+              <stop offset="0.12" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.5" />
+              <stop offset="0.26" stopColor="var(--aurora-violet-hex)" stopOpacity="0.35" />
+              <stop offset="0.44" stopColor="var(--aurora-green-bright)" stopOpacity="0.75" />
+              <stop offset="0.64" stopColor="var(--aurora-green-hex)" stopOpacity="0.6" />
+              <stop offset="0.84" stopColor="var(--aurora-teal-hex)" stopOpacity="0.32" />
+              <stop offset="1" stopColor="var(--aurora-blue-hex)" stopOpacity="0.1" />
+            </linearGradient>
+          ))}
 
           <linearGradient id="aurora-crown" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--aurora-violet-hex)" stopOpacity="0.32" />
