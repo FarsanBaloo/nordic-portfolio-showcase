@@ -61,6 +61,8 @@ function Index() {
     <>
       <section className="relative overflow-hidden night-panel">
         <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
+        <div className="grid gap-12 lg:grid-cols-[1.7fr_0.9fr] lg:items-start">
+        <div>
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
             {profile.location}
           </p>
