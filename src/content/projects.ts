@@ -6,6 +6,9 @@ import thesisPresentation from "../assets/thesis-presentation.jpg.asset.json";
 import planetWhiteboard from "../assets/planet-whiteboard.jpg.asset.json";
 import planetPaperPrototypes from "../assets/planet-paper-prototypes.jpg.asset.json";
 import planetWorkshop from "../assets/planet-workshop.jpg.asset.json";
+import hallbarHalsaDashboard from "../assets/hallbar-halsa-dashboard.png.asset.json";
+import hallbarHalsaOnboarding from "../assets/hallbar-halsa-onboarding.png.asset.json";
+import hallbarHalsaFlow from "../assets/hallbar-halsa-flow.png.asset.json";
 
 export type ImageSlot = {
   caption: string;
