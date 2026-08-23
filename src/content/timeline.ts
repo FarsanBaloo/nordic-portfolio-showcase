@@ -30,10 +30,18 @@ export type TimelineChild =
       /** Full formal programme / study title. */
       formalTitle?: string;
       org?: string;
+      /** Academic level, only when verified (e.g. "Second cycle"). */
+      level?: string;
       topics: string[];
+      /** Short capability signals shown on compact course cards. */
+      signals?: string[];
+      /** Compact cards omit long descriptions. */
+      variant?: "compact";
       body?: string;
       body2?: string;
       relevance?: string;
+      /** How this course contributed to the Talking SCADA product case. */
+      scadaLink?: string;
       /** Small vertical progression chain rendered under the card. */
       chain?: string[];
       group?: string;
@@ -44,10 +52,14 @@ export type TimelineChild =
       university?: string;
       formalTitle?: string;
       org?: string;
+      level?: string;
       topics: string[];
+      signals?: string[];
+      variant?: "compact";
       body?: string;
       body2?: string;
       relevance?: string;
+      scadaLink?: string;
       chain?: string[];
       group?: string;
     };
