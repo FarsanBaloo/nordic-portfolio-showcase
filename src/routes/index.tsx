@@ -58,7 +58,16 @@ function Index() {
   return (
     <>
       <section className="relative overflow-hidden night-panel">
-        <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
+        {/* soft local readability veil so hero copy stays legible over the aurora */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "radial-gradient(120% 70% at 30% 40%, rgba(2,4,7,0.82) 0%, rgba(2,4,7,0.55) 45%, transparent 80%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1280px] px-5 py-24 sm:py-32">
         <div className="grid gap-12 lg:grid-cols-[1.7fr_0.9fr] lg:items-start">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
