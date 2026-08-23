@@ -2,11 +2,15 @@ export type CourseGroup = { title: string; items: string[] };
 
 export const bachelor = {
   title: "Bachelor of Science in Computer Science",
+  formalTitle:
+    "Degree of Bachelor of Science in Computer Science with Specialization in Intelligent Systems",
+  descriptor: "B.Sc. in Computer Science · Applied Artificial Intelligence",
   specialisation: "Specialisation in Intelligent Systems",
-  institution: "Mälardalen University — MDU",
+  institution: "Mälardalen University",
   summary:
     "Built formal Computer Science and Applied AI capabilities on top of extensive professional experience in industrial digital platforms and connected systems.",
   note: "The degree was completed before the postgraduate development period beginning in August 2025.",
+
   coursework: [
     {
       title: "AI & Data",
@@ -54,7 +58,8 @@ export const postgraduate = {
   period: "August 2025 – July 2026",
   title: "Advanced AI, Innovation & Product Development",
   intro:
-    "After completing the BSc, I undertook an intensive postgraduate development period from August 2025 to July 2026 covering advanced AI, Innovation Management, Industrial Economics, Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models, Agile development and Leadership.",
+    "A coordinated postgraduate development period across several universities, covering advanced artificial intelligence, Innovation Management, Industrial Economics, Product Management, Product & Requirements Management, Strategy & Business Models, Agile Process & Project Management and Leadership.",
+
   first: [
     "Natural Language Processing",
     "Autonomous Systems & Perception",
@@ -63,9 +68,13 @@ export const postgraduate = {
   entries: [
     {
       id: "liu",
+      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       institution: "Linköping University",
+      formalTitle:
+        "Advanced-Level Studies in Artificial Intelligence: Natural Language Processing",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Natural Language Processing",
+
       period: "Aug 2025 – Jan 2026",
       body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
       topics: [
@@ -86,11 +95,17 @@ export const postgraduate = {
     },
     {
       id: "umu",
+      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       institution: "Umeå University",
+      formalTitle:
+        "Advanced-Level Studies in Artificial Intelligence: Autonomous Systems & Perception",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Autonomous Systems & Perception",
       period: "Jan 2026 – Jun 2026",
-      body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control. Explored how perception, prediction, planning and control are integrated to enable data-driven autonomous systems to interpret dynamic environments and support real-time decision-making.",
+      body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control.",
+      body2:
+        "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
+
       topics: [
         "Multi-sensor fusion",
         "3D perception",
@@ -113,11 +128,22 @@ export const postgraduate = {
     },
     {
       id: "his",
+      phase: "Bridge · Aug 2025 – Jan 2026 · Innovation Management",
       institution: "University of Skövde",
+      formalTitle: "Advanced-Level Studies in Innovation Management",
       title: "Advanced-Level Studies in Innovation Management",
       subtitle: "Innovation in Practice",
       period: "Aug 2025 – Jan 2026",
       body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership.",
+      body2:
+        "Studied in parallel with the advanced AI foundation, this formed the innovation and product bridge developed further at Blekinge Institute of Technology.",
+      chain: [
+        "Advanced AI",
+        "Innovation Opportunity",
+        "Talking SCADA — Initial Concept",
+        "Product / Requirements Development",
+      ],
+
       projectCase: {
         title: "Course project — Talking SCADA (concept origin)",
         period: "Aug 2025 – Jan 2026",
@@ -133,12 +159,18 @@ export const postgraduate = {
     },
     {
       id: "bth",
+      phase: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
       institution: "Blekinge Institute of Technology",
+      formalTitle:
+        "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
       title:
         "Advanced-Level Specialisation in Industrial Economics, Product & Requirements Management",
       subtitle: "Product · Requirements · Strategy · Leadership",
       period: "Aug 2025 – Jun 2026",
-      body: "Advanced-level specialisation covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organisations.",
+      body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
+      body2:
+        "Advanced-level specialization covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organizations.",
+
       projectCase: {
         title: "Course project — Talking SCADA (product & requirements case)",
         period: "Aug 2025 – Jun 2026",

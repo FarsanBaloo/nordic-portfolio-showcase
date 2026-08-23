@@ -35,8 +35,12 @@ function EducationPage() {
       />
       <Page>
         <Section>
-          <SectionHeading eyebrow="Degree" title={bachelor.title} intro={bachelor.specialisation} />
-          <p className="mt-3 text-sm text-muted-foreground">{bachelor.institution}</p>
+          <SectionHeading eyebrow="Degree" title={bachelor.institution} />
+          <h3 className="mt-3 text-xl font-semibold">{bachelor.formalTitle}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{bachelor.descriptor}</p>
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+            {bachelor.summary}
+          </p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bachelor.coursework.map((group) => (
               <div key={group.title} className="rounded-xl border border-border bg-card p-6">
@@ -50,6 +54,7 @@ function EducationPage() {
           <p className="mt-6 text-sm italic text-muted-foreground">{bachelor.note}</p>
         </Section>
 
+
         <Section>
           <SectionHeading
             eyebrow="Postgraduate development"
@@ -57,17 +62,38 @@ function EducationPage() {
             intro={postgraduate.intro}
           />
           <div className="mt-8 space-y-6">
-            {postgraduate.entries.map((entry) => (
-              <article key={entry.id} className="rounded-xl border border-border bg-card p-6 sm:p-8">
-                <Eyebrow>{entry.period}</Eyebrow>
-                <h3 className="mt-2 text-xl font-semibold">{entry.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {entry.institution}
-                  {entry.subtitle ? ` · ${entry.subtitle}` : ""}
-                </p>
-                <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                  {entry.body}
-                </p>
+            {postgraduate.entries.map((entry, index) => (
+              <div key={entry.id}>
+                {entry.phase && entry.phase !== postgraduate.entries[index - 1]?.phase ? (
+                  <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    {entry.phase}
+                  </p>
+                ) : null}
+                <article className="rounded-xl border border-border bg-card p-6 sm:p-8">
+                  <Eyebrow>{entry.period}</Eyebrow>
+                  <h3 className="mt-2 text-lg font-semibold">{entry.institution}</h3>
+                  <p className="mt-1 text-base font-medium">
+                    {entry.formalTitle ?? entry.title}
+                  </p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                    {entry.body}
+                  </p>
+                  {"body2" in entry && entry.body2 ? (
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                      {entry.body2}
+                    </p>
+                  ) : null}
+                  {"chain" in entry && entry.chain?.length ? (
+                    <ol className="mt-4 space-y-1 text-sm text-muted-foreground">
+                      {entry.chain.map((step, i) => (
+                        <li key={step}>
+                          {i > 0 ? <span aria-hidden="true">↓ </span> : null}
+                          {step}
+                        </li>
+                      ))}
+                    </ol>
+                  ) : null}
+
                 {"projectCase" in entry && entry.projectCase ? (
                   <div className="mt-5 rounded-lg border border-border bg-secondary/40 p-5">
                     <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
@@ -109,8 +135,10 @@ function EducationPage() {
                     </div>
                   </div>
                 ) : null}
-              </article>
+                </article>
+              </div>
             ))}
+
           </div>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2">

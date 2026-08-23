@@ -199,24 +199,61 @@ function StudyChildCard({
       className="night-card min-w-0 rounded-xl p-4"
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
     >
-      <h4 className="text-[16px] font-semibold text-night-foreground">{child.title}</h4>
-      {child.org ? <p className="mt-0.5 text-[13px] text-night-muted">{child.org}</p> : null}
-      <ul className="mt-2 flex flex-wrap gap-1.5">
-        {child.topics.map((t) => (
-          <li
-            key={t}
-            className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-night-body"
-          >
-            {t}
-          </li>
-        ))}
-      </ul>
-      {child.kind === "course" && child.body ? (
-        <p className="mt-2.5 text-[14.5px] leading-relaxed text-night-body">{child.body}</p>
+      {child.org ? (
+        <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+          {child.org}
+        </p>
+      ) : null}
+      {child.university ? (
+        <p className="mt-1 text-[13.5px] font-medium text-night-muted">{child.university}</p>
+      ) : null}
+      <h4 className="mt-1 font-display text-[18px] font-semibold leading-snug text-night-foreground">
+        {child.formalTitle ?? child.title}
+      </h4>
+      {child.body ? (
+        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body}</p>
+      ) : null}
+      {child.body2 ? (
+        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body2}</p>
+      ) : null}
+      {child.topics.length ? (
+        <ul className="mt-3 flex flex-wrap gap-1.5">
+          {child.topics.map((t) => (
+            <li
+              key={t}
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-night-body"
+            >
+              {t}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {child.chain?.length ? (
+        <ol className="mt-3 space-y-1">
+          {child.chain.map((step, i) => (
+            <li key={step} className="text-[13.5px] text-night-body">
+              {i > 0 ? (
+                <span aria-hidden="true" className="mr-1.5" style={{ color: accent }}>
+                  ↓
+                </span>
+              ) : null}
+              {step}
+            </li>
+          ))}
+        </ol>
+      ) : null}
+      {child.relevance ? (
+        <div className="mt-3 border-t border-night-border/50 pt-3">
+          <p className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
+            Product relevance
+          </p>
+          <p className="mt-1 text-[14.5px] leading-relaxed text-night-body">{child.relevance}</p>
+        </div>
       ) : null}
     </div>
   );
 }
+
 
 function groupChildren(children: TimelineChild[]) {
   const out: { title?: string | undefined; items: TimelineChild[] }[] = [];
@@ -496,10 +533,22 @@ function MilestoneRow({
           <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
             {entry.title}
           </h3>
+          {entry.university ? (
+            <p className="mt-1.5 text-[13.5px] font-medium text-night-muted">{entry.university}</p>
+          ) : null}
+          {entry.formalTitle ? (
+            <p className="mt-1 text-[16px] font-semibold leading-snug text-night-foreground">
+              {entry.formalTitle}
+            </p>
+          ) : null}
+          {entry.degreeDescriptor ? (
+            <p className="mt-1 text-[14px] text-night-muted">{entry.degreeDescriptor}</p>
+          ) : null}
           {entry.subtitle ? (
             <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
           ) : null}
           {entry.org ? <p className="mt-1 text-[13.5px] text-night-muted">{entry.org}</p> : null}
+
           {entry.stage ? (
             <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.09em] text-night-subtle">
               {entry.stage}
