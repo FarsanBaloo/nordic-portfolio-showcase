@@ -310,7 +310,13 @@ export const milestones: TimelineMilestone[] = [
         formalTitle:
           "Advanced-Level Studies in Artificial Intelligence: Natural Language Processing",
         org: "Aug 2025 – Jan 2026",
-        topics: ["Transformers", "Domain Adaptation", "PEFT / LoRA"],
+        topics: [
+          "Natural Language Processing",
+          "Transformers",
+          "Domain Adaptation",
+          "PEFT / LoRA",
+          "Generative AI / Language Models",
+        ],
         body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
         relevance:
           "Strengthened the ability to evaluate how modern language models can be adapted to domain-specific problems and how model capabilities, limitations and technical feasibility affect product decisions.",
