@@ -783,7 +783,15 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
   return (
     <li ref={ref} className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
       <span className="absolute left-[13px] top-2 z-10 -translate-x-1/2 min-[1100px]:left-1/2">
-        <Node lit={active} isNow accent="var(--professional-accent)" />
+        <Node lit={active} isNow accent="var(--professional-accent)" level="major" />
+        {entry.railMarker ? (
+          <RailLabel
+            label={entry.railMarker.label}
+            active={active}
+            accent="var(--professional-accent)"
+            className="left-1/2 top-[26px] -translate-x-1/2"
+          />
+        ) : null}
       </span>
       <div className="min-[1100px]:flex min-[1100px]:justify-center">
         <article
