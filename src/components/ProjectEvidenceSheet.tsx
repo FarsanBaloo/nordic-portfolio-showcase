@@ -135,7 +135,6 @@ export function ProjectEvidenceSheet({
       <SheetContent
         side="right"
         aria-describedby={undefined}
-        closeLabel="Close case study"
         className="w-full overflow-y-auto border-night-border/60 p-6 sm:max-w-xl sm:p-8 lg:max-w-2xl"
         style={{ backgroundColor: "oklch(0.155 0.02 255)" }}
       >
