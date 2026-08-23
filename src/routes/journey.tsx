@@ -1,15 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { ExperienceCard } from "../components/ExperienceCard";
-import { NightHero, Page } from "../components/site";
+import { JourneyPortrait } from "../components/site";
 import { Timeline } from "../components/Timeline";
-import { SectionHeading, TagList } from "../components/ui-bits";
-import { offerRelevance, roles } from "../content/experience";
-import { journeyIntro } from "../content/profile";
+import { careerLens, journeyNarrative, productPhilosophy } from "../content/profile";
 
 const title = "Journey — Rickard Sörlin";
 const description =
-  "From customer-facing engineering and national platform expertise to senior technical advisory and AI-enabled product work: the full career timeline.";
+  "From customer-facing engineering and national platform expertise to senior technical advisory and AI-enabled product work: one shared chronology of professional and academic development.";
 
 export const Route = createFileRoute("/journey")({
   head: () => ({
@@ -30,48 +27,74 @@ export const Route = createFileRoute("/journey")({
 function JourneyPage() {
   return (
     <>
-      <NightHero
-        eyebrow="The journey"
-        title="A continuous line from industrial reality to product and AI"
-        intro={journeyIntro[0] ?? ""}
-      />
-
       <section className="relative overflow-hidden night-panel">
-        <div className="relative mx-auto max-w-6xl px-5 py-20">
-          <div className="max-w-3xl space-y-4">
-            {journeyIntro.slice(1).map((p) => (
-              <p key={p} className="text-[15px] leading-relaxed text-night-muted">
-                {p}
+        <div className="relative mx-auto max-w-[1280px] px-5 py-20 sm:py-24">
+          <div className="mx-auto max-w-[880px]">
+            <p className="text-center font-mono text-[12px] uppercase tracking-[0.11em] text-aurora-teal">
+              The journey
+            </p>
+            <h1 className="mx-auto mt-4 max-w-3xl text-balance-tight text-center text-4xl font-semibold text-night-foreground sm:text-[44px]">
+              From industrial systems to AI-enabled products
+            </h1>
+
+            <div className="mt-12">
+              <JourneyPortrait />
+            </div>
+
+            <div className="mt-12 space-y-5">
+              <p className="text-[17px] font-semibold leading-relaxed text-night-foreground">
+                {journeyNarrative.lead}
               </p>
-            ))}
-          </div>
-          <div className="mt-16">
-            <Timeline />
+              {journeyNarrative.paragraphs.map((p) => (
+                <p key={p} className="text-[16px] leading-relaxed text-night-body">
+                  {p}
+                </p>
+              ))}
+              <p className="rounded-lg border border-night-border/60 bg-white/[0.03] p-4 text-[15px] leading-relaxed text-night-body">
+                {journeyNarrative.overlap}
+              </p>
+              <p className="text-[17px] font-semibold leading-relaxed text-night-foreground">
+                {journeyNarrative.emphasis}
+              </p>
+            </div>
+
+            <div className="mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {careerLens.map((group) => (
+                <section key={group.title}>
+                  <h2 className="font-mono text-[12px] uppercase tracking-[0.11em] text-aurora-teal">
+                    {group.title}
+                  </h2>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full border border-night-border px-3 py-1 text-[13px] text-night-body"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            <div className="mt-14 border-l-2 border-aurora-teal/60 pl-5">
+              <h2 className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+                Product philosophy
+              </h2>
+              <p className="mt-2 text-[16px] leading-relaxed text-night-body">
+                {productPhilosophy}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <Page>
-        <SectionHeading
-          eyebrow="Experience in depth"
-          title="Roles, responsibilities and progression"
-          intro="Each role expands into responsibilities, environments, stakeholders and lifecycle context."
-        />
-        <div className="mt-8 space-y-6">
-          {roles.map((role) => (
-            <ExperienceCard key={role.id} role={role} />
-          ))}
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1280px] px-5 py-16 sm:py-20">
+          <Timeline />
         </div>
-        <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-          <h2 className="text-lg font-semibold">{offerRelevance.title}</h2>
-          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-            {offerRelevance.body}
-          </p>
-          <div className="mt-5">
-            <TagList items={offerRelevance.items} />
-          </div>
-        </div>
-      </Page>
+      </section>
     </>
   );
 }
