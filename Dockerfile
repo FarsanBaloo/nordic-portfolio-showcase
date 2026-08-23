@@ -1,14 +1,16 @@
 # syntax=docker/dockerfile:1
 
 # --- Build stage -------------------------------------------------------------
-FROM node:22-alpine AS build
+# Bun is used for the build because the repository commits bun.lock.
+FROM oven/bun:1-alpine AS build
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
-RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+# Deterministic install: fails if bun.lock is missing or out of sync.
+COPY package.json bun.lock bunfig.toml ./
+RUN bun install --frozen-lockfile
 
 COPY . .
-RUN npm run build
+RUN bun run build
 
 # --- Runtime stage -----------------------------------------------------------
 FROM node:22-alpine AS runtime
