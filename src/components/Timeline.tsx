@@ -281,37 +281,37 @@ function StudyChildCard({
   const compact = child.variant === "compact";
   return (
     <div
-      className={compact ? "night-card min-w-0 rounded-xl p-3.5" : "night-card min-w-0 rounded-xl p-4"}
+      className="night-card min-w-0 rounded-xl p-4 sm:p-[18px]"
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
     >
       {child.org ? (
-        <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+        <p className="font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
           {child.org}
         </p>
       ) : null}
       {child.university ? (
-        <p className="mt-1 text-[13.5px] font-medium text-night-muted">{child.university}</p>
+        <p className="mt-1 text-[14px] font-medium text-[#B4C0C8]">{child.university}</p>
       ) : null}
       <h4
         className={
           compact
-            ? "mt-1 font-display text-[15.5px] font-semibold leading-snug text-night-foreground"
-            : "mt-1 font-display text-[18px] font-semibold leading-snug text-night-foreground"
+            ? "mt-1 font-display text-[17.5px] font-semibold leading-[1.32] text-[#F4F7F9]"
+            : "mt-1 font-display text-[18.5px] font-semibold leading-[1.32] text-[#F4F7F9]"
         }
       >
         {child.formalTitle ?? child.title}
       </h4>
       {child.level ? (
-        <p className="mt-1 font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
+        <p className="mt-1 font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
           {child.level}
         </p>
       ) : null}
       {child.signals?.length ? (
-        <ul className="mt-2 flex flex-wrap gap-1.5">
+        <ul className="mt-2.5 flex flex-wrap gap-1.5">
           {child.signals.map((s) => (
             <li
               key={s}
-              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12px] text-night-body"
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-[#CDD6DD]"
             >
               {s}
             </li>
@@ -319,13 +319,13 @@ function StudyChildCard({
         </ul>
       ) : null}
       {child.body ? (
-        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body}</p>
+        <p className="mt-2.5 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.body}</p>
       ) : null}
       {child.body2 ? (
-        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body2}</p>
+        <p className="mt-2.5 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.body2}</p>
       ) : null}
       {child.scadaLink ? (
-        <p className="mt-2 border-l pl-2.5 text-[13px] leading-relaxed text-night-muted"
+        <p className="mt-2.5 border-l pl-2.5 text-[14.5px] leading-[1.55] text-[#B8C3CB]"
           style={{ borderColor: `color-mix(in oklab, ${accent} 45%, transparent)` }}
         >
           {child.scadaLink}
@@ -336,7 +336,7 @@ function StudyChildCard({
           {child.topics.map((t) => (
             <li
               key={t}
-              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-night-body"
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-[#CDD6DD]"
             >
               {t}
             </li>
@@ -346,7 +346,7 @@ function StudyChildCard({
       {child.chain?.length ? (
         <ol className="mt-3 space-y-1">
           {child.chain.map((step, i) => (
-            <li key={step} className="text-[13.5px] text-night-body">
+            <li key={step} className="text-[14.5px] text-[#D3DBE2]">
               {i > 0 ? (
                 <span aria-hidden="true" className="mr-1.5" style={{ color: accent }}>
                   ↓
@@ -359,10 +359,10 @@ function StudyChildCard({
       ) : null}
       {child.relevance ? (
         <div className="mt-3 border-t border-night-border/50 pt-3">
-          <p className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
+          <p className="font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
             Product relevance
           </p>
-          <p className="mt-1 text-[14.5px] leading-relaxed text-night-body">{child.relevance}</p>
+          <p className="mt-1 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.relevance}</p>
         </div>
       ) : null}
     </div>
