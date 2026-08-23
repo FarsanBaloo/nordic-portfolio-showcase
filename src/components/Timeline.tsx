@@ -26,40 +26,85 @@ function trackLabel(track: TimelineMilestone["track"]) {
   return track === "development" ? "Development" : track === "direction" ? "Now" : "Professional";
 }
 
-/** Scroll-linked focus progress for one row: 0 far before, 0.5 in focus, 1 far after. */
-function useFocusMotion(ref: React.RefObject<HTMLElement | null>, reduced: boolean) {
+const FOCUS_SPRING = { stiffness: 110, damping: 29, mass: 0.35 } as const;
+
+/** Scroll-linked focus progress for one row: 0 far before, 0.5 in focus, 1 far after.
+ *  Continuous visuals stay on motion values; React state only flips on the
+ *  semantic inactive → active threshold. */
+function useFocusMotion(
+  ref: React.RefObject<HTMLElement | null>,
+  reduced: boolean,
+  variant: "parent" | "child" = "parent",
+) {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 90%", "end 20%"],
   });
-  const smooth = useSpring(scrollYProgress, { stiffness: 130, damping: 30, mass: 0.25 });
-  const scale = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.98, 0.995, 1.015, 1, 0.99]);
-  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.68, 0.9, 1, 0.96, 0.86]);
+  const smooth = useSpring(scrollYProgress, FOCUS_SPRING);
+  const parentScale = [0.992, 1, 1.021, 1.002, 0.995];
+  const childScale = [0.996, 1, 1.011, 1.001, 0.997];
+  const scale = useTransform(
+    smooth,
+    [0, 0.3, 0.5, 0.72, 1],
+    variant === "parent" ? parentScale : childScale,
+  );
+  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.9, 0.96, 1, 0.98, 0.93]);
+  const y = useTransform(
+    smooth,
+    [0, 0.3, 0.5, 0.72, 1],
+    variant === "parent" ? [0, 0, -3, 0, 0] : [0, 0, -1, 0, 0],
+  );
   const [active, setActive] = useState(false);
+  const activeRef = useRef(false);
 
   useEffect(() => {
     if (reduced) {
       setActive(true);
       return;
     }
-    return smooth.on("change", (v) => setActive(v > 0.24 && v < 0.86));
+    return smooth.on("change", (v) => {
+      const next = v > 0.24 && v < 0.86;
+      if (next !== activeRef.current) {
+        activeRef.current = next;
+        setActive(next);
+      }
+    });
   }, [smooth, reduced]);
 
-  return { scale, opacity, active };
+  return { scale, opacity, y, active };
 }
 
-function Node({ lit, isNow, accent }: { lit: boolean; isNow: boolean; accent: string }) {
+type NodeLevel = "major" | "phase" | "minor";
+
+const nodeSize: Record<NodeLevel, { idle: number; active: number }> = {
+  major: { idle: 18, active: 21 },
+  phase: { idle: 11, active: 15 },
+  minor: { idle: 7, active: 9 },
+};
+
+function Node({
+  lit,
+  isNow,
+  accent,
+  level = "phase",
+}: {
+  lit: boolean;
+  isNow: boolean;
+  accent: string;
+  level?: NodeLevel;
+}) {
+  const size = nodeSize[level];
+  const d = lit ? size.active : size.idle;
   return (
     <span
       aria-hidden="true"
-      className={[
-        "relative block h-4 w-4 rounded-full border-2 transition-[transform,background-color,border-color,box-shadow] duration-500 ease-out",
-        lit ? "scale-125" : "scale-75",
-      ].join(" ")}
+      className="relative block rounded-full border-2 transition-[width,height,background-color,border-color,box-shadow] duration-500 ease-out"
       style={{
+        width: d,
+        height: d,
         backgroundColor: lit ? accent : "#070d18",
-        borderColor: lit ? accent : `color-mix(in oklab, ${accent} 30%, transparent)`,
-        boxShadow: lit ? `0 0 16px 0 color-mix(in oklab, ${accent} 55%, transparent)` : "none",
+        borderColor: lit ? accent : `color-mix(in oklab, ${accent} 32%, transparent)`,
+        boxShadow: lit ? `0 0 14px 0 color-mix(in oklab, ${accent} 45%, transparent)` : "none",
       }}
     >
       {isNow ? (
@@ -71,6 +116,32 @@ function Node({ lit, isNow, accent }: { lit: boolean; isNow: boolean; accent: st
           }}
         />
       ) : null}
+    </span>
+  );
+}
+
+/** Fixed, verified year / phase label rendered beside a rail node. */
+function RailLabel({
+  label,
+  active,
+  accent,
+  className,
+}: {
+  label: string;
+  active: boolean;
+  accent: string;
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={[
+        "pointer-events-none absolute whitespace-nowrap font-mono text-[12.5px] font-medium tracking-[0.08em] transition-colors duration-500",
+        className ?? "",
+      ].join(" ")}
+      style={{ color: active ? accent : "#A5B1BA" }}
+    >
+      {label}
     </span>
   );
 }
