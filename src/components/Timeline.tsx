@@ -577,7 +577,7 @@ export function Timeline() {
       {/* background rail */}
       <div
         aria-hidden="true"
-        className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 md:left-1/2 md:-translate-x-1/2"
+        className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 lg:left-1/2 lg:-translate-x-1/2"
       >
         {/* active progress rail */}
         <div
@@ -598,7 +598,7 @@ export function Timeline() {
       {/* year marker riding the progress head */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px md:left-1/2"
+        className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px lg:left-1/2"
       >
         <span
           ref={markerRef}
