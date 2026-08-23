@@ -639,7 +639,10 @@ function ChildColumn({
                   index={i}
                   reduced={reduced}
                 >
-                  <div className="grid gap-3 min-[1500px]:grid-cols-2">
+                  <div
+                    className="grid gap-3"
+                    style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}
+                  >
                     {run.items.map((child) =>
                       child.kind === "project" ? null : (
                         <StudyChildCard key={child.title} child={child} accent={accent} />
