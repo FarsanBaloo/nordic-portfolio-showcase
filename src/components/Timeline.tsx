@@ -1090,27 +1090,15 @@ export function Timeline() {
           }}
         />
         {!reduced ? (
-          <>
-            <motion.span
-              className="absolute left-1/2 block h-40 w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[6px]"
-              style={{
-                top: dotTop,
-                opacity: dotOpacity,
-                background:
-                  "linear-gradient(180deg, transparent, color-mix(in oklab, var(--aurora-green) 55%, transparent), transparent)",
-              }}
-            />
-            <motion.span
-              className="absolute left-1/2 block h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
-              style={{
-                top: dotTop,
-                opacity: dotOpacity,
-                backgroundColor: "var(--aurora-green)",
-                boxShadow:
-                  "0 0 18px 3px color-mix(in oklab, var(--aurora-green) 60%, transparent)",
-              }}
-            />
-          </>
+          <motion.span
+            className="absolute left-1/2 block h-56 w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[10px]"
+            style={{
+              top: glowTop,
+              opacity: glowOpacity,
+              background:
+                "linear-gradient(180deg, transparent, color-mix(in oklab, var(--aurora-green) 40%, transparent), transparent)",
+            }}
+          />
         ) : null}
       </div>
 
