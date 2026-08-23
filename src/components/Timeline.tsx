@@ -533,10 +533,22 @@ function MilestoneRow({
           <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
             {entry.title}
           </h3>
+          {entry.university ? (
+            <p className="mt-1.5 text-[13.5px] font-medium text-night-muted">{entry.university}</p>
+          ) : null}
+          {entry.formalTitle ? (
+            <p className="mt-1 text-[16px] font-semibold leading-snug text-night-foreground">
+              {entry.formalTitle}
+            </p>
+          ) : null}
+          {entry.degreeDescriptor ? (
+            <p className="mt-1 text-[14px] text-night-muted">{entry.degreeDescriptor}</p>
+          ) : null}
           {entry.subtitle ? (
             <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
           ) : null}
           {entry.org ? <p className="mt-1 text-[13.5px] text-night-muted">{entry.org}</p> : null}
+
           {entry.stage ? (
             <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.09em] text-night-subtle">
               {entry.stage}
