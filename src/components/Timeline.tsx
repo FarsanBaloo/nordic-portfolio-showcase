@@ -296,7 +296,7 @@ function BranchCard({
       >
         <span
           aria-hidden="true"
-          className="absolute left-[-29px] top-7 h-1.5 w-1.5 rounded-full transition-colors duration-500 md:hidden"
+          className="absolute left-[-29px] top-7 h-1.5 w-1.5 rounded-full transition-colors duration-500 lg:hidden"
           style={{
             backgroundColor:
               status === "upcoming"
@@ -304,6 +304,7 @@ function BranchCard({
                 : "var(--aurora-teal)",
           }}
         />
+
         <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-aurora-teal sm:text-[11px]">
           {branch.span ?? period}
           <span className="ml-2 block text-night-muted sm:ml-2 sm:inline">
