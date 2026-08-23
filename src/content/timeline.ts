@@ -1,3 +1,5 @@
+import examenPhoto from "../assets/examen.jpg.asset.json";
+
 export type TimelineTrack = "professional" | "development" | "direction";
 
 /** How precise the underlying date information actually is. Anything that is
@@ -91,6 +93,9 @@ export type TimelineMilestone = {
   formalTitle?: string;
   /** Secondary descriptor shown under the formal title. */
   degreeDescriptor?: string;
+  /** Optional documentary photo shown inside the milestone card. */
+  image?: { src: string; alt: string; caption: string };
+
 
   track: TimelineTrack;
   stage?: string;
@@ -216,6 +221,12 @@ export const milestones: TimelineMilestone[] = [
     formalTitle:
       "Degree of Bachelor of Science in Computer Science with Specialization in Intelligent Systems",
     degreeDescriptor: "B.Sc. in Computer Science · Applied Artificial Intelligence",
+    image: {
+      src: examenPhoto.url,
+      alt: "Rickard Sörlin with thesis colleagues and examiners at Mälardalen University",
+      caption: "Degree project completed — Mälardalen University",
+    },
+
 
     track: "development",
     stage: "Applied AI · Human-Centred Design · Research",

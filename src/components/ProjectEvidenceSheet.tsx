@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "./ui-bits";
+import { BulletList, Callout, Eyebrow, FlowSteps, ImageFrame, TagList } from "./ui-bits";
 import type { Project } from "../content/projects";
 import { projectRoleContext } from "../content/timeline";
 
@@ -71,6 +71,26 @@ export function CaseStudyBody({
       ))}
 
       {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
+
+      {project.images?.slots.some((slot) => slot.src) ? (
+        <section>
+          <Eyebrow>Images</Eyebrow>
+          <div className="mt-4 grid gap-5 sm:grid-cols-2">
+            {project.images.slots
+              .filter((slot) => slot.src)
+              .map((slot) => (
+                <ImageFrame
+                  key={slot.caption}
+                  caption={slot.caption}
+                  aspect={slot.aspect}
+                  src={slot.src}
+                  alt={slot.alt}
+                />
+              ))}
+          </div>
+        </section>
+      ) : null}
+
 
       {project.metrics?.length ? (
         <div className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">

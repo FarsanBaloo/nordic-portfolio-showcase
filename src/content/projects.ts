@@ -1,8 +1,20 @@
+import talkingSystemsTestbed from "../assets/talking-systems-testbed.jpg.asset.json";
+import talkingSystemsUi from "../assets/talking-systems-ui.png.asset.json";
+import talkingSystemsConcept from "../assets/talking-systems-concept.png.asset.json";
+import talkingSystemsDemo from "../assets/talking-systems-demo.jpg.asset.json";
+import thesisPresentation from "../assets/thesis-presentation.jpg.asset.json";
+import planetWhiteboard from "../assets/planet-whiteboard.jpg.asset.json";
+import planetPaperPrototypes from "../assets/planet-paper-prototypes.jpg.asset.json";
+import planetWorkshop from "../assets/planet-workshop.jpg.asset.json";
+
 export type ImageSlot = {
   caption: string;
   aspect: "16/9" | "4/3" | "3/4" | "9/16" | "1/1";
   note?: string;
+  src?: string;
+  alt?: string;
 };
+
 
 export type CaseSection = {
   heading: string;
@@ -159,13 +171,34 @@ export const projects: Project[] = [
       ],
     },
     images: {
-      intro: "Project images will be added here.",
       slots: [
-        { caption: "Testbed environment — FESTO CP-Factory", aspect: "16/9" },
-        { caption: "Assistant interaction", aspect: "4/3" },
-        { caption: "Architecture overview", aspect: "16/9" },
+        {
+          caption: "The assistant running on the testbed display at MITC",
+          aspect: "16/9",
+          src: talkingSystemsTestbed.url,
+          alt: "Large screen showing the Talking Systems assistant answering a question about the production line",
+        },
+        {
+          caption: "Assistant interface — alarm guide answer",
+          aspect: "4/3",
+          src: talkingSystemsUi.url,
+          alt: "Assistant interface explaining an emergency-stop alarm in plain language",
+        },
+        {
+          caption: "Concept framing — the scenario behind the assistant",
+          aspect: "16/9",
+          src: talkingSystemsConcept.url,
+          alt: "Presentation slide framing the industrial troubleshooting scenario",
+        },
+        {
+          caption: "Demonstration at the smart-factory testbed",
+          aspect: "4/3",
+          src: talkingSystemsDemo.url,
+          alt: "Two people standing in front of the testbed screen during the demonstration",
+        },
       ],
     },
+
   },
   {
     slug: "talking-scada",
@@ -331,11 +364,18 @@ export const projects: Project[] = [
       "Uncertainty becomes useful decision-support information rather than simply prediction error.",
     images: {
       intro:
-        "Real prediction-vs-actual graphs from the thesis will be placed here. No illustrative or simulated result curves are used.",
+        "No illustrative or simulated result curves are used — only real material from the thesis work.",
       slots: [
+        {
+          caption: "Thesis presentation — future work",
+          aspect: "16/9",
+          src: thesisPresentation.url,
+          alt: "Thesis presentation in a lecture hall with the future-work slide on screen",
+        },
         { caption: "Prediction vs actual with uncertainty bands (SE1 / SE3)", aspect: "16/9" },
       ],
     },
+
     links: [
       {
         label: "Thesis record — DiVA",
@@ -717,18 +757,33 @@ export const projects: Project[] = [
     contributionNote:
       "My contribution: to be added. This was a team project — individual contribution is described only where it can be stated accurately.",
     images: {
-      intro: "Real project images will be placed in this sequence.",
+      intro: "Material from the ideation and prototyping work; Figma screens follow.",
       slots: [
-        { caption: "1. Ideation — whiteboard / design workshop", aspect: "16/9", note: "Optional if identifiable people are shown." },
-        { caption: "2. Paper prototyping", aspect: "4/3" },
-        { caption: "2. Paper prototyping — interface states", aspect: "4/3" },
-        { caption: "3. User feedback / iteration", aspect: "4/3" },
+        {
+          caption: "1. Ideation — whiteboard sketch of the travel-alternatives concept",
+          aspect: "4/3",
+          src: planetWhiteboard.url,
+          alt: "Whiteboard sketch of the travel app screens with a table of travel alternatives",
+        },
+        {
+          caption: "2. Paper prototyping — booking and recommendation screens",
+          aspect: "3/4",
+          src: planetPaperPrototypes.url,
+          alt: "Paper prototypes of the travel app laid out on a table",
+        },
+        {
+          caption: "3. Design workshop with the project team",
+          aspect: "4/3",
+          src: planetWorkshop.url,
+          alt: "Project team working together during the design workshop",
+        },
         { caption: "4. Figma — home / destination", aspect: "9/16" },
         { caption: "4. Figma — travel options", aspect: "9/16" },
         { caption: "4. Figma — selected option", aspect: "9/16" },
         { caption: "4. Figma — statistics", aspect: "9/16" },
       ],
     },
+
   },
   {
     slug: "hallbar-halsa",

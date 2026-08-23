@@ -174,25 +174,44 @@ const aspectClass: Record<string, string> = {
   "1/1": "aspect-square",
 };
 
-/** Placeholder frame for images that will be supplied later. */
+/** Frame for a project image; renders a placeholder when no source is supplied. */
 export function ImageFrame({
   caption,
   aspect = "16/9",
   note,
+  src,
+  alt,
 }: {
   caption: string;
   aspect?: string | undefined;
   note?: string | undefined;
+  src?: string | undefined;
+  alt?: string | undefined;
 }) {
+  const ratio = aspectClass[aspect] ?? "aspect-video";
   return (
     <figure>
-      <div
-        className={`${aspectClass[aspect] ?? "aspect-video"} flex items-center justify-center rounded-lg border border-dashed border-border bg-secondary`}
-      >
-        <span className="px-4 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-          Image to be added
-        </span>
-      </div>
+      {src ? (
+        <div
+          className={`${ratio} overflow-hidden rounded-lg border border-border bg-secondary shadow-[0_18px_48px_-24px_rgba(0,0,0,0.75)]`}
+        >
+          <img
+            src={src}
+            alt={alt ?? caption}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className={`${ratio} flex items-center justify-center rounded-lg border border-dashed border-border bg-secondary`}
+        >
+          <span className="px-4 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            Image to be added
+          </span>
+        </div>
+      )}
       <figcaption className="mt-2 text-sm text-muted-foreground">
         {caption}
         {note ? <span className="block text-xs italic">{note}</span> : null}
@@ -200,3 +219,4 @@ export function ImageFrame({
     </figure>
   );
 }
+
