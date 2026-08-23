@@ -194,9 +194,10 @@ function StudyChildCard({
   child: Extract<TimelineChild, { kind: "course" | "topics" }>;
   accent: string;
 }) {
+  const compact = child.variant === "compact";
   return (
     <div
-      className="night-card min-w-0 rounded-xl p-4"
+      className={compact ? "night-card min-w-0 rounded-xl p-3.5" : "night-card min-w-0 rounded-xl p-4"}
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
     >
       {child.org ? (
@@ -207,14 +208,44 @@ function StudyChildCard({
       {child.university ? (
         <p className="mt-1 text-[13.5px] font-medium text-night-muted">{child.university}</p>
       ) : null}
-      <h4 className="mt-1 font-display text-[18px] font-semibold leading-snug text-night-foreground">
+      <h4
+        className={
+          compact
+            ? "mt-1 font-display text-[15.5px] font-semibold leading-snug text-night-foreground"
+            : "mt-1 font-display text-[18px] font-semibold leading-snug text-night-foreground"
+        }
+      >
         {child.formalTitle ?? child.title}
       </h4>
+      {child.level ? (
+        <p className="mt-1 font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
+          {child.level}
+        </p>
+      ) : null}
+      {child.signals?.length ? (
+        <ul className="mt-2 flex flex-wrap gap-1.5">
+          {child.signals.map((s) => (
+            <li
+              key={s}
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12px] text-night-body"
+            >
+              {s}
+            </li>
+          ))}
+        </ul>
+      ) : null}
       {child.body ? (
         <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body}</p>
       ) : null}
       {child.body2 ? (
         <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body2}</p>
+      ) : null}
+      {child.scadaLink ? (
+        <p className="mt-2 border-l pl-2.5 text-[13px] leading-relaxed text-night-muted"
+          style={{ borderColor: `color-mix(in oklab, ${accent} 45%, transparent)` }}
+        >
+          {child.scadaLink}
+        </p>
       ) : null}
       {child.topics.length ? (
         <ul className="mt-3 flex flex-wrap gap-1.5">
