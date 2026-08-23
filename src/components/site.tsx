@@ -127,26 +127,27 @@ export function NightHero({
 
 export function PortraitFrame({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative mx-auto aspect-square w-full max-w-[320px] ${className}`}>
       <div
         aria-hidden="true"
-        className="absolute -inset-3 rounded-[1.75rem] bg-aurora-teal/20 blur-2xl"
+        className="absolute -inset-4 rounded-full bg-aurora-teal/20 blur-3xl"
       />
-      <div className="relative overflow-hidden rounded-2xl border border-night-border bg-night-soft shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
+      <div className="relative h-full w-full overflow-hidden rounded-full border border-night-border bg-night-soft shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
         <img
           src={portraitAsset.url}
           alt="Portrait of Rickard Sörlin"
           width={480}
-          height={640}
+          height={480}
           loading="eager"
-          className="aspect-[4/5] h-full w-full object-cover"
+          className="h-full w-full scale-[1.35] object-cover object-[50%_18%]"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10"
+          className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/10"
         />
       </div>
     </div>
+
   );
 }
 
