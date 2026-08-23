@@ -135,8 +135,10 @@ function EducationPage() {
                     </div>
                   </div>
                 ) : null}
-              </article>
+                </article>
+              </div>
             ))}
+
           </div>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
