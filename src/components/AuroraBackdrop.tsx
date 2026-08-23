@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 /* ---------- stars: deterministic sparse field, mostly 1px ---------- */
 function mulberry(seed: number) {
@@ -127,26 +127,13 @@ const durations: Record<string, string> = { back: "92s", mid: "76s", front: "63s
  * three translucent aurora curtains that drift, fold and breathe independently.
  */
 export function AuroraBackdrop() {
-  const [fade, setFade] = useState(1);
+  const { scrollY } = useScroll();
+  // Scroll-linked fade driven entirely by motion values — no React state per frame.
+  const fade = useTransform(scrollY, (v) => {
+    const h = typeof window === "undefined" ? 1 : window.innerHeight || 1;
+    return 1 - Math.min(1, Math.max(0, v / h)) * 0.68;
+  });
 
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const h = window.innerHeight || 1;
-      const p = Math.min(1, Math.max(0, window.scrollY / h));
-      setFade(1 - p * 0.68);
-    };
-    const onScroll = () => {
-      if (!frame) frame = window.requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
 
   return (
     <div aria-hidden="true" className="aurora-sky pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -167,7 +154,7 @@ export function AuroraBackdrop() {
       </svg>
 
       {/* aurora */}
-      <svg
+      <motion.svg
         className="aurora-field absolute inset-0 h-full w-full"
         viewBox="0 0 1600 1000"
         preserveAspectRatio="xMidYMid slice"
@@ -297,7 +284,7 @@ export function AuroraBackdrop() {
             </path>
           </g>
         ))}
-      </svg>
+      </motion.svg>
 
       {/* keeps content readable: darkens the lower sky and the reading column */}
       <div className="aurora-veil-dark absolute inset-0" />

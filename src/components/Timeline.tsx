@@ -26,40 +26,85 @@ function trackLabel(track: TimelineMilestone["track"]) {
   return track === "development" ? "Development" : track === "direction" ? "Now" : "Professional";
 }
 
-/** Scroll-linked focus progress for one row: 0 far before, 0.5 in focus, 1 far after. */
-function useFocusMotion(ref: React.RefObject<HTMLElement | null>, reduced: boolean) {
+const FOCUS_SPRING = { stiffness: 110, damping: 29, mass: 0.35 } as const;
+
+/** Scroll-linked focus progress for one row: 0 far before, 0.5 in focus, 1 far after.
+ *  Continuous visuals stay on motion values; React state only flips on the
+ *  semantic inactive → active threshold. */
+function useFocusMotion(
+  ref: React.RefObject<HTMLElement | null>,
+  reduced: boolean,
+  variant: "parent" | "child" = "parent",
+) {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 90%", "end 20%"],
   });
-  const smooth = useSpring(scrollYProgress, { stiffness: 130, damping: 30, mass: 0.25 });
-  const scale = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.98, 0.995, 1.015, 1, 0.99]);
-  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.68, 0.9, 1, 0.96, 0.86]);
+  const smooth = useSpring(scrollYProgress, FOCUS_SPRING);
+  const parentScale = [0.992, 1, 1.021, 1.002, 0.995];
+  const childScale = [0.996, 1, 1.011, 1.001, 0.997];
+  const scale = useTransform(
+    smooth,
+    [0, 0.3, 0.5, 0.72, 1],
+    variant === "parent" ? parentScale : childScale,
+  );
+  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.9, 0.96, 1, 0.98, 0.93]);
+  const y = useTransform(
+    smooth,
+    [0, 0.3, 0.5, 0.72, 1],
+    variant === "parent" ? [0, 0, -3, 0, 0] : [0, 0, -1, 0, 0],
+  );
   const [active, setActive] = useState(false);
+  const activeRef = useRef(false);
 
   useEffect(() => {
     if (reduced) {
       setActive(true);
       return;
     }
-    return smooth.on("change", (v) => setActive(v > 0.24 && v < 0.86));
+    return smooth.on("change", (v) => {
+      const next = v > 0.24 && v < 0.86;
+      if (next !== activeRef.current) {
+        activeRef.current = next;
+        setActive(next);
+      }
+    });
   }, [smooth, reduced]);
 
-  return { scale, opacity, active };
+  return { scale, opacity, y, active };
 }
 
-function Node({ lit, isNow, accent }: { lit: boolean; isNow: boolean; accent: string }) {
+type NodeLevel = "major" | "phase" | "minor";
+
+const nodeSize: Record<NodeLevel, { idle: number; active: number }> = {
+  major: { idle: 18, active: 21 },
+  phase: { idle: 11, active: 15 },
+  minor: { idle: 7, active: 9 },
+};
+
+function Node({
+  lit,
+  isNow,
+  accent,
+  level = "phase",
+}: {
+  lit: boolean;
+  isNow: boolean;
+  accent: string;
+  level?: NodeLevel;
+}) {
+  const size = nodeSize[level];
+  const d = lit ? size.active : size.idle;
   return (
     <span
       aria-hidden="true"
-      className={[
-        "relative block h-4 w-4 rounded-full border-2 transition-[transform,background-color,border-color,box-shadow] duration-500 ease-out",
-        lit ? "scale-125" : "scale-75",
-      ].join(" ")}
+      className="relative block rounded-full border-2 transition-[width,height,background-color,border-color,box-shadow] duration-500 ease-out"
       style={{
+        width: d,
+        height: d,
         backgroundColor: lit ? accent : "#070d18",
-        borderColor: lit ? accent : `color-mix(in oklab, ${accent} 30%, transparent)`,
-        boxShadow: lit ? `0 0 16px 0 color-mix(in oklab, ${accent} 55%, transparent)` : "none",
+        borderColor: lit ? accent : `color-mix(in oklab, ${accent} 32%, transparent)`,
+        boxShadow: lit ? `0 0 14px 0 color-mix(in oklab, ${accent} 45%, transparent)` : "none",
       }}
     >
       {isNow ? (
@@ -71,6 +116,32 @@ function Node({ lit, isNow, accent }: { lit: boolean; isNow: boolean; accent: st
           }}
         />
       ) : null}
+    </span>
+  );
+}
+
+/** Fixed, verified year / phase label rendered beside a rail node. */
+function RailLabel({
+  label,
+  active,
+  accent,
+  className,
+}: {
+  label: string;
+  active: boolean;
+  accent: string;
+  className?: string;
+}) {
+  return (
+    <span
+      aria-hidden="true"
+      className={[
+        "pointer-events-none absolute whitespace-nowrap font-mono text-[12.5px] font-medium tracking-[0.08em] transition-colors duration-500",
+        className ?? "",
+      ].join(" ")}
+      style={{ color: active ? accent : "#A5B1BA" }}
+    >
+      {label}
     </span>
   );
 }
@@ -210,37 +281,37 @@ function StudyChildCard({
   const compact = child.variant === "compact";
   return (
     <div
-      className={compact ? "night-card min-w-0 rounded-xl p-3.5" : "night-card min-w-0 rounded-xl p-4"}
+      className="night-card min-w-0 rounded-xl p-4 sm:p-[18px]"
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
     >
       {child.org ? (
-        <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+        <p className="font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
           {child.org}
         </p>
       ) : null}
       {child.university ? (
-        <p className="mt-1 text-[13.5px] font-medium text-night-muted">{child.university}</p>
+        <p className="mt-1 text-[14px] font-medium text-[#B4C0C8]">{child.university}</p>
       ) : null}
       <h4
         className={
           compact
-            ? "mt-1 font-display text-[15.5px] font-semibold leading-snug text-night-foreground"
-            : "mt-1 font-display text-[18px] font-semibold leading-snug text-night-foreground"
+            ? "mt-1 font-display text-[17.5px] font-semibold leading-[1.32] text-[#F4F7F9]"
+            : "mt-1 font-display text-[18.5px] font-semibold leading-[1.32] text-[#F4F7F9]"
         }
       >
         {child.formalTitle ?? child.title}
       </h4>
       {child.level ? (
-        <p className="mt-1 font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
+        <p className="mt-1 font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
           {child.level}
         </p>
       ) : null}
       {child.signals?.length ? (
-        <ul className="mt-2 flex flex-wrap gap-1.5">
+        <ul className="mt-2.5 flex flex-wrap gap-1.5">
           {child.signals.map((s) => (
             <li
               key={s}
-              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12px] text-night-body"
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-[#CDD6DD]"
             >
               {s}
             </li>
@@ -248,13 +319,13 @@ function StudyChildCard({
         </ul>
       ) : null}
       {child.body ? (
-        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body}</p>
+        <p className="mt-2.5 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.body}</p>
       ) : null}
       {child.body2 ? (
-        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{child.body2}</p>
+        <p className="mt-2.5 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.body2}</p>
       ) : null}
       {child.scadaLink ? (
-        <p className="mt-2 border-l pl-2.5 text-[13px] leading-relaxed text-night-muted"
+        <p className="mt-2.5 border-l pl-2.5 text-[14.5px] leading-[1.55] text-[#B8C3CB]"
           style={{ borderColor: `color-mix(in oklab, ${accent} 45%, transparent)` }}
         >
           {child.scadaLink}
@@ -265,7 +336,7 @@ function StudyChildCard({
           {child.topics.map((t) => (
             <li
               key={t}
-              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-night-body"
+              className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-[#CDD6DD]"
             >
               {t}
             </li>
@@ -275,7 +346,7 @@ function StudyChildCard({
       {child.chain?.length ? (
         <ol className="mt-3 space-y-1">
           {child.chain.map((step, i) => (
-            <li key={step} className="text-[13.5px] text-night-body">
+            <li key={step} className="text-[14.5px] text-[#D3DBE2]">
               {i > 0 ? (
                 <span aria-hidden="true" className="mr-1.5" style={{ color: accent }}>
                   ↓
@@ -288,10 +359,10 @@ function StudyChildCard({
       ) : null}
       {child.relevance ? (
         <div className="mt-3 border-t border-night-border/50 pt-3">
-          <p className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
+          <p className="font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
             Product relevance
           </p>
-          <p className="mt-1 text-[14.5px] leading-relaxed text-night-body">{child.relevance}</p>
+          <p className="mt-1 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.relevance}</p>
         </div>
       ) : null}
     </div>
@@ -491,7 +562,10 @@ function Phase2Block({
 
       <div className="mt-8 grid gap-8 min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:gap-0">
         <div className="min-w-0 min-[1100px]:col-start-1 min-[1100px]:pr-10">
-          <div className="grid gap-4 min-[1600px]:grid-cols-2">
+          <div
+            className="grid gap-4"
+            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}
+          >
             {courses.map((child) => (
               <motion.div
                 key={child.title}
@@ -510,8 +584,8 @@ function Phase2Block({
         <div className="hidden min-[1100px]:col-start-2 min-[1100px]:block" />
 
         {caseChild ? (
-          <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1360px]:sticky min-[1360px]:top-[110px]">
-            <div className="min-[1360px]:max-w-[580px]">
+          <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1280px]:sticky min-[1280px]:top-[110px]">
+            <div className="min-[1280px]:min-w-[480px] min-[1280px]:max-w-[560px]">
               <CaseTrackCard child={caseChild} accent={accent} activeCourse={activeCourse} />
             </div>
           </div>
@@ -565,7 +639,10 @@ function ChildColumn({
                   index={i}
                   reduced={reduced}
                 >
-                  <div className="grid gap-3 min-[1500px]:grid-cols-2">
+                  <div
+                    className="grid gap-3"
+                    style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}
+                  >
                     {run.items.map((child) =>
                       child.kind === "project" ? null : (
                         <StudyChildCard key={child.title} child={child} accent={accent} />
@@ -706,7 +783,15 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
   return (
     <li ref={ref} className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
       <span className="absolute left-[13px] top-2 z-10 -translate-x-1/2 min-[1100px]:left-1/2">
-        <Node lit={active} isNow accent="var(--professional-accent)" />
+        <Node lit={active} isNow accent="var(--professional-accent)" level="major" />
+        {entry.railMarker ? (
+          <RailLabel
+            label={entry.railMarker.label}
+            active={active}
+            accent="var(--professional-accent)"
+            className="left-1/2 top-[26px] -translate-x-1/2"
+          />
+        ) : null}
       </span>
       <div className="min-[1100px]:flex min-[1100px]:justify-center">
         <article
@@ -766,7 +851,7 @@ function MilestoneRow({
   onToggleRole: (id: string) => void;
 }) {
   const ref = useRef<HTMLLIElement | null>(null);
-  const { scale, opacity, active } = useFocusMotion(ref, reduced);
+  const { scale, opacity, y, active } = useFocusMotion(ref, reduced);
   const accent = accentFor(entry.track);
   const isDev = entry.track === "development";
   const panelId = useId();
@@ -775,7 +860,7 @@ function MilestoneRow({
   const phase2 = caseChild
     ? groupChildren(entry.children ?? []).find((g) => /^phase 2/i.test(g.title ?? ""))
     : undefined;
-
+  const marker = entry.railMarker;
 
   return (
     <li
@@ -783,11 +868,23 @@ function MilestoneRow({
       className="relative pl-10 sm:pl-12 min-[1100px]:grid min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:items-start min-[1100px]:gap-x-0 min-[1100px]:pl-0"
     >
       <span className="absolute left-[13px] top-6 z-10 -translate-x-1/2 min-[1100px]:left-1/2 min-[1100px]:top-7">
-        <Node lit={active} isNow={false} accent={accent} />
+        <Node lit={active} isNow={false} accent={accent} level={marker?.kind ?? "minor"} />
+        {marker ? (
+          <RailLabel
+            label={marker.label}
+            active={active}
+            accent={accent}
+            className="left-1/2 top-[26px] -translate-x-1/2"
+          />
+        ) : null}
       </span>
 
       <motion.div
-        style={{ scale: reduced ? 1 : scale, opacity: reduced ? 1 : opacity }}
+        style={{
+          scale: reduced ? 1 : scale,
+          opacity: reduced ? 1 : opacity,
+          y: reduced ? 0 : y,
+        }}
         className={[
           "min-w-0 min-[1100px]:row-start-1",
           isDev ? "min-[1100px]:col-start-3 min-[1100px]:pl-10" : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
@@ -942,19 +1039,20 @@ export function Timeline() {
     offset: ["start 60%", "end 45%"],
   });
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.3,
+    stiffness: 110,
+    damping: 29,
+    mass: 0.35,
   });
-  const dotTop = useTransform(smoothProgress, (v) => `${v * 100}%`);
-  const dotOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
+  // Soft trailing glow at the head of the illuminated rail — no travelling dot.
+  const glowTop = useTransform(smoothProgress, (v) => `${v * 100}%`);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.03, 0.97, 1], [0, 0.5, 0.5, 0]);
 
   const toggleRole = (id: string) => setOpenRoleId((cur) => (cur === id ? null : id));
 
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto w-full max-w-[1440px] min-[1600px]:max-w-[1480px]"
+      className="relative mx-auto w-full max-w-[min(94vw,1480px)]"
     >
 
       {/* track headings */}
@@ -992,27 +1090,15 @@ export function Timeline() {
           }}
         />
         {!reduced ? (
-          <>
-            <motion.span
-              className="absolute left-1/2 block h-40 w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[6px]"
-              style={{
-                top: dotTop,
-                opacity: dotOpacity,
-                background:
-                  "linear-gradient(180deg, transparent, color-mix(in oklab, var(--aurora-green) 55%, transparent), transparent)",
-              }}
-            />
-            <motion.span
-              className="absolute left-1/2 block h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
-              style={{
-                top: dotTop,
-                opacity: dotOpacity,
-                backgroundColor: "var(--aurora-green)",
-                boxShadow:
-                  "0 0 18px 3px color-mix(in oklab, var(--aurora-green) 60%, transparent)",
-              }}
-            />
-          </>
+          <motion.span
+            className="absolute left-1/2 block h-56 w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[10px]"
+            style={{
+              top: glowTop,
+              opacity: glowOpacity,
+              background:
+                "linear-gradient(180deg, transparent, color-mix(in oklab, var(--aurora-green) 40%, transparent), transparent)",
+            }}
+          />
         ) : null}
       </div>
 

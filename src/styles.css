@@ -147,10 +147,9 @@
 /* Stable dark reading surface used by all timeline cards so text stays
    legible over the aurora backdrop. */
 @utility night-card {
-  background-color: rgb(11 17 23 / 0.88);
+  background-color: rgb(11 17 23 / 0.92);
   border: 1px solid rgb(160 185 198 / 0.18);
   color: var(--color-night-foreground);
-  backdrop-filter: blur(2px);
 }
 
 @utility text-balance-tight {

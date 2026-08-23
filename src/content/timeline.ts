@@ -68,11 +68,20 @@ export type TimelineChild =
       group?: string;
     };
 
+/** Explicit, verified label rendered next to a node on the central rail.
+ *  Never derived from period strings or scroll position. */
+export type RailMarker = {
+  label: string;
+  kind: "major" | "phase" | "minor";
+  verified: true;
+};
 
 export type TimelineMilestone = {
   id: string;
   period?: string;
   datePrecision: DatePrecision;
+  /** Only present when the chronology point is verified. */
+  railMarker?: RailMarker;
   title: string;
   subtitle?: string;
   org?: string;
@@ -108,6 +117,7 @@ export const parallelBridge = {
 export const milestones: TimelineMilestone[] = [
   {
     id: "project-engineer",
+    railMarker: { label: "2003", kind: "major", verified: true },
     period: "2003–2013",
     datePrecision: "verified-range",
     title: "Project Engineer — Digital Platforms",
@@ -132,6 +142,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "national-expert",
+    railMarker: { label: "2013", kind: "major", verified: true },
     period: "2013–2020",
     datePrecision: "verified-range",
     title: "Support Engineer — Digital Platforms",
@@ -165,6 +176,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "senior-advisor",
+    railMarker: { label: "2020", kind: "major", verified: true },
     period: "2020–2025",
     datePrecision: "verified-range",
     title: "Senior Technical Advisor — Digital Platforms",
@@ -196,6 +208,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "bsc-development",
+    railMarker: { label: "2025", kind: "major", verified: true },
     period: "Completed before Aug 2025",
     datePrecision: "phase",
     title: "Computer Science / Intelligent Systems",
@@ -297,6 +310,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "postgraduate",
+    railMarker: { label: "AUG 2025", kind: "phase", verified: true },
     period: "Aug 2025 – Jul 2026",
     datePrecision: "verified-range",
     title: "Advanced AI · Innovation · Product Development",
@@ -324,7 +338,7 @@ export const milestones: TimelineMilestone[] = [
         body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
         relevance:
           "Strengthened the ability to evaluate how modern language models can be adapted to domain-specific problems and how model capabilities, limitations and technical feasibility affect product decisions.",
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -346,7 +360,7 @@ export const milestones: TimelineMilestone[] = [
           "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
         relevance:
           "Built system-level understanding of AI around uncertainty, data quality, sensor limitations, real-time decisions and safety.",
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -358,7 +372,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Predictive Analytics", "Machine Learning", "Prediction", "Decision Support"],
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -370,7 +384,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -545,6 +559,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "now",
+    railMarker: { label: "NOW", kind: "major", verified: true },
     datePrecision: "unspecified",
     title: "Product & AI Direction",
     track: "direction",
