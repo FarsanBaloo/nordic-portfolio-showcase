@@ -937,6 +937,24 @@ function MilestoneRow({
           ) : null}
           <p className="mt-3 text-[16.5px] leading-relaxed text-night-body">{entry.summary}</p>
 
+          {entry.image ? (
+            <figure className="mt-5">
+              <div className="overflow-hidden rounded-xl border border-night-border/70">
+                <img
+                  src={entry.image.src}
+                  alt={entry.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[16/9] w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-2 text-[13px] text-night-muted">
+                {entry.image.caption}
+              </figcaption>
+            </figure>
+          ) : null}
+
+
           {entry.overviewBullets?.length ? (
             <ul className="mt-4 space-y-2.5">
               {entry.overviewBullets.map((b) => (
