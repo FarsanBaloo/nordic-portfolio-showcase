@@ -128,11 +128,22 @@ export const postgraduate = {
     },
     {
       id: "his",
+      phase: "Bridge · Aug 2025 – Jan 2026 · Innovation Management",
       institution: "University of Skövde",
+      formalTitle: "Advanced-Level Studies in Innovation Management",
       title: "Advanced-Level Studies in Innovation Management",
       subtitle: "Innovation in Practice",
       period: "Aug 2025 – Jan 2026",
       body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership.",
+      body2:
+        "Studied in parallel with the advanced AI foundation, this formed the innovation and product bridge developed further at Blekinge Institute of Technology.",
+      chain: [
+        "Advanced AI",
+        "Innovation Opportunity",
+        "Talking SCADA — Initial Concept",
+        "Product / Requirements Development",
+      ],
+
       projectCase: {
         title: "Course project — Talking SCADA (concept origin)",
         period: "Aug 2025 – Jan 2026",
