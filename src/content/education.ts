@@ -68,9 +68,13 @@ export const postgraduate = {
   entries: [
     {
       id: "liu",
+      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       institution: "Linköping University",
+      formalTitle:
+        "Advanced-Level Studies in Artificial Intelligence: Natural Language Processing",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Natural Language Processing",
+
       period: "Aug 2025 – Jan 2026",
       body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
       topics: [
