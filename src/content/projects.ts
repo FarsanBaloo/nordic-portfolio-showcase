@@ -16,6 +16,8 @@ export type ImageSlot = {
   note?: string;
   src?: string;
   alt?: string;
+  /** Preferred thumbnail for timeline cards */
+  lead?: boolean;
 };
 
 
@@ -198,6 +200,7 @@ export const projects: Project[] = [
           aspect: "4/3",
           src: talkingSystemsDemo.url,
           alt: "Two people standing in front of the testbed screen during the demonstration",
+          lead: true,
         },
       ],
     },
@@ -779,6 +782,7 @@ export const projects: Project[] = [
           aspect: "4/3",
           src: planetWorkshop.url,
           alt: "Project team working together during the design workshop",
+          lead: true,
         },
         { caption: "4. Figma — home / destination", aspect: "9/16" },
         { caption: "4. Figma — travel options", aspect: "9/16" },
