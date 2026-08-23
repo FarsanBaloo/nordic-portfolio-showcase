@@ -91,6 +91,9 @@ export type TimelineMilestone = {
   formalTitle?: string;
   /** Secondary descriptor shown under the formal title. */
   degreeDescriptor?: string;
+  /** Optional documentary photo shown inside the milestone card. */
+  image?: { src: string; alt: string; caption: string };
+
 
   track: TimelineTrack;
   stage?: string;
