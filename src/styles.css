@@ -42,8 +42,12 @@
   --color-night: var(--night);
   --color-night-soft: var(--night-soft);
   --color-night-foreground: var(--night-foreground);
+  --color-night-body: var(--night-body);
   --color-night-muted: var(--night-muted);
+  --color-night-subtle: var(--night-subtle);
   --color-night-border: var(--night-border);
+  --color-professional: var(--professional-accent);
+  --color-development: var(--development-accent);
   --color-aurora-green: var(--aurora-green);
   --color-aurora-teal: var(--aurora-teal);
   --color-aurora-violet: var(--aurora-violet);
