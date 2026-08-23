@@ -77,3 +77,37 @@ export const whatIBring = [
 
 export const contactIntro =
   "Interested in opportunities around AI-enabled products, Offer Management, Product Management, Product Ownership and industrial / B2B digital platforms.";
+
+/** Editorial narrative shown at the top of the Journey page. */
+export const journeyNarrative = {
+  lead: "My professional foundation comes from working close to real systems, customers and operational constraints.",
+  paragraphs: [
+    "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
+    "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated customer and operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value.",
+    "Alongside that professional journey, I deliberately expanded my capabilities through Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models and Leadership.",
+  ],
+  overlap:
+    "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
+  emphasis:
+    "The common thread has been understanding the real problem and turning it into something useful, feasible and valuable.",
+};
+
+/** Compact four-area career lens shown between the intro and the timeline. */
+export const careerLens = [
+  {
+    title: "Customer & Business",
+    items: ["Customer Needs", "Operational Reality", "Business Value", "Commercial Trade-offs"],
+  },
+  {
+    title: "Product & Lifecycle",
+    items: ["Requirements", "Product Feedback", "Release Readiness", "Prioritisation"],
+  },
+  {
+    title: "Technology & Delivery",
+    items: ["Architecture", "Technical Feasibility", "Integration", "End-to-End Ownership"],
+  },
+  {
+    title: "AI & Human-Centred Design",
+    items: ["Applied AI", "Product Discovery", "Interaction Design", "User Validation"],
+  },
+];

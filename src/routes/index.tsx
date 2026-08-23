@@ -1,13 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { ExperienceCard } from "../components/ExperienceCard";
 import { ProjectCard } from "../components/ProjectCard";
 import { PortraitFrame, Section } from "../components/site";
 import { Timeline } from "../components/Timeline";
 import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities, capabilityNote } from "../content/capabilities";
 import { bachelor, postgraduate, certifications } from "../content/education";
-import { offerRelevance, roles } from "../content/experience";
 import {
   aboutParagraphs,
   contactIntro,
@@ -60,7 +58,16 @@ function Index() {
   return (
     <>
       <section className="relative overflow-hidden night-panel">
-        <div className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
+        {/* soft local readability veil so hero copy stays legible over the aurora */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "radial-gradient(120% 70% at 30% 40%, rgba(2,4,7,0.82) 0%, rgba(2,4,7,0.55) 45%, transparent 80%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1280px] px-5 py-24 sm:py-32">
         <div className="grid gap-12 lg:grid-cols-[1.7fr_0.9fr] lg:items-start">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
@@ -182,27 +189,6 @@ function Index() {
           </div>
         </Section>
 
-        <Section id="experience">
-          <SectionHeading
-            eyebrow="Experience"
-            title="25+ years close to customers and real systems"
-            intro="Three stages at Schneider Electric — from delivery engineering to national platform expertise and senior technical advisory."
-          />
-          <div className="mt-8 space-y-6">
-            {roles.map((role) => (
-              <ExperienceCard key={role.id} role={role} />
-            ))}
-          </div>
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <h3 className="text-lg font-semibold">{offerRelevance.title}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-              {offerRelevance.body}
-            </p>
-            <div className="mt-5">
-              <TagList items={offerRelevance.items} />
-            </div>
-          </div>
-        </Section>
 
         <Section id="projects">
           <SectionHeading

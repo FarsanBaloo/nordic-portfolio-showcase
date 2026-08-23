@@ -1,33 +1,37 @@
 import { type ReactNode } from "react";
 
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "./ui-bits";
 import type { Project } from "../content/projects";
+import { projectRoleContext } from "../content/timeline";
 
 /** A compact, self-contained render of a full case study, reused by the
- *  timeline's in-place modal so clicking a project never leaves the
- *  timeline view. */
-function CaseStudyBody({
+ *  timeline's side sheet so opening a project never leaves the story. */
+export function CaseStudyBody({
   project,
-  roleContext,
-  span,
+  period,
 }: {
   project: Project;
-  roleContext?: string | undefined;
-  span?: string | undefined;
+  period?: string | undefined;
 }) {
+  const role = projectRoleContext[project.slug];
+
   return (
     <div className="space-y-8">
       <header className="space-y-3">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-teal">
-          {span ? `${span} · ` : ""}
-          {project.meta} · {project.type}
+        <p className="font-mono text-[12px] uppercase leading-relaxed tracking-[0.11em] text-aurora-teal">
+          {project.type}
+          {period ? (
+            <span className="mt-1 block text-night-muted">{period}</span>
+          ) : null}
         </p>
-        <h3 className="text-2xl font-semibold text-night-foreground">{project.title}</h3>
+        <h3 className="font-display text-2xl font-semibold text-night-foreground">
+          {project.title}
+        </h3>
         {project.subtitle ? (
-          <p className="text-sm text-night-muted">{project.subtitle}</p>
+          <p className="text-[15px] text-night-body">{project.subtitle}</p>
         ) : null}
-        <p className="text-xs text-night-muted">{project.org}</p>
+        <p className="text-[13px] text-night-muted">{project.org}</p>
         {project.highlight ? (
           <p className="border-l-2 border-aurora-teal pl-4 text-base italic leading-relaxed text-night-foreground">
             {project.highlight}
@@ -35,10 +39,10 @@ function CaseStudyBody({
         ) : null}
       </header>
 
-      {roleContext ? (
-        <section className="rounded-xl border border-night-border/60 bg-white/[0.03] p-5">
-          <Eyebrow>My role</Eyebrow>
-          <p className="mt-2 text-[15px] leading-relaxed text-night-muted">{roleContext}</p>
+      {role ? (
+        <section className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">
+          <Eyebrow>{role.label}</Eyebrow>
+          <p className="mt-2 text-[15.5px] leading-relaxed text-night-body">{role.body}</p>
         </section>
       ) : null}
 
@@ -53,13 +57,13 @@ function CaseStudyBody({
         <section key={section.heading} className="space-y-3">
           <h4 className="text-lg font-semibold text-night-foreground">{section.heading}</h4>
           {section.body?.map((p) => (
-            <p key={p} className="text-[15px] leading-relaxed text-night-muted">
+            <p key={p} className="text-[15.5px] leading-relaxed text-night-body">
               {p}
             </p>
           ))}
           {section.items?.length ? <BulletList items={section.items} /> : null}
           {section.quote ? (
-            <blockquote className="border-l-2 border-aurora-teal pl-4 text-[15px] italic leading-relaxed text-night-foreground">
+            <blockquote className="border-l-2 border-aurora-teal pl-4 text-[15.5px] italic leading-relaxed text-night-foreground">
               {section.quote}
             </blockquote>
           ) : null}
@@ -69,12 +73,14 @@ function CaseStudyBody({
       {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
 
       {project.metrics?.length ? (
-        <div className="rounded-xl border border-night-border/60 bg-white/[0.03] p-5">
+        <div className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">
           <Eyebrow>Results</Eyebrow>
           <dl className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3">
             {project.metrics.map((m) => (
               <div key={m.label}>
-                <dt className="text-[11px] uppercase tracking-wide text-night-muted">{m.label}</dt>
+                <dt className="text-[11px] uppercase tracking-[0.1em] text-night-muted">
+                  {m.label}
+                </dt>
                 <dd className="text-xl font-semibold text-night-foreground">{m.value}</dd>
                 {m.note ? <dd className="text-xs text-night-muted">{m.note}</dd> : null}
               </div>
@@ -111,39 +117,30 @@ function CaseStudyBody({
   );
 }
 
-/** Renders `children` as the visible card; clicking it opens a scrollable
- *  overlay with the full case study — no route change, the timeline stays
- *  mounted and scroll position is preserved. */
-export function ProjectModal({
-  slug,
+/** Renders `children` as the visible trigger; opening slides a right-side
+ *  evidence sheet with the full case study — no route change, the timeline
+ *  stays mounted and scroll position is preserved. */
+export function ProjectEvidenceSheet({
   project,
   children,
-  roleContext,
-  span,
+  period,
 }: {
-  slug: string;
   project: Project;
   children: ReactNode;
-  roleContext?: string | undefined;
-  span?: string | undefined;
+  period?: string | undefined;
 }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
+    <Sheet>
+      <SheetTrigger asChild>{children}</SheetTrigger>
+      <SheetContent
+        side="right"
         aria-describedby={undefined}
-        className="max-h-[88vh] w-[calc(100vw-2rem)] max-w-2xl overflow-y-auto border-night-border/60 p-6 sm:p-8"
-        style={{
-          backgroundColor: "oklch(0.16 0.02 255)",
-        }}
+        className="w-full overflow-y-auto border-night-border/60 p-6 sm:max-w-xl sm:p-8 lg:max-w-2xl"
+        style={{ backgroundColor: "oklch(0.155 0.02 255)" }}
       >
-        <DialogTitle className="sr-only">{project.title}</DialogTitle>
-        <CaseStudyBody project={project} roleContext={roleContext} span={span} />
-        <p className="border-t border-night-border/50 pt-4 text-[11px] text-night-muted">
-          Showing case study for <span className="text-aurora-teal">{slug}</span> — press Esc or
-          click outside to return to the timeline.
-        </p>
-      </DialogContent>
-    </Dialog>
+        <SheetTitle className="sr-only">{project.title}</SheetTitle>
+        <CaseStudyBody project={project} period={period} />
+      </SheetContent>
+    </Sheet>
   );
 }

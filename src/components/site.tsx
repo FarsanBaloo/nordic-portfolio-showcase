@@ -125,12 +125,18 @@ export function NightHero({
   );
 }
 
-export function PortraitFrame({ className = "" }: { className?: string }) {
+export function PortraitFrame({
+  className = "",
+  eager = true,
+}: {
+  className?: string;
+  eager?: boolean;
+}) {
   return (
     <div className={`relative mx-auto aspect-square w-full max-w-[320px] ${className}`}>
       <div
         aria-hidden="true"
-        className="absolute -inset-4 rounded-full bg-aurora-teal/20 blur-3xl"
+        className="absolute -inset-3 rounded-full bg-aurora-teal/8 blur-2xl"
       />
       <div className="relative h-full w-full overflow-hidden rounded-full border border-night-border bg-night-soft shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
         <img
@@ -138,8 +144,8 @@ export function PortraitFrame({ className = "" }: { className?: string }) {
           alt="Portrait of Rickard Sörlin"
           width={480}
           height={480}
-          loading="eager"
-          className="h-full w-full scale-[1.35] object-cover object-[50%_18%]"
+          loading={eager ? "eager" : "lazy"}
+          className="h-full w-full scale-[1.07] object-cover object-[50%_22%]"
         />
         <div
           aria-hidden="true"
@@ -147,7 +153,22 @@ export function PortraitFrame({ className = "" }: { className?: string }) {
         />
       </div>
     </div>
+  );
+}
 
+/** Smaller, centred identity portrait used at the start of the Journey. */
+export function JourneyPortrait() {
+  return (
+    <div className="flex flex-col items-center text-center">
+      <PortraitFrame className="w-[130px] sm:w-[150px] lg:w-[168px]" eager={false} />
+      <h2 className="mt-6 font-display text-2xl font-semibold text-night-foreground">
+        {profile.name}
+      </h2>
+      <p className="mt-1.5 text-[15px] text-night-body">{profile.descriptor}</p>
+      <p className="mt-1 font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+        {profile.location}
+      </p>
+    </div>
   );
 }
 

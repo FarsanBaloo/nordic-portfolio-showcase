@@ -1,10 +1,45 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
+
+/** Observes a row and reports whether it is inside the focus band, plus whether it has ever appeared. */
+function useRowVisibility(ref: React.RefObject<HTMLElement | null>) {
+  const [state, setState] = useState({ active: false, seen: false });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setState({ active: false, seen: true });
+      return;
+    }
+    const reveal = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setState((s) => ({ ...s, seen: true }));
+          reveal.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 },
+    );
+    const focus = new IntersectionObserver(
+      ([e]) => setState((s) => ({ ...s, active: !!e?.isIntersecting })),
+      { rootMargin: "-40% 0px -30% 0px", threshold: 0 },
+    );
+    reveal.observe(el);
+    focus.observe(el);
+    return () => {
+      reveal.disconnect();
+      focus.disconnect();
+    };
+  }, [ref]);
+  return state;
+}
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
-import { ProjectModal } from "./ProjectModal";
+import { ProjectEvidenceSheet } from "./ProjectEvidenceSheet";
 import {
   milestones,
+  postgraduatePhases,
+  talkingScadaChain,
   type TimelineBranch,
   type TimelineMilestone,
 } from "../content/timeline";
@@ -21,235 +56,34 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
-type Status = "upcoming" | "active" | "completed";
-
-type Row = {
-  kind: "milestone";
-  key: string;
-  entry: TimelineMilestone;
-  roleId?: string | undefined;
-};
-
-const roleIdFor: Record<string, string | undefined> = {
-  "project-engineer": "project-engineer",
-  "national-expert": "support-engineer",
-  "senior-advisor": "senior-technical-advisor",
-};
-
-function buildRows(): Row[] {
-  return milestones.map((entry) => ({
-    kind: "milestone" as const,
-    key: entry.id,
-    entry,
-    roleId: roleIdFor[entry.id],
-  }));
+function accentFor(track: TimelineMilestone["track"]) {
+  return track === "development" ? "var(--development-accent)" : "var(--professional-accent)";
 }
 
-/** Single continuous rAF loop that, every frame, reads the live rail rect and
- *  node positions. Because it reads on every animation frame (not only on a
- *  throttled scroll event), progress is always fresh — even for jump scrolls,
- *  hash-link jumps, and smooth wheel animations where a scroll-event-driven
- *  rAF would otherwise run before the new scroll position is applied.
- *
- *  Each frame it derives: raw progress (rail centred in viewport), the eased
- *  smoothProgress (rail fill + marker position), the counting year (eased
- *  toward a target interpolated between the two nearest milestone anchors,
- *  measured in pixel space so very tall cards stay in sync), and node
- *  statuses (upcoming/active/completed). */
-function useTimelineScroll(count: number, years: number[], reduced: boolean) {
-  const railRef = useRef<HTMLDivElement | null>(null);
-  const nodeRefs = useRef<(HTMLElement | null)[]>([]);
-  // DOM nodes written directly every frame (no React re-render → no jank)
-  const fillRef = useRef<HTMLDivElement | null>(null);
-  const markerRef = useRef<HTMLSpanElement | null>(null);
-  const labelRef = useRef<HTMLSpanElement | null>(null);
-  const [statuses, setStatuses] = useState<Status[]>(() =>
-    Array.from({ length: count }, () => "upcoming" as Status),
-  );
-  const smoothRef = useRef(0);
-  const shownRef = useRef(years[0] ?? 2003);
-  const anchorsRef = useRef<{ at: number; year: number }[]>([]);
-  const lastLabel = useRef<string>("");
-
-  useEffect(() => {
-    if (reduced) {
-      anchorsRef.current = years.map((y, i) => ({
-        at: count > 1 ? i / (count - 1) : 0,
-        year: y,
-      }));
-      if (fillRef.current) fillRef.current.style.transform = "scaleY(1)";
-      if (labelRef.current) labelRef.current.textContent = "NOW";
-      setStatuses(Array.from({ length: count }, () => "completed" as Status));
-      return;
-    }
-
-    let raf = 0;
-    let prevStatusKey = "";
-    let last = performance.now();
-    let frame = 0;
-
-    const targetYearFor = (p: number) => {
-      const a = anchorsRef.current;
-      if (a.length === 0) return years[0] ?? 2003;
-      if (p <= a[0]!.at) return a[0]!.year;
-      for (let i = 0; i < a.length - 1; i += 1) {
-        if (p <= a[i + 1]!.at) {
-          const t = (p - a[i]!.at) / Math.max(a[i + 1]!.at - a[i]!.at, 0.0001);
-          return a[i]!.year + (a[i + 1]!.year - a[i]!.year) * t;
-        }
-      }
-      return a[a.length - 1]!.year;
-    };
-
-    const tick = (now: number) => {
-      // Reschedule FIRST so a transient error can never kill the loop.
-      raf = requestAnimationFrame(tick);
-      try {
-        // frame-rate independent easing (stable on 60Hz and 120Hz displays)
-        const dt = Math.min(64, Math.max(1, now - last));
-        last = now;
-        frame += 1;
-
-        const rail = railRef.current;
-        const vh = window.innerHeight || 1;
-        let raw = smoothRef.current;
-        if (rail) {
-          const rect = rail.getBoundingClientRect();
-          raw = Math.min(
-            1,
-            Math.max(0, (vh * 0.5 - rect.top) / Math.max(rect.height, 1)),
-          );
-
-          // node measurement is the expensive part — do it every 3rd frame
-          if (rect.height > 1 && frame % 3 === 0) {
-            const pts: { at: number; year: number }[] = [];
-            const next: Status[] = [];
-            let sKey = "";
-            for (let i = 0; i < nodeRefs.current.length; i += 1) {
-              const el = nodeRefs.current[i];
-              if (!el) {
-                next.push("upcoming");
-                sKey += "u";
-                continue;
-              }
-              const r = el.getBoundingClientRect();
-              const center = r.top + r.height / 2;
-              const at = Math.min(1, Math.max(0, (center - rect.top) / rect.height));
-              const y = years[i];
-              if (Number.isFinite(at) && y != null) pts.push({ at, year: y });
-              const st: Status =
-                center < vh * 0.42
-                  ? "completed"
-                  : center <= vh * 0.6
-                    ? "active"
-                    : "upcoming";
-              next.push(st);
-              sKey += st[0];
-            }
-            if (pts.length) anchorsRef.current = pts;
-            if (sKey !== prevStatusKey) {
-              prevStatusKey = sKey;
-              setStatuses(next);
-            }
-          }
-        }
-
-        // exponential smoothing, normalised to elapsed time
-        const kp = 1 - Math.pow(1 - 0.14, dt / 16.67);
-        const sp = smoothRef.current + (raw - smoothRef.current) * kp;
-        smoothRef.current = Math.abs(raw - sp) < 0.0005 ? raw : sp;
-
-        const ky = 1 - Math.pow(1 - 0.09, dt / 16.67);
-        const ty = targetYearFor(raw);
-        const sy = shownRef.current + (ty - shownRef.current) * ky;
-        shownRef.current = Math.abs(ty - sy) < 0.005 ? ty : sy;
-
-        const p = smoothRef.current;
-        if (fillRef.current) fillRef.current.style.transform = `scaleY(${p})`;
-        if (markerRef.current) {
-          const m = markerRef.current;
-          m.style.transform = `translate(-50%, -50%) translate3d(0, ${p * (rail?.offsetHeight ?? 0)}px, 0)`;
-          m.style.opacity = p > 0.002 && p < 0.998 ? "1" : "0";
-        }
-        const newLabel = p > 0.97 ? "NOW" : String(Math.round(shownRef.current));
-        if (newLabel !== lastLabel.current) {
-          lastLabel.current = newLabel;
-          if (labelRef.current) labelRef.current.textContent = newLabel;
-        }
-      } catch {
-        // ignore transient measurement errors; rAF already rescheduled above
-      }
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [count, years, reduced]);
-
-  return { railRef, nodeRefs, fillRef, markerRef, labelRef, statuses };
-}
-
-
-function useReveal<T extends HTMLElement>(reduced: boolean) {
-  const ref = useRef<T | null>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    if (reduced) {
-      setShown(true);
-      return;
-    }
-    const el = ref.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setShown(true);
-            observer.disconnect();
-          }
-        }
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.15 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [reduced]);
-
-  return { ref, shown };
+function trackLabel(track: TimelineMilestone["track"]) {
+  return track === "development" ? "Development" : track === "direction" ? "Now" : "Professional";
 }
 
 function Node({
-  status,
+  lit,
   isNow,
   accent,
-  size,
 }: {
-  status: Status;
+  lit: boolean;
   isNow: boolean;
   accent: string;
-  size: "major" | "minor";
 }) {
-  const lit = status !== "upcoming";
-  const major = size === "major";
   return (
     <span
       aria-hidden="true"
       className={[
-        "relative block rounded-full border transition-[transform,background-color,border-color,box-shadow] duration-500 ease-out",
-        major ? "h-4 w-4 border-2" : "h-2 w-2",
-        lit ? "scale-100" : major ? "scale-75" : "scale-90",
+        "relative block h-4 w-4 rounded-full border-2 transition-[transform,background-color,border-color,box-shadow] duration-500 ease-out",
+        lit ? "scale-100" : "scale-75",
       ].join(" ")}
       style={{
-        backgroundColor: lit ? accent : "var(--color-night-bg, #070d18)",
-        borderColor: lit
-          ? accent
-          : "color-mix(in oklab, var(--aurora-teal) 28%, transparent)",
-        boxShadow: lit
-          ? `0 0 ${major ? 14 : 6}px 0 color-mix(in oklab, ${accent} ${major ? 55 : 40}%, transparent)`
-          : "none",
+        backgroundColor: lit ? accent : "#070d18",
+        borderColor: lit ? accent : `color-mix(in oklab, ${accent} 30%, transparent)`,
+        boxShadow: lit ? `0 0 14px 0 color-mix(in oklab, ${accent} 55%, transparent)` : "none",
       }}
     >
       {isNow && lit ? (
@@ -262,12 +96,49 @@ function Node({
   );
 }
 
-type BranchGroup = { title?: string | undefined; branches: TimelineBranch[] };
+function BranchCard({
+  branch,
+  accent,
+}: {
+  branch: TimelineBranch;
+  accent: string;
+}) {
+  const project = getProject(branch.slug);
+  if (!project) return null;
+  return (
+    <ProjectEvidenceSheet project={project} period={branch.period}>
+      <button
+        type="button"
+        className="group block w-full min-w-0 rounded-xl border border-night-border/60 bg-white/[0.035] p-4 text-left transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0"
+        style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
+      >
+        <p className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+          {branch.period ?? project.type}
+        </p>
+        <h4 className="mt-1 text-[17px] font-semibold text-night-foreground">{project.title}</h4>
+        {project.subtitle ? (
+          <p className="mt-1 text-[13px] text-night-muted">{project.subtitle}</p>
+        ) : null}
+        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{project.teaser}</p>
+        {branch.note ? (
+          <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+            {branch.note}
+          </p>
+        ) : null}
+        <span
+          className="mt-3 inline-flex min-h-[24px] items-center gap-2 text-[13px] transition-opacity group-hover:opacity-80"
+          style={{ color: accent }}
+        >
+          Open case study <span aria-hidden="true">→</span>
+        </span>
+      </button>
+    </ProjectEvidenceSheet>
+  );
+}
 
-function groupBranches(branches: TimelineBranch[]): BranchGroup[] {
-  const out: BranchGroup[] = [];
+function groupBranches(branches: TimelineBranch[]) {
+  const out: { title?: string | undefined; branches: TimelineBranch[] }[] = [];
   for (const b of branches) {
-    if (!b.slug) continue;
     const last = out[out.length - 1];
     if (last && last.title === b.group) last.branches.push(b);
     else out.push({ title: b.group, branches: [b] });
@@ -275,363 +146,356 @@ function groupBranches(branches: TimelineBranch[]): BranchGroup[] {
   return out;
 }
 
-function BranchCard({
+function RoleEvidence({ roleId }: { roleId: string }) {
+  const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const role = roles.find((r) => r.id === roleId);
+  if (!role) return null;
 
-  branch,
-  status,
-  period,
-  roleContext,
-}: {
-  branch: TimelineBranch;
-  status: Status;
-  period: string;
-  roleContext?: string | undefined;
-}) {
-  const project = branch.slug ? getProject(branch.slug) : undefined;
-  if (!project) return null;
-  const active = status === "active";
   return (
-    <ProjectModal
-      slug={project.slug}
-      project={project}
-      roleContext={roleContext}
-      span={branch.span ?? period}
-    >
+    <div className="mt-5 border-t border-night-border/50 pt-4">
       <button
         type="button"
-        className={[
-          "group relative block w-full min-w-0 rounded-2xl border p-4 text-left transition-all duration-500 hover:border-aurora-teal/40 hover:bg-white/[0.05] sm:p-5",
-          active
-            ? "border-aurora-teal/45 bg-white/[0.06] shadow-[0_0_0_1px_color-mix(in_oklab,var(--aurora-teal)_25%,transparent)]"
-            : status === "completed"
-              ? "border-night-border/60 bg-white/[0.035]"
-              : "border-night-border/40 bg-white/[0.02] opacity-70",
-        ].join(" ")}
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex min-h-[44px] items-center gap-2 text-[14px] font-medium text-aurora-teal transition-opacity hover:opacity-80"
       >
-        <span
-          aria-hidden="true"
-          className="absolute left-[-29px] top-7 h-1.5 w-1.5 rounded-full transition-colors duration-500 lg:hidden"
-          style={{
-            backgroundColor:
-              status === "upcoming"
-                ? "color-mix(in oklab, var(--aurora-teal) 30%, transparent)"
-                : "var(--aurora-teal)",
-          }}
-        />
-
-        <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-aurora-teal sm:text-[11px]">
-          {branch.span ?? period}
-          <span className="ml-2 block text-night-muted sm:ml-2 sm:inline">
-            <span className="hidden sm:inline">· </span>
-            {project.type}
-          </span>
-        </p>
-        <h4 className="mt-1 text-sm font-semibold text-night-foreground">{project.title}</h4>
-        {project.subtitle ? (
-          <p className="mt-1 text-xs text-night-muted">{project.subtitle}</p>
-        ) : null}
-        {project.teaser ? (
-          <p className="mt-2 text-sm leading-relaxed text-night-muted">{project.teaser}</p>
-        ) : null}
-        {branch.note ? (
-          <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-night-muted">
-            {branch.note}
-          </p>
-        ) : null}
-        <span className="mt-3 inline-flex items-center gap-2 text-xs text-aurora-teal transition-opacity group-hover:opacity-80">
-          Open case study <span aria-hidden="true">↗</span>
+        {open ? "Hide role evidence" : "Explore role evidence"}
+        <span aria-hidden="true" className={open ? "rotate-180 transition-transform" : "transition-transform"}>
+          ↓
         </span>
       </button>
-    </ProjectModal>
+      <div id={panelId} hidden={!open} className="mt-4 space-y-5">
+        <div className="grid gap-x-8 gap-y-5 md:grid-cols-2">
+          {role.detailGroups.map((g) => (
+            <section key={g.title}>
+              <h5 className="font-mono text-[12px] uppercase tracking-[0.11em] text-aurora-green">
+                {g.title}
+              </h5>
+              <ul className="mt-2 space-y-1">
+                {g.items.map((item) => (
+                  <li key={item} className="flex gap-2 text-[14px] leading-snug text-night-body">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-aurora-green"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        {role.notes?.map((n) => (
+          <p
+            key={n.label}
+            className="rounded-lg border border-night-border/60 bg-white/[0.03] p-4 text-[14.5px] leading-relaxed text-night-body"
+          >
+            <span className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+              {n.label}
+            </span>
+            <span className="mt-1 block">{n.body}</span>
+          </p>
+        ))}
+
+        {role.flow?.length ? (
+          <div>
+            <h5 className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+              Offer &amp; product evidence
+            </h5>
+            <ol className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-2">
+              {role.flow.map((step, i) => (
+                <li key={step} className="flex items-center gap-2">
+                  <span className="rounded-md border border-night-border bg-white/5 px-2.5 py-1 text-[13px] text-night-foreground">
+                    {step}
+                  </span>
+                  {i < role.flow!.length - 1 ? (
+                    <span aria-hidden="true" className="text-aurora-teal">
+                      →
+                    </span>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function PostgraduateDetail() {
+  return (
+    <div className="mt-5 space-y-5 border-t border-night-border/50 pt-4">
+      {postgraduatePhases.map((phase) => (
+        <section key={phase.title}>
+          <h5 className="font-mono text-[12px] uppercase tracking-[0.11em] text-aurora-violet">
+            {phase.title}
+          </h5>
+          <div className="mt-3 grid gap-4 sm:grid-cols-2">
+            {phase.entries.map((entry) => (
+              <div
+                key={entry.title}
+                className="rounded-lg border border-night-border/60 bg-white/[0.03] p-4"
+              >
+                <p className="text-[15px] font-semibold text-night-foreground">{entry.title}</p>
+                <p className="mt-0.5 text-[12.5px] text-night-muted">{entry.org}</p>
+                <ul className="mt-2 flex flex-wrap gap-1.5">
+                  {entry.topics.map((t) => (
+                    <li
+                      key={t}
+                      className="rounded-full border border-night-border px-2.5 py-0.5 text-[12.5px] text-night-body"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                {"relevance" in entry && entry.relevance ? (
+                  <p className="mt-2 text-[14px] leading-relaxed text-night-body">
+                    {entry.relevance}
+                  </p>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <section>
+        <h5 className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+          Talking SCADA — continuous story
+        </h5>
+        <ol className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-2">
+          {talkingScadaChain.map((step, i) => (
+            <li key={step} className="flex items-center gap-2">
+              <span className="rounded-md border border-night-border bg-white/5 px-2.5 py-1 text-[13px] text-night-foreground">
+                {step}
+              </span>
+              {i < talkingScadaChain.length - 1 ? (
+                <span aria-hidden="true" className="text-aurora-violet">
+                  →
+                </span>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
   );
 }
 
 function MilestoneRow({
   entry,
-  roleId,
-  status,
   reduced,
-  nodeRef,
 }: {
   entry: TimelineMilestone;
-  roleId?: string | undefined;
-  status: Status;
   reduced: boolean;
-  nodeRef: (el: HTMLElement | null) => void;
 }) {
-  const { ref, shown } = useReveal<HTMLDivElement>(reduced);
-  const role = roleId ? roles.find((r) => r.id === roleId) : undefined;
-  const isPro = entry.track === "professional";
-  const accent = entry.now
-    ? "var(--aurora-teal)"
-    : isPro
-      ? "var(--aurora-green)"
-      : "var(--aurora-violet)";
-  const left = entry.side === "left";
-  const active = status === "active";
-  const roleContext = role
-    ? `${role.title} (${entry.period}) — ${role.summary}`
-    : `${entry.title} (${entry.period}) — ${entry.detail}`;
+  const ref = useRef<HTMLLIElement | null>(null);
+  const { active: inView } = useRowVisibility(ref);
+  const accent = accentFor(entry.track);
+  const isDev = entry.track === "development";
+  const active = reduced || inView;
 
   return (
     <li
-      data-status={status}
-      className={[
-        "relative pl-10 transition-all duration-500 sm:pl-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-start lg:pl-0",
-        status === "upcoming" ? "opacity-80" : "opacity-100",
-      ].join(" ")}
+      ref={ref}
+      className="relative pl-10 sm:pl-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-start lg:gap-x-0 lg:pl-0"
     >
-      {/* active highlight line: a soft horizontal beam across the row */}
-      <span
-        aria-hidden="true"
-        className={[
-          "pointer-events-none absolute left-0 right-0 top-6 h-px transition-opacity duration-500",
-          active ? "opacity-100" : "opacity-0",
-        ].join(" ")}
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, color-mix(in oklab, var(--aurora-teal) 55%, transparent), transparent)",
-          boxShadow: "0 0 18px 1px color-mix(in oklab, var(--aurora-teal) 30%, transparent)",
-        }}
-      />
       <div className="hidden lg:block" />
-      <span
-        ref={nodeRef}
-        className="absolute left-[13px] top-6 z-10 -translate-x-1/2 lg:relative lg:left-auto lg:top-6 lg:translate-x-0"
-      >
-        <Node status={status} isNow={!!entry.now} accent={accent} size="major" />
+      <span className="absolute left-[13px] top-6 z-10 -translate-x-1/2 lg:relative lg:left-auto lg:top-6 lg:translate-x-0">
+        <Node lit={active} isNow={!!entry.now} accent={accent} />
       </span>
+
       <div
-        ref={ref}
         style={{
           transitionDuration: reduced ? "0ms" : "600ms",
           transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
         }}
         className={[
-          "min-w-0 transition-all will-change-transform",
-          shown ? "translate-y-0 scale-100 opacity-100" : "translate-y-6 scale-[0.98] opacity-0",
-          left
-            ? "lg:col-start-1 lg:row-start-1 lg:pr-14 lg:text-right"
-            : "lg:col-start-3 lg:row-start-1 lg:pl-14",
+          "min-w-0 transition-all",
+          isDev ? "lg:col-start-3 lg:row-start-1 lg:pl-12" : "lg:col-start-1 lg:row-start-1 lg:pr-12",
         ].join(" ")}
       >
-
-        <div
+        <article
           className={[
-            "rounded-2xl border p-4 backdrop-blur-sm transition-all duration-500 sm:p-5",
-            active || status === "completed"
-              ? "border-night-border bg-white/[0.055]"
-              : "border-night-border/50 bg-white/[0.02]",
-            active
-              ? "shadow-[0_0_0_1px_color-mix(in_oklab,var(--aurora-teal)_25%,transparent)]"
-              : "",
+            "rounded-2xl border p-5 backdrop-blur-sm transition-colors duration-500 sm:p-6",
+            active ? "border-night-border bg-white/[0.055]" : "border-night-border/50 bg-white/[0.025]",
           ].join(" ")}
+          style={
+            active
+              ? { boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 22%, transparent)` }
+              : undefined
+          }
         >
-          <p
-            className={[
-              "font-mono text-sm font-medium uppercase tracking-[0.16em] transition-colors duration-500",
-              status === "upcoming" ? "text-night-muted" : "text-aurora-teal",
-            ].join(" ")}
-          >
+          <p className="font-mono text-[12.5px] uppercase tracking-[0.11em]" style={{ color: accent }}>
             {entry.now ? "Now" : entry.period}
-            <span className="ml-2 text-xs text-night-muted">
-              {isPro ? "· Experience" : "· Development"}
-            </span>
+            <span className="ml-2 text-night-muted">· {trackLabel(entry.track)}</span>
           </p>
-          <h3
-            className={[
-              "mt-2 font-semibold text-night-foreground transition-all duration-500",
-              active ? "text-xl" : "text-lg",
-            ].join(" ")}
-          >
+          <h3 className="mt-2 font-display text-[22px] font-semibold leading-snug text-night-foreground sm:text-[23px]">
             {entry.title}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-night-muted">{entry.detail}</p>
+          {entry.subtitle ? (
+            <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
+          ) : null}
+          {entry.org ? <p className="mt-1 text-[13px] text-night-muted">{entry.org}</p> : null}
+          {entry.stage ? (
+            <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.11em] text-night-muted">
+              {entry.stage}
+            </p>
+          ) : null}
+          <p className="mt-3 text-[16px] leading-relaxed text-night-body">{entry.summary}</p>
 
-          {entry.roles ? (
-            <ul className={["mt-4 flex flex-wrap gap-2", left ? "lg:justify-end" : ""].join(" ")}>
-              {entry.roles.map((role) => (
-                <li
-                  key={role}
-                  className="rounded-full border border-aurora-teal/40 px-3 py-1 text-xs text-night-foreground"
-                >
-                  {role}
+          {entry.overviewBullets?.length ? (
+            <ul className="mt-4 space-y-2.5">
+              {entry.overviewBullets.map((b) => (
+                <li key={b} className="flex gap-2.5 text-[15.5px] leading-relaxed text-night-body">
+                  <span
+                    aria-hidden="true"
+                    className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
+                    style={{ backgroundColor: accent }}
+                  />
+                  {b}
                 </li>
               ))}
             </ul>
           ) : null}
 
-          {role ? (
-            <div className="mt-5 space-y-5 text-left">
-              <p className="text-sm leading-relaxed text-night-muted">{role.summary}</p>
-              <ul className="space-y-2">
-                {role.bullets.map((b) => (
-                  <li key={b} className="flex gap-2 text-sm leading-relaxed text-night-muted">
-                    <span
-                      aria-hidden="true"
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-aurora-teal"
-                    />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 grid gap-x-6 gap-y-4 border-t border-night-border/60 pt-5 md:grid-cols-2">
-                {role.detailGroups.map((g) => (
-                  <section key={g.title}>
-                    <h4 className="font-mono text-[11px] uppercase tracking-[0.16em] text-aurora-green">
-                      {g.title}
-                    </h4>
-                    <ul className="mt-1.5 space-y-1">
-                      {g.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex gap-1.5 text-xs leading-snug text-night-muted"
-                        >
-                          <span
-                            aria-hidden="true"
-                            className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-aurora-green"
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                ))}
-              </div>
-            </div>
+          {entry.relevanceSignals?.length ? (
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {entry.relevanceSignals.map((s) => (
+                <li
+                  key={s}
+                  className="rounded-full border px-3 py-1 text-[12.5px] text-night-foreground"
+                  style={{ borderColor: `color-mix(in oklab, ${accent} 40%, transparent)` }}
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
           ) : null}
-        </div>
-      </div>
 
-      {/* projects carried out in this role sit on the opposite side,
-          aligned to the top of the role so they read in the role's
-          opening period (e.g. 2020–2023 for the Senior Technical Advisor) */}
-      {entry.branches?.length ? (
-        <div
-          className={[
-            "mt-5 min-w-0 transition-all duration-500 lg:mt-0 lg:row-start-1 lg:self-start",
-            left ? "lg:col-start-3 lg:pl-14" : "lg:col-start-1 lg:pr-14",
-          ].join(" ")}
-        >
-          <p
-            className={[
-              "mb-3 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-night-muted sm:text-[11px]",
-              left ? "lg:text-left" : "lg:text-right",
-            ].join(" ")}
-          >
-            Projects in this role · {entry.period}
-          </p>
-          <div className="space-y-5">
+          {entry.roles?.length ? (
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {entry.roles.map((r) => (
+                <li
+                  key={r}
+                  className="rounded-full border border-aurora-teal/45 px-3 py-1 text-[13px] text-night-foreground"
+                >
+                  {r}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {entry.parallelNote ? (
+            <p className="mt-4 rounded-lg border border-night-border/60 bg-white/[0.03] p-3 text-[14px] leading-relaxed text-night-muted">
+              {entry.parallelNote}
+            </p>
+          ) : null}
+
+          {entry.roleId ? <RoleEvidence roleId={entry.roleId} /> : null}
+          {entry.id === "postgraduate" ? <PostgraduateDetail /> : null}
+        </article>
+
+        {entry.branches?.length ? (
+          <div className="mt-4 space-y-5">
+            {entry.branchesLabel ? (
+              <p className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+                {entry.branchesLabel}
+              </p>
+            ) : null}
             {groupBranches(entry.branches).map((group) => (
-              <section key={group.title ?? "ungrouped"} className="min-w-0">
+              <section key={group.title ?? "ungrouped"} className="min-w-0 space-y-3">
                 {group.title ? (
                   <h4
-                    className={[
-                      "mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-aurora-violet sm:text-[11px]",
-                      left ? "lg:text-left" : "lg:text-right",
-                    ].join(" ")}
+                    className="font-mono text-[12px] uppercase tracking-[0.11em]"
+                    style={{ color: accent }}
                   >
                     {group.title}
                   </h4>
                 ) : null}
-                <div className="space-y-3">
-                  {group.branches.map((b) => (
-                    <BranchCard
-                      key={b.slug}
-                      branch={b}
-                      status={status}
-                      period={entry.period}
-                      roleContext={roleContext}
-                    />
-                  ))}
-                </div>
+                {group.branches.map((b) => (
+                  <BranchCard key={b.slug} branch={b} accent={accent} />
+                ))}
               </section>
             ))}
           </div>
-        </div>
-      ) : null}
-
+        ) : null}
+      </div>
     </li>
   );
 }
 
-
 export function Timeline() {
   const reduced = usePrefersReducedMotion();
-  const rows = useMemo(buildRows, []);
-  // start year per milestone, aligned to rows
-  const years = useMemo(
-    () =>
-      rows.map((row) => {
-        const match = row.entry.period.match(/\d{4}/);
-        return row.entry.now ? 2026 : match ? Number(match[0]) : 2026;
-      }),
-    [rows],
-  );
-
-  const { railRef, nodeRefs, fillRef, markerRef, labelRef, statuses } =
-    useTimelineScroll(rows.length, years, reduced);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 60%", "end 45%"],
+  });
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.25,
+  });
+  const dotTop = useTransform(smoothProgress, (v) => `${v * 100}%`);
+  const dotOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
 
   return (
-    <div ref={railRef} className="relative">
+    <div ref={containerRef} className="relative">
+      {/* track headings */}
+      <div className="mb-10 hidden grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center lg:grid">
+        <p className="pr-12 font-mono text-[12px] uppercase tracking-[0.11em] text-professional">
+          Professional experience
+        </p>
+        <span className="block w-4" />
+        <p className="pl-12 font-mono text-[12px] uppercase tracking-[0.11em] text-development">
+          Education · Product · AI development
+        </p>
+      </div>
+      <div className="mb-8 flex gap-4 lg:hidden">
+        <span className="font-mono text-[11.5px] uppercase tracking-[0.11em] text-professional">
+          Professional
+        </span>
+        <span className="font-mono text-[11.5px] uppercase tracking-[0.11em] text-development">
+          Development
+        </span>
+      </div>
+
       {/* background rail */}
       <div
         aria-hidden="true"
         className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 lg:left-1/2 lg:-translate-x-1/2"
       >
-        {/* active progress rail */}
-        <div
-          ref={fillRef}
+        <motion.div
           className="w-px origin-top"
           style={{
             height: "100%",
-            transform: "scaleY(0)",
-            transformOrigin: "top",
-            willChange: "transform",
+            scaleY: reduced ? 1 : smoothProgress,
             background:
-              "linear-gradient(180deg, var(--aurora-teal), var(--aurora-green) 55%, var(--aurora-violet))",
-            boxShadow: "0 0 12px 1px color-mix(in oklab, var(--aurora-green) 40%, transparent)",
+              "linear-gradient(180deg, var(--professional-accent), var(--aurora-green) 55%, var(--development-accent))",
+            boxShadow: "0 0 12px 1px color-mix(in oklab, var(--aurora-green) 35%, transparent)",
           }}
         />
-      </div>
-
-      {/* year marker riding the progress head */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px lg:left-1/2"
-      >
-        <span
-          ref={markerRef}
-          className={[
-            "absolute left-0 top-0 block whitespace-nowrap rounded-full border border-aurora-teal/50 bg-night-bg/95 px-4 py-1.5",
-            "font-mono text-base font-semibold uppercase tracking-[0.18em] text-night-foreground",
-            "shadow-[0_0_26px_color-mix(in_oklab,var(--aurora-teal)_30%,transparent)] backdrop-blur",
-            "transition-opacity duration-300",
-          ].join(" ")}
-          style={{
-            opacity: 0,
-            transform: "translate(-50%, -50%)",
-            willChange: "transform, opacity",
-            backfaceVisibility: "hidden",
-          }}
-        >
-          <span ref={labelRef}>{String(years[0] ?? 2003)}</span>
-        </span>
-      </div>
-
-
-      <ol className="relative space-y-6 md:space-y-10">
-        {rows.map((row, i) => (
-          <MilestoneRow
-            key={row.key}
-            entry={row.entry}
-            roleId={row.roleId}
-            reduced={reduced}
-            status={statuses[i] ?? "upcoming"}
-            nodeRef={(el) => {
-              nodeRefs.current[i] = el;
+        {!reduced ? (
+          <motion.span
+            className="absolute left-1/2 block h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{
+              top: dotTop,
+              opacity: dotOpacity,
+              backgroundColor: "var(--aurora-green)",
+              boxShadow: "0 0 18px 3px color-mix(in oklab, var(--aurora-green) 60%, transparent)",
             }}
           />
+        ) : null}
+      </div>
+
+      <ol className="relative space-y-12 lg:space-y-16">
+        {milestones.map((entry) => (
+          <MilestoneRow key={entry.id} entry={entry} reduced={reduced} />
         ))}
       </ol>
     </div>
