@@ -8,17 +8,35 @@ export type DatePrecision =
   | "phase"
   | "unspecified";
 
-export type TimelineBranch = {
-  label: string;
-  slug: string;
-  /** Only set when the date is verified. Never generated automatically. */
-  period?: string;
-  datePrecision: DatePrecision;
-  /** Optional sub-section this branch belongs to inside the milestone */
-  group?: string;
-  kind?: "professional" | "academic";
-  note?: string;
-};
+/** A child item rendered on the opposite side of its parent milestone. */
+export type TimelineChild =
+  | {
+      kind: "project";
+      slug: string;
+      /** Only set when the date is verified. Never generated automatically. */
+      period?: string;
+      datePrecision: DatePrecision;
+      group?: string;
+      note?: string;
+      /** Marks a project that spans more than one study phase. */
+      continuityLabel?: string;
+      continuityChain?: string[];
+    }
+  | {
+      kind: "course";
+      title: string;
+      org?: string;
+      topics: string[];
+      body?: string;
+      group?: string;
+    }
+  | {
+      kind: "topics";
+      title: string;
+      org?: string;
+      topics: string[];
+      group?: string;
+    };
 
 export type TimelineMilestone = {
   id: string;
@@ -35,15 +53,19 @@ export type TimelineMilestone = {
   relevanceSignals?: string[];
   /** Ties into the inline evidence drawer content in experience.ts */
   roleId?: string;
-  parallelNote?: string;
-  branchesLabel?: string;
-  branches?: TimelineBranch[];
+  childrenLabel?: string;
+  children?: TimelineChild[];
   roles?: string[];
   now?: boolean;
 };
 
-export const overlapNote =
-  "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from the professional role.";
+/** Shown once, as a centered bridge between the two tracks. */
+export const parallelBridge = {
+  label: "Parallel professional & academic development",
+  body: "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from the professional role.",
+  /** Rendered immediately before this milestone id. */
+  beforeMilestoneId: "bsc-development",
+};
 
 export const milestones: TimelineMilestone[] = [
   {
@@ -54,19 +76,19 @@ export const milestones: TimelineMilestone[] = [
     org: "Schneider Electric",
     track: "professional",
     roleId: "project-engineer",
-    stage: "Customer Needs · Delivery Reality · Technical Responsibility",
+    stage: "Customer Needs · Requirements · Delivery Reality",
     summary:
-      "Customer-facing engineering delivering digital-platform and building-automation solutions from real customer needs through to operational handover.",
+      "Customer-facing engineering and digital-platform delivery, translating real customer and operational needs into workable system designs and taking technical responsibility through implementation and operational handover.",
     overviewBullets: [
-      "Worked directly with customers, end users and operations teams to understand needs, workflows and operational constraints, and translated them into implementation-ready requirements and system designs.",
-      "Held end-to-end technical responsibility from solution design and programming through integration, commissioning, testing and operational handover.",
-      "Contributed to solution architecture, integration patterns and platform quality through QA testing, defect identification and functionality validation.",
+      "Worked directly with customers, end users and operations teams to understand needs, workflows and operational constraints, translating them into implementation-ready requirements and system designs.",
+      "Held end-to-end technical responsibility from solution design and programming through integration, commissioning, testing and operational handover, building strong judgement around feasibility, usability, reliability and maintainability.",
+      "Used delivery experience and QA findings to improve platform quality, integration patterns and maintainable solution design.",
     ],
     relevanceSignals: [
       "Customer Needs",
       "Requirements",
       "End-to-End Delivery",
-      "Solution Architecture",
+      "Technical Feasibility",
       "Platform Quality",
     ],
   },
@@ -83,9 +105,9 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "National technical expert connecting real customer and field experience with platform quality, product lifecycle and release readiness.",
     overviewBullets: [
-      "Converted recurring customer and field issues into structured product feedback, enhancement proposals and usability improvements, considering customer impact, market needs and business value.",
+      "Translated recurring customer and field issues into structured product feedback, enhancement proposals and usability improvements, considering customer impact, market needs and business value.",
       "Worked close to the product lifecycle through QA testing, release validation, defect identification and deployment / release readiness, evaluating new and changed functionality from a real-world customer perspective.",
-      "Combined national platform expertise, customer insight and technical feasibility to inform platform improvements, reliable adoption and product-related decisions.",
+      "Connected national platform expertise and customer insight with technical feasibility to support product quality, adoption readiness and roadmap-relevant improvement decisions.",
     ],
     relevanceSignals: [
       "Customer Insight",
@@ -94,13 +116,12 @@ export const milestones: TimelineMilestone[] = [
       "Release Readiness",
       "Enhancement Proposals",
     ],
-    branchesLabel: "Reusable capability from this role",
-    branches: [
+    childrenLabel: "Selected product / platform capability",
+    children: [
       {
-        label: "Reusable HVAC monitoring & deviation management",
+        kind: "project",
         slug: "hvac-monitoring",
         datePrecision: "unspecified",
-        kind: "professional",
       },
     ],
   },
@@ -118,7 +139,7 @@ export const milestones: TimelineMilestone[] = [
     overviewBullets: [
       "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and scalable solution directions.",
       "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs to reduce technical and lifecycle risk and shape feasible, scalable outcomes.",
+      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs to reduce delivery and lifecycle risk and shape feasible, scalable outcomes.",
     ],
     relevanceSignals: [
       "Customer Discovery",
@@ -127,33 +148,12 @@ export const milestones: TimelineMilestone[] = [
       "Technical-Commercial Trade-offs",
       "Lifecycle & Risk",
     ],
-    parallelNote: overlapNote,
-    branchesLabel: "Selected work during this role",
-    branches: [
-      {
-        label: "Digital Realty ST06",
-        slug: "digital-realty-st06",
-        datePrecision: "unspecified",
-        kind: "professional",
-      },
-      {
-        label: "KTH Living Lab",
-        slug: "kth-living-lab",
-        datePrecision: "unspecified",
-        kind: "professional",
-      },
-      {
-        label: "S:t Eriks Eye Center of Excellence",
-        slug: "st-eriks",
-        datePrecision: "unspecified",
-        kind: "professional",
-      },
-      {
-        label: "AstraZeneca",
-        slug: "astrazeneca",
-        datePrecision: "unspecified",
-        kind: "professional",
-      },
+    childrenLabel: "Selected work during this role",
+    children: [
+      { kind: "project", slug: "digital-realty-st06", datePrecision: "unspecified" },
+      { kind: "project", slug: "kth-living-lab", datePrecision: "unspecified" },
+      { kind: "project", slug: "st-eriks", datePrecision: "unspecified" },
+      { kind: "project", slug: "astrazeneca", datePrecision: "unspecified" },
     ],
   },
   {
@@ -167,49 +167,45 @@ export const milestones: TimelineMilestone[] = [
     stage: "Applied AI · Human-Centred Design · Research",
     summary:
       "Bachelor of Science in Computer Science with a specialisation in Intelligent Systems, developed alongside professional employment with periods of leave of absence for studies.",
-    parallelNote: overlapNote,
-    branchesLabel: "Development work",
-    branches: [
+    childrenLabel: "Development work",
+    children: [
       {
-        label: "PLANE(ra)T Resande",
+        kind: "project",
         slug: "planet-resande",
         period: "2024",
         datePrecision: "verified-year",
         group: "2024 · Interaction Design",
-        kind: "academic",
+        note: "Team project",
       },
       {
-        label: "Hållbar Hälsa",
+        kind: "project",
         slug: "hallbar-halsa",
         period: "2024",
         datePrecision: "verified-year",
         group: "2024 · Interaction Design",
-        kind: "academic",
+        note: "Team project",
       },
       {
-        label: "Seeing AI — heuristic UX & accessibility evaluation",
+        kind: "project",
         slug: "seeing-ai",
         period: "2024",
         datePrecision: "verified-year",
         group: "2024 · Interaction Design",
-        kind: "academic",
         note: "Individual assignment",
       },
       {
-        label: "Talking Systems",
+        kind: "project",
         slug: "talking-systems",
         period: "2025",
         datePrecision: "verified-year",
         group: "2025 · Applied AI",
-        kind: "academic",
       },
       {
-        label: "48-Hour Wind Power Forecasting",
+        kind: "project",
         slug: "wind-power-forecasting",
         period: "2025",
         datePrecision: "verified-year",
         group: "2025 · Bachelor thesis",
-        kind: "academic",
       },
     ],
   },
@@ -223,49 +219,18 @@ export const milestones: TimelineMilestone[] = [
     stage: "Product Management · Strategy · Advanced AI",
     summary:
       "Postgraduate development across advanced AI, Innovation Management, Industrial Economics, Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models, Agile development and Leadership.",
-    branchesLabel: "Study tracks and product work",
-    branches: [
+    childrenLabel: "Study tracks and product work",
+    children: [
       {
-        label: "Talking SCADA — from innovation opportunity to product case",
-        slug: "talking-scada",
-        datePrecision: "phase",
-        group: "Product & requirements development",
-        kind: "academic",
-      },
-      {
-        label: "Multi-Agent AI decision support for smart building platforms",
-        slug: "multi-agent-ai",
-        datePrecision: "phase",
-        group: "Product & requirements development",
-        kind: "academic",
-      },
-    ],
-  },
-  {
-    id: "now",
-    datePrecision: "unspecified",
-    title: "Product & AI Direction",
-    track: "direction",
-    summary:
-      "A logical convergence of industrial domain depth, customer understanding, product thinking and applied AI.",
-    roles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
-    now: true,
-  },
-];
-
-/** First-phase postgraduate subjects, rendered inside the postgraduate node. */
-export const postgraduatePhases = [
-  {
-    title: "First phase",
-    entries: [
-      {
+        kind: "course",
         title: "Natural Language Processing",
         org: "Linköping University",
         topics: ["Transformers", "Domain Adaptation", "PEFT", "LoRA"],
-        relevance:
-          "Understanding how modern language models can be adapted to domain-specific problems and how technical feasibility and limitations affect product choices.",
+        body: "Understanding how modern language models can be adapted to domain-specific problems and how technical feasibility and limitations affect product choices.",
+        group: "First phase",
       },
       {
+        kind: "course",
         title: "Autonomous Systems & Perception",
         org: "Umeå University",
         topics: [
@@ -276,11 +241,12 @@ export const postgraduatePhases = [
           "Planning",
           "Reinforcement Learning",
         ],
-        relevance:
-          "System-level AI thinking around uncertainty, data quality, real-time decisions and safety.",
+        body: "System-level AI thinking around uncertainty, data quality, real-time decisions and safety.",
+        group: "First phase",
       },
       {
-        title: "Advanced-Level Studies in Innovation Management",
+        kind: "course",
+        title: "Innovation in Practice",
         org: "University of Skövde · Aug 2025 – Jan 2026",
         topics: [
           "Strategic Innovation",
@@ -288,14 +254,11 @@ export const postgraduatePhases = [
           "Implementation",
           "Innovation Leadership",
         ],
-        relevance: "Origin of the Talking SCADA product concept.",
+        body: "Origin of the Talking SCADA product concept.",
+        group: "First phase",
       },
-    ],
-  },
-  {
-    title: "Industrial Economics, Product & Requirements Management",
-    entries: [
       {
+        kind: "topics",
         title: "Product & Portfolio",
         org: "Blekinge Institute of Technology · Aug 2025 – Jun 2026",
         topics: [
@@ -305,8 +268,10 @@ export const postgraduatePhases = [
           "New Product Development",
           "MVP",
         ],
+        group: "Product & requirements development",
       },
       {
+        kind: "topics",
         title: "Requirements & Delivery",
         org: "Blekinge Institute of Technology",
         topics: [
@@ -315,8 +280,10 @@ export const postgraduatePhases = [
           "Prioritisation",
           "Agile Process & Project Management",
         ],
+        group: "Product & requirements development",
       },
       {
+        kind: "topics",
         title: "Business & Strategy",
         org: "Blekinge Institute of Technology",
         topics: [
@@ -325,26 +292,51 @@ export const postgraduatePhases = [
           "Value Proposition",
           "Go-to-Market",
         ],
+        group: "Product & requirements development",
       },
       {
+        kind: "topics",
         title: "Leadership",
         org: "Blekinge Institute of Technology",
         topics: ["Leadership", "Stakeholder Alignment"],
+        group: "Product & requirements development",
+      },
+      {
+        kind: "project",
+        slug: "talking-scada",
+        datePrecision: "phase",
+        group: "Continuous product case",
+        note: "Innovation in Practice · Skövde → Product & Requirements · BTH",
+        continuityLabel: "Continuous product case",
+        continuityChain: [
+          "Innovation Opportunity",
+          "Product Concept",
+          "Product Discovery",
+          "Requirements",
+          "MVP",
+          "Product Strategy",
+          "Business Model",
+          "Go-to-Market",
+        ],
+      },
+      {
+        kind: "project",
+        slug: "multi-agent-ai",
+        datePrecision: "phase",
+        group: "AI platform / product concept",
       },
     ],
   },
-];
-
-/** Talking SCADA continuity chain, rendered under the postgraduate node. */
-export const talkingScadaChain = [
-  "Innovation Opportunity",
-  "Product Concept",
-  "Product Discovery",
-  "Requirements",
-  "MVP",
-  "Product Strategy",
-  "Business Model",
-  "Go-to-Market",
+  {
+    id: "now",
+    datePrecision: "unspecified",
+    title: "Product & AI Direction",
+    track: "direction",
+    summary:
+      "Bringing together industrial domain expertise, customer understanding, digital-platform experience, technical-commercial judgement, Product Management capabilities and applied AI.",
+    roles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
+    now: true,
+  },
 ];
 
 /** Project-specific role / focus statements. Never a generic parent entry. */

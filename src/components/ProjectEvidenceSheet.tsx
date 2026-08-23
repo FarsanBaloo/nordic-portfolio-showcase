@@ -42,7 +42,7 @@ export function CaseStudyBody({
       {role ? (
         <section className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">
           <Eyebrow>{role.label}</Eyebrow>
-          <p className="mt-2 text-[15.5px] leading-relaxed text-night-body">{role.body}</p>
+          <p className="mt-2 text-[16px] leading-[1.65] text-night-body">{role.body}</p>
         </section>
       ) : null}
 
@@ -57,13 +57,13 @@ export function CaseStudyBody({
         <section key={section.heading} className="space-y-3">
           <h4 className="text-lg font-semibold text-night-foreground">{section.heading}</h4>
           {section.body?.map((p) => (
-            <p key={p} className="text-[15.5px] leading-relaxed text-night-body">
+            <p key={p} className="text-[16px] leading-[1.65] text-night-body">
               {p}
             </p>
           ))}
           {section.items?.length ? <BulletList items={section.items} /> : null}
           {section.quote ? (
-            <blockquote className="border-l-2 border-aurora-teal pl-4 text-[15.5px] italic leading-relaxed text-night-foreground">
+            <blockquote className="border-l-2 border-aurora-teal pl-4 text-[16px] italic leading-[1.65] text-night-foreground">
               {section.quote}
             </blockquote>
           ) : null}
@@ -135,8 +135,8 @@ export function ProjectEvidenceSheet({
       <SheetContent
         side="right"
         aria-describedby={undefined}
-        className="w-full overflow-y-auto border-night-border/60 p-6 sm:max-w-xl sm:p-8 lg:max-w-2xl"
-        style={{ backgroundColor: "oklch(0.155 0.02 255)" }}
+        className="w-full max-w-[96vw] overflow-y-auto border-night-border/60 p-6 sm:max-w-[min(50vw,780px)] sm:p-8"
+        style={{ backgroundColor: "rgb(11 17 23 / 0.97)" }}
       >
         <SheetTitle className="sr-only">{project.title}</SheetTitle>
         <CaseStudyBody project={project} period={period} />

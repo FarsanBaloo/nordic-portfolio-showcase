@@ -43,8 +43,10 @@
   --color-night-soft: var(--night-soft);
   --color-night-foreground: var(--night-foreground);
   --color-night-body: var(--night-body);
+  --color-night-bullet: var(--night-bullet);
   --color-night-muted: var(--night-muted);
   --color-night-subtle: var(--night-subtle);
+  --color-night-faint: var(--night-faint);
   --color-night-border: var(--night-border);
   --color-professional: var(--professional-accent);
   --color-development: var(--development-accent);
@@ -78,10 +80,12 @@
 
   --night: oklch(0.07 0.018 265);
   --night-soft: oklch(0.12 0.03 265);
-  --night-foreground: #f4f7f9;
-  --night-body: #c4ced6;
-  --night-muted: #929faa;
-  --night-subtle: #6f7d88;
+  --night-foreground: #f7f9fb;
+  --night-body: #d3dbe2;
+  --night-bullet: #cdd6dd;
+  --night-muted: #a5b1ba;
+  --night-subtle: #8d9aa5;
+  --night-faint: #6c7984;
   --professional-accent: #62dcc4;
   --development-accent: #a99bff;
   --night-border: oklch(1 0 0 / 14%);
@@ -138,6 +142,15 @@
 @utility night-panel {
   background-color: transparent;
   color: var(--color-night-foreground);
+}
+
+/* Stable dark reading surface used by all timeline cards so text stays
+   legible over the aurora backdrop. */
+@utility night-card {
+  background-color: rgb(11 17 23 / 0.88);
+  border: 1px solid rgb(160 185 198 / 0.18);
+  color: var(--color-night-foreground);
+  backdrop-filter: blur(2px);
 }
 
 @utility text-balance-tight {
