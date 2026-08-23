@@ -42,18 +42,15 @@ function JourneyPage() {
             </div>
 
             <div className="mt-12 space-y-5">
-              <p className="text-[17px] font-semibold leading-relaxed text-night-foreground">
+              <p className="text-[17.5px] font-semibold leading-[1.7] text-night-foreground">
                 {journeyNarrative.lead}
               </p>
               {journeyNarrative.paragraphs.map((p) => (
-                <p key={p} className="text-[16px] leading-relaxed text-night-body">
+                <p key={p} className="text-[17px] leading-[1.7] text-night-body">
                   {p}
                 </p>
               ))}
-              <p className="rounded-lg border border-night-border/60 bg-white/[0.03] p-4 text-[15px] leading-relaxed text-night-body">
-                {journeyNarrative.overlap}
-              </p>
-              <p className="text-[17px] font-semibold leading-relaxed text-night-foreground">
+              <p className="text-[17.5px] font-semibold leading-[1.7] text-night-foreground">
                 {journeyNarrative.emphasis}
               </p>
             </div>
