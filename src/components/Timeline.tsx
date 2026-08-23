@@ -326,8 +326,28 @@ function ChildColumn({
               {group.title}
             </h4>
           ) : null}
-          {group.items.map((child) => {
+          {runs(group.items).map((run, runIndex) => {
             const i = index++;
+            if (run.compact) {
+              return (
+                <ChildShell
+                  key={`compact-${runIndex}`}
+                  accent={accent}
+                  side={side}
+                  index={i}
+                  reduced={reduced}
+                >
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {run.items.map((child) =>
+                      child.kind === "project" ? null : (
+                        <StudyChildCard key={child.title} child={child} accent={accent} />
+                      ),
+                    )}
+                  </div>
+                </ChildShell>
+              );
+            }
+            const child = run.items[0]!;
             const key = child.kind === "project" ? child.slug : child.title;
             return (
               <ChildShell key={key} accent={accent} side={side} index={i} reduced={reduced}>
