@@ -25,18 +25,33 @@ export type TimelineChild =
   | {
       kind: "course";
       title: string;
+      /** University name, rendered above the formal study title. */
+      university?: string;
+      /** Full formal programme / study title. */
+      formalTitle?: string;
       org?: string;
       topics: string[];
       body?: string;
+      body2?: string;
+      relevance?: string;
+      /** Small vertical progression chain rendered under the card. */
+      chain?: string[];
       group?: string;
     }
   | {
       kind: "topics";
       title: string;
+      university?: string;
+      formalTitle?: string;
       org?: string;
       topics: string[];
+      body?: string;
+      body2?: string;
+      relevance?: string;
+      chain?: string[];
       group?: string;
     };
+
 
 export type TimelineMilestone = {
   id: string;
