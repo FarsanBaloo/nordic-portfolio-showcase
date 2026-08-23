@@ -1,13 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { ExperienceCard } from "../components/ExperienceCard";
 import { ProjectCard } from "../components/ProjectCard";
 import { PortraitFrame, Section } from "../components/site";
 import { Timeline } from "../components/Timeline";
 import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities, capabilityNote } from "../content/capabilities";
 import { bachelor, postgraduate, certifications } from "../content/education";
-import { offerRelevance, roles } from "../content/experience";
 import {
   aboutParagraphs,
   contactIntro,
