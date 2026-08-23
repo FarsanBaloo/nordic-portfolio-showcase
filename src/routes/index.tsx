@@ -144,29 +144,33 @@ function Index() {
       </section>
 
       <section className="relative overflow-hidden night-panel">
-        <div className="relative mx-auto max-w-6xl px-5 py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
-            The journey
-          </p>
-          <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-night-foreground sm:text-4xl">
-            From industrial systems to AI-enabled products
-          </h2>
-          <div className="mt-6 max-w-3xl space-y-4">
-            {journeyIntro.slice(0, 2).map((p) => (
-              <p key={p} className="text-[15px] leading-relaxed text-night-muted">
-                {p}
-              </p>
-            ))}
+        <div className="relative py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
+              The journey
+            </p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-night-foreground sm:text-4xl">
+              From industrial systems to AI-enabled products
+            </h2>
+            <div className="mt-6 max-w-3xl space-y-4">
+              {journeyIntro.slice(0, 2).map((p) => (
+                <p key={p} className="text-[15px] leading-relaxed text-night-muted">
+                  {p}
+                </p>
+              ))}
+            </div>
           </div>
-          <div className="mt-14">
+          <div className="mt-14 w-full px-5 min-[1100px]:px-[clamp(24px,4vw,72px)]">
             <Timeline />
           </div>
-          <Link
-            to="/journey"
-            className="mt-12 inline-block text-sm font-medium text-aurora-teal hover:underline"
-          >
-            Read the full journey →
-          </Link>
+          <div className="mx-auto max-w-6xl px-5">
+            <Link
+              to="/journey"
+              className="mt-12 inline-block text-sm font-medium text-aurora-teal hover:underline"
+            >
+              Read the full journey →
+            </Link>
+          </div>
         </div>
       </section>
 
