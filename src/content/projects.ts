@@ -171,13 +171,34 @@ export const projects: Project[] = [
       ],
     },
     images: {
-      intro: "Project images will be added here.",
       slots: [
-        { caption: "Testbed environment — FESTO CP-Factory", aspect: "16/9" },
-        { caption: "Assistant interaction", aspect: "4/3" },
-        { caption: "Architecture overview", aspect: "16/9" },
+        {
+          caption: "The assistant running on the testbed display at MITC",
+          aspect: "16/9",
+          src: talkingSystemsTestbed.url,
+          alt: "Large screen showing the Talking Systems assistant answering a question about the production line",
+        },
+        {
+          caption: "Assistant interface — alarm guide answer",
+          aspect: "4/3",
+          src: talkingSystemsUi.url,
+          alt: "Assistant interface explaining an emergency-stop alarm in plain language",
+        },
+        {
+          caption: "Concept framing — the scenario behind the assistant",
+          aspect: "16/9",
+          src: talkingSystemsConcept.url,
+          alt: "Presentation slide framing the industrial troubleshooting scenario",
+        },
+        {
+          caption: "Demonstration at the smart-factory testbed",
+          aspect: "4/3",
+          src: talkingSystemsDemo.url,
+          alt: "Two people standing in front of the testbed screen during the demonstration",
+        },
       ],
     },
+
   },
   {
     slug: "talking-scada",
