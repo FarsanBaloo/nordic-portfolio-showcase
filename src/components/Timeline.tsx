@@ -262,7 +262,21 @@ function Node({
   );
 }
 
+type BranchGroup = { title?: string | undefined; branches: TimelineBranch[] };
+
+function groupBranches(branches: TimelineBranch[]): BranchGroup[] {
+  const out: BranchGroup[] = [];
+  for (const b of branches) {
+    if (!b.slug) continue;
+    const last = out[out.length - 1];
+    if (last && last.title === b.group) last.branches.push(b);
+    else out.push({ title: b.group, branches: [b] });
+  }
+  return out;
+}
+
 function BranchCard({
+
   branch,
   status,
   period,
