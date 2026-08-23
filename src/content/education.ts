@@ -2,11 +2,15 @@ export type CourseGroup = { title: string; items: string[] };
 
 export const bachelor = {
   title: "Bachelor of Science in Computer Science",
+  formalTitle:
+    "Degree of Bachelor of Science in Computer Science with Specialization in Intelligent Systems",
+  descriptor: "B.Sc. in Computer Science · Applied Artificial Intelligence",
   specialisation: "Specialisation in Intelligent Systems",
-  institution: "Mälardalen University — MDU",
+  institution: "Mälardalen University",
   summary:
     "Built formal Computer Science and Applied AI capabilities on top of extensive professional experience in industrial digital platforms and connected systems.",
   note: "The degree was completed before the postgraduate development period beginning in August 2025.",
+
   coursework: [
     {
       title: "AI & Data",
