@@ -332,6 +332,7 @@ export const milestones: TimelineMilestone[] = [
         topics: [
           "Multi-Sensor Fusion",
           "3D Perception",
+          "LiDAR",
           "Prediction",
           "Planning",
           "Reinforcement Learning",
@@ -341,6 +342,30 @@ export const milestones: TimelineMilestone[] = [
           "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
         relevance:
           "Built system-level understanding of AI around uncertainty, data quality, sensor limitations, real-time decisions and safety.",
+        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      },
+      {
+        kind: "course",
+        title: "Predictive Data Analytics",
+        university: "Mälardalen University",
+        formalTitle: "Predictive Data Analytics",
+        org: "Completed Nov 2025",
+        level: "Second cycle",
+        variant: "compact",
+        topics: [],
+        signals: ["Predictive Analytics", "Machine Learning", "Prediction", "Decision Support"],
+        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      },
+      {
+        kind: "course",
+        title: "Deep Learning for Industrial Imaging",
+        university: "Mälardalen University",
+        formalTitle: "Deep Learning for Industrial Imaging",
+        org: "Completed Dec 2025",
+        level: "Second cycle",
+        variant: "compact",
+        topics: [],
+        signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
         group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       },
       {
