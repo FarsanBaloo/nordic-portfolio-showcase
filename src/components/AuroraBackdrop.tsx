@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 /* ---------- stars: deterministic sparse field, mostly 1px ---------- */
 function mulberry(seed: number) {
