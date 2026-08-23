@@ -154,7 +154,7 @@ export function AuroraBackdrop() {
       </svg>
 
       {/* aurora */}
-      <svg
+      <motion.svg
         className="aurora-field absolute inset-0 h-full w-full"
         viewBox="0 0 1600 1000"
         preserveAspectRatio="xMidYMid slice"
