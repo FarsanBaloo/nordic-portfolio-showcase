@@ -145,7 +145,7 @@ export function PortraitFrame({
           width={480}
           height={480}
           loading={eager ? "eager" : "lazy"}
-          className="h-full w-full scale-[1.07] object-cover object-[50%_22%]"
+          className="h-full w-full object-cover object-[50%_32%]"
         />
         <div
           aria-hidden="true"
