@@ -12,6 +12,9 @@ Six uploaded photos become real images in the site, replacing the current "Image
 | `TALKING_SYSTEMS_BILD2.jpg` | Talking Systems — demo at the smart-factory testbed |
 | `tHESIS.jpg` | 48-Hour Wind Power Forecasting — thesis presentation (future work slide) |
 | `Examen.jpg` | BSc / Computer Science — Intelligent Systems milestone: graduation photo, also shown on the Education page |
+| `IMG_1487.jpg` | PLANE(ra)T Resande — whiteboard concept sketch of the travel-alternatives UI |
+| `IMG_1491.jpg` | PLANE(ra)T Resande — paper prototypes of the booking and recommendation screens |
+| `IMG_1489.jpg` | PLANE(ra)T Resande — design workshop session with the project team |
 
 ## Presentation
 
@@ -25,7 +28,7 @@ Six uploaded photos become real images in the site, replacing the current "Image
 ## Technical notes
 
 - `lovable-assets create` for each uploaded file, pointers written to `src/assets/*.asset.json`.
-- `src/content/projects.ts`: extend `ImageSlot` with optional `src` and `alt`; fill the slots for `talking-systems` and `wind-power-forecasting`, drop the "images will be added" intro text where real photos now exist.
+- `src/content/projects.ts`: extend `ImageSlot` with optional `src` and `alt`; fill the slots for `talking-systems`, `wind-power-forecasting` and `planet-resande`, drop the "images will be added" intro text where real photos now exist.
 - `src/content/timeline.ts` / `src/content/education.ts`: add an optional `image` field for the BSc milestone and lead thumbnails.
 - `src/components/ui-bits.tsx`: `ImageFrame` renders a real `<img>` when `src` is present, placeholder otherwise.
 - `src/components/ProjectEvidenceSheet.tsx` and `src/components/Timeline.tsx`: render the image block / thumbnail.
