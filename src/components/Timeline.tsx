@@ -316,7 +316,6 @@ function MilestoneRow({
         }}
         className={[
           "min-w-0 transition-all",
-          shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
           isDev ? "lg:col-start-3 lg:row-start-1 lg:pl-12" : "lg:col-start-1 lg:row-start-1 lg:pr-12",
         ].join(" ")}
       >
