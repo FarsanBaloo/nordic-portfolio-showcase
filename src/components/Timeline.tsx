@@ -562,7 +562,10 @@ function Phase2Block({
 
       <div className="mt-8 grid gap-8 min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:gap-0">
         <div className="min-w-0 min-[1100px]:col-start-1 min-[1100px]:pr-10">
-          <div className="grid gap-4 min-[1600px]:grid-cols-2">
+          <div
+            className="grid gap-4"
+            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}
+          >
             {courses.map((child) => (
               <motion.div
                 key={child.title}
