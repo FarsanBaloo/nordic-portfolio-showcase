@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "./ui-bits";
+import { BulletList, Callout, Eyebrow, FlowSteps, ImageFrame, TagList } from "./ui-bits";
 import type { Project } from "../content/projects";
 import { projectRoleContext } from "../content/timeline";
 
