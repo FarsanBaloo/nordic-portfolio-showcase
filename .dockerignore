@@ -1,0 +1,14 @@
+node_modules
+.output
+.nitro
+.vite
+dist
+.git
+.github
+.lovable
+.workspace
+*.log
+npm-debug.log*
+.DS_Store
+.env
+.env.*
