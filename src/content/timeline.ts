@@ -4,7 +4,10 @@ export type TimelineBranch = {
   note?: string;
   /** Month span within the parent milestone period, e.g. "Aug–Oct 2022" */
   span?: string;
+  /** Optional sub-section this branch belongs to inside the milestone */
+  group?: string;
 };
+
 
 export type TimelineMilestone = {
   id: string;
