@@ -1,4 +1,4 @@
-import examenPhoto from "../assets/examen.jpg.asset.json";
+import { examenPhoto } from "../assets/local-images";
 
 export type TimelineTrack = "professional" | "development" | "direction";
 
