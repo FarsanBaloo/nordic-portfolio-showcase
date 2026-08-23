@@ -12,6 +12,9 @@ Six uploaded photos become real images in the site, replacing the current "Image
 | `TALKING_SYSTEMS_BILD2.jpg` | Talking Systems — demo at the smart-factory testbed |
 | `tHESIS.jpg` | 48-Hour Wind Power Forecasting — thesis presentation (future work slide) |
 | `Examen.jpg` | BSc / Computer Science — Intelligent Systems milestone: graduation photo, also shown on the Education page |
+| `IMG_1487.jpg` | PLANE(ra)T Resande — whiteboard concept sketch of the travel-alternatives UI |
+| `IMG_1491.jpg` | PLANE(ra)T Resande — paper prototypes of the booking and recommendation screens |
+| `IMG_1489.jpg` | PLANE(ra)T Resande — design workshop session with the project team |
 
 ## Presentation
 
