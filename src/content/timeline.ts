@@ -4,7 +4,10 @@ export type TimelineBranch = {
   note?: string;
   /** Month span within the parent milestone period, e.g. "Aug–Oct 2022" */
   span?: string;
+  /** Optional sub-section this branch belongs to inside the milestone */
+  group?: string;
 };
+
 
 export type TimelineMilestone = {
   id: string;
@@ -61,12 +64,40 @@ export const milestones: TimelineMilestone[] = [
     track: "development",
     side: "right",
     branches: [
-      { label: "Interaction Design · Development", slug: "interaction-design", span: "Sep–Dec 2023" },
-      { label: "Seeing AI — UX evaluation", slug: "seeing-ai", span: "Jan–Mar 2024" },
-      { label: "Talking Systems", slug: "talking-systems", span: "Sep 2024 – Jan 2025" },
-      { label: "Thesis — Wind Power Forecasting", slug: "wind-power-forecasting", note: "Done last", span: "Mar–Jun 2025" },
+      {
+        label: "PLANE(ra)T Resande",
+        slug: "planet-resande",
+        span: "Sep–Nov 2023",
+        group: "Interaction Design · Development",
+      },
+      {
+        label: "Hållbar Hälsa",
+        slug: "hallbar-halsa",
+        span: "Nov–Dec 2023",
+        group: "Interaction Design · Development",
+      },
+      {
+        label: "Seeing AI — UX evaluation",
+        slug: "seeing-ai",
+        span: "Jan–Mar 2024",
+        group: "Seeing AI assignment",
+      },
+      {
+        label: "Talking Systems",
+        slug: "talking-systems",
+        span: "Sep 2024 – Jan 2025",
+        group: "Talking Systems · Applied AI",
+      },
+      {
+        label: "Thesis — Wind Power Forecasting",
+        slug: "wind-power-forecasting",
+        note: "Done last",
+        span: "Mar–Jun 2025",
+        group: "Bachelor thesis",
+      },
     ],
   },
+
   {
     id: "postgraduate",
     period: "Aug 2025 – Jul 2026",

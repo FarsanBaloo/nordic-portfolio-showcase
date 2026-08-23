@@ -262,7 +262,21 @@ function Node({
   );
 }
 
+type BranchGroup = { title?: string | undefined; branches: TimelineBranch[] };
+
+function groupBranches(branches: TimelineBranch[]): BranchGroup[] {
+  const out: BranchGroup[] = [];
+  for (const b of branches) {
+    if (!b.slug) continue;
+    const last = out[out.length - 1];
+    if (last && last.title === b.group) last.branches.push(b);
+    else out.push({ title: b.group, branches: [b] });
+  }
+  return out;
+}
+
 function BranchCard({
+
   branch,
   status,
   period,
@@ -296,7 +310,7 @@ function BranchCard({
       >
         <span
           aria-hidden="true"
-          className="absolute left-[-29px] top-7 h-1.5 w-1.5 rounded-full transition-colors duration-500 md:hidden"
+          className="absolute left-[-29px] top-7 h-1.5 w-1.5 rounded-full transition-colors duration-500 lg:hidden"
           style={{
             backgroundColor:
               status === "upcoming"
@@ -304,6 +318,7 @@ function BranchCard({
                 : "var(--aurora-teal)",
           }}
         />
+
         <p className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-aurora-teal sm:text-[11px]">
           {branch.span ?? period}
           <span className="ml-2 block text-night-muted sm:ml-2 sm:inline">
@@ -362,7 +377,7 @@ function MilestoneRow({
     <li
       data-status={status}
       className={[
-        "relative pl-10 transition-all duration-500 sm:pl-12 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-start md:pl-0",
+        "relative pl-10 transition-all duration-500 sm:pl-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-start lg:pl-0",
         status === "upcoming" ? "opacity-80" : "opacity-100",
       ].join(" ")}
     >
@@ -379,10 +394,10 @@ function MilestoneRow({
           boxShadow: "0 0 18px 1px color-mix(in oklab, var(--aurora-teal) 30%, transparent)",
         }}
       />
-      <div className="hidden md:block" />
+      <div className="hidden lg:block" />
       <span
         ref={nodeRef}
-        className="absolute left-[13px] top-6 z-10 -translate-x-1/2 md:relative md:left-auto md:top-6 md:translate-x-0"
+        className="absolute left-[13px] top-6 z-10 -translate-x-1/2 lg:relative lg:left-auto lg:top-6 lg:translate-x-0"
       >
         <Node status={status} isNow={!!entry.now} accent={accent} size="major" />
       </span>
@@ -396,10 +411,11 @@ function MilestoneRow({
           "min-w-0 transition-all will-change-transform",
           shown ? "translate-y-0 scale-100 opacity-100" : "translate-y-6 scale-[0.98] opacity-0",
           left
-            ? "md:col-start-1 md:row-start-1 md:pr-14 md:text-right"
-            : "md:col-start-3 md:row-start-1 md:pl-14",
+            ? "lg:col-start-1 lg:row-start-1 lg:pr-14 lg:text-right"
+            : "lg:col-start-3 lg:row-start-1 lg:pl-14",
         ].join(" ")}
       >
+
         <div
           className={[
             "rounded-2xl border p-4 backdrop-blur-sm transition-all duration-500 sm:p-5",
@@ -433,7 +449,7 @@ function MilestoneRow({
           <p className="mt-2 text-sm leading-relaxed text-night-muted">{entry.detail}</p>
 
           {entry.roles ? (
-            <ul className={["mt-4 flex flex-wrap gap-2", left ? "md:justify-end" : ""].join(" ")}>
+            <ul className={["mt-4 flex flex-wrap gap-2", left ? "lg:justify-end" : ""].join(" ")}>
               {entry.roles.map((role) => (
                 <li
                   key={role}
@@ -493,33 +509,48 @@ function MilestoneRow({
       {entry.branches?.length ? (
         <div
           className={[
-            "mt-5 min-w-0 transition-all duration-500 md:mt-0 md:row-start-1 md:self-start",
-            left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
+            "mt-5 min-w-0 transition-all duration-500 lg:mt-0 lg:row-start-1 lg:self-start",
+            left ? "lg:col-start-3 lg:pl-14" : "lg:col-start-1 lg:pr-14",
           ].join(" ")}
         >
           <p
             className={[
               "mb-3 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-night-muted sm:text-[11px]",
-              left ? "md:text-left" : "md:text-right",
+              left ? "lg:text-left" : "lg:text-right",
             ].join(" ")}
           >
             Projects in this role · {entry.period}
           </p>
-          <div className="space-y-3">
-            {entry.branches.map((b) =>
-              b.slug ? (
-                <BranchCard
-                  key={b.slug}
-                  branch={b}
-                  status={status}
-                  period={entry.period}
-                  roleContext={roleContext}
-                />
-              ) : null,
-            )}
+          <div className="space-y-5">
+            {groupBranches(entry.branches).map((group) => (
+              <section key={group.title ?? "ungrouped"} className="min-w-0">
+                {group.title ? (
+                  <h4
+                    className={[
+                      "mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-aurora-violet sm:text-[11px]",
+                      left ? "lg:text-left" : "lg:text-right",
+                    ].join(" ")}
+                  >
+                    {group.title}
+                  </h4>
+                ) : null}
+                <div className="space-y-3">
+                  {group.branches.map((b) => (
+                    <BranchCard
+                      key={b.slug}
+                      branch={b}
+                      status={status}
+                      period={entry.period}
+                      roleContext={roleContext}
+                    />
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
         </div>
       ) : null}
+
     </li>
   );
 }
@@ -546,7 +577,7 @@ export function Timeline() {
       {/* background rail */}
       <div
         aria-hidden="true"
-        className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 md:left-1/2 md:-translate-x-1/2"
+        className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 lg:left-1/2 lg:-translate-x-1/2"
       >
         {/* active progress rail */}
         <div
@@ -567,7 +598,7 @@ export function Timeline() {
       {/* year marker riding the progress head */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px md:left-1/2"
+        className="pointer-events-none absolute left-[13px] top-0 z-20 h-full w-px lg:left-1/2"
       >
         <span
           ref={markerRef}
