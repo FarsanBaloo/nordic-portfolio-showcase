@@ -81,7 +81,7 @@ function Connector({ accent, side }: { accent: string; side: "left" | "right" })
     <span
       aria-hidden="true"
       className={[
-        "pointer-events-none absolute top-7 hidden h-px w-10 lg:block",
+        "pointer-events-none absolute top-7 hidden h-px w-10 min-[1100px]:block",
         side === "right" ? "-left-10" : "-right-10",
       ].join(" ")}
       style={{
@@ -320,6 +320,207 @@ function groupChildren(children: TimelineChild[]) {
   return out;
 }
 
+type CaseChild = Extract<TimelineChild, { kind: "project" }>;
+
+function isPhase2Group(title?: string) {
+  if (!title) return false;
+  return /^phase 2/i.test(title) || /^continuous product case/i.test(title);
+}
+
+function findCaseChild(entry: TimelineMilestone): CaseChild | undefined {
+  return entry.children?.find((c) => c.kind === "project" && c.caseTrack) as CaseChild | undefined;
+}
+
+/** Compact grouped view of the continuous product case. */
+const caseStageGroups = [
+  { id: "opportunity", label: "Opportunity", stages: ["Innovation Opportunity", "Initial Concept"] },
+  { id: "ai", label: "AI & feasibility", stages: ["Language Interaction", "AI Feasibility"] },
+  {
+    id: "definition",
+    label: "Product definition",
+    stages: ["Product Discovery", "Product Vision", "Value Proposition"],
+  },
+  { id: "requirements", label: "Requirements", stages: ["PRD", "Requirements", "Prioritisation"] },
+  { id: "mvp", label: "MVP & validation", stages: ["Conceptual MVP", "Validation Approach"] },
+  {
+    id: "business",
+    label: "Business",
+    stages: ["Product Strategy", "Business Model", "Market Relevance", "Go-to-Market"],
+  },
+  {
+    id: "final",
+    label: "Final",
+    stages: ["Technical Feasibility", "Adoption Considerations"],
+  },
+] as const;
+
+const courseStageMap: Record<string, string[]> = {
+  "Product Management": ["definition", "mvp"],
+  "Product and Requirements Management for Digital Environments": ["requirements", "final"],
+  "Industrial Economics and Management": ["business"],
+  "Strategy and Business Models in Technology-Intensive Businesses": ["business"],
+  "Agile Process and Project Management": ["mvp", "requirements"],
+  "Leadership in High-Technology and Knowledge-Intensive Organizations": ["definition"],
+};
+
+function CaseTrackCard({
+  child,
+  accent,
+  activeCourse,
+}: {
+  child: CaseChild;
+  accent: string;
+  activeCourse: string | null;
+}) {
+  const project = getProject(child.slug);
+  if (!project) return null;
+  const activeGroups = activeCourse ? (courseStageMap[activeCourse] ?? []) : [];
+
+  return (
+    <div
+      className="night-card rounded-2xl p-5 sm:p-6"
+      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
+    >
+      <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+        Continuous product case
+      </p>
+      <h4 className="mt-2 font-display text-[23px] font-semibold leading-snug text-night-foreground">
+        {project.title}
+      </h4>
+      {child.continuityLabel ? (
+        <p className="mt-1 text-[16px] text-night-body">{child.continuityLabel}</p>
+      ) : null}
+      {child.note ? (
+        <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+          {child.note}
+        </p>
+      ) : null}
+      <p className="mt-3 text-[15.5px] leading-relaxed text-night-body">{project.teaser}</p>
+
+      <ol className="mt-5 space-y-3">
+        {caseStageGroups.map((g) => {
+          const on = activeGroups.includes(g.id);
+          return (
+            <li
+              key={g.id}
+              className="border-l pl-3 transition-colors duration-300"
+              style={{
+                borderColor: on
+                  ? accent
+                  : `color-mix(in oklab, ${accent} 22%, transparent)`,
+              }}
+            >
+              <p
+                className="font-mono text-[11.5px] uppercase tracking-[0.09em] transition-colors duration-300"
+                style={{ color: on ? accent : "var(--night-subtle, #8b97a8)" }}
+              >
+                {g.label}
+              </p>
+              <p
+                className={[
+                  "mt-1 text-[14.5px] leading-relaxed transition-colors duration-300",
+                  on ? "text-night-foreground" : "text-night-muted",
+                ].join(" ")}
+              >
+                {g.stages.join(" · ")}
+              </p>
+            </li>
+          );
+        })}
+      </ol>
+
+      {child.caseNotes?.length ? (
+        <ul className="mt-5 space-y-1.5 border-t border-night-border/50 pt-4">
+          {child.caseNotes.map((n) => (
+            <li key={n} className="text-[13.5px] leading-relaxed text-night-muted">
+              {n}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <div className="mt-4">
+        <ProjectEvidenceSheet project={project} period={child.period}>
+          <button
+            type="button"
+            className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium transition-opacity hover:opacity-80"
+            style={{ color: accent }}
+          >
+            Open case study <span aria-hidden="true">→</span>
+          </button>
+        </ProjectEvidenceSheet>
+      </div>
+    </div>
+  );
+}
+
+/** Phase 2: BTH parent on top, formal courses left, continuous case right. */
+function Phase2Block({
+  group,
+  caseChild,
+  accent,
+  reduced,
+}: {
+  group: { title?: string | undefined; items: TimelineChild[] };
+  caseChild: CaseChild | undefined;
+  accent: string;
+  reduced: boolean;
+}) {
+  const [activeCourse, setActiveCourse] = useState<string | null>(null);
+  const parent = group.items.find((i) => i.kind !== "project" && i.variant !== "compact");
+  const courses = group.items.filter(
+    (i) => i !== parent && i.kind !== "project",
+  ) as Extract<TimelineChild, { kind: "course" | "topics" }>[];
+
+  return (
+    <section className="min-w-0">
+      {group.title ? (
+        <h4
+          className="text-center font-mono text-[12px] uppercase tracking-[0.09em]"
+          style={{ color: accent }}
+        >
+          {group.title}
+        </h4>
+      ) : null}
+
+      {parent && parent.kind !== "project" ? (
+        <div className="mx-auto mt-4 w-full max-w-[900px]">
+          <StudyChildCard child={parent} accent={accent} />
+        </div>
+      ) : null}
+
+      <div className="mt-8 grid gap-8 min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:gap-0">
+        <div className="min-w-0 min-[1100px]:col-start-1 min-[1100px]:pr-10">
+          <div className="grid gap-4 min-[1600px]:grid-cols-2">
+            {courses.map((child) => (
+              <motion.div
+                key={child.title}
+                className="min-w-0"
+                onViewportEnter={() => {
+                  if (!reduced) setActiveCourse(child.title);
+                }}
+                viewport={{ margin: "-45% 0px -45% 0px" }}
+              >
+                <StudyChildCard child={child} accent={accent} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden min-[1100px]:col-start-2 min-[1100px]:block" />
+
+        {caseChild ? (
+          <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1360px]:sticky min-[1360px]:top-[110px]">
+            <div className="min-[1360px]:max-w-[580px]">
+              <CaseTrackCard child={caseChild} accent={accent} activeCourse={activeCourse} />
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
 function ChildColumn({
   entry,
   accent,
@@ -332,15 +533,18 @@ function ChildColumn({
   reduced: boolean;
 }) {
   if (!entry.children?.length) return null;
+  const hasPhase2 = !!findCaseChild(entry);
   let index = 0;
   return (
-    <div className="mt-6 space-y-6 lg:mt-0">
+    <div className="mt-6 space-y-6 min-[1100px]:mt-0">
       {entry.childrenLabel ? (
         <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
           {entry.childrenLabel}
         </p>
       ) : null}
-      {groupChildren(entry.children).map((group) => (
+      {groupChildren(entry.children)
+        .filter((g) => !(hasPhase2 && isPhase2Group(g.title)))
+        .map((group) => (
         <section key={group.title ?? "ungrouped"} className="min-w-0 space-y-3">
           {group.title ? (
             <h4
@@ -361,7 +565,7 @@ function ChildColumn({
                   index={i}
                   reduced={reduced}
                 >
-                  <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-3 min-[1500px]:grid-cols-2">
                     {run.items.map((child) =>
                       child.kind === "project" ? null : (
                         <StudyChildCard key={child.title} child={child} accent={accent} />
@@ -438,7 +642,7 @@ function RoleEvidence({
             </div>
 
             {role.notes?.length ? (
-              <div className="mt-6 grid gap-4 lg:grid-cols-2">
+              <div className="mt-6 grid gap-4 min-[1100px]:grid-cols-2">
                 {role.notes.map((n) => (
                   <p
                     key={n.label}
@@ -483,7 +687,7 @@ function RoleEvidence({
 
 function ParallelBridge() {
   return (
-    <li className="relative pl-10 sm:pl-12 lg:pl-0">
+    <li className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
       <div className="mx-auto max-w-[620px] text-center">
         <p className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-night-subtle">
           {parallelBridge.label}
@@ -500,13 +704,13 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
   const ref = useRef<HTMLLIElement | null>(null);
   const { active } = useFocusMotion(ref, reduced);
   return (
-    <li ref={ref} className="relative pl-10 sm:pl-12 lg:pl-0">
-      <span className="absolute left-[13px] top-2 z-10 -translate-x-1/2 lg:left-1/2">
+    <li ref={ref} className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
+      <span className="absolute left-[13px] top-2 z-10 -translate-x-1/2 min-[1100px]:left-1/2">
         <Node lit={active} isNow accent="var(--professional-accent)" />
       </span>
-      <div className="lg:flex lg:justify-center">
+      <div className="min-[1100px]:flex min-[1100px]:justify-center">
         <article
-          className="night-card mt-8 w-full rounded-2xl p-5 sm:p-6 lg:mt-12 lg:max-w-[440px] lg:text-center"
+          className="night-card mt-8 w-full rounded-2xl p-5 sm:p-6 min-[1100px]:mt-12 min-[1100px]:max-w-[440px] min-[1100px]:text-center"
           style={{
             borderColor: "color-mix(in oklab, var(--development-accent) 30%, transparent)",
             boxShadow:
@@ -530,7 +734,7 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
           </h3>
           <p className="mt-3 text-[16px] leading-relaxed text-night-body">{entry.summary}</p>
           {entry.roles?.length ? (
-            <ul className="mt-4 flex flex-wrap gap-2 lg:justify-center">
+            <ul className="mt-4 flex flex-wrap gap-2 min-[1100px]:justify-center">
               {entry.roles.map((r) => (
                 <li
                   key={r}
@@ -567,27 +771,32 @@ function MilestoneRow({
   const isDev = entry.track === "development";
   const panelId = useId();
   const open = !!entry.roleId && openRoleId === entry.roleId;
+  const caseChild = findCaseChild(entry);
+  const phase2 = caseChild
+    ? groupChildren(entry.children ?? []).find((g) => /^phase 2/i.test(g.title ?? ""))
+    : undefined;
+
 
   return (
     <li
       ref={ref}
-      className="relative pl-10 sm:pl-12 lg:grid lg:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] lg:items-start lg:gap-x-0 lg:pl-0"
+      className="relative pl-10 sm:pl-12 min-[1100px]:grid min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:items-start min-[1100px]:gap-x-0 min-[1100px]:pl-0"
     >
-      <span className="absolute left-[13px] top-6 z-10 -translate-x-1/2 lg:left-1/2 lg:top-7">
+      <span className="absolute left-[13px] top-6 z-10 -translate-x-1/2 min-[1100px]:left-1/2 min-[1100px]:top-7">
         <Node lit={active} isNow={false} accent={accent} />
       </span>
 
       <motion.div
         style={{ scale: reduced ? 1 : scale, opacity: reduced ? 1 : opacity }}
         className={[
-          "min-w-0 lg:row-start-1",
-          isDev ? "lg:col-start-3 lg:pl-10" : "lg:col-start-1 lg:pr-10",
+          "min-w-0 min-[1100px]:row-start-1",
+          isDev ? "min-[1100px]:col-start-3 min-[1100px]:pl-10" : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
         ].join(" ")}
       >
         <article
           className={[
             "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
-            isDev ? "lg:max-w-[480px]" : "lg:ml-auto lg:max-w-[480px]",
+            isDev ? "min-[1100px]:max-w-[620px]" : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]",
           ].join(" ")}
           style={
             active
@@ -677,15 +886,21 @@ function MilestoneRow({
         </article>
       </motion.div>
 
-      <div className="hidden lg:col-start-2 lg:row-start-1 lg:block" />
+      <div className="hidden min-[1100px]:col-start-2 min-[1100px]:row-start-1 min-[1100px]:block" />
 
       <div
         className={[
-          "min-w-0 lg:row-start-1",
-          isDev ? "lg:col-start-1 lg:pr-10" : "lg:col-start-3 lg:pl-10",
+          "min-w-0 min-[1100px]:row-start-1",
+          isDev
+            ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
+            : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
         ].join(" ")}
       >
-        <div className={isDev ? "lg:ml-auto lg:max-w-[400px]" : "lg:max-w-[400px]"}>
+        <div
+          className={
+            isDev ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]" : "min-[1100px]:max-w-[620px]"
+          }
+        >
           <ChildColumn
             entry={entry}
             accent={accent}
@@ -695,8 +910,22 @@ function MilestoneRow({
         </div>
       </div>
 
+      {phase2 ? (
+        <div className="mt-10 min-[1100px]:col-span-3 min-[1100px]:row-start-2 min-[1100px]:mt-16">
+          <Phase2Block
+            group={phase2}
+            caseChild={caseChild}
+            accent={accent}
+            reduced={reduced}
+          />
+        </div>
+      ) : null}
+
       {entry.roleId ? (
-        <div id={panelId} className="lg:col-span-3 lg:row-start-2">
+        <div
+          id={panelId}
+          className="min-[1100px]:col-span-3 min-[1100px]:row-start-3"
+        >
           <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
         </div>
       ) : null}
@@ -723,9 +952,13 @@ export function Timeline() {
   const toggleRole = (id: string) => setOpenRoleId((cur) => (cur === id ? null : id));
 
   return (
-    <div ref={containerRef} className="relative mx-auto max-w-[1280px]">
+    <div
+      ref={containerRef}
+      className="relative mx-auto w-full max-w-[1440px] min-[1600px]:max-w-[1480px]"
+    >
+
       {/* track headings */}
-      <div className="mb-10 hidden grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] items-center lg:grid">
+      <div className="mb-10 hidden grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] items-center min-[1100px]:grid">
         <p className="pr-10 text-right font-mono text-[12px] uppercase tracking-[0.09em] text-professional">
           Professional experience
         </p>
@@ -734,7 +967,7 @@ export function Timeline() {
           Education · Product · AI development
         </p>
       </div>
-      <div className="mb-8 flex gap-4 lg:hidden">
+      <div className="mb-8 flex gap-4 min-[1100px]:hidden">
         <span className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-professional">
           Professional
         </span>
@@ -746,7 +979,7 @@ export function Timeline() {
       {/* background rail */}
       <div
         aria-hidden="true"
-        className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 lg:left-1/2 lg:-translate-x-1/2"
+        className="absolute left-[13px] top-0 h-full w-px bg-night-border/60 min-[1100px]:left-1/2 min-[1100px]:-translate-x-1/2"
       >
         <motion.div
           className="w-px origin-top"
@@ -783,7 +1016,7 @@ export function Timeline() {
         ) : null}
       </div>
 
-      <ol className="relative space-y-14 lg:space-y-20">
+      <ol className="relative space-y-14 min-[1100px]:space-y-20">
         {milestones.map((entry) => (
           <Fragment key={entry.id}>
             {entry.id === parallelBridge.beforeMilestoneId ? (
