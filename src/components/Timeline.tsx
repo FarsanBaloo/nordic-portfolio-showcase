@@ -211,7 +211,8 @@ function ProjectChildCard({
 }) {
   const project = getProject(child.slug);
   if (!project) return null;
-  const lead = project.images?.slots.find((slot) => slot.src);
+  const slots = project.images?.slots;
+  const lead = slots?.find((slot) => slot.src && slot.lead) ?? slots?.find((slot) => slot.src);
   return (
     <ProjectEvidenceSheet project={project} period={child.period}>
       <button
