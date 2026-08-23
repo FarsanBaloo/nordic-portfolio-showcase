@@ -68,11 +68,20 @@ export type TimelineChild =
       group?: string;
     };
 
+/** Explicit, verified label rendered next to a node on the central rail.
+ *  Never derived from period strings or scroll position. */
+export type RailMarker = {
+  label: string;
+  kind: "major" | "phase" | "minor";
+  verified: true;
+};
 
 export type TimelineMilestone = {
   id: string;
   period?: string;
   datePrecision: DatePrecision;
+  /** Only present when the chronology point is verified. */
+  railMarker?: RailMarker;
   title: string;
   subtitle?: string;
   org?: string;
