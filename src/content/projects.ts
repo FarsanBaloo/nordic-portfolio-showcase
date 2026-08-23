@@ -891,6 +891,7 @@ export const projects: Project[] = [
           aspect: "9/16",
           src: hallbarHalsaOnboarding.url,
           alt: "Hållbar Hälsa onboarding screen with welcome text, data handling information and consent",
+          lead: true,
         },
         {
           caption:
