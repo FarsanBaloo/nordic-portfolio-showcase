@@ -21,6 +21,10 @@ export type TimelineChild =
       /** Marks a project that spans more than one study phase. */
       continuityLabel?: string;
       continuityChain?: string[];
+      /** Renders the project as a continuous, parallel case track. */
+      caseTrack?: boolean;
+      /** Short relationship notes tying studies to the case. */
+      caseNotes?: string[];
     }
   | {
       kind: "course";
