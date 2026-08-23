@@ -58,7 +58,8 @@ export const postgraduate = {
   period: "August 2025 – July 2026",
   title: "Advanced AI, Innovation & Product Development",
   intro:
-    "After completing the BSc, I undertook an intensive postgraduate development period from August 2025 to July 2026 covering advanced AI, Innovation Management, Industrial Economics, Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models, Agile development and Leadership.",
+    "A coordinated postgraduate development period across several universities, covering advanced artificial intelligence, Innovation Management, Industrial Economics, Product Management, Product & Requirements Management, Strategy & Business Models, Agile Process & Project Management and Leadership.",
+
   first: [
     "Natural Language Processing",
     "Autonomous Systems & Perception",
