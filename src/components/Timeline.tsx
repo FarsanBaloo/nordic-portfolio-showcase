@@ -1039,19 +1039,20 @@ export function Timeline() {
     offset: ["start 60%", "end 45%"],
   });
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.3,
+    stiffness: 110,
+    damping: 29,
+    mass: 0.35,
   });
-  const dotTop = useTransform(smoothProgress, (v) => `${v * 100}%`);
-  const dotOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0]);
+  // Soft trailing glow at the head of the illuminated rail — no travelling dot.
+  const glowTop = useTransform(smoothProgress, (v) => `${v * 100}%`);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.03, 0.97, 1], [0, 0.5, 0.5, 0]);
 
   const toggleRole = (id: string) => setOpenRoleId((cur) => (cur === id ? null : id));
 
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto w-full max-w-[1440px] min-[1600px]:max-w-[1480px]"
+      className="relative mx-auto w-full max-w-[min(94vw,1480px)]"
     >
 
       {/* track headings */}
