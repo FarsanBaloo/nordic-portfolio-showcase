@@ -88,7 +88,7 @@ function JourneyPage() {
       </section>
 
       <section className="relative overflow-hidden">
-        <div className="relative mx-auto max-w-[1280px] px-5 py-16 sm:py-20">
+        <div className="relative mx-auto max-w-[1560px] px-5 py-16 sm:py-20 min-[1100px]:px-[clamp(24px,4vw,72px)]">
           <Timeline />
         </div>
       </section>
