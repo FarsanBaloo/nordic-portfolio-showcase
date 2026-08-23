@@ -22,3 +22,20 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Self-hosting on a Synology NAS (Container Manager / Docker)
+
+The production build runs as a Node SSR server on port 3000.
+
+```sh
+npm run build   # outputs .output/
+npm run start   # node .output/server/index.mjs
+```
+
+On the NAS:
+
+1. Copy this repository into a shared folder (e.g. `/docker/rickard-portfolio`).
+2. Container Manager → **Project** → Create → point it at the folder's `docker-compose.yml`.
+3. Build and start. The site is served at `http://<nas-ip>:3000`.
+
+Optionally put Synology's reverse proxy (Control Panel → Login Portal → Advanced → Reverse Proxy) in front of port 3000 for a custom domain and HTTPS.

@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Self-hosted (Docker/Synology) production builds target Nitro's Node server.
+  // Inside Lovable, LOVABLE_NITRO_PRESET still wins, so preview/publish are unaffected.
+  nitro: { preset: "node-server" },
 });
