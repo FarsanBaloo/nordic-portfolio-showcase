@@ -35,8 +35,12 @@ function EducationPage() {
       />
       <Page>
         <Section>
-          <SectionHeading eyebrow="Degree" title={bachelor.title} intro={bachelor.specialisation} />
-          <p className="mt-3 text-sm text-muted-foreground">{bachelor.institution}</p>
+          <SectionHeading eyebrow="Degree" title={bachelor.institution} />
+          <h3 className="mt-3 text-xl font-semibold">{bachelor.formalTitle}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{bachelor.descriptor}</p>
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+            {bachelor.summary}
+          </p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bachelor.coursework.map((group) => (
               <div key={group.title} className="rounded-xl border border-border bg-card p-6">
@@ -49,6 +53,7 @@ function EducationPage() {
           </div>
           <p className="mt-6 text-sm italic text-muted-foreground">{bachelor.note}</p>
         </Section>
+
 
         <Section>
           <SectionHeading
