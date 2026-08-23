@@ -16,6 +16,8 @@ export type ImageSlot = {
   note?: string;
   src?: string;
   alt?: string;
+  /** Preferred thumbnail for timeline cards */
+  lead?: boolean;
 };
 
 
