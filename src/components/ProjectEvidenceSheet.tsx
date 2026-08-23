@@ -72,6 +72,26 @@ export function CaseStudyBody({
 
       {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
 
+      {project.images?.slots.some((slot) => slot.src) ? (
+        <section>
+          <Eyebrow>Images</Eyebrow>
+          <div className="mt-4 grid gap-5 sm:grid-cols-2">
+            {project.images.slots
+              .filter((slot) => slot.src)
+              .map((slot) => (
+                <ImageFrame
+                  key={slot.caption}
+                  caption={slot.caption}
+                  aspect={slot.aspect}
+                  src={slot.src}
+                  alt={slot.alt}
+                />
+              ))}
+          </div>
+        </section>
+      ) : null}
+
+
       {project.metrics?.length ? (
         <div className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">
           <Eyebrow>Results</Eyebrow>
