@@ -41,6 +41,21 @@ function EducationPage() {
           <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
             {bachelor.summary}
           </p>
+          <figure className="mt-8 max-w-3xl">
+            <div className="overflow-hidden rounded-xl border border-border">
+              <img
+                src={examenPhoto.url}
+                alt="Rickard Sörlin with thesis colleagues and examiners at Mälardalen University"
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </div>
+            <figcaption className="mt-2 text-sm text-muted-foreground">
+              Degree project completed — Mälardalen University
+            </figcaption>
+          </figure>
+
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bachelor.coursework.map((group) => (
               <div key={group.title} className="rounded-xl border border-border bg-card p-6">
