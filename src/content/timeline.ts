@@ -183,8 +183,11 @@ export const milestones: TimelineMilestone[] = [
     period: "Completed before Aug 2025",
     datePrecision: "phase",
     title: "Computer Science / Intelligent Systems",
-    subtitle: "BSc — Specialisation in Intelligent Systems",
-    org: "Mälardalen University",
+    university: "Mälardalen University",
+    formalTitle:
+      "Degree of Bachelor of Science in Computer Science with Specialization in Intelligent Systems",
+    degreeDescriptor: "B.Sc. in Computer Science · Applied Artificial Intelligence",
+
     track: "development",
     stage: "Applied AI · Human-Centred Design · Research",
     summary:
