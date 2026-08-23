@@ -117,6 +117,7 @@ export const parallelBridge = {
 export const milestones: TimelineMilestone[] = [
   {
     id: "project-engineer",
+    railMarker: { label: "2003", kind: "major", verified: true },
     period: "2003–2013",
     datePrecision: "verified-range",
     title: "Project Engineer — Digital Platforms",
@@ -141,6 +142,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "national-expert",
+    railMarker: { label: "2013", kind: "major", verified: true },
     period: "2013–2020",
     datePrecision: "verified-range",
     title: "Support Engineer — Digital Platforms",
@@ -174,6 +176,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "senior-advisor",
+    railMarker: { label: "2020", kind: "major", verified: true },
     period: "2020–2025",
     datePrecision: "verified-range",
     title: "Senior Technical Advisor — Digital Platforms",
@@ -205,6 +208,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "bsc-development",
+    railMarker: { label: "2025", kind: "major", verified: true },
     period: "Completed before Aug 2025",
     datePrecision: "phase",
     title: "Computer Science / Intelligent Systems",
@@ -306,6 +310,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "postgraduate",
+    railMarker: { label: "AUG 2025", kind: "phase", verified: true },
     period: "Aug 2025 – Jul 2026",
     datePrecision: "verified-range",
     title: "Advanced AI · Innovation · Product Development",
@@ -554,6 +559,7 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "now",
+    railMarker: { label: "NOW", kind: "major", verified: true },
     datePrecision: "unspecified",
     title: "Product & AI Direction",
     track: "direction",
