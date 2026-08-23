@@ -1,5 +1,37 @@
 import { useEffect, useId, useRef, useState } from "react";
-import { motion, useInView, useScroll, useSpring, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
+
+/** Observes a row and reports whether it is inside the focus band, plus whether it has ever appeared. */
+function useRowVisibility(ref: React.RefObject<HTMLElement | null>) {
+  const [state, setState] = useState({ active: false, seen: false });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setState({ active: false, seen: true });
+      return;
+    }
+    const reveal = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setState((s) => ({ ...s, seen: true }));
+          reveal.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 },
+    );
+    const focus = new IntersectionObserver(
+      ([e]) => setState((s) => ({ ...s, active: !!e?.isIntersecting })),
+      { rootMargin: "-40% 0px -30% 0px", threshold: 0 },
+    );
+    reveal.observe(el);
+    focus.observe(el);
+    return () => {
+      reveal.disconnect();
+      focus.disconnect();
+    };
+  }, [ref]);
+  return state;
+}
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
