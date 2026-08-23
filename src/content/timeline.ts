@@ -21,6 +21,10 @@ export type TimelineChild =
       /** Marks a project that spans more than one study phase. */
       continuityLabel?: string;
       continuityChain?: string[];
+      /** Renders the project as a continuous, parallel case track. */
+      caseTrack?: boolean;
+      /** Short relationship notes tying studies to the case. */
+      caseNotes?: string[];
     }
   | {
       kind: "course";
@@ -30,10 +34,18 @@ export type TimelineChild =
       /** Full formal programme / study title. */
       formalTitle?: string;
       org?: string;
+      /** Academic level, only when verified (e.g. "Second cycle"). */
+      level?: string;
       topics: string[];
+      /** Short capability signals shown on compact course cards. */
+      signals?: string[];
+      /** Compact cards omit long descriptions. */
+      variant?: "compact";
       body?: string;
       body2?: string;
       relevance?: string;
+      /** How this course contributed to the Talking SCADA product case. */
+      scadaLink?: string;
       /** Small vertical progression chain rendered under the card. */
       chain?: string[];
       group?: string;
@@ -44,10 +56,14 @@ export type TimelineChild =
       university?: string;
       formalTitle?: string;
       org?: string;
+      level?: string;
       topics: string[];
+      signals?: string[];
+      variant?: "compact";
       body?: string;
       body2?: string;
       relevance?: string;
+      scadaLink?: string;
       chain?: string[];
       group?: string;
     };
@@ -195,6 +211,51 @@ export const milestones: TimelineMilestone[] = [
     childrenLabel: "Development work",
     children: [
       {
+        kind: "course",
+        title: "Artificial Intelligence 1",
+        university: "Mälardalen University",
+        variant: "compact",
+        topics: [],
+        signals: ["AI Methods", "Problem Solving", "Intelligent Systems"],
+        group: "Selected AI & software engineering coursework",
+      },
+      {
+        kind: "course",
+        title: "Artificial Intelligence 2",
+        university: "Mälardalen University",
+        variant: "compact",
+        topics: [],
+        signals: ["Advanced AI Methods", "Reasoning", "Applied AI"],
+        group: "Selected AI & software engineering coursework",
+      },
+      {
+        kind: "course",
+        title: "Advanced Machine Learning",
+        university: "Mälardalen University",
+        variant: "compact",
+        topics: [],
+        signals: ["Machine Learning", "Modelling", "Evaluation"],
+        group: "Selected AI & software engineering coursework",
+      },
+      {
+        kind: "course",
+        title: "Deep Learning",
+        university: "Mälardalen University",
+        variant: "compact",
+        topics: [],
+        signals: ["Neural Networks", "Model Training", "Applied Deep Learning"],
+        group: "Selected AI & software engineering coursework",
+      },
+      {
+        kind: "course",
+        title: "Software Engineering for AI",
+        university: "Mälardalen University",
+        variant: "compact",
+        topics: [],
+        signals: ["AI System Development", "Technical Feasibility", "AI Lifecycle"],
+        group: "Selected AI & software engineering coursework",
+      },
+      {
         kind: "project",
         slug: "planet-resande",
         period: "2024",
@@ -253,7 +314,13 @@ export const milestones: TimelineMilestone[] = [
         formalTitle:
           "Advanced-Level Studies in Artificial Intelligence: Natural Language Processing",
         org: "Aug 2025 – Jan 2026",
-        topics: ["Transformers", "Domain Adaptation", "PEFT / LoRA"],
+        topics: [
+          "Natural Language Processing",
+          "Transformers",
+          "Domain Adaptation",
+          "PEFT / LoRA",
+          "Generative AI / Language Models",
+        ],
         body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
         relevance:
           "Strengthened the ability to evaluate how modern language models can be adapted to domain-specific problems and how model capabilities, limitations and technical feasibility affect product decisions.",
@@ -269,6 +336,7 @@ export const milestones: TimelineMilestone[] = [
         topics: [
           "Multi-Sensor Fusion",
           "3D Perception",
+          "LiDAR",
           "Prediction",
           "Planning",
           "Reinforcement Learning",
@@ -278,6 +346,30 @@ export const milestones: TimelineMilestone[] = [
           "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
         relevance:
           "Built system-level understanding of AI around uncertainty, data quality, sensor limitations, real-time decisions and safety.",
+        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      },
+      {
+        kind: "course",
+        title: "Predictive Data Analytics",
+        university: "Mälardalen University",
+        formalTitle: "Predictive Data Analytics",
+        org: "Completed Nov 2025",
+        level: "Second cycle",
+        variant: "compact",
+        topics: [],
+        signals: ["Predictive Analytics", "Machine Learning", "Prediction", "Decision Support"],
+        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      },
+      {
+        kind: "course",
+        title: "Deep Learning for Industrial Imaging",
+        university: "Mälardalen University",
+        formalTitle: "Deep Learning for Industrial Imaging",
+        org: "Completed Dec 2025",
+        level: "Second cycle",
+        variant: "compact",
+        topics: [],
+        signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
         group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       },
       {
@@ -306,72 +398,140 @@ export const milestones: TimelineMilestone[] = [
           "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
         org: "Aug 2025 – Jun 2026",
         topics: [],
-        body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
-        body2:
-          "Advanced-level specialization covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organizations.",
-        group: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+        body: "Building on the technical AI and innovation foundation, this specialisation focuses on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
-        kind: "topics",
-        title: "Product & Portfolio",
-        topics: [
-          "Product Management",
+        kind: "course",
+        title: "Industrial Economics and Management",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: ["Business Value", "Technology / Business Perspective", "Sustainable Value"],
+        scadaLink:
+          "Talking SCADA: framed the concept in terms of business value and sustainable value from a combined technology and business perspective.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Strategy and Business Models in Technology-Intensive Businesses",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
           "Product Strategy",
-          "Portfolio Strategy",
+          "Value Proposition",
+          "Business Model Development",
+          "Market Relevance",
+          "Go-to-Market Planning",
+        ],
+        scadaLink:
+          "Talking SCADA: product strategy, value proposition, business model development, market relevance and go-to-market planning.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Product Management",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
           "New Product Development",
+          "Opportunity Identification",
+          "Product Discovery",
+          "Product Vision",
+          "Feature Prioritisation",
           "MVP Definition",
         ],
-        body: "Opportunity identification · Product vision · Value proposition · Feature prioritisation · Portfolio considerations",
-        group: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+        scadaLink:
+          "Talking SCADA: opportunity identification, product discovery, concept development, product vision, value proposition, feature prioritisation and MVP definition.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
-        kind: "topics",
-        title: "Requirements & Delivery",
-        topics: [
-          "Product Requirements",
-          "Requirements Engineering",
-          "Prioritisation",
-          "Agile Process & Project Management",
+        kind: "course",
+        title: "Product and Requirements Management for Digital Environments",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "Product Requirements Document",
+          "System-Level Requirements",
+          "Functional & Non-Functional Requirements",
+          "Explainability",
+          "Reliability",
+          "Requirements Prioritisation",
+          "Technical Feasibility",
         ],
-        body: "Customer needs · Structured requirements management · Feature prioritisation · Product development governance",
-        group: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+        scadaLink:
+          "Talking SCADA: PRD, system-level, functional and non-functional requirements including explainability and reliability, requirements prioritisation and technical feasibility.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
-        kind: "topics",
-        title: "Business & Strategy",
-        topics: [
-          "Industrial Economics",
-          "Strategy & Business Models",
-          "Value Proposition",
-          "Go-to-Market",
+        kind: "course",
+        title: "Agile Process and Project Management",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "Iterative Concept Refinement",
+          "MVP Planning",
+          "Product Development Governance",
+          "Development Planning",
+          "Prioritisation / Delivery Thinking",
         ],
-        body: "Technology-intensive businesses · Business model development · Sustainable business value",
-        group: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+        scadaLink:
+          "Talking SCADA: iterative concept refinement, MVP planning, development planning and product development governance.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
-        kind: "topics",
-        title: "Leadership",
-        topics: ["Leadership", "Stakeholder Alignment"],
-        body: "Leadership in high-technology and knowledge-intensive organisations · Communication · Cross-functional alignment",
-        group: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+        kind: "course",
+        title: "Leadership in High-Technology and Knowledge-Intensive Organizations",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: ["Stakeholder Alignment", "Communication", "Cross-Functional Perspective"],
+        scadaLink:
+          "Talking SCADA: stakeholder alignment, communication and a cross-functional perspective on the concept.",
+        group:
+          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "project",
         slug: "talking-scada",
         datePrecision: "phase",
         group: "Continuous product case",
-        note: "University of Skövde — Innovation Management → Blekinge Institute of Technology — Industrial Economics, Product & Requirements Management",
+        caseTrack: true,
+        note: "Academic Project — Product Management & AI Concept Development · Blekinge Institute of Technology · Aug 2025 – May 2026",
         continuityLabel: "From innovation concept to AI-enabled product case",
+        caseNotes: [
+          "Phase 1 AI studies strengthened the technical understanding behind the language-based interaction and AI feasibility considerations in Talking SCADA.",
+          "Innovation Management (University of Skövde) contributed the innovation opportunity, problem framing and initial product concept.",
+          "The Blekinge courses contributed product discovery, requirements, strategy, business model, agile delivery thinking and stakeholder communication.",
+        ],
         continuityChain: [
           "Innovation Opportunity",
           "Initial Concept",
+          "AI / Language Interaction Feasibility",
           "Product Discovery",
-          "Requirements",
+          "Product Vision",
+          "Value Proposition",
+          "Stakeholder Analysis",
+          "PRD & Requirements",
           "Prioritisation",
-          "MVP",
+          "Conceptual MVP",
+          "Validation Approach",
           "Product Strategy",
           "Business Model",
+          "Market Relevance",
           "Go-to-Market",
+          "Technical Feasibility",
+          "Adoption Considerations",
         ],
       },
       {

@@ -141,16 +141,6 @@ function EducationPage() {
 
           </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
-            {postgraduate.otherStudies.map((study) => (
-              <div key={study.title} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-base font-semibold">{study.title}</h3>
-                <div className="mt-4">
-                  <TagList items={study.tags} />
-                </div>
-              </div>
-            ))}
-          </div>
           <p className="mt-4 text-sm italic text-muted-foreground">
             {postgraduate.otherStudiesNote}
           </p>
