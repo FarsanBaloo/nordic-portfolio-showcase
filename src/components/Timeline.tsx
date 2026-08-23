@@ -211,6 +211,7 @@ function ProjectChildCard({
 }) {
   const project = getProject(child.slug);
   if (!project) return null;
+  const lead = project.images?.slots.find((slot) => slot.src);
   return (
     <ProjectEvidenceSheet project={project} period={child.period}>
       <button
@@ -218,10 +219,22 @@ function ProjectChildCard({
         className="night-card group block w-full min-w-0 rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none"
         style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
       >
+        {lead ? (
+          <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
+            <img
+              src={lead.src}
+              alt={lead.alt ?? lead.caption}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/9] w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </div>
+        ) : null}
         <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
           {child.period ?? project.type}
         </p>
         <h4 className="mt-1 text-[17.5px] font-semibold text-night-foreground">{project.title}</h4>
+
         {project.subtitle ? (
           <p className="mt-1 text-[13.5px] text-night-muted">{project.subtitle}</p>
         ) : null}
