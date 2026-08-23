@@ -205,8 +205,8 @@ export const milestones: TimelineMilestone[] = [
     ],
     childrenLabel: "Selected work during this role",
     children: [
-      { kind: "project", slug: "digital-realty-st06", datePrecision: "unspecified" },
       { kind: "project", slug: "kth-living-lab", datePrecision: "unspecified" },
+      { kind: "project", slug: "digital-realty-st06", datePrecision: "unspecified" },
       { kind: "project", slug: "st-eriks", datePrecision: "unspecified" },
       { kind: "project", slug: "astrazeneca", datePrecision: "unspecified" },
     ],
