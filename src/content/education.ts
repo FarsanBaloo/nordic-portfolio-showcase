@@ -95,11 +95,17 @@ export const postgraduate = {
     },
     {
       id: "umu",
+      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       institution: "Umeå University",
+      formalTitle:
+        "Advanced-Level Studies in Artificial Intelligence: Autonomous Systems & Perception",
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Autonomous Systems & Perception",
       period: "Jan 2026 – Jun 2026",
-      body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control. Explored how perception, prediction, planning and control are integrated to enable data-driven autonomous systems to interpret dynamic environments and support real-time decision-making.",
+      body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control.",
+      body2:
+        "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
+
       topics: [
         "Multi-sensor fusion",
         "3D perception",
