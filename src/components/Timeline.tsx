@@ -294,8 +294,7 @@ function MilestoneRow({
   reduced: boolean;
 }) {
   const ref = useRef<HTMLLIElement | null>(null);
-  const inView = useInView(ref, { margin: "-45% 0px -35% 0px" });
-  const seen = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
+  const { active: inView, seen } = useRowVisibility(ref);
   const shown = reduced || seen;
   const accent = accentFor(entry.track);
   const isDev = entry.track === "development";
