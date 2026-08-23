@@ -284,7 +284,7 @@ export function AuroraBackdrop() {
             </path>
           </g>
         ))}
-      </svg>
+      </motion.svg>
 
       {/* keeps content readable: darkens the lower sky and the reading column */}
       <div className="aurora-veil-dark absolute inset-0" />
