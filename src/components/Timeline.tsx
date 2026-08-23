@@ -789,7 +789,7 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
             label={entry.railMarker.label}
             active={active}
             accent="var(--professional-accent)"
-            className="left-[16px] top-[-22px] min-[1100px]:left-1/2 min-[1100px]:top-[26px] min-[1100px]:-translate-x-1/2"
+            className="left-[16px] -top-[22px] min-[1100px]:left-1/2 min-[1100px]:top-[26px] min-[1100px]:-translate-x-1/2"
           />
         ) : null}
       </span>
@@ -874,7 +874,7 @@ function MilestoneRow({
             label={marker.label}
             active={active}
             accent={accent}
-            className="left-[16px] top-[-22px] min-[1100px]:left-1/2 min-[1100px]:top-[26px] min-[1100px]:-translate-x-1/2"
+            className="left-[16px] -top-[22px] min-[1100px]:left-1/2 min-[1100px]:top-[26px] min-[1100px]:-translate-x-1/2"
           />
         ) : null}
       </span>
