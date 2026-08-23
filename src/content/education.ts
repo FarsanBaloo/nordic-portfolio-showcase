@@ -159,12 +159,18 @@ export const postgraduate = {
     },
     {
       id: "bth",
+      phase: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
       institution: "Blekinge Institute of Technology",
+      formalTitle:
+        "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
       title:
         "Advanced-Level Specialisation in Industrial Economics, Product & Requirements Management",
       subtitle: "Product · Requirements · Strategy · Leadership",
       period: "Aug 2025 – Jun 2026",
-      body: "Advanced-level specialisation covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organisations.",
+      body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
+      body2:
+        "Advanced-level specialization covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organizations.",
+
       projectCase: {
         title: "Course project — Talking SCADA (product & requirements case)",
         period: "Aug 2025 – Jun 2026",
