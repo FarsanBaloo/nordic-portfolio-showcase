@@ -324,7 +324,7 @@ export const milestones: TimelineMilestone[] = [
         body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
         relevance:
           "Strengthened the ability to evaluate how modern language models can be adapted to domain-specific problems and how model capabilities, limitations and technical feasibility affect product decisions.",
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -346,7 +346,7 @@ export const milestones: TimelineMilestone[] = [
           "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
         relevance:
           "Built system-level understanding of AI around uncertainty, data quality, sensor limitations, real-time decisions and safety.",
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -358,7 +358,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Predictive Analytics", "Machine Learning", "Prediction", "Decision Support"],
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -370,7 +370,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
-        group: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
         kind: "course",
