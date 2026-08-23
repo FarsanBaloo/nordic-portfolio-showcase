@@ -584,8 +584,8 @@ function Phase2Block({
         <div className="hidden min-[1100px]:col-start-2 min-[1100px]:block" />
 
         {caseChild ? (
-          <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1360px]:sticky min-[1360px]:top-[110px]">
-            <div className="min-[1360px]:max-w-[580px]">
+          <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1280px]:sticky min-[1280px]:top-[110px]">
+            <div className="min-[1280px]:min-w-[480px] min-[1280px]:max-w-[560px]">
               <CaseTrackCard child={caseChild} accent={accent} activeCourse={activeCourse} />
             </div>
           </div>
