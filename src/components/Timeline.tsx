@@ -495,33 +495,48 @@ function MilestoneRow({
       {entry.branches?.length ? (
         <div
           className={[
-            "mt-5 min-w-0 transition-all duration-500 md:mt-0 md:row-start-1 md:self-start",
-            left ? "md:col-start-3 md:pl-14" : "md:col-start-1 md:pr-14",
+            "mt-5 min-w-0 transition-all duration-500 lg:mt-0 lg:row-start-1 lg:self-start",
+            left ? "lg:col-start-3 lg:pl-14" : "lg:col-start-1 lg:pr-14",
           ].join(" ")}
         >
           <p
             className={[
               "mb-3 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-night-muted sm:text-[11px]",
-              left ? "md:text-left" : "md:text-right",
+              left ? "lg:text-left" : "lg:text-right",
             ].join(" ")}
           >
             Projects in this role · {entry.period}
           </p>
-          <div className="space-y-3">
-            {entry.branches.map((b) =>
-              b.slug ? (
-                <BranchCard
-                  key={b.slug}
-                  branch={b}
-                  status={status}
-                  period={entry.period}
-                  roleContext={roleContext}
-                />
-              ) : null,
-            )}
+          <div className="space-y-5">
+            {groupBranches(entry.branches).map((group) => (
+              <section key={group.title ?? "ungrouped"} className="min-w-0">
+                {group.title ? (
+                  <h4
+                    className={[
+                      "mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-aurora-violet sm:text-[11px]",
+                      left ? "lg:text-left" : "lg:text-right",
+                    ].join(" ")}
+                  >
+                    {group.title}
+                  </h4>
+                ) : null}
+                <div className="space-y-3">
+                  {group.branches.map((b) => (
+                    <BranchCard
+                      key={b.slug}
+                      branch={b}
+                      status={status}
+                      period={entry.period}
+                      roleContext={roleContext}
+                    />
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
         </div>
       ) : null}
+
     </li>
   );
 }
