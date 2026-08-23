@@ -6,6 +6,9 @@ import thesisPresentation from "../assets/thesis-presentation.jpg.asset.json";
 import planetWhiteboard from "../assets/planet-whiteboard.jpg.asset.json";
 import planetPaperPrototypes from "../assets/planet-paper-prototypes.jpg.asset.json";
 import planetWorkshop from "../assets/planet-workshop.jpg.asset.json";
+import hallbarHalsaDashboard from "../assets/hallbar-halsa-dashboard.png.asset.json";
+import hallbarHalsaOnboarding from "../assets/hallbar-halsa-onboarding.png.asset.json";
+import hallbarHalsaFlow from "../assets/hallbar-halsa-flow.png.asset.json";
 
 export type ImageSlot = {
   caption: string;
@@ -872,13 +875,29 @@ export const projects: Project[] = [
     contributionNote:
       "My contribution: to be added. This was a team project, and the concept is an adaptive wellbeing service concept — not a production AI model.",
     images: {
-      intro: "Real project images will be placed in this sequence.",
       slots: [
-        { caption: "Mobile dashboard + smartwatch notification", aspect: "16/9" },
-        { caption: "Onboarding / consent / data handling", aspect: "9/16" },
-        { caption: "Figma interaction flow — profile, connected watch, device search, privacy, data sharing, deletion confirmation", aspect: "16/9" },
+        {
+          caption: "Mobile dashboard + smartwatch notification",
+          aspect: "9/16",
+          src: hallbarHalsaDashboard.url,
+          alt: "Hållbar Hälsa mobile dashboard with activity graph and a smartwatch nudge to move",
+        },
+        {
+          caption: "Onboarding / consent / data handling",
+          aspect: "9/16",
+          src: hallbarHalsaOnboarding.url,
+          alt: "Hållbar Hälsa onboarding screen with welcome text, data handling information and consent",
+        },
+        {
+          caption:
+            "Figma interaction flow — profile, connected watch, device search, privacy, data sharing, deletion confirmation",
+          aspect: "4/3",
+          src: hallbarHalsaFlow.url,
+          alt: "Figma prototype flow showing profile settings, device discovery and deletion confirmation screens",
+        },
       ],
     },
+
   },
   {
     slug: "seeing-ai",
