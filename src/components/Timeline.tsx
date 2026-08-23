@@ -435,7 +435,7 @@ function MilestoneRow({
           <p className="mt-2 text-sm leading-relaxed text-night-muted">{entry.detail}</p>
 
           {entry.roles ? (
-            <ul className={["mt-4 flex flex-wrap gap-2", left ? "md:justify-end" : ""].join(" ")}>
+            <ul className={["mt-4 flex flex-wrap gap-2", left ? "lg:justify-end" : ""].join(" ")}>
               {entry.roles.map((role) => (
                 <li
                   key={role}
