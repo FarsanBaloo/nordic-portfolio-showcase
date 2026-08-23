@@ -1,3 +1,5 @@
+import examenPhoto from "../assets/examen.jpg.asset.json";
+
 export type TimelineTrack = "professional" | "development" | "direction";
 
 /** How precise the underlying date information actually is. Anything that is
