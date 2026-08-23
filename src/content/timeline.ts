@@ -60,6 +60,13 @@ export type TimelineMilestone = {
   title: string;
   subtitle?: string;
   org?: string;
+  /** University name for academic milestones. */
+  university?: string;
+  /** Full formal degree / programme title. */
+  formalTitle?: string;
+  /** Secondary descriptor shown under the formal title. */
+  degreeDescriptor?: string;
+
   track: TimelineTrack;
   stage?: string;
   summary: string;
