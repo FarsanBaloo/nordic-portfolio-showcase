@@ -108,6 +108,8 @@ function CaseStudy() {
                       caption={slot.caption}
                       aspect={slot.aspect}
                       note={slot.note}
+                      src={slot.src}
+                      alt={slot.alt}
                     />
                   ))}
                 </div>
