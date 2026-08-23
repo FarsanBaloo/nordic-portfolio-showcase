@@ -221,6 +221,12 @@ export const milestones: TimelineMilestone[] = [
     formalTitle:
       "Degree of Bachelor of Science in Computer Science with Specialization in Intelligent Systems",
     degreeDescriptor: "B.Sc. in Computer Science · Applied Artificial Intelligence",
+    image: {
+      src: examenPhoto.url,
+      alt: "Rickard Sörlin with thesis colleagues and examiners at Mälardalen University",
+      caption: "Degree project completed — Mälardalen University",
+    },
+
 
     track: "development",
     stage: "Applied AI · Human-Centred Design · Research",
