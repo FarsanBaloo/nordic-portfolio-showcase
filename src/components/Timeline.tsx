@@ -851,7 +851,7 @@ function MilestoneRow({
   onToggleRole: (id: string) => void;
 }) {
   const ref = useRef<HTMLLIElement | null>(null);
-  const { scale, opacity, active } = useFocusMotion(ref, reduced);
+  const { scale, opacity, y, active } = useFocusMotion(ref, reduced);
   const accent = accentFor(entry.track);
   const isDev = entry.track === "development";
   const panelId = useId();
@@ -860,7 +860,7 @@ function MilestoneRow({
   const phase2 = caseChild
     ? groupChildren(entry.children ?? []).find((g) => /^phase 2/i.test(g.title ?? ""))
     : undefined;
-
+  const marker = entry.railMarker;
 
   return (
     <li
@@ -868,11 +868,23 @@ function MilestoneRow({
       className="relative pl-10 sm:pl-12 min-[1100px]:grid min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:items-start min-[1100px]:gap-x-0 min-[1100px]:pl-0"
     >
       <span className="absolute left-[13px] top-6 z-10 -translate-x-1/2 min-[1100px]:left-1/2 min-[1100px]:top-7">
-        <Node lit={active} isNow={false} accent={accent} />
+        <Node lit={active} isNow={false} accent={accent} level={marker?.kind ?? "minor"} />
+        {marker ? (
+          <RailLabel
+            label={marker.label}
+            active={active}
+            accent={accent}
+            className="left-1/2 top-[26px] -translate-x-1/2"
+          />
+        ) : null}
       </span>
 
       <motion.div
-        style={{ scale: reduced ? 1 : scale, opacity: reduced ? 1 : opacity }}
+        style={{
+          scale: reduced ? 1 : scale,
+          opacity: reduced ? 1 : opacity,
+          y: reduced ? 0 : y,
+        }}
         className={[
           "min-w-0 min-[1100px]:row-start-1",
           isDev ? "min-[1100px]:col-start-3 min-[1100px]:pl-10" : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
