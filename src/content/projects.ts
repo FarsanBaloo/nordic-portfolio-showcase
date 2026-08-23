@@ -364,11 +364,18 @@ export const projects: Project[] = [
       "Uncertainty becomes useful decision-support information rather than simply prediction error.",
     images: {
       intro:
-        "Real prediction-vs-actual graphs from the thesis will be placed here. No illustrative or simulated result curves are used.",
+        "No illustrative or simulated result curves are used — only real material from the thesis work.",
       slots: [
+        {
+          caption: "Thesis presentation — future work",
+          aspect: "16/9",
+          src: thesisPresentation.url,
+          alt: "Thesis presentation in a lecture hall with the future-work slide on screen",
+        },
         { caption: "Prediction vs actual with uncertainty bands (SE1 / SE3)", aspect: "16/9" },
       ],
     },
+
     links: [
       {
         label: "Thesis record — DiVA",
