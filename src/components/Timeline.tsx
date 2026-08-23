@@ -160,6 +160,19 @@ function ProjectChildCard({
             {child.note}
           </p>
         ) : null}
+        {child.caseNotes?.length ? (
+          <ul className="mt-3 space-y-1.5">
+            {child.caseNotes.map((n) => (
+              <li
+                key={n}
+                className="border-l pl-2.5 text-[13.5px] leading-relaxed text-night-muted"
+                style={{ borderColor: `color-mix(in oklab, ${accent} 45%, transparent)` }}
+              >
+                {n}
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {child.continuityChain?.length ? (
           <ol className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1.5">
             {child.continuityChain.map((step, i) => (
