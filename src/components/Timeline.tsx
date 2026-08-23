@@ -363,7 +363,7 @@ function MilestoneRow({
     <li
       data-status={status}
       className={[
-        "relative pl-10 transition-all duration-500 sm:pl-12 md:grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-start md:pl-0",
+        "relative pl-10 transition-all duration-500 sm:pl-12 lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-start lg:pl-0",
         status === "upcoming" ? "opacity-80" : "opacity-100",
       ].join(" ")}
     >
@@ -380,10 +380,10 @@ function MilestoneRow({
           boxShadow: "0 0 18px 1px color-mix(in oklab, var(--aurora-teal) 30%, transparent)",
         }}
       />
-      <div className="hidden md:block" />
+      <div className="hidden lg:block" />
       <span
         ref={nodeRef}
-        className="absolute left-[13px] top-6 z-10 -translate-x-1/2 md:relative md:left-auto md:top-6 md:translate-x-0"
+        className="absolute left-[13px] top-6 z-10 -translate-x-1/2 lg:relative lg:left-auto lg:top-6 lg:translate-x-0"
       >
         <Node status={status} isNow={!!entry.now} accent={accent} size="major" />
       </span>
@@ -397,10 +397,11 @@ function MilestoneRow({
           "min-w-0 transition-all will-change-transform",
           shown ? "translate-y-0 scale-100 opacity-100" : "translate-y-6 scale-[0.98] opacity-0",
           left
-            ? "md:col-start-1 md:row-start-1 md:pr-14 md:text-right"
-            : "md:col-start-3 md:row-start-1 md:pl-14",
+            ? "lg:col-start-1 lg:row-start-1 lg:pr-14 lg:text-right"
+            : "lg:col-start-3 lg:row-start-1 lg:pl-14",
         ].join(" ")}
       >
+
         <div
           className={[
             "rounded-2xl border p-4 backdrop-blur-sm transition-all duration-500 sm:p-5",
