@@ -286,6 +286,17 @@ function StudyChildCard({
 }
 
 
+function runs(items: TimelineChild[]) {
+  const out: { compact: boolean; items: TimelineChild[] }[] = [];
+  for (const c of items) {
+    const isCompact = c.kind !== "project" && c.variant === "compact";
+    const last = out[out.length - 1];
+    if (last && last.compact && isCompact) last.items.push(c);
+    else out.push({ compact: isCompact, items: [c] });
+  }
+  return out;
+}
+
 function groupChildren(children: TimelineChild[]) {
   const out: { title?: string | undefined; items: TimelineChild[] }[] = [];
   for (const c of children) {
