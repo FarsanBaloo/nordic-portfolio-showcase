@@ -78,8 +78,12 @@
 
   --night: oklch(0.07 0.018 265);
   --night-soft: oklch(0.12 0.03 265);
-  --night-foreground: oklch(0.97 0.005 240);
-  --night-muted: oklch(0.76 0.02 250);
+  --night-foreground: #f4f7f9;
+  --night-body: #c4ced6;
+  --night-muted: #929faa;
+  --night-subtle: #6f7d88;
+  --professional-accent: #62dcc4;
+  --development-accent: #a99bff;
   --night-border: oklch(1 0 0 / 14%);
 
   --aurora-green: oklch(0.82 0.15 162);
