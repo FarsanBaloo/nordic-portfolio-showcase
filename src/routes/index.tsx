@@ -182,27 +182,6 @@ function Index() {
           </div>
         </Section>
 
-        <Section id="experience">
-          <SectionHeading
-            eyebrow="Experience"
-            title="25+ years close to customers and real systems"
-            intro="Three stages at Schneider Electric — from delivery engineering to national platform expertise and senior technical advisory."
-          />
-          <div className="mt-8 space-y-6">
-            {roles.map((role) => (
-              <ExperienceCard key={role.id} role={role} />
-            ))}
-          </div>
-          <div className="mt-8 rounded-xl border border-border bg-card p-6 sm:p-8">
-            <h3 className="text-lg font-semibold">{offerRelevance.title}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-              {offerRelevance.body}
-            </p>
-            <div className="mt-5">
-              <TagList items={offerRelevance.items} />
-            </div>
-          </div>
-        </Section>
 
         <Section id="projects">
           <SectionHeading
