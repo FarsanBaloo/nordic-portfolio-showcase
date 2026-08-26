@@ -3,6 +3,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { NightHero, Page } from "../components/site";
 import { BulletList, Callout, Eyebrow, FlowSteps, ImageFrame, TagList } from "../components/ui-bits";
 import { getProject, sortedProjects } from "../content/projects";
+import { OG_CARD, SITE_URL, absoluteUrl, seo } from "../lib/site";
+
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -18,22 +20,52 @@ export const Route = createFileRoute("/projects/$slug")({
     }
     const { project } = loaderData;
     const title = `${project.title} — Case study | Rickard Sörlin`;
+    const slots = project.images?.slots;
+    const lead = slots?.find((s) => s.src && s.lead) ?? slots?.find((s) => s.src);
+    const image = lead?.src ? absoluteUrl(lead.src) : OG_CARD;
+    const path = `/projects/${params.slug}`;
+    const url = absoluteUrl(path);
     return {
-      meta: [
-        { title },
-        { name: "description", content: project.teaser },
-        { property: "og:title", content: title },
-        { property: "og:description", content: project.teaser },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: `/projects/${params.slug}` },
-        { name: "twitter:card", content: "summary_large_image" },
+      ...seo({ title, description: project.teaser, path, type: "article", image }),
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: project.title,
+            description: project.teaser,
+            image,
+            datePublished: String(project.year ?? ""),
+            author: { "@type": "Person", name: "Rickard Sörlin", url: SITE_URL },
+            publisher: { "@type": "Person", name: "Rickard Sörlin", url: SITE_URL },
+            mainEntityOfPage: url,
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Projects",
+                item: absoluteUrl("/projects"),
+              },
+              { "@type": "ListItem", position: 3, name: project.title, item: url },
+            ],
+          }),
+        },
       ],
-      links: [{ rel: "canonical", href: `/projects/${params.slug}` }],
     };
   },
   notFoundComponent: CaseNotFound,
   component: CaseStudy,
 });
+
 
 function CaseNotFound() {
   return (
