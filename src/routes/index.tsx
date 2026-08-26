@@ -8,6 +8,7 @@ import { mainCapabilities, capabilityNote } from "../content/capabilities";
 import { bachelor, postgraduate, certifications } from "../content/education";
 import {
   aboutParagraphs,
+  availability,
   contactIntro,
   journeyIntro,
   productPhilosophy,
@@ -15,6 +16,8 @@ import {
   whatIBring,
 } from "../content/profile";
 import { sortedProjects } from "../content/projects";
+import { seo } from "../lib/site";
+
 
 const title = "Rickard Sörlin — Digital Platforms, Product & Applied AI";
 const description =
@@ -69,6 +72,11 @@ function Index() {
             {profile.name}
           </h1>
           <p className="mt-3 text-lg text-night-foreground/90">{profile.descriptor}</p>
+          <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
+            {availability}
+          </p>
+
           <p className="mt-8 max-w-3xl text-lg leading-relaxed text-night-muted">
             {profile.heroPrimary}
           </p>
@@ -120,6 +128,13 @@ function Index() {
             >
               View selected projects
             </Link>
+            <Link
+              to="/cv"
+              className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+            >
+              Download CV
+            </Link>
+
             <a
               href={profile.linkedin}
               target="_blank"
