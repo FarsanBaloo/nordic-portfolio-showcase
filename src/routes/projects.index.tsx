@@ -4,24 +4,14 @@ import { useState } from "react";
 import { ProjectCard } from "../components/ProjectCard";
 import { NightHero, Page } from "../components/site";
 import { projectFilters, sortedProjects, type ProjectCategory } from "../content/projects";
+import { seo } from "../lib/site";
 
 const title = "Projects & Case Studies — Rickard Sörlin";
 const description =
   "Applied industrial AI, SCADA and building-platform work, interaction design and innovation projects — each documented from problem to validated result.";
 
 export const Route = createFileRoute("/projects/")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/projects" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/projects" }],
-  }),
+  head: () => seo({ title, description, path: "/projects" }),
   component: ProjectsPage,
 });
 

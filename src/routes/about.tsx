@@ -4,24 +4,14 @@ import { NightHero, Page, Section } from "../components/site";
 import { BulletList, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
 import { profile } from "../content/profile";
+import { seo } from "../lib/site";
 
 const title = "About Rickard Sörlin — Industrial Platforms, Product & AI";
 const description =
   "25+ years close to customers, industrial systems and digital platforms — now focused on AI-enabled products, offer management and product ownership.";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "profile" },
-      { property: "og:url", content: "/about" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
+  head: () => seo({ title, description, path: "/about", type: "profile" }),
   component: AboutPage,
 });
 
