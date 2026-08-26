@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { NightHero, Page } from "../components/site";
 import { TagList } from "../components/ui-bits";
-import { contactIntro, profile } from "../content/profile";
+import { availability, contactIntro, profile } from "../content/profile";
 import { seo } from "../lib/site";
 
 const title = "Contact Rickard Sörlin";
