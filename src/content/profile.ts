@@ -111,3 +111,7 @@ export const careerLens = [
     items: ["Applied AI", "Product Discovery", "Interaction Design", "User Validation"],
   },
 ];
+
+/** Short availability signal shown in the hero, on /contact and on the CV. */
+export const availability =
+  "Open to AI Product Manager / Product Owner / Offer Manager roles — Stockholm or remote";
