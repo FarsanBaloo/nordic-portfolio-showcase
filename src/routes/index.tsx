@@ -128,12 +128,13 @@ function Index() {
             >
               View selected projects
             </Link>
-            <Link
-              to="/cv"
+            <a
+              href="/assets/rickard-sorlin-cv.pdf"
+              download
               className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
             >
-              Download CV
-            </Link>
+              Download CV (PDF)
+            </a>
 
             <a
               href={profile.linkedin}

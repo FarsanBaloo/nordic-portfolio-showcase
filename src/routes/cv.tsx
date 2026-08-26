@@ -36,14 +36,15 @@ function CvPage() {
     <Page>
       <div className="cv-sheet mx-auto max-w-3xl">
         <div className="cv-actions flex justify-end print:hidden">
-          <button
-            type="button"
-            onClick={() => window.print()}
+          <a
+            href="/assets/rickard-sorlin-cv.pdf"
+            download
             className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             Download CV (PDF)
-          </button>
+          </a>
         </div>
+
 
         <header className="mt-6">
           <h1 className="text-4xl font-semibold tracking-tight">{cvHeader.name}</h1>
