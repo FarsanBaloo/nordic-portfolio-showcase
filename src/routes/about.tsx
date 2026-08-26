@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { NightHero, Page, Section } from "../components/site";
 import { BulletList, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
-import { profile } from "../content/profile";
+import { availability, profile } from "../content/profile";
+
 import { seo } from "../lib/site";
 
 const title = "About Rickard Sörlin — Industrial Platforms, Product & AI";
@@ -19,13 +20,24 @@ function AboutPage() {
   return (
     <>
       <NightHero eyebrow="About" title="Profile summary" intro={profile.positioning}>
-        <div className="mt-10 flex flex-wrap gap-3">
+        <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
+          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
+          {availability}
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
           <a
             href={`mailto:${profile.email}`}
             className="rounded-md bg-aurora-teal px-5 py-2.5 text-sm font-medium text-night transition-opacity hover:opacity-90"
           >
             Get in touch
           </a>
+          <Link
+            to="/cv"
+            className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+          >
+            Download CV
+          </Link>
+
           <a
             href={profile.linkedin}
             target="_blank"

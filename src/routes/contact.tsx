@@ -23,7 +23,13 @@ const channels = [
 function ContactPage() {
   return (
     <>
-      <NightHero eyebrow="Contact" title="Let's talk" intro={contactIntro} />
+      <NightHero eyebrow="Contact" title="Let's talk" intro={contactIntro}>
+        <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
+          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
+          {availability}
+        </p>
+      </NightHero>
+
       <Page>
         <div className="grid gap-4 sm:grid-cols-3">
           {channels.map((channel) => (
