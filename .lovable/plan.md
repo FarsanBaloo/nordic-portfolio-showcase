@@ -1,65 +1,45 @@
-# Portfolio — what's recommended and important to add/fix
+# Portfolio hardening: sharing, CV, SEO, performance, accessibility
 
-The site is strong on content and chronology. These are the gaps that matter for a professional positioning toward AI Product Manager / Offer Manager roles, ordered by impact.
+Site URL is now fixed: `https://petersbergsstigen.asuscomm.com`. All absolute URLs below use it.
 
-## 1. Social sharing — OG images (important)
-LinkedIn is the primary channel where this portfolio will be shared (by you, recruiters, peers). Right now **no route sets `og:image` or `twitter:image`**, so shared links render a blank preview card.
+## 1. Social sharing card
+- Generate a 1200x630 OG card (`public/assets/og-card.png`) built from the existing portrait, name, and descriptor "Product Owner – AI & Industrial Digital Platforms", in the site's night/aurora style.
+- Add `og:image` + `twitter:image` (absolute URL) to every leaf route head: `/`, `/journey`, `/projects`, `/projects/$slug`, `/education`, `/about`, `/contact`. Case studies use their own lead image when they have one, otherwise the OG card.
+- Make all `canonical` and `og:url` values absolute against the domain (currently relative).
 
-- Generate one polished OG card image (1200×630) from the portrait + name + descriptor, stored in `/public/assets/og-card.png`.
-- Add `{ property: "og:image", content: "https://<domain>/assets/og-card.png" }` and the matching `twitter:image` to the leaf route heads (`/`, `/journey`, `/projects`, `/education`, `/about`, `/contact`) and to flagship case-study routes.
-- Requires a published domain to form absolute URLs; until then, use the stable preview URL.
+## 2. Downloadable CV
+- New `/cv` route rendering a clean, single-column résumé from the attached CV: header/contact, strengths, core skills (Product & Strategy / Domain & Platforms / AI & Data), summary, selected AI projects (wind power forecasting, Talking Systems), experience (Senior Technical Advisor 2020–2025, Technical Support Engineer 2013–2020, Project Engineer 2003–2013), education (BTH, Skövde, AI specialisation at Umeå/LiU/MDU, BSc MDU, Sjödals Gymnasium), certifications, languages.
+- CV content lives in a new `src/content/cv.ts` so it stays in one place.
+- "Download CV" button in the home hero and on `/about`, linking to `/cv`; the `/cv` page has a "Print / Save as PDF" button calling `window.print()`.
+- `@media print` rules in `src/styles.css`: hide aurora backdrop, scroll progress, header, footer, buttons; force white background/black text, single column, sensible page breaks.
 
-## 2. Downloadable CV / résumé (important)
-Recruiters expect a one-click PDF. There is none today.
+## 3. Sitemap and robots
+- Rewrite `public/sitemap.xml` with absolute `<loc>` URLs, add `/cv`, and include the remaining project slugs.
+- Add `Sitemap: https://petersbergsstigen.asuscomm.com/sitemap.xml` to `public/robots.txt`.
 
-- Add a "Download CV" button in the hero and on `/about`.
-- Produce a clean, single-column print stylesheet for `/about` (or a dedicated `/cv` route) so "Download CV" can be a print-to-PDF of a page tuned for paper, avoiding a separate hand-maintained document that drifts out of sync.
-- Include the print stylesheet (`@media print`) so the aurora, nav, footer and interactive timeline are hidden and the content reads cleanly on paper.
+## 4. Structured data
+- `Article` JSON-LD on `/projects/$slug`: headline, author (Person: Rickard Sörlin), `datePublished` from `project.year`, image from lead image.
+- `BreadcrumbList` JSON-LD on case studies: Home → Projects → title.
 
-## 3. Sitemap and robots are half-wired (important for indexing)
-`public/sitemap.xml` uses **relative URLs** (`<loc>/journey</loc>`), which Google rejects, and `public/robots.txt` does not reference the sitemap.
+## 5. Performance / layout stability
+- Add explicit `width`/`height` (or a CSS `aspect-ratio` wrapper) to every `<img>` in `ProjectEvidenceSheet`, `projects.$slug`, `Timeline`, and `education`.
+- `loading="lazy"` + `decoding="async"` on all below-the-fold images; hero portrait stays eager with `fetchpriority="high"`.
 
-- Prefix every `<loc>` with the absolute site URL once a domain is set.
-- Add `Sitemap: https://<domain>/sitemap.xml` to `robots.txt`.
+## 6. Accessibility
+- Visually-hidden "Skip to content" link as the first focusable element in `__root.tsx`, targeting a `#main` landmark on the content wrapper.
+- Visible `focus-visible` rings on `ProjectCard`, timeline role/project buttons, and evidence-sheet triggers, using the existing aurora-teal token.
 
-## 4. Structured data beyond the home page (important for SEO)
-Only `/` has JSON-LD (`Person`). Case studies and the journey would benefit:
+## 7. Availability signal
+- Small status badge (pulsing dot + text) in the home hero and on `/contact`: "Open to AI Product Manager / Product Owner / Offer Manager roles — Stockholm or remote". Text stored in `src/content/profile.ts`.
 
-- Add `Article` JSON-LD on `/projects/$slug` (headline, author, datePublished from `project.year`, image from the project's lead image).
-- Add `BreadcrumbList` JSON-LD on case studies (Home → Projects → <title>).
+## 8. Social proof
+- Add a `recommendations` array in `src/content/profile.ts` and a quote block on `/about` plus the home About section, with attribution and a link to the LinkedIn recommendations section.
+- Placeholder note: I need the actual quote text and attributions from you; until you provide them the section stays out of the build rather than shipping invented quotes.
 
-## 5. Performance — image dimensions and lazy loading (important)
-Project images in `ProjectEvidenceSheet` and case-study pages load without explicit `width`/`height`, causing layout shift (CLS). The timeline thumbnail images likewise.
-
-- Add explicit `width`/`height` (or `aspect-ratio`) to every `<img>` so the browser reserves space before load.
-- Confirm `loading="lazy"` on all below-the-fold images (hero portrait should stay `eager`).
-
-## 6. Accessibility polish (recommended)
-The site is largely accessible, but two cheap wins remain:
-
-- Add a visually-hidden **"Skip to content"** link as the first focusable element in `__root.tsx`.
-- Ensure every interactive card (ProjectCard, role expand buttons) has a visible focus ring (some `hover`-only styling may not pair with `:focus-visible`).
-
-## 7. Availability / "what I'm looking for" signal (recommended)
-The hero has "Target / focus roles" but no availability status. Recruiters scan for this.
-
-- Add a short availability line (e.g. "Open to AI Product Manager / Offer Manager roles — Stockholm or remote") to the hero and `/contact`, ideally as a small status badge so it reads at a glance.
-
-## 8. Social proof (recommended)
-The case studies are strong but entirely self-authored. Lightweight, credible third-party signal helps:
-
-- Surface a short pull-quote or two from LinkedIn recommendations (with attribution + link to the source recommendation), on `/about` or the home "About" section.
-
-## 9. Analytics (recommended, optional)
-No traffic tracking today. If you want to know which projects/cases recruiters actually open:
-
-- Add a privacy-light analytics beacon (e.g. Plausible/Umami via a script tag, or a simple `/api/public/ingest` server route) — no cookies, GDPR-friendly.
-
-## Not recommended (deliberately omitted)
-- **A contact form.** Links-only (email, phone, LinkedIn) is the right call for a static self-hosted personal site — a form needs a backend and is friction recruiters don't need.
-- **A blog.** Not part of the positioning; the case studies already do the depth work.
-- **Light mode.** The aurora night identity is the brand; a toggle would dilute it.
+## 9. Analytics
+- Skipped for now unless you want it — a self-hosted setup on your NAS (Umami/Plausible) is the natural fit and needs a container of its own. Say the word and I'll add the script tag.
 
 ## Technical notes
-- Files touched: `src/routes/{index,about,contact,journey,projects.*,education}.tsx` (head + JSON-LD), `public/{sitemap.xml,robots.txt}`, `src/styles.css` (`@media print`), `src/components/{site,ProjectEvidenceSheet,ProjectCard,Timeline}.tsx` (focus rings, image dimensions, skip link), new `public/assets/og-card.png`.
-- OG image and absolute sitemap URLs require a published domain; both can be staged now against the preview URL and flipped to the production domain on publish.
+- Files touched: `src/routes/{index,about,contact,journey,education,projects.index,projects.$slug,__root}.tsx`, new `src/routes/cv.tsx`, new `src/content/cv.ts`, `src/content/profile.ts`, `src/components/{site,ProjectCard,ProjectEvidenceSheet,Timeline}.tsx`, `src/styles.css`, `public/{robots.txt,sitemap.xml}`, new `public/assets/og-card.png`.
+- A single `SITE_URL` constant (`src/lib/site.ts`) builds all absolute URLs, so a future domain change is one edit.
+- LinkedIn caches previews; after publishing, refresh via LinkedIn's Post Inspector to see the new card.
