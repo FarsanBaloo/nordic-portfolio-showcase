@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO: prefix each <loc> with the site BASE_URL once a domain is set. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>/</loc></url>
-  <url><loc>/journey</loc></url>
-  <url><loc>/projects</loc></url>
-  <url><loc>/education</loc></url>
-  <url><loc>/about</loc></url>
-  <url><loc>/contact</loc></url>
-  <url><loc>/projects/talking-systems</loc></url>
-  <url><loc>/projects/talking-scada</loc></url>
-  <url><loc>/projects/wind-power-forecasting</loc></url>
-  <url><loc>/projects/digital-realty-st06</loc></url>
-  <url><loc>/projects/kth-living-lab</loc></url>
-  <url><loc>/projects/multi-agent-ai</loc></url>
-  <url><loc>/projects/st-eriks</loc></url>
-  <url><loc>/projects/hvac-monitoring</loc></url>
-  <url><loc>/projects/planet-resande</loc></url>
-  <url><loc>/projects/hallbar-halsa</loc></url>
-  <url><loc>/projects/seeing-ai</loc></url>
-  <url><loc>/projects/astrazeneca</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/journey</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/education</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/about</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/cv</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/contact</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/talking-systems</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/talking-scada</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/wind-power-forecasting</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/digital-realty-st06</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/kth-living-lab</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/multi-agent-ai</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/st-eriks</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/hvac-monitoring</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/planet-resande</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/hallbar-halsa</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/seeing-ai</loc></url>
+  <url><loc>https://petersbergsstigen.asuscomm.com/projects/astrazeneca</loc></url>
 </urlset>
