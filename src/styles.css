@@ -291,3 +291,57 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---------- Print / save-as-PDF (tuned for the /cv route) ---------- */
+@media print {
+  :root {
+    --background: #ffffff;
+    --foreground: #111111;
+  }
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  .aurora-backdrop,
+  .aurora-ribbon,
+  .aurora-starfield,
+  header,
+  footer,
+  nav,
+  .cv-actions,
+  .print\:hidden {
+    display: none !important;
+  }
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .cv-sheet {
+    max-width: none !important;
+    color: #111 !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+  .cv-sheet * {
+    color: #111 !important;
+    background: transparent !important;
+    border-color: #bbb !important;
+    text-shadow: none !important;
+  }
+  .cv-sheet a {
+    text-decoration: none;
+  }
+  .cv-heading {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .cv-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  @page {
+    margin: 16mm 14mm;
+  }
+}

@@ -10,8 +10,10 @@ const nav = [
   { to: "/projects", label: "Projects" },
   { to: "/education", label: "Education" },
   { to: "/about", label: "About" },
+  { to: "/cv", label: "CV" },
   { to: "/contact", label: "Contact" },
 ] as const;
+
 
 export function Header() {
   return (

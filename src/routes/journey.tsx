@@ -3,24 +3,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { JourneyPortrait } from "../components/site";
 import { Timeline } from "../components/Timeline";
 import { careerLens, journeyNarrative, productPhilosophy } from "../content/profile";
+import { seo } from "../lib/site";
 
 const title = "Journey — Rickard Sörlin";
 const description =
   "From customer-facing engineering and national platform expertise to senior technical advisory and AI-enabled product work: one shared chronology of professional and academic development.";
 
 export const Route = createFileRoute("/journey")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "article" },
-      { property: "og:url", content: "/journey" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/journey" }],
-  }),
+  head: () => seo({ title, description, path: "/journey", type: "article" }),
   component: JourneyPage,
 });
 

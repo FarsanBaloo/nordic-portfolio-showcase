@@ -2,25 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { NightHero, Page } from "../components/site";
 import { TagList } from "../components/ui-bits";
-import { contactIntro, profile } from "../content/profile";
+import { availability, contactIntro, profile } from "../content/profile";
+import { seo } from "../lib/site";
 
 const title = "Contact Rickard Sörlin";
 const description =
   "Get in touch about AI product management, product ownership, offer management and industrial B2B digital platform roles.";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contact" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
+  head: () => seo({ title, description, path: "/contact" }),
   component: ContactPage,
 });
 
@@ -33,7 +23,13 @@ const channels = [
 function ContactPage() {
   return (
     <>
-      <NightHero eyebrow="Contact" title="Let's talk" intro={contactIntro} />
+      <NightHero eyebrow="Contact" title="Let's talk" intro={contactIntro}>
+        <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
+          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
+          {availability}
+        </p>
+      </NightHero>
+
       <Page>
         <div className="grid gap-4 sm:grid-cols-3">
           {channels.map((channel) => (

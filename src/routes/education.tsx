@@ -6,24 +6,14 @@ import { NightHero, Page, Section } from "../components/site";
 import { Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { capabilityNote, fullCapabilityMap } from "../content/capabilities";
 import { bachelor, certifications, earlierFoundation, postgraduate } from "../content/education";
+import { seo } from "../lib/site";
 
 const title = "Education & Capabilities — Rickard Sörlin";
 const description =
   "BSc in Computer Science (Intelligent Systems), interaction design, industrial AI and postgraduate studies in product, requirements and innovation management.";
 
 export const Route = createFileRoute("/education")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "article" },
-      { property: "og:url", content: "/education" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/education" }],
-  }),
+  head: () => seo({ title, description, path: "/education", type: "article" }),
   component: EducationPage,
 });
 
@@ -47,6 +37,8 @@ function EducationPage() {
             <div className="overflow-hidden rounded-xl border border-border">
               <img
                 src={examenPhoto.url}
+                width={1280}
+                height={720}
                 alt="Rickard Sörlin with thesis colleagues and examiners at Mälardalen University"
                 loading="lazy"
                 decoding="async"

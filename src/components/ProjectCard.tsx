@@ -5,7 +5,7 @@ import { Eyebrow, TagList } from "./ui-bits";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
+    <article className="group relative flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
       <div className="flex items-start justify-between gap-3">
         <Eyebrow>{project.type}</Eyebrow>
         {project.flagship ? (
