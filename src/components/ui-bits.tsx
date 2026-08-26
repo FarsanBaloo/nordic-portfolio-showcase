@@ -198,6 +198,8 @@ export function ImageFrame({
           <img
             src={src}
             alt={alt ?? caption}
+            width={1280}
+            height={720}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover"

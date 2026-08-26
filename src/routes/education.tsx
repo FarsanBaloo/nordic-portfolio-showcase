@@ -37,6 +37,8 @@ function EducationPage() {
             <div className="overflow-hidden rounded-xl border border-border">
               <img
                 src={examenPhoto.url}
+                width={1280}
+                height={720}
                 alt="Rickard Sörlin with thesis colleagues and examiners at Mälardalen University"
                 loading="lazy"
                 decoding="async"

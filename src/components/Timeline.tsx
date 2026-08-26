@@ -225,6 +225,8 @@ function ProjectChildCard({
             <img
               src={lead.src}
               alt={lead.alt ?? lead.caption}
+              width={1280}
+              height={720}
               loading="lazy"
               decoding="async"
               className="aspect-[16/9] w-full object-cover opacity-90 transition-opacity duration-300 group-hover:opacity-100"
@@ -957,6 +959,8 @@ function MilestoneRow({
                 <img
                   src={entry.image.src}
                   alt={entry.image.alt}
+                  width={1280}
+                  height={720}
                   loading="lazy"
                   decoding="async"
                   className="aspect-[16/9] w-full object-cover"
