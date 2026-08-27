@@ -120,7 +120,7 @@ const morph = (values: string[], dur: string) => (
   />
 );
 
-const durations: Record<string, string> = { back: "92s", mid: "76s", front: "63s" };
+const durations: Record<string, string> = { back: "30s", mid: "25s", front: "20s" };
 
 /**
  * Fixed Scandinavian night sky: near-black backdrop, sparse star field and
@@ -172,8 +172,8 @@ export function AuroraBackdrop() {
             <stop offset="0.78" stopColor="var(--aurora-green-hex)" stopOpacity="0.55" />
             <stop offset="0.9" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.3" />
             <stop offset="1" stopColor="var(--aurora-violet-hex)" stopOpacity="0.12" />
-            <animate attributeName="x1" values="-0.2;-0.09;0.02;-0.09;-0.2" dur="96s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0.88;0.98;1.08;0.98;0.88" dur="96s" repeatCount="indefinite" />
+            <animate attributeName="x1" values="-0.2;-0.09;0.02;-0.09;-0.2" dur="44s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="0.88;0.98;1.08;0.98;0.88" dur="44s" repeatCount="indefinite" />
           </linearGradient>
 
           {/* vertical colour column: rose/violet crown, green body, teal foot */}
@@ -224,12 +224,11 @@ export function AuroraBackdrop() {
             <feGaussianBlur stdDeviation="14" />
           </filter>
           <filter id="aurora-warp" x="-15%" y="-15%" width="130%" height="140%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.006" numOctaves="2" seed="7" result="n">
-              <animate attributeName="baseFrequency" values="0.0016 0.006;0.0021 0.0072;0.0014 0.0055;0.0016 0.006" dur="52s" repeatCount="indefinite" />
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G">
-              <animate attributeName="scale" values="10;14;11;10" dur="44s" repeatCount="indefinite" />
-            </feDisplacementMap>
+            {/* Static on purpose: animating baseFrequency or scale re-generates the
+                noise on the CPU every frame over a 2400x1400 region, which is what
+                made the curtains stutter. The folds move via GPU transforms instead. */}
+            <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.006" numOctaves="2" seed="7" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G" />
           </filter>
 
           {ribbons.map((r) => (
