@@ -200,35 +200,31 @@ export function AuroraBackdrop() {
             <stop offset="0.55" stopColor="white" stopOpacity="0.35" />
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
-          <pattern id="aurora-streaks" width="121" height="1000" patternUnits="userSpaceOnUse">
-            <rect x="1.5" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.34" />
-            <rect x="5" width="1.0" height="1000" fill="url(#streak-fade)" opacity="0.46" />
-            <rect x="9" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.24" />
-            <rect x="13.5" width="2.2" height="1000" fill="url(#streak-fade)" opacity="0.3" />
-            <rect x="18" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.42" />
-            <rect x="22" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.26" />
-            <rect x="26.5" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.38" />
-            <rect x="30" width="2.6" height="1000" fill="url(#streak-fade)" opacity="0.22" />
-            <rect x="35" width="0.9" height="1000" fill="url(#streak-fade)" opacity="0.48" />
-            <rect x="39" width="1.2" height="1000" fill="url(#streak-fade)" opacity="0.28" />
-            <rect x="43.5" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.36" />
-            <rect x="47" width="1.8" height="1000" fill="url(#streak-fade)" opacity="0.24" />
-            <rect x="52" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.44" />
-            <rect x="56" width="1.0" height="1000" fill="url(#streak-fade)" opacity="0.3" />
-            <rect x="60.5" width="2.4" height="1000" fill="url(#streak-fade)" opacity="0.2" />
-            <rect x="65" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.4" />
-            <rect x="69" width="1.5" height="1000" fill="url(#streak-fade)" opacity="0.26" />
-            <rect x="73.5" width="0.9" height="1000" fill="url(#streak-fade)" opacity="0.34" />
-            <rect x="78" width="1.1" height="1000" fill="url(#streak-fade)" opacity="0.44" />
-            <rect x="82" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.24" />
-            <rect x="86.5" width="2.0" height="1000" fill="url(#streak-fade)" opacity="0.22" />
-            <rect x="91" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.38" />
-            <rect x="95" width="1.3" height="1000" fill="url(#streak-fade)" opacity="0.3" />
-            <rect x="99.5" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.42" />
-            <rect x="104" width="1.7" height="1000" fill="url(#streak-fade)" opacity="0.24" />
-            <rect x="108" width="0.9" height="1000" fill="url(#streak-fade)" opacity="0.36" />
-            <rect x="112.5" width="1.0" height="1000" fill="url(#streak-fade)" opacity="0.28" />
-            <rect x="117" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.46" />
+          <pattern id="aurora-streaks" width="119" height="1000" patternUnits="userSpaceOnUse">
+            <rect x="2" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.42" />
+            <rect x="7" width="2.6" height="1000" fill="url(#streak-fade)" opacity="0.3" />
+            <rect x="12" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.5" />
+            <rect x="17" width="3.4" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="22.5" width="1.8" height="1000" fill="url(#streak-fade)" opacity="0.44" />
+            <rect x="27" width="2.2" height="1000" fill="url(#streak-fade)" opacity="0.34" />
+            <rect x="32" width="1.5" height="1000" fill="url(#streak-fade)" opacity="0.52" />
+            <rect x="36.5" width="4.0" height="1000" fill="url(#streak-fade)" opacity="0.2" />
+            <rect x="43" width="1.7" height="1000" fill="url(#streak-fade)" opacity="0.46" />
+            <rect x="47.5" width="2.4" height="1000" fill="url(#streak-fade)" opacity="0.32" />
+            <rect x="52" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.48" />
+            <rect x="56" width="3.0" height="1000" fill="url(#streak-fade)" opacity="0.26" />
+            <rect x="62" width="1.9" height="1000" fill="url(#streak-fade)" opacity="0.4" />
+            <rect x="66.5" width="1.5" height="1000" fill="url(#streak-fade)" opacity="0.5" />
+            <rect x="71" width="2.8" height="1000" fill="url(#streak-fade)" opacity="0.28" />
+            <rect x="76" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.44" />
+            <rect x="80.5" width="3.6" height="1000" fill="url(#streak-fade)" opacity="0.22" />
+            <rect x="86" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.52" />
+            <rect x="90" width="2.2" height="1000" fill="url(#streak-fade)" opacity="0.34" />
+            <rect x="95" width="1.8" height="1000" fill="url(#streak-fade)" opacity="0.42" />
+            <rect x="99.5" width="2.6" height="1000" fill="url(#streak-fade)" opacity="0.28" />
+            <rect x="104" width="1.5" height="1000" fill="url(#streak-fade)" opacity="0.46" />
+            <rect x="109" width="3.2" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="114" width="1.7" height="1000" fill="url(#streak-fade)" opacity="0.4" />
           </pattern>
 
           <filter id="aurora-soft" x="-25%" y="-25%" width="150%" height="160%">
@@ -242,7 +238,7 @@ export function AuroraBackdrop() {
                 noise on the CPU every frame over a 2400x1400 region, which is what
                 made the curtains stutter. The folds move via GPU transforms instead. */}
             <feTurbulence type="fractalNoise" baseFrequency="0.0016 0.006" numOctaves="2" seed="7" result="n" />
-            <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="8" xChannelSelector="R" yChannelSelector="G" />
           </filter>
 
           {ribbons.map((r) => (
@@ -291,7 +287,7 @@ export function AuroraBackdrop() {
                   width="2400"
                   height="1400"
                   fill="url(#aurora-streaks)"
-                  opacity={r.streaks * 0.7}
+                  opacity={r.streaks * 0.95}
                   filter="url(#aurora-warp)"
                 />
               </g>
