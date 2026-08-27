@@ -17,12 +17,12 @@ function makeStars(count: number): Star[] {
   const rand = mulberry(20260822);
   const out: Star[] = [];
   for (let i = 0; i < count; i += 1) {
-    const bright = rand() > 0.9;
+    const bright = rand() > 0.8;
     out.push({
       x: Math.round(rand() * 1600 * 100) / 100,
       y: Math.round(rand() * 1000 * 100) / 100,
-      r: bright ? 0.9 + rand() * 0.5 : 0.4 + rand() * 0.25,
-      o: bright ? 0.55 + rand() * 0.25 : 0.22 + rand() * 0.34,
+      r: bright ? 1.1 + rand() * 0.7 : 0.5 + rand() * 0.35,
+      o: bright ? 0.75 + rand() * 0.25 : 0.34 + rand() * 0.4,
       d: 14 + Math.round(rand() * 30),
       bright,
     });
@@ -30,8 +30,8 @@ function makeStars(count: number): Star[] {
   return out;
 }
 
-const starsFar = makeStars(96);
-const starsNear = makeStars(38).map((s) => ({ ...s, x: (s.x + 640) % 1600, y: (s.y + 310) % 1000 }));
+const starsFar = makeStars(230);
+const starsNear = makeStars(95).map((s) => ({ ...s, x: (s.x + 640) % 1600, y: (s.y + 310) % 1000 }));
 
 /* ---------- ribbon geometry: asymmetric arcs in the upper sky ---------- */
 type Ribbon = {
@@ -200,28 +200,42 @@ export function AuroraBackdrop() {
             <stop offset="0.55" stopColor="white" stopOpacity="0.35" />
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
-          <pattern id="aurora-streaks" width="167" height="1000" patternUnits="userSpaceOnUse">
-            <rect x="2" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.34" />
-            <rect x="9" width="3" height="1000" fill="url(#streak-fade)" opacity="0.4" />
-            <rect x="19" width="9" height="1000" fill="url(#streak-fade)" opacity="0.2" />
-            <rect x="33" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.46" />
-            <rect x="40" width="2" height="1000" fill="url(#streak-fade)" opacity="0.5" />
-            <rect x="52" width="14" height="1000" fill="url(#streak-fade)" opacity="0.13" />
-            <rect x="72" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.3" />
-            <rect x="84" width="4" height="1000" fill="url(#streak-fade)" opacity="0.42" />
-            <rect x="95" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.26" />
-            <rect x="103" width="2" height="1000" fill="url(#streak-fade)" opacity="0.3" />
-            <rect x="118" width="11" height="1000" fill="url(#streak-fade)" opacity="0.16" />
-            <rect x="136" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.32" />
-            <rect x="147" width="3" height="1000" fill="url(#streak-fade)" opacity="0.36" />
-            <rect x="158" width="1.8" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+          <pattern id="aurora-streaks" width="121" height="1000" patternUnits="userSpaceOnUse">
+            <rect x="1.5" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.34" />
+            <rect x="5" width="1.0" height="1000" fill="url(#streak-fade)" opacity="0.46" />
+            <rect x="9" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="13.5" width="2.2" height="1000" fill="url(#streak-fade)" opacity="0.3" />
+            <rect x="18" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.42" />
+            <rect x="22" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.26" />
+            <rect x="26.5" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.38" />
+            <rect x="30" width="2.6" height="1000" fill="url(#streak-fade)" opacity="0.22" />
+            <rect x="35" width="0.9" height="1000" fill="url(#streak-fade)" opacity="0.48" />
+            <rect x="39" width="1.2" height="1000" fill="url(#streak-fade)" opacity="0.28" />
+            <rect x="43.5" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.36" />
+            <rect x="47" width="1.8" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="52" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.44" />
+            <rect x="56" width="1.0" height="1000" fill="url(#streak-fade)" opacity="0.3" />
+            <rect x="60.5" width="2.4" height="1000" fill="url(#streak-fade)" opacity="0.2" />
+            <rect x="65" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.4" />
+            <rect x="69" width="1.5" height="1000" fill="url(#streak-fade)" opacity="0.26" />
+            <rect x="73.5" width="0.9" height="1000" fill="url(#streak-fade)" opacity="0.34" />
+            <rect x="78" width="1.1" height="1000" fill="url(#streak-fade)" opacity="0.44" />
+            <rect x="82" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="86.5" width="2.0" height="1000" fill="url(#streak-fade)" opacity="0.22" />
+            <rect x="91" width="0.8" height="1000" fill="url(#streak-fade)" opacity="0.38" />
+            <rect x="95" width="1.3" height="1000" fill="url(#streak-fade)" opacity="0.3" />
+            <rect x="99.5" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.42" />
+            <rect x="104" width="1.7" height="1000" fill="url(#streak-fade)" opacity="0.24" />
+            <rect x="108" width="0.9" height="1000" fill="url(#streak-fade)" opacity="0.36" />
+            <rect x="112.5" width="1.0" height="1000" fill="url(#streak-fade)" opacity="0.28" />
+            <rect x="117" width="0.7" height="1000" fill="url(#streak-fade)" opacity="0.46" />
           </pattern>
 
           <filter id="aurora-soft" x="-25%" y="-25%" width="150%" height="160%">
             <feGaussianBlur stdDeviation="26" />
           </filter>
-          <filter id="aurora-mask-blur" x="-25%" y="-25%" width="150%" height="160%">
-            <feGaussianBlur stdDeviation="14" />
+          <filter id="aurora-mask-blur" x="-18%" y="-18%" width="136%" height="140%">
+            <feGaussianBlur stdDeviation="7" />
           </filter>
           <filter id="aurora-warp" x="-15%" y="-15%" width="130%" height="140%">
             {/* Static on purpose: animating baseFrequency or scale re-generates the
@@ -267,16 +281,20 @@ export function AuroraBackdrop() {
                 fill={`url(#vhue-${r.id})`}
                 opacity="0.7"
               />
-              <rect
-                className="aurora-streak-sheet"
-                x="-400"
-                y="-200"
-                width="2400"
-                height="1400"
-                fill="url(#aurora-streaks)"
-                opacity={r.streaks * 0.7}
-                filter="url(#aurora-warp)"
-              />
+              {/* The transform lives on the wrapper and the filter on the static
+                  child: a filtered element that also animates its own transform
+                  makes the browser recompute the whole filter every frame. */}
+              <g className="aurora-streak-sheet">
+                <rect
+                  x="-400"
+                  y="-200"
+                  width="2400"
+                  height="1400"
+                  fill="url(#aurora-streaks)"
+                  opacity={r.streaks * 0.7}
+                  filter="url(#aurora-warp)"
+                />
+              </g>
             </g>
             <path fill="none" stroke="url(#aurora-hue)" strokeWidth="4" opacity="0.3" filter="url(#aurora-mask-blur)" d={r.edges[0]}>
               {morph(r.edges, durations[r.id] ?? "27s")}
