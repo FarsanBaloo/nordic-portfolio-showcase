@@ -131,7 +131,9 @@ export function AuroraBackdrop() {
   // Scroll-linked fade driven entirely by motion values — no React state per frame.
   const fade = useTransform(scrollY, (v) => {
     const h = typeof window === "undefined" ? 1 : window.innerHeight || 1;
-    return 1 - Math.min(1, Math.max(0, v / h)) * 0.68;
+    // Gentle and spread over two screens: fading hard after one viewport made
+    // the sky die out partway down the page instead of carrying it.
+    return 1 - Math.min(1, Math.max(0, v / (h * 2))) * 0.24;
   });
 
 

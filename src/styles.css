@@ -265,7 +265,7 @@
 .aurora-veil-dark {
   background:
     radial-gradient(ellipse 66% 50% at 24% 48%, rgb(2 4 7 / 0.6), transparent 72%),
-    linear-gradient(to bottom, transparent 0 52%, rgb(2 4 7 / 0.55) 82%, #020407 100%);
+    linear-gradient(to bottom, transparent 0 58%, rgb(2 4 7 / 0.42) 84%, rgb(2 4 7 / 0.62) 100%);
 }
 
 
