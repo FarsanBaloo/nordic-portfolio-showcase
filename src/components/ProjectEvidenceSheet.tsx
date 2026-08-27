@@ -1,7 +1,8 @@
 import { type ReactNode } from "react";
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { BulletList, Callout, Eyebrow, FlowSteps, ImageFrame, TagList } from "./ui-bits";
+import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "./ui-bits";
+import { ImageGallery } from "./ImageGallery";
 import type { Project } from "../content/projects";
 import { projectRoleContext } from "../content/timeline";
 
@@ -75,19 +76,10 @@ export function CaseStudyBody({
       {project.images?.slots.some((slot) => slot.src) ? (
         <section>
           <Eyebrow>Images</Eyebrow>
-          <div className="mt-4 grid gap-5 sm:grid-cols-2">
-            {project.images.slots
-              .filter((slot) => slot.src)
-              .map((slot) => (
-                <ImageFrame
-                  key={slot.caption}
-                  caption={slot.caption}
-                  aspect={slot.aspect}
-                  src={slot.src}
-                  alt={slot.alt}
-                />
-              ))}
-          </div>
+          <ImageGallery
+            slots={project.images.slots.filter((slot) => slot.src)}
+            className="mt-4 grid gap-5 sm:grid-cols-2"
+          />
         </section>
       ) : null}
 

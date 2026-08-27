@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import { Maximize2 } from "lucide-react";
 
 export function Tag({ children, night = false }: { children: ReactNode; night?: boolean }) {
   return (
@@ -181,30 +182,50 @@ export function ImageFrame({
   note,
   src,
   alt,
+  onOpen,
 }: {
   caption: string;
   aspect?: string | undefined;
   note?: string | undefined;
   src?: string | undefined;
   alt?: string | undefined;
+  /** When given, the frame becomes a button that opens the image larger. */
+  onOpen?: (() => void) | undefined;
 }) {
   const ratio = aspectClass[aspect] ?? "aspect-video";
+  const shell = `${ratio} group relative overflow-hidden rounded-lg border border-border bg-secondary shadow-[0_18px_48px_-24px_rgba(0,0,0,0.75)]`;
+  const picture = (
+    <img
+      src={src}
+      alt={alt ?? caption}
+      width={1280}
+      height={720}
+      loading="lazy"
+      decoding="async"
+      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+    />
+  );
   return (
     <figure>
       {src ? (
-        <div
-          className={`${ratio} overflow-hidden rounded-lg border border-border bg-secondary shadow-[0_18px_48px_-24px_rgba(0,0,0,0.75)]`}
-        >
-          <img
-            src={src}
-            alt={alt ?? caption}
-            width={1280}
-            height={720}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover"
-          />
-        </div>
+        onOpen ? (
+          <button
+            type="button"
+            onClick={onOpen}
+            aria-label={`Open larger: ${caption}`}
+            className={`${shell} block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal focus-visible:ring-offset-2 focus-visible:ring-offset-night`}
+          >
+            {picture}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute right-2 bottom-2 rounded-md bg-black/55 p-1.5 text-white/85 opacity-0 backdrop-blur transition-opacity duration-300 group-hover:opacity-100"
+            >
+              <Maximize2 className="h-4 w-4" />
+            </span>
+          </button>
+        ) : (
+          <div className={shell}>{picture}</div>
+        )
       ) : (
         <div
           className={`${ratio} flex items-center justify-center rounded-lg border border-dashed border-border bg-secondary`}

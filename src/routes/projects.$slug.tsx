@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { NightHero, Page } from "../components/site";
-import { BulletList, Callout, Eyebrow, FlowSteps, ImageFrame, TagList } from "../components/ui-bits";
+import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "../components/ui-bits";
+import { ImageGallery } from "../components/ImageGallery";
 import { getProject, sortedProjects } from "../content/projects";
 import { OG_CARD, SITE_URL, absoluteUrl, seo } from "../lib/site";
 
@@ -133,18 +134,7 @@ function CaseStudy() {
                 {project.images.intro ? (
                   <p className="mt-3 text-sm text-muted-foreground">{project.images.intro}</p>
                 ) : null}
-                <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                  {project.images.slots.map((slot) => (
-                    <ImageFrame
-                      key={slot.caption}
-                      caption={slot.caption}
-                      aspect={slot.aspect}
-                      note={slot.note}
-                      src={slot.src}
-                      alt={slot.alt}
-                    />
-                  ))}
-                </div>
+                <ImageGallery slots={project.images.slots} />
               </section>
             ) : null}
 
