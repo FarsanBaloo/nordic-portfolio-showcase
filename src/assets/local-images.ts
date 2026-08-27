@@ -5,6 +5,7 @@ const localAsset = (filename: string) => ({ url: `/assets/${filename}` });
 
 export const examenPhoto = localAsset("examen.jpg");
 export const rickardPortrait = localAsset("rickard-portrait.png");
+export const talkingSystemsTeam = localAsset("talking-systems-team.jpg");
 export const talkingSystemsTestbed = localAsset("talking-systems-testbed.jpg");
 export const talkingSystemsUi = localAsset("talking-systems-ui.png");
 export const talkingSystemsConcept = localAsset("talking-systems-concept.png");

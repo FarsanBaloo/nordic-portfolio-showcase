@@ -1,4 +1,5 @@
 import {
+  talkingSystemsTeam,
   talkingSystemsTestbed,
   talkingSystemsUi,
   talkingSystemsConcept,
@@ -180,6 +181,13 @@ export const projects: Project[] = [
     images: {
       slots: [
         {
+          caption: "The project team at the smart-factory testbed, with the assistant running",
+          aspect: "4/3",
+          src: talkingSystemsTeam.url,
+          alt: "Four people standing in front of a large display running the Talking Systems assistant at the testbed",
+          lead: true,
+        },
+        {
           caption: "The assistant running on the testbed display at MITC",
           aspect: "16/9",
           src: talkingSystemsTestbed.url,
@@ -202,7 +210,6 @@ export const projects: Project[] = [
           aspect: "4/3",
           src: talkingSystemsDemo.url,
           alt: "Two people standing in front of the testbed screen during the demonstration",
-          lead: true,
         },
       ],
     },
