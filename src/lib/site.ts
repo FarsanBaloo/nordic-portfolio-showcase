@@ -4,7 +4,7 @@ export const SITE_URL = "https://rickardsorlin.se";
 export const absoluteUrl = (path: string) =>
   `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 
-export const OG_CARD = absoluteUrl("/assets/og-card.png");
+export const OG_CARD = absoluteUrl("/assets/og-card-v2.png");
 
 type SeoInput = {
   title: string;
