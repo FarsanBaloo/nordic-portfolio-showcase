@@ -122,6 +122,12 @@ function CvPage() {
                   </li>
                 ))}
               </ul>
+              {project.tech ? (
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground">Technical context: </span>
+                  {project.tech}
+                </p>
+              ) : null}
             </section>
           ))}
         </div>
