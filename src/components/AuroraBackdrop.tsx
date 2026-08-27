@@ -49,15 +49,15 @@ const ribbons: Ribbon[] = [
   {
     id: "back",
     cls: "aurora-ribbon-back",
-    top: -340,
-    bottom: 250,
+    top: 40,
+    bottom: 560,
     opacity: 0.5,
     streaks: 0.4,
     shapes: [
-      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 -340 L-300 -340 Z",
-      "M-300 170 C180 190 400 190 740 250 C1060 306 1260 150 1900 120 L1900 -340 L-300 -340 Z",
-      "M-300 240 C140 100 360 280 700 200 C1010 128 1240 130 1900 200 L1900 -340 L-300 -340 Z",
-      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 -340 L-300 -340 Z",
+      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 560 L-300 560 Z",
+      "M-300 170 C180 190 400 190 740 250 C1060 306 1260 150 1900 120 L1900 560 L-300 560 Z",
+      "M-300 240 C140 100 360 280 700 200 C1010 128 1240 130 1900 200 L1900 560 L-300 560 Z",
+      "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170 L1900 560 L-300 560 Z",
     ],
     edges: [
       "M-300 210 C160 120 380 250 720 220 C1030 192 1250 90 1900 170",
@@ -69,15 +69,15 @@ const ribbons: Ribbon[] = [
   {
     id: "mid",
     cls: "aurora-ribbon-mid",
-    top: -300,
-    bottom: 400,
+    top: 90,
+    bottom: 620,
     opacity: 0.62,
     streaks: 0.8,
     shapes: [
-      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 -300 L-300 -300 Z",
-      "M-300 300 C240 330 470 330 800 400 C1100 464 1320 260 1900 300 L1900 -300 L-300 -300 Z",
-      "M-300 350 C200 230 410 420 760 330 C1060 254 1290 270 1900 230 L1900 -300 L-300 -300 Z",
-      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 -300 L-300 -300 Z",
+      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 640 L-300 640 Z",
+      "M-300 300 C240 330 470 330 800 400 C1100 464 1320 260 1900 300 L1900 640 L-300 640 Z",
+      "M-300 350 C200 230 410 420 760 330 C1060 254 1290 270 1900 230 L1900 640 L-300 640 Z",
+      "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260 L1900 640 L-300 640 Z",
     ],
     edges: [
       "M-300 330 C220 250 430 400 780 350 C1080 308 1300 210 1900 260",
@@ -89,8 +89,8 @@ const ribbons: Ribbon[] = [
   {
     id: "front",
     cls: "aurora-ribbon-front",
-    top: -340,
-    bottom: 330,
+    top: 150,
+    bottom: 600,
     opacity: 0.5,
     streaks: 1,
     shapes: [
@@ -179,15 +179,13 @@ export function AuroraBackdrop() {
           {/* vertical colour column: rose/violet crown, green body, teal foot */}
           {ribbons.map((r) => (
             <linearGradient key={`v${r.id}`} id={`vhue-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top - 60} x2="0" y2={r.bottom}>
-              {/* Altitude stack: red oxygen highest, green body, and the violet
-                  nitrogen fringe on the lower border itself. */}
-              <stop offset="0" stopColor="var(--aurora-rose-hex)" stopOpacity="0.16" />
-              <stop offset="0.2" stopColor="var(--aurora-rose-hex)" stopOpacity="0.34" />
-              <stop offset="0.42" stopColor="var(--aurora-green-hex)" stopOpacity="0.55" />
-              <stop offset="0.66" stopColor="var(--aurora-green-bright)" stopOpacity="0.8" />
-              <stop offset="0.86" stopColor="var(--aurora-green-soft)" stopOpacity="0.7" />
-              <stop offset="0.96" stopColor="var(--aurora-violet-hex)" stopOpacity="0.6" />
-              <stop offset="1" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.45" />
+              <stop offset="0" stopColor="var(--aurora-rose-hex)" stopOpacity="0.55" />
+              <stop offset="0.12" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.5" />
+              <stop offset="0.26" stopColor="var(--aurora-violet-hex)" stopOpacity="0.35" />
+              <stop offset="0.44" stopColor="var(--aurora-green-bright)" stopOpacity="0.75" />
+              <stop offset="0.64" stopColor="var(--aurora-green-hex)" stopOpacity="0.6" />
+              <stop offset="0.84" stopColor="var(--aurora-teal-hex)" stopOpacity="0.32" />
+              <stop offset="1" stopColor="var(--aurora-blue-hex)" stopOpacity="0.1" />
             </linearGradient>
           ))}
 
@@ -249,18 +247,15 @@ export function AuroraBackdrop() {
 
           {ribbons.map((r) => (
             <linearGradient key={r.id} id={`fall-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top} x2="0" y2={r.bottom}>
-              {/* A real curtain has a sharp lower border at ~105 km where the
-                  electrons are stopped, and diffuses upward from there. */}
-              <stop offset="0" stopColor="white" stopOpacity="0" />
-              <stop offset="0.34" stopColor="white" stopOpacity="0.14" />
-              <stop offset="0.7" stopColor="white" stopOpacity="0.48" />
-              <stop offset="0.93" stopColor="white" stopOpacity="0.95" />
-              <stop offset="1" stopColor="white" stopOpacity="0.8" />
+              <stop offset="0" stopColor="white" stopOpacity="0.95" />
+              <stop offset="0.32" stopColor="white" stopOpacity="0.5" />
+              <stop offset="0.72" stopColor="white" stopOpacity="0.16" />
+              <stop offset="1" stopColor="white" stopOpacity="0" />
             </linearGradient>
           ))}
 
           {ribbons.map((r) => (
-            <mask key={r.id} id={`mask-${r.id}`} maskUnits="userSpaceOnUse" x="-400" y="-500" width="2400" height="1700">
+            <mask key={r.id} id={`mask-${r.id}`} maskUnits="userSpaceOnUse" x="-400" y="-200" width="2400" height="1400">
               <path fill={`url(#fall-${r.id})`} filter="url(#aurora-mask-blur)" d={r.shapes[0]}>
                 {morph(r.shapes, durations[r.id] ?? "27s")}
               </path>
@@ -276,13 +271,13 @@ export function AuroraBackdrop() {
         {ribbons.map((r) => (
           <g key={r.id} className={`aurora-ribbon ${r.cls}`} opacity={r.opacity}>
             <g mask={`url(#mask-${r.id})`}>
-              <rect x="-400" y="-500" width="2400" height="1700" fill="url(#aurora-hue)" opacity="0.5" />
+              <rect x="-400" y="-200" width="2400" height="1400" fill="url(#aurora-hue)" opacity="0.5" />
               <rect
                 className="aurora-colorwash"
                 x="-400"
-                y="-500"
+                y="-200"
                 width="2400"
-                height="1700"
+                height="1400"
                 fill={`url(#vhue-${r.id})`}
                 opacity="0.7"
               />
@@ -292,9 +287,9 @@ export function AuroraBackdrop() {
               <g className="aurora-streak-sheet">
                 <rect
                   x="-400"
-                  y="-500"
+                  y="-200"
                   width="2400"
-                  height="1700"
+                  height="1400"
                   fill="url(#aurora-streaks)"
                   opacity={r.streaks * 0.7}
                   filter="url(#aurora-warp)"
