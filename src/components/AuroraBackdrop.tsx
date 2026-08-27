@@ -50,7 +50,7 @@ const ribbons: Ribbon[] = [
     id: "back",
     cls: "aurora-ribbon-back",
     top: 40,
-    bottom: 560,
+    bottom: 300,
     opacity: 0.5,
     streaks: 0.4,
     shapes: [
@@ -70,7 +70,7 @@ const ribbons: Ribbon[] = [
     id: "mid",
     cls: "aurora-ribbon-mid",
     top: 90,
-    bottom: 620,
+    bottom: 360,
     opacity: 0.62,
     streaks: 0.8,
     shapes: [
@@ -90,7 +90,7 @@ const ribbons: Ribbon[] = [
     id: "front",
     cls: "aurora-ribbon-front",
     top: 150,
-    bottom: 600,
+    bottom: 400,
     opacity: 0.5,
     streaks: 1,
     shapes: [
@@ -243,9 +243,13 @@ export function AuroraBackdrop() {
 
           {ribbons.map((r) => (
             <linearGradient key={r.id} id={`fall-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top} x2="0" y2={r.bottom}>
-              <stop offset="0" stopColor="white" stopOpacity="0.95" />
-              <stop offset="0.32" stopColor="white" stopOpacity="0.5" />
-              <stop offset="0.72" stopColor="white" stopOpacity="0.16" />
+              {/* Short falloff on purpose: spreading it over half the viewBox
+                  left the curtain without an edge anywhere, which reads as haze
+                  and drowns the rays inside the mask. */}
+              <stop offset="0" stopColor="white" stopOpacity="0.98" />
+              <stop offset="0.18" stopColor="white" stopOpacity="0.72" />
+              <stop offset="0.45" stopColor="white" stopOpacity="0.26" />
+              <stop offset="0.75" stopColor="white" stopOpacity="0.06" />
               <stop offset="1" stopColor="white" stopOpacity="0" />
             </linearGradient>
           ))}
