@@ -165,17 +165,22 @@ export function AuroraBackdrop() {
       >
         <defs>
           {/* brightness varies along the curtain, and travels slowly sideways */}
-          <linearGradient id="aurora-hue" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--aurora-blue-hex)" stopOpacity="0.12" />
-            <stop offset="0.14" stopColor="var(--aurora-teal-hex)" stopOpacity="0.5" />
-            <stop offset="0.3" stopColor="var(--aurora-green-hex)" stopOpacity="0.85" />
-            <stop offset="0.46" stopColor="var(--aurora-lime-hex)" stopOpacity="0.55" />
-            <stop offset="0.62" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
-            <stop offset="0.78" stopColor="var(--aurora-green-hex)" stopOpacity="0.55" />
-            <stop offset="0.9" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.3" />
-            <stop offset="1" stopColor="var(--aurora-violet-hex)" stopOpacity="0.12" />
-            <animate attributeName="x1" values="-0.2;-0.09;0.02;-0.09;-0.2" dur="44s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="0.88;0.98;1.08;0.98;0.88" dur="44s" repeatCount="indefinite" />
+          <linearGradient id="aurora-hue" x1="0" y1="0" x2="1" y2="0" spreadMethod="repeat">
+            {/* Brightness knots travelling along the arc is how a curtain actually
+                moves; sliding the whole sheet sideways reads as smoke. First and
+                last stop match so spreadMethod="repeat" tiles without a seam. */}
+            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.14" />
+            <stop offset="0.1" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
+            <stop offset="0.2" stopColor="var(--aurora-lime-hex)" stopOpacity="0.88" />
+            <stop offset="0.3" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
+            <stop offset="0.42" stopColor="var(--aurora-green-hex)" stopOpacity="0.4" />
+            <stop offset="0.54" stopColor="var(--aurora-teal-hex)" stopOpacity="0.18" />
+            <stop offset="0.66" stopColor="var(--aurora-green-hex)" stopOpacity="0.62" />
+            <stop offset="0.78" stopColor="var(--aurora-green-bright)" stopOpacity="0.85" />
+            <stop offset="0.9" stopColor="var(--aurora-green-hex)" stopOpacity="0.42" />
+            <stop offset="1" stopColor="var(--aurora-teal-hex)" stopOpacity="0.14" />
+            <animate attributeName="x1" values="0;1" dur="26s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="1;2" dur="26s" repeatCount="indefinite" />
           </linearGradient>
 
           {/* vertical colour column: rose/violet crown, green body, teal foot */}

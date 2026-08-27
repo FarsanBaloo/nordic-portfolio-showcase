@@ -167,33 +167,33 @@
 }
 
 @keyframes aurora-drift-a {
-  0%, 100% { transform: translate3d(-26px, 0, 0) scaleY(1); opacity: 0.84; }
-  12% { transform: translate3d(-18px, -4px, 0) scaleY(1.018); opacity: 0.88; }
-  26% { transform: translate3d(-4px, -8px, 0) scaleY(1.034); opacity: 0.93; }
-  40% { transform: translate3d(11px, -7px, 0) scaleY(1.046); opacity: 0.97; }
-  55% { transform: translate3d(26px, -3px, 0) scaleY(1.034); opacity: 0.94; }
-  70% { transform: translate3d(18px, 4px, 0) scaleY(1.012); opacity: 0.9; }
-  86% { transform: translate3d(0px, 8px, 0) scaleY(0.994); opacity: 0.86; }
+  0%, 100% { transform: translate3d(-12px, 0, 0) scaleY(1); opacity: 0.84; }
+  12% { transform: translate3d(-8px, -2px, 0) scaleY(1.018); opacity: 0.88; }
+  26% { transform: translate3d(-2px, -5px, 0) scaleY(1.034); opacity: 0.93; }
+  40% { transform: translate3d(5px, -4px, 0) scaleY(1.046); opacity: 0.97; }
+  55% { transform: translate3d(12px, -2px, 0) scaleY(1.034); opacity: 0.94; }
+  70% { transform: translate3d(8px, 2px, 0) scaleY(1.012); opacity: 0.9; }
+  86% { transform: translate3d(0px, 5px, 0) scaleY(0.994); opacity: 0.86; }
 }
 
 @keyframes aurora-drift-b {
-  0%, 100% { transform: translate3d(30px, 4px, 0) scaleY(1.012); opacity: 0.88; }
-  14% { transform: translate3d(19px, 0px, 0) scaleY(1); opacity: 0.92; }
-  30% { transform: translate3d(4px, -5px, 0) scaleY(0.982); opacity: 0.96; }
-  46% { transform: translate3d(-15px, -8px, 0) scaleY(0.97); opacity: 1; }
-  62% { transform: translate3d(-30px, -4px, 0) scaleY(1.018); opacity: 0.95; }
-  78% { transform: translate3d(-19px, 4px, 0) scaleY(1.042); opacity: 0.9; }
-  90% { transform: translate3d(0px, 8px, 0) scaleY(1.03); opacity: 0.86; }
+  0%, 100% { transform: translate3d(14px, 2px, 0) scaleY(1.012); opacity: 0.88; }
+  14% { transform: translate3d(9px, 0px, 0) scaleY(1); opacity: 0.92; }
+  30% { transform: translate3d(2px, -3px, 0) scaleY(0.982); opacity: 0.96; }
+  46% { transform: translate3d(-7px, -5px, 0) scaleY(0.97); opacity: 1; }
+  62% { transform: translate3d(-14px, -2px, 0) scaleY(1.018); opacity: 0.95; }
+  78% { transform: translate3d(-9px, 2px, 0) scaleY(1.042); opacity: 0.9; }
+  90% { transform: translate3d(0px, 5px, 0) scaleY(1.03); opacity: 0.86; }
 }
 
 @keyframes aurora-drift-c {
-  0%, 100% { transform: translate3d(15px, -4px, 0) scaleY(1); opacity: 0.74; }
-  14% { transform: translate3d(4px, 0px, 0) scaleY(1.018); opacity: 0.8; }
-  30% { transform: translate3d(-11px, 4px, 0) scaleY(1.036); opacity: 0.86; }
-  48% { transform: translate3d(-26px, 8px, 0) scaleY(1.054); opacity: 0.92; }
-  64% { transform: translate3d(-11px, 4px, 0) scaleY(1.036); opacity: 0.88; }
-  80% { transform: translate3d(11px, 0px, 0) scaleY(1.012); opacity: 0.82; }
-  92% { transform: translate3d(22px, -4px, 0) scaleY(0.994); opacity: 0.78; }
+  0%, 100% { transform: translate3d(7px, -2px, 0) scaleY(1); opacity: 0.74; }
+  14% { transform: translate3d(2px, 0px, 0) scaleY(1.018); opacity: 0.8; }
+  30% { transform: translate3d(-5px, 2px, 0) scaleY(1.036); opacity: 0.86; }
+  48% { transform: translate3d(-12px, 5px, 0) scaleY(1.054); opacity: 0.92; }
+  64% { transform: translate3d(-5px, 2px, 0) scaleY(1.036); opacity: 0.88; }
+  80% { transform: translate3d(5px, 0px, 0) scaleY(1.012); opacity: 0.82; }
+  92% { transform: translate3d(10px, -2px, 0) scaleY(0.994); opacity: 0.78; }
 }
 
 @keyframes aurora-streaks {
