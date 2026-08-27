@@ -1,5 +1,5 @@
 /** Single source of truth for the public site URL. Change here on a domain move. */
-export const SITE_URL = "https://petersbergsstigen.asuscomm.com";
+export const SITE_URL = "https://rickardsorlin.se";
 
 export const absoluteUrl = (path: string) =>
   `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;

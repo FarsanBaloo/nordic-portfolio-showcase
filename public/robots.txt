@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://petersbergsstigen.asuscomm.com/sitemap.xml
+Sitemap: https://rickardsorlin.se/sitemap.xml
