@@ -451,11 +451,6 @@ function groupChildren(children: TimelineChild[]) {
 
 type CaseChild = Extract<TimelineChild, { kind: "project" }>;
 
-function isPhase2Group(title?: string) {
-  if (!title) return false;
-  return /^phase 2/i.test(title) || /^continuous product case/i.test(title);
-}
-
 function findCaseChild(entry: TimelineMilestone): CaseChild | undefined {
   return entry.children?.find((c) => c.kind === "project" && c.caseTrack) as CaseChild | undefined;
 }
@@ -504,12 +499,25 @@ function CaseTrackCard({
   const project = getProject(child.slug);
   if (!project) return null;
   const activeGroups = activeCourse ? (courseStageMap[activeCourse] ?? []) : [];
+  const slots = project.images?.slots;
+  const caseLead = slots?.find((slot) => slot.src && slot.lead) ?? slots?.find((slot) => slot.src);
 
   return (
     <div
       className="night-card rounded-2xl p-5 sm:p-6"
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
     >
+      {caseLead?.src ? (
+        <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
+          <img
+            src={caseLead.src}
+            alt={caseLead.alt ?? project.title}
+            loading="lazy"
+            decoding="async"
+            className="aspect-[16/9] w-full object-cover opacity-90"
+          />
+        </div>
+      ) : null}
       <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
         Continuous product case
       </p>
@@ -584,19 +592,29 @@ function CaseTrackCard({
 }
 
 /** Phase 2: BTH parent on top, formal courses left, continuous case right. */
-function Phase2Block({
+/** One phase of the postgraduate period: its courses in the study column and
+ *  the project belonging to that phase beside them. Written once and used by
+ *  both phases — a "Phase2Block" rendering phase 1 is the kind of name that
+ *  stops being true, and a second copy would drift from this one. */
+function PhaseBlock({
   group,
-  caseChild,
   accent,
   reduced,
+  promoteParent = true,
+  side,
 }: {
   group: { title?: string | undefined; items: TimelineChild[] };
-  caseChild: CaseChild | undefined;
   accent: string;
   reduced: boolean;
+  /** Phase 2 opens with a specialisation card above its courses; phase 1 has
+   *  no such parent, and promoting its first course would invent one. */
+  promoteParent?: boolean;
+  side?: ((activeCourse: string | null) => React.ReactNode) | undefined;
 }) {
   const [activeCourse, setActiveCourse] = useState<string | null>(null);
-  const parent = group.items.find((i) => i.kind !== "project" && i.variant !== "compact");
+  const parent = promoteParent
+    ? group.items.find((i) => i.kind !== "project" && i.variant !== "compact")
+    : undefined;
   const courses = group.items.filter(
     (i) => i !== parent && i.kind !== "project",
   ) as Extract<TimelineChild, { kind: "course" | "topics" }>[];
@@ -644,10 +662,10 @@ function Phase2Block({
 
         <div className="hidden min-[1100px]:col-start-2 min-[1100px]:block" />
 
-        {caseChild ? (
+        {side ? (
           <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1280px]:sticky min-[1280px]:top-[110px]">
             <div className="min-[1280px]:min-w-[480px] min-[1280px]:max-w-[560px]">
-              <CaseTrackCard child={caseChild} accent={accent} activeCourse={activeCourse} />
+              {side(activeCourse)}
             </div>
           </div>
         ) : null}
@@ -668,14 +686,19 @@ function ChildColumn({
   accent,
   side,
   reduced,
+  consumedGroups,
 }: {
   entry: TimelineMilestone;
   accent: string;
   side: "left" | "right";
   reduced: boolean;
+  /** Groups already rendered by a phase block. Passed in from the row that
+   *  built those blocks rather than matched by title here, so a group can
+   *  never be drawn twice or silently dropped by a pattern that stops
+   *  matching. */
+  consumedGroups: Set<string>;
 }) {
   if (!entry.children?.length) return null;
-  const hasPhase2 = !!findCaseChild(entry);
   let index = 0;
   return (
     <div className="mt-6 space-y-6 min-[1100px]:mt-0">
@@ -685,7 +708,7 @@ function ChildColumn({
         </p>
       ) : null}
       {groupChildren(entry.children)
-        .filter((g) => !(hasPhase2 && isPhase2Group(g.title)))
+        .filter((g) => !(g.title && consumedGroups.has(g.title)))
         .map((group) => (
         <section key={group.title ?? "ungrouped"} className="min-w-0 space-y-3">
           {group.title ? (
@@ -1164,9 +1187,26 @@ function MilestoneRow({
   const panelId = useId();
   const open = !!entry.roleId && openRoleId === entry.roleId;
   const caseChild = findCaseChild(entry);
-  const phase2 = caseChild
-    ? groupChildren(entry.children ?? []).find((g) => /^phase 2/i.test(g.title ?? ""))
+  const groups = groupChildren(entry.children ?? []);
+  const phase2 = caseChild ? groups.find((g) => /^phase 2/i.test(g.title ?? "")) : undefined;
+  const phase1 = groups.find((g) => /^phase 1/i.test(g.title ?? ""));
+  // The project belonging to phase 1 is the one that is not the continuous
+  // case. Only looked for when a phase 1 exists — every milestone has projects.
+  const phase1Project = phase1
+    ? (entry.children?.find((c) => c.kind === "project" && !c.caseTrack) as CaseChild | undefined)
     : undefined;
+  // Groups a block renders, so the child column does not render them again.
+  // Collected from the blocks themselves rather than matched by title.
+  const groupOf = (child: TimelineChild) => groups.find((g) => g.items.includes(child));
+  const consumedGroups = new Set<string>();
+  for (const g of [
+    phase2,
+    phase1,
+    caseChild ? groupOf(caseChild) : undefined,
+    phase1Project ? groupOf(phase1Project) : undefined,
+  ]) {
+    if (g?.title) consumedGroups.add(g.title);
+  }
   const spansBothColumns = !!phase2;
   const parallel = entry.parallelMilestoneId
     ? milestones.find((m) => m.id === entry.parallelMilestoneId)
@@ -1234,7 +1274,7 @@ function MilestoneRow({
       {parallel ? (
         <div
           className={[
-            "mt-8 min-w-0 min-[1100px]:mt-0 min-[1100px]:row-start-1 min-[1100px]:row-end-5",
+            "mt-8 min-w-0 min-[1100px]:mt-0 min-[1100px]:row-start-1 min-[1100px]:row-end-6",
             isDev
               ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
               : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
@@ -1259,11 +1299,17 @@ function MilestoneRow({
 
       {phase2 ? (
         <div className="mt-10 min-[1100px]:col-span-3 min-[1100px]:row-start-2 min-[1100px]:mt-16">
-          <Phase2Block
+          <PhaseBlock
             group={phase2}
-            caseChild={caseChild}
             accent={accent}
             reduced={reduced}
+            side={
+              caseChild
+                ? (activeCourse) => (
+                    <CaseTrackCard child={caseChild} accent={accent} activeCourse={activeCourse} />
+                  )
+                : undefined
+            }
           />
         </div>
       ) : null}
@@ -1274,9 +1320,25 @@ function MilestoneRow({
         </div>
       ) : null}
 
+      {phase1 ? (
+        <div className="mt-10 min-[1100px]:col-span-3 min-[1100px]:row-start-4 min-[1100px]:mt-16">
+          <PhaseBlock
+            group={phase1}
+            accent={accent}
+            reduced={reduced}
+            promoteParent={false}
+            side={
+              phase1Project
+                ? () => <ProjectChildCard child={phase1Project} accent={accent} />
+                : undefined
+            }
+          />
+        </div>
+      ) : null}
+
       <div
         className={[
-          "min-w-0 min-[1100px]:row-start-4",
+          "min-w-0 min-[1100px]:row-start-5",
           isDev
             ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
             : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
@@ -1292,6 +1354,7 @@ function MilestoneRow({
             accent={accent}
             side={isDev ? "right" : "left"}
             reduced={reduced}
+            consumedGroups={consumedGroups}
           />
         </div>
       </div>
@@ -1300,7 +1363,7 @@ function MilestoneRow({
         <div
           id={panelId}
           className={[
-            "min-w-0 min-[1100px]:row-start-5",
+            "min-w-0 min-[1100px]:row-start-6",
             isDev
               ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
               : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
@@ -1322,7 +1385,7 @@ function MilestoneRow({
         <div
           id={`${panelId}-parallel`}
           className={[
-            "min-w-0 min-[1100px]:row-start-6",
+            "min-w-0 min-[1100px]:row-start-7",
             // the PARALLEL card's own track, not this row's
             parallel.track === "development"
               ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
