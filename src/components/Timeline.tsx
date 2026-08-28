@@ -1317,7 +1317,9 @@ function MilestoneRow({
 
 export function Timeline() {
   const reduced = !!useReducedMotion();
-  const [openRoleId, setOpenRoleId] = useState<string | null>(null);
+  const [openRoleId, setOpenRoleId] = useState<string | null>(
+    () => milestones.find((m) => m.roleEvidenceOpenByDefault)?.roleId ?? null,
+  );
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

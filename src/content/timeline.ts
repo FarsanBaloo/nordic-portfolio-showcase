@@ -105,6 +105,10 @@ export type TimelineMilestone = {
   relevanceSignals?: string[];
   /** Ties into the inline evidence drawer content in experience.ts */
   roleId?: string;
+  /** Open this role's evidence on load instead of behind the toggle. One
+   *  milestone at most: the panel is a single open-at-a-time control, so a
+   *  second one here would silently lose to whichever is read last. */
+  roleEvidenceOpenByDefault?: boolean;
   childrenLabel?: string;
   children?: TimelineChild[];
   roles?: string[];
@@ -208,6 +212,9 @@ export const milestones: TimelineMilestone[] = [
     org: "Schneider Electric",
     track: "professional",
     roleId: "senior-technical-advisor",
+    // Stands beside the degree with a tall empty column under it, so the
+    // evidence is shown rather than hidden behind a toggle.
+    roleEvidenceOpenByDefault: true,
     stage: "Discovery · Product / Solution Options · Business Value",
     summary:
       "Customer-facing technical leadership at the intersection of discovery, architecture, project delivery and business value.",
