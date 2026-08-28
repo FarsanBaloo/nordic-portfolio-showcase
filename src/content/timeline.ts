@@ -113,6 +113,12 @@ export type TimelineMilestone = {
    *  card. For a milestone whose children already state period, universities
    *  and subjects on their own cards, that card only repeats them. */
   hideOwnCard?: boolean;
+  /** A milestone from the OTHER track that ran alongside this one, rendered in
+   *  the empty opposite column of this row instead of in its own place in the
+   *  sequence. Only for a real calendar overlap — it is a claim that the two
+   *  were happening at the same time, and the layout states it more strongly
+   *  than any sentence would. */
+  parallelMilestoneId?: string;
 };
 
 /** Shown once, at the boundary between the two phases of the postgraduate
@@ -228,6 +234,9 @@ export const milestones: TimelineMilestone[] = [
   {
     id: "bsc-development",
     railMarker: { label: "2025", kind: "major", verified: true },
+    // 2020–2025 against this degree's 2023–2025: employed throughout it. The
+    // postgraduate period is NOT covered — the role had ended by August 2025.
+    parallelMilestoneId: "senior-advisor",
     period: "2023–2025",
     datePrecision: "verified-range",
     title: "Computer Science / Intelligent Systems",

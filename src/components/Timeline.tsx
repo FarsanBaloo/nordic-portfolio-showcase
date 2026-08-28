@@ -24,6 +24,11 @@ import {
  *  readers of it must not inherit a presentation decision. */
 const newestFirst = [...milestones].reverse();
 
+/** Milestones rendered inside another row, so the sequence must skip them. */
+const renderedInParallel = new Set(
+  milestones.map((m) => m.parallelMilestoneId).filter((id): id is string => !!id),
+);
+
 /** What the rail node says. Read newest first, a node carrying only the year
  *  a period STARTED labels the most recent entry with its oldest date — the
  *  postgraduate node read AUG 2025 for a period that ran to July 2026, and
@@ -968,6 +973,140 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
   );
 }
 
+/** The milestone's own card. Extracted so it can also be rendered inside
+ *  another milestone's row, for a role that ran alongside a study period. */
+function MilestoneCard({
+  entry,
+  accent,
+  active,
+  open,
+  panelId,
+  onToggleRole,
+  className,
+}: {
+  entry: TimelineMilestone;
+  accent: string;
+  active: boolean;
+  open: boolean;
+  panelId: string;
+  onToggleRole: (id: string) => void;
+  className: string;
+}) {
+  return (
+    <article
+      className={[
+        "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
+        className,
+      ].join(" ")}
+      style={
+        active
+          ? {
+              borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
+              boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
+            }
+          : undefined
+      }
+    >
+      <p
+        className="font-mono text-[12.5px] uppercase tracking-[0.09em]"
+        style={{ color: accent }}
+      >
+        {entry.period}
+        <span className="ml-2 text-night-subtle">· {trackLabel(entry.track)}</span>
+      </p>
+      <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
+        {entry.title}
+      </h3>
+      {entry.university ? (
+        <p className="mt-1.5 text-[13.5px] font-medium text-night-muted">{entry.university}</p>
+      ) : null}
+      {entry.formalTitle ? (
+        <p className="mt-1 text-[16px] font-semibold leading-snug text-night-foreground">
+          {entry.formalTitle}
+        </p>
+      ) : null}
+      {entry.degreeDescriptor ? (
+        <p className="mt-1 text-[14px] text-night-muted">{entry.degreeDescriptor}</p>
+      ) : null}
+      {entry.subtitle ? (
+        <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
+      ) : null}
+      {entry.org ? <p className="mt-1 text-[13.5px] text-night-muted">{entry.org}</p> : null}
+
+      {entry.stage ? (
+        <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.09em] text-night-subtle">
+          {entry.stage}
+        </p>
+      ) : null}
+      <p className="mt-3 text-[16.5px] leading-relaxed text-night-body">{entry.summary}</p>
+
+      {entry.image ? (
+        <figure className="mt-5">
+          <div className="overflow-hidden rounded-xl border border-night-border/70">
+            <img
+              src={entry.image.src}
+              alt={entry.image.alt}
+              width={1280}
+              height={720}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/9] w-full object-cover"
+            />
+          </div>
+          <figcaption className="mt-2 text-[13px] text-night-muted">
+            {entry.image.caption}
+          </figcaption>
+        </figure>
+      ) : null}
+
+
+      {entry.overviewBullets?.length ? (
+        <ul className="mt-4 space-y-2.5">
+          {entry.overviewBullets.map((b) => (
+            <li key={b} className="flex gap-2.5 text-[15.5px] leading-relaxed text-night-body">
+              <span
+                aria-hidden="true"
+                className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
+                style={{ backgroundColor: accent }}
+              />
+              {b}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {entry.relevanceSignals?.length ? (
+        <ul className="mt-4 flex flex-wrap gap-2">
+          {entry.relevanceSignals.map((s) => (
+            <li
+              key={s}
+              className="rounded-full border px-3 py-1 text-[12.5px] text-night-foreground"
+              style={{ borderColor: `color-mix(in oklab, ${accent} 40%, transparent)` }}
+            >
+              {s}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      {entry.roleId ? (
+        <div className="mt-5 border-t border-night-border/50 pt-4">
+          <button
+            type="button"
+            aria-expanded={open}
+            aria-controls={panelId}
+            onClick={() => onToggleRole(entry.roleId!)}
+            className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium text-aurora-teal transition-opacity hover:opacity-80"
+          >
+            {open ? "Hide role evidence" : "Explore role evidence"}
+            <span aria-hidden="true">{open ? "↑" : "↓"}</span>
+          </button>
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
 function MilestoneRow({
   entry,
   reduced,
@@ -990,6 +1129,9 @@ function MilestoneRow({
     ? groupChildren(entry.children ?? []).find((g) => /^phase 2/i.test(g.title ?? ""))
     : undefined;
   const spansBothColumns = !!phase2;
+  const parallel = entry.parallelMilestoneId
+    ? milestones.find((m) => m.id === entry.parallelMilestoneId)
+    : undefined;
   const marker = entry.railMarker;
 
   return (
@@ -1030,125 +1172,51 @@ function MilestoneRow({
                 : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
           ].join(" ")}
         >
-          <article
-            className={[
-              "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
+          <MilestoneCard
+            entry={entry}
+            accent={accent}
+            active={active}
+            open={open}
+            panelId={panelId}
+            onToggleRole={onToggleRole}
+            className={
               spansBothColumns
                 ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
                 : isDev
                   ? "min-[1100px]:max-w-[620px]"
-                  : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]",
-            ].join(" ")}
-            style={
-              active
-                ? {
-                    borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
-                    boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
-                  }
-                : undefined
+                  : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
             }
-          >
-            <p
-              className="font-mono text-[12.5px] uppercase tracking-[0.09em]"
-              style={{ color: accent }}
-            >
-              {entry.period}
-              <span className="ml-2 text-night-subtle">· {trackLabel(entry.track)}</span>
-            </p>
-            <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
-              {entry.title}
-            </h3>
-            {entry.university ? (
-              <p className="mt-1.5 text-[13.5px] font-medium text-night-muted">{entry.university}</p>
-            ) : null}
-            {entry.formalTitle ? (
-              <p className="mt-1 text-[16px] font-semibold leading-snug text-night-foreground">
-                {entry.formalTitle}
-              </p>
-            ) : null}
-            {entry.degreeDescriptor ? (
-              <p className="mt-1 text-[14px] text-night-muted">{entry.degreeDescriptor}</p>
-            ) : null}
-            {entry.subtitle ? (
-              <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
-            ) : null}
-            {entry.org ? <p className="mt-1 text-[13.5px] text-night-muted">{entry.org}</p> : null}
-
-            {entry.stage ? (
-              <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.09em] text-night-subtle">
-                {entry.stage}
-              </p>
-            ) : null}
-            <p className="mt-3 text-[16.5px] leading-relaxed text-night-body">{entry.summary}</p>
-
-            {entry.image ? (
-              <figure className="mt-5">
-                <div className="overflow-hidden rounded-xl border border-night-border/70">
-                  <img
-                    src={entry.image.src}
-                    alt={entry.image.alt}
-                    width={1280}
-                    height={720}
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-[16/9] w-full object-cover"
-                  />
-                </div>
-                <figcaption className="mt-2 text-[13px] text-night-muted">
-                  {entry.image.caption}
-                </figcaption>
-              </figure>
-            ) : null}
-
-
-            {entry.overviewBullets?.length ? (
-              <ul className="mt-4 space-y-2.5">
-                {entry.overviewBullets.map((b) => (
-                  <li key={b} className="flex gap-2.5 text-[15.5px] leading-relaxed text-night-body">
-                    <span
-                      aria-hidden="true"
-                      className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
-                      style={{ backgroundColor: accent }}
-                    />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
-            {entry.relevanceSignals?.length ? (
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {entry.relevanceSignals.map((s) => (
-                  <li
-                    key={s}
-                    className="rounded-full border px-3 py-1 text-[12.5px] text-night-foreground"
-                    style={{ borderColor: `color-mix(in oklab, ${accent} 40%, transparent)` }}
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
-            {entry.roleId ? (
-              <div className="mt-5 border-t border-night-border/50 pt-4">
-                <button
-                  type="button"
-                  aria-expanded={open}
-                  aria-controls={panelId}
-                  onClick={() => onToggleRole(entry.roleId!)}
-                  className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium text-aurora-teal transition-opacity hover:opacity-80"
-                >
-                  {open ? "Hide role evidence" : "Explore role evidence"}
-                  <span aria-hidden="true">{open ? "↑" : "↓"}</span>
-                </button>
-              </div>
-            ) : null}
-          </article>
+          />
         </motion.div>
       )}
 
       <div className="hidden min-[1100px]:col-start-2 min-[1100px]:row-start-1 min-[1100px]:block" />
+
+      {parallel ? (
+        <div
+          className={[
+            "mt-8 min-w-0 min-[1100px]:mt-0 min-[1100px]:row-start-1 min-[1100px]:row-end-5",
+            isDev
+              ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
+              : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
+          ].join(" ")}
+        >
+          <MilestoneCard
+            entry={parallel}
+            accent={accentFor(parallel.track)}
+            active={active}
+            open={!!parallel.roleId && openRoleId === parallel.roleId}
+            panelId={`${panelId}-parallel`}
+            onToggleRole={onToggleRole}
+            className={[
+              "min-[1100px]:h-full",
+              isDev
+                ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:max-w-[620px]",
+            ].join(" ")}
+          />
+        </div>
+      ) : null}
 
       {phase2 ? (
         <div className="mt-10 min-[1100px]:col-span-3 min-[1100px]:row-start-2 min-[1100px]:mt-16">
@@ -1195,6 +1263,19 @@ function MilestoneRow({
           className="min-[1100px]:col-span-3 min-[1100px]:row-start-5"
         >
           <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
+        </div>
+      ) : null}
+
+      {parallel?.roleId ? (
+        <div
+          id={`${panelId}-parallel`}
+          className="min-[1100px]:col-span-3 min-[1100px]:row-start-6"
+        >
+          <RoleEvidence
+            roleId={parallel.roleId}
+            open={openRoleId === parallel.roleId}
+            reduced={reduced}
+          />
         </div>
       ) : null}
     </li>
@@ -1274,7 +1355,9 @@ export function Timeline() {
       </div>
 
       <ol className="relative space-y-14 min-[1100px]:space-y-20">
-        {newestFirst.map((entry) => (
+        {newestFirst
+          .filter((entry) => !renderedInParallel.has(entry.id))
+          .map((entry) => (
           <Fragment key={entry.id}>
             {entry.now ? (
               <NowRow key={entry.id} entry={entry} reduced={reduced} />
