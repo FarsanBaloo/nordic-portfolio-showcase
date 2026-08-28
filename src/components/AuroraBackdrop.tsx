@@ -186,13 +186,15 @@ export function AuroraBackdrop() {
           {/* vertical colour column: rose/violet crown, green body, teal foot */}
           {ribbons.map((r) => (
             <linearGradient key={`v${r.id}`} id={`vhue-${r.id}`} gradientUnits="userSpaceOnUse" x1="0" y1={r.top - 60} x2="0" y2={r.bottom}>
-              <stop offset="0" stopColor="var(--aurora-rose-hex)" stopOpacity="0.55" />
-              <stop offset="0.12" stopColor="var(--aurora-magenta-hex)" stopOpacity="0.5" />
-              <stop offset="0.26" stopColor="var(--aurora-violet-hex)" stopOpacity="0.35" />
-              <stop offset="0.44" stopColor="var(--aurora-green-bright)" stopOpacity="0.75" />
-              <stop offset="0.64" stopColor="var(--aurora-green-hex)" stopOpacity="0.6" />
-              <stop offset="0.84" stopColor="var(--aurora-teal-hex)" stopOpacity="0.32" />
-              <stop offset="1" stopColor="var(--aurora-blue-hex)" stopOpacity="0.1" />
+              {/* In the footage the chartreuse always sits in the foot of the ray,
+                  with a cooler green body above it — not teal underneath. */}
+              <stop offset="0" stopColor="var(--aurora-rose-hex)" stopOpacity="0.3" />
+              <stop offset="0.16" stopColor="var(--aurora-green-hex)" stopOpacity="0.35" />
+              <stop offset="0.4" stopColor="var(--aurora-green-hex)" stopOpacity="0.62" />
+              <stop offset="0.62" stopColor="var(--aurora-green-bright)" stopOpacity="0.8" />
+              <stop offset="0.82" stopColor="var(--aurora-green-soft)" stopOpacity="0.9" />
+              <stop offset="0.94" stopColor="var(--aurora-lime-hex)" stopOpacity="0.95" />
+              <stop offset="1" stopColor="var(--aurora-lime-hex)" stopOpacity="0.7" />
             </linearGradient>
           ))}
 
