@@ -699,6 +699,14 @@ function ChildColumn({
   consumedGroups: Set<string>;
 }) {
   if (!entry.children?.length) return null;
+  // A phase block can consume every group in the milestone. The column then has
+  // nothing to show, and rendering its heading over that leaves a label with no
+  // content under it — which is what "no children" used to mean and no longer
+  // does now that other blocks draw them.
+  const visible = groupChildren(entry.children).filter(
+    (g) => !(g.title && consumedGroups.has(g.title)),
+  );
+  if (!visible.length) return null;
   let index = 0;
   return (
     <div className="mt-6 space-y-6 min-[1100px]:mt-0">
@@ -707,9 +715,7 @@ function ChildColumn({
           {entry.childrenLabel}
         </p>
       ) : null}
-      {groupChildren(entry.children)
-        .filter((g) => !(g.title && consumedGroups.has(g.title)))
-        .map((group) => (
+      {visible.map((group) => (
         <section key={group.title ?? "ungrouped"} className="min-w-0 space-y-3">
           {group.title ? (
             <h4
