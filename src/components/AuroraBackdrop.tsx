@@ -272,7 +272,10 @@ export function AuroraBackdrop() {
 
           {ribbons.map((r) => (
             <mask key={r.id} id={`mask-${r.id}`} maskUnits="userSpaceOnUse" x="-400" y="-200" width="2400" height="1400">
-              <path fill={`url(#fall-${r.id})`} filter="url(#aurora-mask-blur)" d={r.shapes[0]}>
+              {/* No blur here: this path morphs every frame, so filtering it means
+                  re-blurring the whole mask every frame. The fall gradient already
+                  softens the edge. */}
+              <path fill={`url(#fall-${r.id})`} d={r.shapes[0]}>
                 {morph(r.shapes, durations[r.id] ?? "27s")}
               </path>
             </mask>
