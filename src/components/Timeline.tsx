@@ -778,8 +778,11 @@ function RoleEvidence({
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="overflow-hidden"
         >
-          <div className="night-card mx-auto mt-6 max-w-[1080px] rounded-2xl p-5 sm:p-7">
-            <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="night-card mt-6 rounded-2xl p-5 sm:p-7">
+            <div
+              className="grid gap-x-8 gap-y-6"
+              style={{ gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))" }}
+            >
               {role.detailGroups.map((g) => (
                 <section key={g.title}>
                   <h5 className="font-mono text-[12px] uppercase tracking-[0.09em] text-aurora-green">
@@ -804,7 +807,10 @@ function RoleEvidence({
             </div>
 
             {role.notes?.length ? (
-              <div className="mt-6 grid gap-4 min-[1100px]:grid-cols-2">
+              <div
+                className="mt-6 grid gap-4"
+                style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}
+              >
                 {role.notes.map((n) => (
                   <p
                     key={n.label}
@@ -1260,22 +1266,49 @@ function MilestoneRow({
       {entry.roleId ? (
         <div
           id={panelId}
-          className="min-[1100px]:col-span-3 min-[1100px]:row-start-5"
+          className={[
+            "min-w-0 min-[1100px]:row-start-5",
+            isDev
+              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
+              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
+          ].join(" ")}
         >
-          <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
+          <div
+            className={
+              isDev
+                ? "min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+            }
+          >
+            <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
+          </div>
         </div>
       ) : null}
 
       {parallel?.roleId ? (
         <div
           id={`${panelId}-parallel`}
-          className="min-[1100px]:col-span-3 min-[1100px]:row-start-6"
+          className={[
+            "min-w-0 min-[1100px]:row-start-6",
+            // the PARALLEL card's own track, not this row's
+            parallel.track === "development"
+              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
+              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
+          ].join(" ")}
         >
-          <RoleEvidence
-            roleId={parallel.roleId}
-            open={openRoleId === parallel.roleId}
-            reduced={reduced}
-          />
+          <div
+            className={
+              parallel.track === "development"
+                ? "min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+            }
+          >
+            <RoleEvidence
+              roleId={parallel.roleId}
+              open={openRoleId === parallel.roleId}
+              reduced={reduced}
+            />
+          </div>
         </div>
       ) : null}
     </li>
