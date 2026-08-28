@@ -24,6 +24,9 @@ import {
  *  readers of it must not inherit a presentation decision. */
 const newestFirst = [...milestones].reverse();
 
+/** No phase block runs on the parallel path, so nothing is consumed there. */
+const EMPTY_GROUPS: ReadonlySet<string> = new Set();
+
 /** The first row in reading order that fills BOTH columns — the parallel card
  *  is what puts something in the opposite half — so the headings can be shown
  *  where they describe something. */
@@ -696,7 +699,7 @@ function ChildColumn({
    *  built those blocks rather than matched by title here, so a group can
    *  never be drawn twice or silently dropped by a pattern that stops
    *  matching. */
-  consumedGroups: Set<string>;
+  consumedGroups: ReadonlySet<string>;
 }) {
   if (!entry.children?.length) return null;
   // A phase block can consume every group in the milestone. The column then has
@@ -1335,6 +1338,17 @@ function MilestoneRow({
                 />
               </div>
             ) : null}
+            {/* Its own children too. The milestone is skipped in the sequence,
+                so this is the ONLY place they can render — moving the card here
+                without them left the role's projects nowhere at all. Nothing is
+                consumed by a block on this path, so the set is empty. */}
+            <ChildColumn
+              entry={parallel}
+              accent={accentFor(parallel.track)}
+              side={parallel.track === "development" ? "right" : "left"}
+              reduced={reduced}
+              consumedGroups={EMPTY_GROUPS}
+            />
           </div>
         </div>
       ) : null}
