@@ -822,26 +822,47 @@ function ParallelBridge() {
 }
 
 /** Lighter than the track bridge: this joins two study periods rather than
- *  marking a boundary, so it reads as a connector and not as a divider.
- *  Placed at the phase boundary INSIDE the postgraduate period: the move
- *  from technology to product happens between its two phases, not between
- *  that period and the degree before it. */
+ *  marking a track boundary. Placed at the phase boundary INSIDE the
+ *  postgraduate period: the move from technology to product happens between
+ *  its two phases, not between that period and the degree before it — and
+ *  because it now separates the two halves of one block rather than joining
+ *  two entries, it is drawn as a rule with the label set into it. */
 function StudyProgression() {
   return (
     <div className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
-      <div className="mx-auto max-w-[520px] text-center">
-        <span
-          aria-hidden="true"
-          className="mx-auto block h-10 w-px"
-          style={{
-            background:
-              "linear-gradient(180deg, transparent, color-mix(in oklab, var(--development-accent) 55%, transparent), transparent)",
-          }}
-        />
-        <p className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.09em] text-development">
-          {studyProgression.label}
-        </p>
-        <p className="mt-2 text-[14px] leading-relaxed text-night-muted">
+      {/* The sky behind is at its brightest here, and thin grey text over a
+          lit ray is the one thing on this page a reader cannot get back. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-[190px] -translate-y-1/2"
+        style={{
+          background:
+            "radial-gradient(ellipse 46% 100% at 50% 50%, rgb(2 4 7 / 0.86), rgb(2 4 7 / 0.5) 55%, transparent 100%)",
+        }}
+      />
+      <div className="mx-auto max-w-[760px] text-center">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <span
+            aria-hidden="true"
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, color-mix(in oklab, var(--development-accent) 70%, transparent))",
+            }}
+          />
+          <p className="whitespace-nowrap font-mono text-[13px] uppercase tracking-[0.16em] text-development">
+            {studyProgression.label}
+          </p>
+          <span
+            aria-hidden="true"
+            className="h-px flex-1"
+            style={{
+              background:
+                "linear-gradient(270deg, transparent, color-mix(in oklab, var(--development-accent) 70%, transparent))",
+            }}
+          />
+        </div>
+        <p className="mx-auto mt-4 max-w-[600px] text-[15.5px] leading-[1.65] text-night-foreground">
           {studyProgression.body}
         </p>
       </div>
