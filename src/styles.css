@@ -166,50 +166,20 @@
   }
 }
 
-@keyframes aurora-drift-a {
-  0%, 100% { transform: translate3d(-12px, 0, 0) scaleY(1); opacity: 0.84; }
-  12% { transform: translate3d(-8px, -2px, 0) scaleY(1.018); opacity: 0.88; }
-  26% { transform: translate3d(-2px, -5px, 0) scaleY(1.034); opacity: 0.93; }
-  40% { transform: translate3d(5px, -4px, 0) scaleY(1.046); opacity: 0.97; }
-  55% { transform: translate3d(12px, -2px, 0) scaleY(1.034); opacity: 0.94; }
-  70% { transform: translate3d(8px, 2px, 0) scaleY(1.012); opacity: 0.9; }
-  86% { transform: translate3d(0px, 5px, 0) scaleY(0.994); opacity: 0.86; }
+/* A ray brightens and fades on its own clock; out of step with its
+   neighbours this is what makes the display restructure rather than slide. */
+@keyframes aurora-ray-pulse {
+  0%, 100% { opacity: 0.1; }
+  18% { opacity: 0.45; }
+  38% { opacity: 0.95; }
+  55% { opacity: 0.62; }
+  74% { opacity: 0.28; }
 }
 
-@keyframes aurora-drift-b {
-  0%, 100% { transform: translate3d(14px, 2px, 0) scaleY(1.012); opacity: 0.88; }
-  14% { transform: translate3d(9px, 0px, 0) scaleY(1); opacity: 0.92; }
-  30% { transform: translate3d(2px, -3px, 0) scaleY(0.982); opacity: 0.96; }
-  46% { transform: translate3d(-7px, -5px, 0) scaleY(0.97); opacity: 1; }
-  62% { transform: translate3d(-14px, -2px, 0) scaleY(1.018); opacity: 0.95; }
-  78% { transform: translate3d(-9px, 2px, 0) scaleY(1.042); opacity: 0.9; }
-  90% { transform: translate3d(0px, 5px, 0) scaleY(1.03); opacity: 0.86; }
-}
-
-@keyframes aurora-drift-c {
-  0%, 100% { transform: translate3d(7px, -2px, 0) scaleY(1); opacity: 0.74; }
-  14% { transform: translate3d(2px, 0px, 0) scaleY(1.018); opacity: 0.8; }
-  30% { transform: translate3d(-5px, 2px, 0) scaleY(1.036); opacity: 0.86; }
-  48% { transform: translate3d(-12px, 5px, 0) scaleY(1.054); opacity: 0.92; }
-  64% { transform: translate3d(-5px, 2px, 0) scaleY(1.036); opacity: 0.88; }
-  80% { transform: translate3d(5px, 0px, 0) scaleY(1.012); opacity: 0.82; }
-  92% { transform: translate3d(10px, -2px, 0) scaleY(0.994); opacity: 0.78; }
-}
-
-@keyframes aurora-streaks {
-  0%, 100% { transform: translate3d(-38px, 0, 0) scaleY(1); }
-  18% { transform: translate3d(-22px, 0, 0) scaleY(1.018); }
-  36% { transform: translate3d(0px, 0, 0) scaleY(1.042); }
-  56% { transform: translate3d(23px, 0, 0) scaleY(1.06); }
-  74% { transform: translate3d(15px, 0, 0) scaleY(1.036); }
-  90% { transform: translate3d(-8px, 0, 0) scaleY(1.012); }
-}
-
-@keyframes aurora-hue-breathe {
-  0%, 100% { opacity: 0.3; }
-  38% { opacity: 0.62; }
-  50% { opacity: 1; }
-  72% { opacity: 0.55; }
+@keyframes aurora-ray-drift {
+  0%, 100% { transform: translate3d(-16px, 0, 0) scaleY(1); }
+  35% { transform: translate3d(4px, 0, 0) scaleY(1.035); }
+  68% { transform: translate3d(18px, 0, 0) scaleY(1.015); }
 }
 
 @keyframes star-parallax {
@@ -240,29 +210,24 @@
   transition: opacity 240ms linear;
 }
 
-.aurora-ribbon {
-  will-change: transform, opacity;
-  transform-origin: 50% 20%;
+.aurora-ray {
+  will-change: opacity;
+  animation-name: aurora-ray-pulse;
+  animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+  animation-iteration-count: infinite;
 }
 
-.aurora-ribbon-back { animation: aurora-drift-a 21s cubic-bezier(.42,0,.58,1) infinite; }
-.aurora-ribbon-mid { animation: aurora-drift-b 18s cubic-bezier(.42,0,.58,1) infinite; }
-.aurora-ribbon-front { animation: aurora-drift-c 15s cubic-bezier(.42,0,.58,1) infinite; }
-
-.aurora-colorwash {
-  animation: aurora-hue-breathe 17s ease-in-out infinite;
-}
-.aurora-ribbon-mid .aurora-colorwash { animation-duration: 14s; animation-direction: reverse; }
-.aurora-ribbon-front .aurora-colorwash { animation-duration: 12s; }
-
-.aurora-streak-sheet {
+.aurora-ray-drift {
   will-change: transform;
   transform-origin: 50% 0;
-  animation: aurora-streaks 17s cubic-bezier(.42,0,.58,1) infinite;
+  animation-name: aurora-ray-drift;
+  animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+  animation-iteration-count: infinite;
 }
 
-.aurora-ribbon-mid .aurora-streak-sheet { animation-duration: 14s; animation-direction: reverse; }
-.aurora-ribbon-front .aurora-streak-sheet { animation-duration: 12s; }
+.aurora-ray-drift-rev {
+  animation-direction: reverse;
+}
 
 .aurora-veil-dark {
   background:
@@ -272,16 +237,16 @@
 
 
 @media (max-width: 640px) {
-  .aurora-ribbon-front { display: none; }
-  .aurora-streak-sheet { filter: none; }
+  /* fewer rays on a phone: the sky is narrow and they overlap into a wash */
+  .aurora-ray:nth-child(even) { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .aurora-ribbon,
-  .aurora-streak-sheet,
+  .aurora-ray,
+  .aurora-ray-drift,
   .aurora-starfield-near {
     animation: none;
   }
@@ -306,7 +271,7 @@
     color: #111 !important;
   }
   .aurora-backdrop,
-  .aurora-ribbon,
+  .aurora-ray,
   .aurora-starfield,
   header,
   footer,
