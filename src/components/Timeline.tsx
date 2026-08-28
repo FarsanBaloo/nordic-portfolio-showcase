@@ -646,6 +646,13 @@ function Phase2Block({
   );
 }
 
+/** A milestone's children sit in ITS OWN column. The rail carries two
+ *  headings — Professional experience on the left, Education · Product · AI
+ *  development on the right — and children used to be placed opposite their
+ *  own card, so a role's projects rendered under the education heading and a
+ *  degree's courses under the professional one. Same side means each column
+ *  reads as the track it is named after, and the overlap between work and
+ *  study becomes something a reader sees rather than something stated. */
 function ChildColumn({
   entry,
   accent,
@@ -1164,19 +1171,19 @@ function MilestoneRow({
         className={[
           "min-w-0 min-[1100px]:row-start-4",
           isDev
-            ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
-            : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
+            ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
+            : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
         ].join(" ")}
       >
         <div
           className={
-            isDev ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]" : "min-[1100px]:max-w-[620px]"
+            isDev ? "min-[1100px]:max-w-[620px]" : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
           }
         >
           <ChildColumn
             entry={entry}
             accent={accent}
-            side={isDev ? "left" : "right"}
+            side={isDev ? "right" : "left"}
             reduced={reduced}
           />
         </div>
