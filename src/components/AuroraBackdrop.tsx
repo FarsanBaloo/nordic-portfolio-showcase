@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 /* ---------- stars: deterministic sparse field, mostly 1px ---------- */
@@ -35,61 +36,59 @@ const starsNear = makeStars(95).map((s) => ({ ...s, x: (s.x + 640) % 1600, y: (s
 
 /* ---------- rays ------------------------------------------------------
  * Reference: the Mawson footage on the Australian Antarctic Program's
- * aurora page. What it shows, and what the previous horizontal-ribbon
- * construction could not express:
+ * aurora page. The previous construction drew each ray as an SVG path
+ * filled with a vertical gradient — which gives a knife-sharp left and
+ * right edge, and that is what read as painted stripes rather than sky.
  *
- *   · the rays ARE the curtain — there is no band behind them
- *   · they run steeply diagonal and converge toward the horizon
- *   · each one is brightest in its foot, in chartreuse, over a cooler body
- *   · they brighten and fade out of step, so the display restructures
- *   · dark sky shows between them
+ * A real ray has no edge across its width at all: it is brightest along
+ * an invisible centre line and falls away to nothing on both sides. So
+ * the softness has to come from a gradient ACROSS the ray, and the shape
+ * from a mask along it. Neither is a filter, so nothing is recomputed per
+ * frame — only opacity and transform animate, both GPU-composited.
  *
- * Softness is built from three nested widths per ray rather than a blur:
- * a filter would have to be recomputed every frame against the opacity
- * animation, which is what made the previous version stutter.
+ *   · body  — cool green, faint at the top, strongest low
+ *   · foot  — chartreuse, only the bottom fifth, the colour the footage
+ *             shows wherever the curtain is bright
+ *
+ * Each ray also carries its own `--peak`, so the display has faint rays
+ * beside bright ones instead of reading as a comb.
  * -------------------------------------------------------------------- */
 
 type Ray = {
   id: string;
-  layers: { d: string; o: number }[];
+  left: number;
+  width: number;
+  top: number;
+  height: number;
+  skew: number;
+  peak: number;
   dur: number;
   delay: number;
   drift: number;
+  driftDur: number;
 };
-
-/** One tapered, leaning band. Width is given at the top and the foot. */
-function rayPath(xTop: number, xFoot: number, wTop: number, wFoot: number, yTop: number, yFoot: number) {
-  const bend = (xTop + xFoot) / 2 + (xFoot - xTop) * 0.35;
-  const l = `M ${xTop - wTop / 2} ${yTop}`;
-  const rTop = `L ${xTop + wTop / 2} ${yTop}`;
-  const down = `Q ${bend + wFoot / 2} ${(yTop + yFoot) / 2} ${xFoot + wFoot / 2} ${yFoot}`;
-  const foot = `L ${xFoot - wFoot / 2} ${yFoot}`;
-  const up = `Q ${bend - wTop / 2} ${(yTop + yFoot) / 2} ${xTop - wTop / 2} ${yTop}`;
-  return `${l} ${rTop} ${down} ${foot} ${up} Z`;
-}
 
 function makeRays(): Ray[] {
   const rand = mulberry(4711);
   const out: Ray[] = [];
-  for (let i = 0; i < 11; i += 1) {
-    const xTop = -260 + i * 190 + rand() * 90;
-    const lean = 190 + rand() * 260; // steep diagonal, all leaning the same way
-    const wTop = 54 + rand() * 130;
-    const yFoot = 470 + rand() * 250;
-    const widths: [number, number][] = [
-      [1, 0.2],
-      [0.6, 0.42],
-      [0.28, 0.9],
-    ];
+  for (let i = 0; i < 15; i += 1) {
+    // Rays follow the field lines, so they lean the same way; the spread
+    // narrows toward the right so the curtain converges rather than combs.
+    const t = i / 14;
+    // Uneven spacing and unequal lengths: a curtain has clusters and a wavy
+    // lower border, and equal rays on a fixed pitch read as a comb.
     out.push({
       id: `r${i}`,
-      layers: widths.map(([k, o]) => ({
-        d: rayPath(xTop, xTop + lean, wTop * k, wTop * k * 0.66, -180, yFoot),
-        o,
-      })),
-      dur: 21 + rand() * 16,
-      delay: -rand() * 30,
+      left: -16 + i * 7.6 + (rand() - 0.5) * 11,
+      width: 80 + rand() * 210,
+      top: -34 + rand() * 16,
+      height: 96 + rand() * 42,
+      skew: -(13 + t * 15 + rand() * 7),
+      peak: 0.45 + rand() * 0.55,
+      dur: 19 + rand() * 17,
+      delay: -rand() * 34,
       drift: rand() > 0.5 ? 1 : -1,
+      driftDur: 34 + rand() * 26,
     });
   }
   return out;
@@ -129,53 +128,37 @@ export function AuroraBackdrop() {
       </svg>
 
       {/* aurora */}
-      <motion.svg
-        className="aurora-field absolute inset-0 h-full w-full"
-        viewBox="0 0 1600 1000"
-        preserveAspectRatio="xMidYMid slice"
-        style={{ opacity: fade }}
-        focusable="false"
-      >
-        <defs>
-          {/* Altitude down a ray: nothing high up, a cool green body, and the
-              chartreuse foot the footage shows at every bright moment. */}
-          <linearGradient id="ray-column" gradientUnits="userSpaceOnUse" x1="0" y1="-140" x2="0" y2="740">
-            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0" />
-            <stop offset="0.22" stopColor="var(--aurora-green-hex)" stopOpacity="0.28" />
-            <stop offset="0.48" stopColor="var(--aurora-green-hex)" stopOpacity="0.6" />
-            <stop offset="0.7" stopColor="var(--aurora-green-bright)" stopOpacity="0.82" />
-            <stop offset="0.86" stopColor="var(--aurora-green-soft)" stopOpacity="0.95" />
-            <stop offset="0.95" stopColor="var(--aurora-lime-hex)" stopOpacity="1" />
-            <stop offset="1" stopColor="var(--aurora-lime-hex)" stopOpacity="0" />
-          </linearGradient>
-
-          {/* A faint wash so the sky between rays is not pure black. */}
-          <linearGradient id="ray-haze" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="820">
-            <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0" />
-            <stop offset="0.55" stopColor="var(--aurora-green-hex)" stopOpacity="0.1" />
-            <stop offset="1" stopColor="var(--aurora-green-hex)" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-
-        <rect x="-200" y="0" width="2000" height="820" fill="url(#ray-haze)" />
+      <motion.div className="aurora-field absolute inset-0" style={{ opacity: fade }}>
+        {/* a faint wash, so the sky between the rays is not pure black */}
+        <div className="aurora-haze absolute inset-0" />
 
         {rays.map((ray) => (
-          <g
+          <div
             key={ray.id}
             className="aurora-ray"
-            style={{ animationDuration: `${ray.dur}s`, animationDelay: `${ray.delay}s` }}
+            style={
+              {
+                left: `${ray.left}%`,
+                width: `${ray.width}px`,
+                top: `${ray.top}%`,
+                height: `${ray.height}%`,
+                "--skew": `${ray.skew}deg`,
+                "--peak": `${ray.peak}`,
+                animationDuration: `${ray.dur}s`,
+                animationDelay: `${ray.delay}s`,
+              } as CSSProperties
+            }
           >
-            <g
+            <div
               className={ray.drift > 0 ? "aurora-ray-drift" : "aurora-ray-drift aurora-ray-drift-rev"}
-              style={{ animationDuration: `${ray.dur * 1.7}s` }}
+              style={{ animationDuration: `${ray.driftDur}s` }}
             >
-              {ray.layers.map((layer, i) => (
-                <path key={i} d={layer.d} fill="url(#ray-column)" opacity={layer.o} />
-              ))}
-            </g>
-          </g>
+              <span className="aurora-ray-body" />
+              <span className="aurora-ray-foot" />
+            </div>
+          </div>
         ))}
-      </motion.svg>
+      </motion.div>
 
       {/* keeps content readable: darkens the lower sky and the reading column */}
       <div className="aurora-veil-dark absolute inset-0" />

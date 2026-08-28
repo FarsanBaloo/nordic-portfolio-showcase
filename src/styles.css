@@ -169,17 +169,17 @@
 /* A ray brightens and fades on its own clock; out of step with its
    neighbours this is what makes the display restructure rather than slide. */
 @keyframes aurora-ray-pulse {
-  0%, 100% { opacity: 0.1; }
-  18% { opacity: 0.45; }
-  38% { opacity: 0.95; }
-  55% { opacity: 0.62; }
-  74% { opacity: 0.28; }
+  0%, 100% { opacity: calc(var(--peak) * 0.06); }
+  16% { opacity: calc(var(--peak) * 0.46); }
+  37% { opacity: var(--peak); }
+  58% { opacity: calc(var(--peak) * 0.58); }
+  79% { opacity: calc(var(--peak) * 0.19); }
 }
 
 @keyframes aurora-ray-drift {
-  0%, 100% { transform: translate3d(-16px, 0, 0) scaleY(1); }
-  35% { transform: translate3d(4px, 0, 0) scaleY(1.035); }
-  68% { transform: translate3d(18px, 0, 0) scaleY(1.015); }
+  0%, 100% { transform: translate3d(-22px, 0, 0) scaleY(1); }
+  35% { transform: translate3d(6px, 0, 0) scaleY(1.05); }
+  68% { transform: translate3d(24px, 0, 0) scaleY(1.02); }
 }
 
 @keyframes star-parallax {
@@ -205,12 +205,29 @@
 }
 
 .aurora-field {
-  overflow: visible;
   mix-blend-mode: screen;
   transition: opacity 240ms linear;
 }
 
+/* a wash between the rays, so the gaps read as lit sky rather than a hole */
+.aurora-haze {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(39 199 184 / 0.05) 30%,
+    rgb(67 230 138 / 0.09) 62%,
+    rgb(67 230 138 / 0.04) 84%,
+    transparent 100%
+  );
+}
+
+/* The ray is a column; the lean is a skew, so the mask stays vertical and
+   the gradient stays perpendicular to it whatever the angle. */
 .aurora-ray {
+  position: absolute;
+  /* top and height come per ray, so the lower border is not a straight line */
+  transform: skewX(var(--skew, -20deg));
+  transform-origin: 50% 100%;
   will-change: opacity;
   animation-name: aurora-ray-pulse;
   animation-timing-function: cubic-bezier(.42, 0, .58, 1);
@@ -218,6 +235,8 @@
 }
 
 .aurora-ray-drift {
+  position: absolute;
+  inset: 0;
   will-change: transform;
   transform-origin: 50% 0;
   animation-name: aurora-ray-drift;
@@ -227,6 +246,82 @@
 
 .aurora-ray-drift-rev {
   animation-direction: reverse;
+}
+
+.aurora-ray-body,
+.aurora-ray-foot {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+/* Across the ray: no edge anywhere — brightest along an invisible centre
+   line, gone at both sides. This is the whole difference from a filled path. */
+.aurora-ray-body {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(39 199 184 / 0.1) 20%,
+    rgb(67 230 138 / 0.5) 40%,
+    rgb(138 255 193 / 0.8) 50%,
+    rgb(67 230 138 / 0.46) 62%,
+    rgb(39 199 184 / 0.08) 82%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(0 0 0 / 0.12) 14%,
+    rgb(0 0 0 / 0.45) 36%,
+    rgb(0 0 0 / 0.86) 56%,
+    #000 66%,
+    rgb(0 0 0 / 0.62) 80%,
+    rgb(0 0 0 / 0.22) 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgb(0 0 0 / 0.12) 14%,
+    rgb(0 0 0 / 0.45) 36%,
+    rgb(0 0 0 / 0.86) 56%,
+    #000 66%,
+    rgb(0 0 0 / 0.62) 80%,
+    rgb(0 0 0 / 0.22) 91%,
+    transparent 100%
+  );
+}
+
+/* The chartreuse lower border, narrower than the body and only near the foot. */
+.aurora-ray-foot {
+  background: linear-gradient(
+    to right,
+    transparent 12%,
+    rgb(200 255 143 / 0.3) 38%,
+    rgb(200 255 143 / 0.55) 50%,
+    rgb(200 255 143 / 0.26) 62%,
+    transparent 88%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 48%,
+    rgb(0 0 0 / 0.3) 62%,
+    #000 73%,
+    rgb(0 0 0 / 0.55) 86%,
+    rgb(0 0 0 / 0.18) 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 48%,
+    rgb(0 0 0 / 0.3) 62%,
+    #000 73%,
+    rgb(0 0 0 / 0.55) 86%,
+    rgb(0 0 0 / 0.18) 94%,
+    transparent 100%
+  );
 }
 
 .aurora-veil-dark {
@@ -249,6 +344,11 @@
   .aurora-ray-drift,
   .aurora-starfield-near {
     animation: none;
+  }
+  /* the pulse is what sets a ray's opacity, so without it every ray would
+     stand at full strength — hold each at its own mid-brightness instead */
+  .aurora-ray {
+    opacity: calc(var(--peak) * 0.5);
   }
   *,
   *::before,
