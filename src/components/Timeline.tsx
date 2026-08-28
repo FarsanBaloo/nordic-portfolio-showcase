@@ -321,7 +321,7 @@ function StudyChildCard({
   const compact = child.variant === "compact";
   return (
     <div
-      className="night-card min-w-0 rounded-xl p-4 sm:p-[18px]"
+      className="night-card flex h-full min-w-0 flex-col rounded-xl p-4 sm:p-[18px]"
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
     >
       {child.org ? (
@@ -365,7 +365,11 @@ function StudyChildCard({
         <p className="mt-2.5 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.body2}</p>
       ) : null}
       {child.scadaLink ? (
-        <p className="mt-2.5 border-l pl-2.5 text-[14.5px] leading-[1.55] text-[#B8C3CB]"
+        <p
+          className={[
+            "border-l pl-2.5 text-[14.5px] leading-[1.55] text-[#B8C3CB]",
+            compact ? "mt-auto pt-2.5" : "mt-2.5",
+          ].join(" ")}
           style={{ borderColor: `color-mix(in oklab, ${accent} 45%, transparent)` }}
         >
           {child.scadaLink}
@@ -609,7 +613,7 @@ function Phase2Block({
             {courses.map((child) => (
               <motion.div
                 key={child.title}
-                className="min-w-0"
+                className="h-full min-w-0"
                 onViewportEnter={() => {
                   if (!reduced) setActiveCourse(child.title);
                 }}
