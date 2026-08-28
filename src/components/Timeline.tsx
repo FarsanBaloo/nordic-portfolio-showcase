@@ -1280,20 +1280,36 @@ function MilestoneRow({
               : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
           ].join(" ")}
         >
-          <MilestoneCard
-            entry={parallel}
-            accent={accentFor(parallel.track)}
-            active={active}
-            open={!!parallel.roleId && openRoleId === parallel.roleId}
-            panelId={`${panelId}-parallel`}
-            onToggleRole={onToggleRole}
-            className={[
-              "min-[1100px]:h-full",
+          <div
+            className={
               isDev
                 ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:max-w-[620px]",
-            ].join(" ")}
-          />
+                : "min-[1100px]:max-w-[620px]"
+            }
+          >
+            <MilestoneCard
+              entry={parallel}
+              accent={accentFor(parallel.track)}
+              active={active}
+              open={!!parallel.roleId && openRoleId === parallel.roleId}
+              panelId={`${panelId}-parallel`}
+              onToggleRole={onToggleRole}
+              className=""
+            />
+            {/* Directly under its own card, not in a row of its own further
+                down the grid: the evidence is what fills the tall column
+                beside the studies, and a panel two screens below the button
+                that opens it is not "under the role". */}
+            {parallel.roleId ? (
+              <div id={`${panelId}-parallel`}>
+                <RoleEvidence
+                  roleId={parallel.roleId}
+                  open={openRoleId === parallel.roleId}
+                  reduced={reduced}
+                />
+              </div>
+            ) : null}
+          </div>
         </div>
       ) : null}
 
@@ -1381,32 +1397,6 @@ function MilestoneRow({
         </div>
       ) : null}
 
-      {parallel?.roleId ? (
-        <div
-          id={`${panelId}-parallel`}
-          className={[
-            "min-w-0 min-[1100px]:row-start-7",
-            // the PARALLEL card's own track, not this row's
-            parallel.track === "development"
-              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
-              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
-          ].join(" ")}
-        >
-          <div
-            className={
-              parallel.track === "development"
-                ? "min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-            }
-          >
-            <RoleEvidence
-              roleId={parallel.roleId}
-              open={openRoleId === parallel.roleId}
-              reduced={reduced}
-            />
-          </div>
-        </div>
-      ) : null}
     </li>
   );
 }
