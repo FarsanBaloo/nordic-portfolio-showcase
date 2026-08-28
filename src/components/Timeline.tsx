@@ -1251,13 +1251,7 @@ function MilestoneRow({
                 : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
           ].join(" ")}
         >
-          <MilestoneCard
-            entry={entry}
-            accent={accent}
-            active={active}
-            open={open}
-            panelId={panelId}
-            onToggleRole={onToggleRole}
+          <div
             className={
               spansBothColumns
                 ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
@@ -1265,7 +1259,27 @@ function MilestoneRow({
                   ? "min-[1100px]:max-w-[620px]"
                   : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
             }
-          />
+          >
+            <MilestoneCard
+              entry={entry}
+              accent={accent}
+              active={active}
+              open={open}
+              panelId={panelId}
+              onToggleRole={onToggleRole}
+              className=""
+            />
+            {/* Under the card, not in a grid row of its own: the child column
+                sits between the two, so a row further down put the evidence
+                below the role's OWN projects. Same placement as the parallel
+                card's, which is the point — this is one rule, at both of its
+                sites. */}
+            {entry.roleId ? (
+              <div id={panelId}>
+                <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
+              </div>
+            ) : null}
+          </div>
         </motion.div>
       )}
 
@@ -1374,28 +1388,6 @@ function MilestoneRow({
           />
         </div>
       </div>
-
-      {entry.roleId ? (
-        <div
-          id={panelId}
-          className={[
-            "min-w-0 min-[1100px]:row-start-6",
-            isDev
-              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
-              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
-          ].join(" ")}
-        >
-          <div
-            className={
-              isDev
-                ? "min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-            }
-          >
-            <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
-          </div>
-        </div>
-      ) : null}
 
     </li>
   );
