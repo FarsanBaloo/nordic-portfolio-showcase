@@ -171,12 +171,12 @@ export function AuroraBackdrop() {
                 last stop match so spreadMethod="repeat" tiles without a seam. */}
             <stop offset="0" stopColor="var(--aurora-teal-hex)" stopOpacity="0.14" />
             <stop offset="0.1" stopColor="var(--aurora-green-hex)" stopOpacity="0.5" />
-            <stop offset="0.2" stopColor="var(--aurora-lime-hex)" stopOpacity="0.88" />
+            <stop offset="0.2" stopColor="var(--aurora-lime-hex)" stopOpacity="0.95" />
             <stop offset="0.3" stopColor="var(--aurora-green-bright)" stopOpacity="0.95" />
             <stop offset="0.42" stopColor="var(--aurora-green-hex)" stopOpacity="0.4" />
             <stop offset="0.54" stopColor="var(--aurora-teal-hex)" stopOpacity="0.18" />
             <stop offset="0.66" stopColor="var(--aurora-green-hex)" stopOpacity="0.62" />
-            <stop offset="0.78" stopColor="var(--aurora-green-bright)" stopOpacity="0.85" />
+            <stop offset="0.78" stopColor="var(--aurora-lime-hex)" stopOpacity="0.8" />
             <stop offset="0.9" stopColor="var(--aurora-green-hex)" stopOpacity="0.42" />
             <stop offset="1" stopColor="var(--aurora-teal-hex)" stopOpacity="0.14" />
             <animate attributeName="x1" values="0;1" dur="26s" repeatCount="indefinite" />
@@ -210,7 +210,13 @@ export function AuroraBackdrop() {
             <stop offset="0.78" stopColor="white" stopOpacity="0.3" />
             <stop offset="1" stopColor="white" stopOpacity="0" />
           </linearGradient>
-          <pattern id="aurora-streaks" width="119" height="1000" patternUnits="userSpaceOnUse">
+          <pattern
+            id="aurora-streaks"
+            width="119"
+            height="1000"
+            patternUnits="userSpaceOnUse"
+            patternTransform="skewX(-15)"
+          >
             <rect x="2" width="1.6" height="1000" fill="url(#streak-fade)" opacity="0.57" />
             <rect x="7" width="2.6" height="1000" fill="url(#streak-fade)" opacity="0.41" />
             <rect x="12" width="1.4" height="1000" fill="url(#streak-fade)" opacity="0.68" />
