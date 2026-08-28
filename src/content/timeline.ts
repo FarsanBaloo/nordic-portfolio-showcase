@@ -344,6 +344,136 @@ export const milestones: TimelineMilestone[] = [
     childrenLabel: "Universities, formal studies and product work",
     children: [
       {
+        kind: "topics",
+        title: "Industrial Economics, Product & Requirements Management",
+        university: "Blekinge Institute of Technology",
+        formalTitle:
+          "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
+        org: "Aug 2025 – Jun 2026",
+        topics: [],
+        body: "Building on the technical AI and innovation foundation, this specialisation focuses on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Product Management",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "New Product Development",
+          "Opportunity Identification",
+          "Product Discovery",
+          "Product Vision",
+          "Feature Prioritisation",
+          "MVP Definition",
+        ],
+        scadaLink:
+          "Talking SCADA: opportunity identification, product discovery, concept development, product vision, value proposition, feature prioritisation and MVP definition.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Product and Requirements Management for Digital Environments",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "Product Requirements Document",
+          "System-Level Requirements",
+          "Functional & Non-Functional Requirements",
+          "Explainability",
+          "Reliability",
+          "Requirements Prioritisation",
+          "Technical Feasibility",
+        ],
+        scadaLink:
+          "Talking SCADA: PRD, system-level, functional and non-functional requirements including explainability and reliability, requirements prioritisation and technical feasibility.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Strategy and Business Models in Technology-Intensive Businesses",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "Product Strategy",
+          "Value Proposition",
+          "Business Model Development",
+          "Market Relevance",
+          "Go-to-Market Planning",
+        ],
+        scadaLink:
+          "Talking SCADA: product strategy, value proposition, business model development, market relevance and go-to-market planning.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Leadership in High-Technology and Knowledge-Intensive Organizations",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: ["Stakeholder Alignment", "Communication", "Cross-Functional Perspective"],
+        scadaLink:
+          "Talking SCADA: stakeholder alignment, communication and a cross-functional perspective on the concept.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Agile Process and Project Management",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "Iterative Concept Refinement",
+          "MVP Planning",
+          "Product Development Governance",
+          "Development Planning",
+          "Prioritisation / Delivery Thinking",
+        ],
+        scadaLink:
+          "Talking SCADA: iterative concept refinement, MVP planning, development planning and product development governance.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Industrial Economics and Management",
+        university: "Blekinge Institute of Technology",
+        variant: "compact",
+        topics: [],
+        signals: ["Business Value", "Technology / Business Perspective", "Sustainable Value"],
+        scadaLink:
+          "Talking SCADA: framed the concept in terms of business value and sustainable value from a combined technology and business perspective.",
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
+        kind: "course",
+        title: "Innovation Management",
+        university: "University of Skövde",
+        formalTitle: "Advanced-Level Studies in Innovation Management",
+        org: "Aug 2025 – Jan 2026",
+        topics: ["Strategic Innovation", "Applied Innovation", "Implementation"],
+        body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership. Studied in parallel with the advanced AI foundation, forming the innovation and product bridge developed further at Blekinge Institute of Technology.",
+        body2:
+          "Talking SCADA — Concept Origin: developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could transform complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation that was later developed further through Product Management and Requirements work.",
+        chain: [
+          "Advanced AI",
+          "Innovation Opportunity",
+          "Talking SCADA — Initial Concept",
+          "Product / Requirements Development",
+        ],
+        group:
+          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+      },
+      {
         kind: "course",
         title: "Natural Language Processing",
         university: "Linköping University",
@@ -407,135 +537,6 @@ export const milestones: TimelineMilestone[] = [
         topics: [],
         signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
         group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
-      },
-      {
-        kind: "course",
-        title: "Innovation Management",
-        university: "University of Skövde",
-        formalTitle: "Advanced-Level Studies in Innovation Management",
-        org: "Aug 2025 – Jan 2026",
-        topics: ["Strategic Innovation", "Applied Innovation", "Implementation"],
-        body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership. Studied in parallel with the advanced AI foundation, forming the innovation and product bridge developed further at Blekinge Institute of Technology.",
-        body2:
-          "Talking SCADA — Concept Origin: developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could transform complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation that was later developed further through Product Management and Requirements work.",
-        chain: [
-          "Advanced AI",
-          "Innovation Opportunity",
-          "Talking SCADA — Initial Concept",
-          "Product / Requirements Development",
-        ],
-        group: "Bridge · Aug 2025 – Jan 2026 · Innovation Management",
-      },
-      {
-        kind: "topics",
-        title: "Industrial Economics, Product & Requirements Management",
-        university: "Blekinge Institute of Technology",
-        formalTitle:
-          "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
-        org: "Aug 2025 – Jun 2026",
-        topics: [],
-        body: "Building on the technical AI and innovation foundation, this specialisation focuses on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
-        title: "Industrial Economics and Management",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: ["Business Value", "Technology / Business Perspective", "Sustainable Value"],
-        scadaLink:
-          "Talking SCADA: framed the concept in terms of business value and sustainable value from a combined technology and business perspective.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
-        title: "Strategy and Business Models in Technology-Intensive Businesses",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: [
-          "Product Strategy",
-          "Value Proposition",
-          "Business Model Development",
-          "Market Relevance",
-          "Go-to-Market Planning",
-        ],
-        scadaLink:
-          "Talking SCADA: product strategy, value proposition, business model development, market relevance and go-to-market planning.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
-        title: "Product Management",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: [
-          "New Product Development",
-          "Opportunity Identification",
-          "Product Discovery",
-          "Product Vision",
-          "Feature Prioritisation",
-          "MVP Definition",
-        ],
-        scadaLink:
-          "Talking SCADA: opportunity identification, product discovery, concept development, product vision, value proposition, feature prioritisation and MVP definition.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
-        title: "Product and Requirements Management for Digital Environments",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: [
-          "Product Requirements Document",
-          "System-Level Requirements",
-          "Functional & Non-Functional Requirements",
-          "Explainability",
-          "Reliability",
-          "Requirements Prioritisation",
-          "Technical Feasibility",
-        ],
-        scadaLink:
-          "Talking SCADA: PRD, system-level, functional and non-functional requirements including explainability and reliability, requirements prioritisation and technical feasibility.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
-        title: "Agile Process and Project Management",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: [
-          "Iterative Concept Refinement",
-          "MVP Planning",
-          "Product Development Governance",
-          "Development Planning",
-          "Prioritisation / Delivery Thinking",
-        ],
-        scadaLink:
-          "Talking SCADA: iterative concept refinement, MVP planning, development planning and product development governance.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
-        title: "Leadership in High-Technology and Knowledge-Intensive Organizations",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: ["Stakeholder Alignment", "Communication", "Cross-Functional Perspective"],
-        scadaLink:
-          "Talking SCADA: stakeholder alignment, communication and a cross-functional perspective on the concept.",
-        group:
-          "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "project",

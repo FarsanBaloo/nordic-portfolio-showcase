@@ -1052,9 +1052,20 @@ function MilestoneRow({
 
       <div className="hidden min-[1100px]:col-start-2 min-[1100px]:row-start-1 min-[1100px]:block" />
 
+      {phase2 ? (
+        <div className="mt-10 min-[1100px]:col-span-3 min-[1100px]:row-start-2 min-[1100px]:mt-16">
+          <Phase2Block
+            group={phase2}
+            caseChild={caseChild}
+            accent={accent}
+            reduced={reduced}
+          />
+        </div>
+      ) : null}
+
       <div
         className={[
-          "min-w-0 min-[1100px]:row-start-1",
+          "min-w-0 min-[1100px]:row-start-3",
           isDev
             ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
             : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
@@ -1074,21 +1085,10 @@ function MilestoneRow({
         </div>
       </div>
 
-      {phase2 ? (
-        <div className="mt-10 min-[1100px]:col-span-3 min-[1100px]:row-start-2 min-[1100px]:mt-16">
-          <Phase2Block
-            group={phase2}
-            caseChild={caseChild}
-            accent={accent}
-            reduced={reduced}
-          />
-        </div>
-      ) : null}
-
       {entry.roleId ? (
         <div
           id={panelId}
-          className="min-[1100px]:col-span-3 min-[1100px]:row-start-3"
+          className="min-[1100px]:col-span-3 min-[1100px]:row-start-4"
         >
           <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
         </div>
