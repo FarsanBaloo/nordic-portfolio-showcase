@@ -800,10 +800,13 @@ function ParallelBridge() {
 }
 
 /** Lighter than the track bridge: this joins two study periods rather than
- *  marking a boundary, so it reads as a connector and not as a divider. */
+ *  marking a boundary, so it reads as a connector and not as a divider.
+ *  Placed at the phase boundary INSIDE the postgraduate period: the move
+ *  from technology to product happens between its two phases, not between
+ *  that period and the degree before it. */
 function StudyProgression() {
   return (
-    <li className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
+    <div className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
       <div className="mx-auto max-w-[520px] text-center">
         <span
           aria-hidden="true"
@@ -820,7 +823,7 @@ function StudyProgression() {
           {studyProgression.body}
         </p>
       </div>
-    </li>
+    </div>
   );
 }
 
@@ -1063,9 +1066,15 @@ function MilestoneRow({
         </div>
       ) : null}
 
+      {phase2 ? (
+        <div className="mt-12 min-[1100px]:col-span-3 min-[1100px]:row-start-3 min-[1100px]:mt-16">
+          <StudyProgression />
+        </div>
+      ) : null}
+
       <div
         className={[
-          "min-w-0 min-[1100px]:row-start-3",
+          "min-w-0 min-[1100px]:row-start-4",
           isDev
             ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
             : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
@@ -1088,7 +1097,7 @@ function MilestoneRow({
       {entry.roleId ? (
         <div
           id={panelId}
-          className="min-[1100px]:col-span-3 min-[1100px]:row-start-4"
+          className="min-[1100px]:col-span-3 min-[1100px]:row-start-5"
         >
           <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
         </div>
@@ -1186,9 +1195,6 @@ export function Timeline() {
             {/* Both connectors name the milestone they precede in CALENDAR
                 order, so reading newest-first puts them on the other side of
                 that milestone — after the row rather than before it. */}
-            {entry.id === studyProgression.beforeMilestoneId ? (
-              <StudyProgression key="study-progression" />
-            ) : null}
             {entry.id === parallelBridge.beforeMilestoneId ? (
               <ParallelBridge key="bridge" />
             ) : null}

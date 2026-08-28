@@ -111,15 +111,14 @@ export type TimelineMilestone = {
   now?: boolean;
 };
 
-/** Shown once, between the two study periods. They are one progression —
- *  a technical foundation and then the move from technology to product —
- *  not two separate identities that happen to share a page. */
+/** Shown once, at the boundary between the two phases of the postgraduate
+ *  period. They are one progression — a technical foundation and then the
+ *  move from technology to product — not two separate identities that
+ *  happen to share a page. It needs no milestone anchor: the phases live
+ *  inside one milestone, so the boundary is a place in the layout. */
 export const studyProgression = {
   label: "From technology to product",
   body: "Combining a technical foundation in applied AI with product management and industrial economics, to work at the intersection of technology, business and users.",
-  /** Rendered next to this milestone; named in CALENDAR order, the way the
-   *  parallel bridge is, so the two anchors mean the same thing. */
-  beforeMilestoneId: "postgraduate",
 };
 
 /** Shown once, as a centered bridge between the two tracks. */
