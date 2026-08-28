@@ -109,6 +109,10 @@ export type TimelineMilestone = {
   children?: TimelineChild[];
   roles?: string[];
   now?: boolean;
+  /** Render the rail node and this milestone's blocks, but not its own summary
+   *  card. For a milestone whose children already state period, universities
+   *  and subjects on their own cards, that card only repeats them. */
+  hideOwnCard?: boolean;
 };
 
 /** Shown once, at the boundary between the two phases of the postgraduate
@@ -332,6 +336,7 @@ export const milestones: TimelineMilestone[] = [
   {
     id: "postgraduate",
     railMarker: { label: "AUG 2025", kind: "phase", verified: true },
+    hideOwnCard: true,
     period: "Aug 2025 – Jul 2026",
     datePrecision: "verified-range",
     title: "Advanced AI · Innovation · Product Development",

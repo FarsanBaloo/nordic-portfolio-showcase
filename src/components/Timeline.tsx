@@ -948,142 +948,144 @@ function MilestoneRow({
         ) : null}
       </span>
 
-      <motion.div
-        style={{
-          scale: reduced ? 1 : scale,
-          opacity: reduced ? 1 : opacity,
-          y: reduced ? 0 : y,
-        }}
-        className={[
-          "min-w-0 min-[1100px]:row-start-1",
-          // A milestone whose own content spans both columns is the header of
-          // that block, not an entry in one track's column — so it is centred,
-          // the way the phase block below it centres its own header. Its rail
-          // node and track accent still say which track it belongs to, which
-          // is what keeps it distinct from the connectors, which have neither.
-          spansBothColumns
-            ? "min-[1100px]:col-span-3"
-            : isDev
-              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
-              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
-        ].join(" ")}
-      >
-        <article
+      {entry.hideOwnCard ? null : (
+        <motion.div
+          style={{
+            scale: reduced ? 1 : scale,
+            opacity: reduced ? 1 : opacity,
+            y: reduced ? 0 : y,
+          }}
           className={[
-            "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
+            "min-w-0 min-[1100px]:row-start-1",
+            // A milestone whose own content spans both columns is the header of
+            // that block, not an entry in one track's column — so it is centred,
+            // the way the phase block below it centres its own header. Its rail
+            // node and track accent still say which track it belongs to, which
+            // is what keeps it distinct from the connectors, which have neither.
             spansBothColumns
-              ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
+              ? "min-[1100px]:col-span-3"
               : isDev
-                ? "min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]",
+                ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
+                : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
           ].join(" ")}
-          style={
-            active
-              ? {
-                  borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
-                  boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
-                }
-              : undefined
-          }
         >
-          <p
-            className="font-mono text-[12.5px] uppercase tracking-[0.09em]"
-            style={{ color: accent }}
+          <article
+            className={[
+              "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
+              spansBothColumns
+                ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
+                : isDev
+                  ? "min-[1100px]:max-w-[620px]"
+                  : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]",
+            ].join(" ")}
+            style={
+              active
+                ? {
+                    borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
+                    boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
+                  }
+                : undefined
+            }
           >
-            {entry.period}
-            <span className="ml-2 text-night-subtle">· {trackLabel(entry.track)}</span>
-          </p>
-          <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
-            {entry.title}
-          </h3>
-          {entry.university ? (
-            <p className="mt-1.5 text-[13.5px] font-medium text-night-muted">{entry.university}</p>
-          ) : null}
-          {entry.formalTitle ? (
-            <p className="mt-1 text-[16px] font-semibold leading-snug text-night-foreground">
-              {entry.formalTitle}
+            <p
+              className="font-mono text-[12.5px] uppercase tracking-[0.09em]"
+              style={{ color: accent }}
+            >
+              {entry.period}
+              <span className="ml-2 text-night-subtle">· {trackLabel(entry.track)}</span>
             </p>
-          ) : null}
-          {entry.degreeDescriptor ? (
-            <p className="mt-1 text-[14px] text-night-muted">{entry.degreeDescriptor}</p>
-          ) : null}
-          {entry.subtitle ? (
-            <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
-          ) : null}
-          {entry.org ? <p className="mt-1 text-[13.5px] text-night-muted">{entry.org}</p> : null}
+            <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
+              {entry.title}
+            </h3>
+            {entry.university ? (
+              <p className="mt-1.5 text-[13.5px] font-medium text-night-muted">{entry.university}</p>
+            ) : null}
+            {entry.formalTitle ? (
+              <p className="mt-1 text-[16px] font-semibold leading-snug text-night-foreground">
+                {entry.formalTitle}
+              </p>
+            ) : null}
+            {entry.degreeDescriptor ? (
+              <p className="mt-1 text-[14px] text-night-muted">{entry.degreeDescriptor}</p>
+            ) : null}
+            {entry.subtitle ? (
+              <p className="mt-1 text-[15px] text-night-body">{entry.subtitle}</p>
+            ) : null}
+            {entry.org ? <p className="mt-1 text-[13.5px] text-night-muted">{entry.org}</p> : null}
 
-          {entry.stage ? (
-            <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.09em] text-night-subtle">
-              {entry.stage}
-            </p>
-          ) : null}
-          <p className="mt-3 text-[16.5px] leading-relaxed text-night-body">{entry.summary}</p>
+            {entry.stage ? (
+              <p className="mt-3 font-mono text-[12.5px] uppercase tracking-[0.09em] text-night-subtle">
+                {entry.stage}
+              </p>
+            ) : null}
+            <p className="mt-3 text-[16.5px] leading-relaxed text-night-body">{entry.summary}</p>
 
-          {entry.image ? (
-            <figure className="mt-5">
-              <div className="overflow-hidden rounded-xl border border-night-border/70">
-                <img
-                  src={entry.image.src}
-                  alt={entry.image.alt}
-                  width={1280}
-                  height={720}
-                  loading="lazy"
-                  decoding="async"
-                  className="aspect-[16/9] w-full object-cover"
-                />
-              </div>
-              <figcaption className="mt-2 text-[13px] text-night-muted">
-                {entry.image.caption}
-              </figcaption>
-            </figure>
-          ) : null}
-
-
-          {entry.overviewBullets?.length ? (
-            <ul className="mt-4 space-y-2.5">
-              {entry.overviewBullets.map((b) => (
-                <li key={b} className="flex gap-2.5 text-[15.5px] leading-relaxed text-night-body">
-                  <span
-                    aria-hidden="true"
-                    className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
-                    style={{ backgroundColor: accent }}
+            {entry.image ? (
+              <figure className="mt-5">
+                <div className="overflow-hidden rounded-xl border border-night-border/70">
+                  <img
+                    src={entry.image.src}
+                    alt={entry.image.alt}
+                    width={1280}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                    className="aspect-[16/9] w-full object-cover"
                   />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          ) : null}
+                </div>
+                <figcaption className="mt-2 text-[13px] text-night-muted">
+                  {entry.image.caption}
+                </figcaption>
+              </figure>
+            ) : null}
 
-          {entry.relevanceSignals?.length ? (
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {entry.relevanceSignals.map((s) => (
-                <li
-                  key={s}
-                  className="rounded-full border px-3 py-1 text-[12.5px] text-night-foreground"
-                  style={{ borderColor: `color-mix(in oklab, ${accent} 40%, transparent)` }}
+
+            {entry.overviewBullets?.length ? (
+              <ul className="mt-4 space-y-2.5">
+                {entry.overviewBullets.map((b) => (
+                  <li key={b} className="flex gap-2.5 text-[15.5px] leading-relaxed text-night-body">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
+                      style={{ backgroundColor: accent }}
+                    />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {entry.relevanceSignals?.length ? (
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {entry.relevanceSignals.map((s) => (
+                  <li
+                    key={s}
+                    className="rounded-full border px-3 py-1 text-[12.5px] text-night-foreground"
+                    style={{ borderColor: `color-mix(in oklab, ${accent} 40%, transparent)` }}
+                  >
+                    {s}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {entry.roleId ? (
+              <div className="mt-5 border-t border-night-border/50 pt-4">
+                <button
+                  type="button"
+                  aria-expanded={open}
+                  aria-controls={panelId}
+                  onClick={() => onToggleRole(entry.roleId!)}
+                  className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium text-aurora-teal transition-opacity hover:opacity-80"
                 >
-                  {s}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          {entry.roleId ? (
-            <div className="mt-5 border-t border-night-border/50 pt-4">
-              <button
-                type="button"
-                aria-expanded={open}
-                aria-controls={panelId}
-                onClick={() => onToggleRole(entry.roleId!)}
-                className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium text-aurora-teal transition-opacity hover:opacity-80"
-              >
-                {open ? "Hide role evidence" : "Explore role evidence"}
-                <span aria-hidden="true">{open ? "↑" : "↓"}</span>
-              </button>
-            </div>
-          ) : null}
-        </article>
-      </motion.div>
+                  {open ? "Hide role evidence" : "Explore role evidence"}
+                  <span aria-hidden="true">{open ? "↑" : "↓"}</span>
+                </button>
+              </div>
+            ) : null}
+          </article>
+        </motion.div>
+      )}
 
       <div className="hidden min-[1100px]:col-start-2 min-[1100px]:row-start-1 min-[1100px]:block" />
 
