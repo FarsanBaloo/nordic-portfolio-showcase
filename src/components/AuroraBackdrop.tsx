@@ -120,7 +120,7 @@ const morph = (values: string[], dur: string) => (
   />
 );
 
-const durations: Record<string, string> = { back: "15s", mid: "13s", front: "11s" };
+const durations: Record<string, string> = { back: "26s", mid: "22s", front: "18s" };
 
 /**
  * Fixed Scandinavian night sky: near-black backdrop, sparse star field and
@@ -179,8 +179,8 @@ export function AuroraBackdrop() {
             <stop offset="0.78" stopColor="var(--aurora-lime-hex)" stopOpacity="0.8" />
             <stop offset="0.9" stopColor="var(--aurora-green-hex)" stopOpacity="0.42" />
             <stop offset="1" stopColor="var(--aurora-teal-hex)" stopOpacity="0.14" />
-            <animate attributeName="x1" values="0;1" dur="14s" repeatCount="indefinite" />
-            <animate attributeName="x2" values="1;2" dur="14s" repeatCount="indefinite" />
+            <animate attributeName="x1" values="0;1" dur="24s" repeatCount="indefinite" />
+            <animate attributeName="x2" values="1;2" dur="24s" repeatCount="indefinite" />
           </linearGradient>
 
           {/* vertical colour column: rose/violet crown, green body, teal foot */}
