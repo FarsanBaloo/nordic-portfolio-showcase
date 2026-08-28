@@ -7,6 +7,7 @@ import {
   talkingSystemsWorkshop,
   talkingSystemsStand,
   talkingSystemsMitcEvent,
+  aiConnectedCity,
   thesisPresentation,
   planetWhiteboard,
   planetPaperPrototypes,
@@ -319,6 +320,18 @@ export const projects: Project[] = [
         "Go-to-Market",
       ],
     },
+    images: {
+      slots: [
+        {
+          caption: "Concept illustration — buildings and energy systems answering in plain language",
+          aspect: "16/9",
+          src: aiConnectedCity.url,
+          alt: "Illustration of a city skyline with wind turbines, linked by a network to a glowing AI brain and conversation bubbles",
+          note: "Illustration, not a screenshot of the product.",
+          lead: true,
+        },
+      ],
+    },
     reflection:
       "The Innovation Management work established the opportunity and problem framing; the product-management specialisation turned it into a structured product case. Two stages of the same concept, not two separate projects.",
   },
@@ -604,6 +617,18 @@ export const projects: Project[] = [
         ],
       },
     ],
+    images: {
+      slots: [
+        {
+          caption: "Concept illustration — cooperating agents reasoning over a connected building stock",
+          aspect: "16/9",
+          src: aiConnectedCity.url,
+          alt: "Illustration of a city skyline with wind turbines, linked by a network to a glowing AI brain and conversation bubbles",
+          note: "Illustration, not a screenshot of the product. Shared with Talking SCADA — the two concepts share a problem space.",
+          lead: true,
+        },
+      ],
+    },
     reflection:
       "Related to Talking SCADA in problem space, but a distinct concept with its own architecture and product framing.",
   },
