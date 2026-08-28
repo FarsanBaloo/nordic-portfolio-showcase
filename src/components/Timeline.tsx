@@ -241,7 +241,7 @@ function ProjectChildCard({
     <ProjectEvidenceSheet project={project} period={child.period}>
       <button
         type="button"
-        className="night-card group block w-full min-w-0 rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
+        className="night-card group flex h-full w-full min-w-0 flex-col rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
         style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
       >
         {lead ? (
@@ -415,12 +415,16 @@ function StudyChildCard({
 
 
 function runs(items: TimelineChild[]) {
-  const out: { compact: boolean; items: TimelineChild[] }[] = [];
+  const out: { compact: boolean; projects: boolean; items: TimelineChild[] }[] = [];
   for (const c of items) {
     const isCompact = c.kind !== "project" && c.variant === "compact";
+    const isProject = c.kind === "project";
     const last = out[out.length - 1];
+    // Consecutive projects are one set, the way consecutive compact courses
+    // are: a role with four of them read as a long strip of full-width cards.
     if (last && last.compact && isCompact) last.items.push(c);
-    else out.push({ compact: isCompact, items: [c] });
+    else if (last && last.projects && isProject) last.items.push(c);
+    else out.push({ compact: isCompact, projects: isProject, items: [c] });
   }
   return out;
 }
@@ -693,6 +697,28 @@ function ChildColumn({
                     {run.items.map((child) =>
                       child.kind === "project" ? null : (
                         <StudyChildCard key={child.title} child={child} accent={accent} />
+                      ),
+                    )}
+                  </div>
+                </ChildShell>
+              );
+            }
+            if (run.projects) {
+              return (
+                <ChildShell
+                  key={`projects-${runIndex}`}
+                  accent={accent}
+                  side={side}
+                  index={i}
+                  reduced={reduced}
+                >
+                  <div
+                    className="grid gap-4"
+                    style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
+                  >
+                    {run.items.map((child) =>
+                      child.kind !== "project" ? null : (
+                        <ProjectChildCard key={child.slug} child={child} accent={accent} />
                       ),
                     )}
                   </div>
