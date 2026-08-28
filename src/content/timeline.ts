@@ -228,8 +228,8 @@ export const milestones: TimelineMilestone[] = [
   {
     id: "bsc-development",
     railMarker: { label: "2025", kind: "major", verified: true },
-    period: "Completed before Aug 2025",
-    datePrecision: "phase",
+    period: "2023–2025",
+    datePrecision: "verified-range",
     title: "Computer Science / Intelligent Systems",
     university: "Mälardalen University",
     formalTitle:
