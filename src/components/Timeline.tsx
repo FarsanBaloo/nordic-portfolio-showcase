@@ -24,6 +24,11 @@ import {
  *  readers of it must not inherit a presentation decision. */
 const newestFirst = [...milestones].reverse();
 
+/** The first row in reading order that fills BOTH columns — the parallel card
+ *  is what puts something in the opposite half — so the headings can be shown
+ *  where they describe something. */
+const headingsBeforeId = [...milestones].reverse().find((m) => m.parallelMilestoneId)?.id;
+
 /** Milestones rendered inside another row, so the sequence must skip them. */
 const renderedInParallel = new Set(
   milestones.map((m) => m.parallelMilestoneId).filter((id): id is string => !!id),
@@ -981,6 +986,34 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
 
 /** The milestone's own card. Extracted so it can also be rendered inside
  *  another milestone's row, for a role that ran alongside a study period. */
+/** The key to the two columns. It sits at the row where both columns first
+ *  carry content, not at the top of the rail: above that row the left column
+ *  has nothing under it for two screens, and a heading over an empty half
+ *  reads as a missing section rather than as a label. */
+function TrackHeadings() {
+  return (
+    <li className="relative list-none">
+      <div className="mb-2 hidden grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] items-center min-[1100px]:grid">
+        <p className="pr-10 text-right font-mono text-[12px] uppercase tracking-[0.09em] text-professional">
+          Professional experience
+        </p>
+        <span className="block" />
+        <p className="pl-10 font-mono text-[12px] uppercase tracking-[0.09em] text-development">
+          Education · Product · AI development
+        </p>
+      </div>
+      <div className="flex gap-4 pl-10 sm:pl-12 min-[1100px]:hidden">
+        <span className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-professional">
+          Professional
+        </span>
+        <span className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-development">
+          Development
+        </span>
+      </div>
+    </li>
+  );
+}
+
 function MilestoneCard({
   entry,
   accent,
@@ -1342,25 +1375,6 @@ export function Timeline() {
       className="relative mx-auto w-full max-w-[min(94vw,1480px)]"
     >
 
-      {/* track headings */}
-      <div className="mb-10 hidden grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] items-center min-[1100px]:grid">
-        <p className="pr-10 text-right font-mono text-[12px] uppercase tracking-[0.09em] text-professional">
-          Professional experience
-        </p>
-        <span className="block" />
-        <p className="pl-10 font-mono text-[12px] uppercase tracking-[0.09em] text-development">
-          Education · Product · AI development
-        </p>
-      </div>
-      <div className="mb-8 flex gap-4 min-[1100px]:hidden">
-        <span className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-professional">
-          Professional
-        </span>
-        <span className="font-mono text-[11.5px] uppercase tracking-[0.09em] text-development">
-          Development
-        </span>
-      </div>
-
       {/* background rail */}
       <div
         aria-hidden="true"
@@ -1394,6 +1408,7 @@ export function Timeline() {
           .filter((entry) => !renderedInParallel.has(entry.id))
           .map((entry) => (
           <Fragment key={entry.id}>
+            {entry.id === headingsBeforeId ? <TrackHeadings key="headings" /> : null}
             {entry.now ? (
               <NowRow key={entry.id} entry={entry} reduced={reduced} />
             ) : (
