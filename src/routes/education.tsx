@@ -27,44 +27,6 @@ function EducationPage() {
       />
       <Page>
         <Section>
-          <SectionHeading eyebrow="Degree" title={bachelor.institution} />
-          <h3 className="mt-3 text-xl font-semibold">{bachelor.formalTitle}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">{bachelor.descriptor}</p>
-          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-            {bachelor.summary}
-          </p>
-          <figure className="mt-8 max-w-3xl">
-            <div className="overflow-hidden rounded-xl border border-border">
-              <img
-                src={examenPhoto.url}
-                width={1280}
-                height={720}
-                alt="Rickard Sörlin with thesis colleagues and examiners at Mälardalen University"
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/9] w-full object-cover"
-              />
-            </div>
-            <figcaption className="mt-2 text-sm text-muted-foreground">
-              Degree project completed — Mälardalen University
-            </figcaption>
-          </figure>
-
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {bachelor.coursework.map((group) => (
-              <div key={group.title} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-base font-semibold">{group.title}</h3>
-                <div className="mt-4">
-                  <TagList items={group.items} />
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-sm italic text-muted-foreground">{bachelor.note}</p>
-        </Section>
-
-
-        <Section>
           <SectionHeading
             eyebrow="Postgraduate development"
             title={postgraduate.title}
@@ -153,6 +115,43 @@ function EducationPage() {
           <p className="mt-4 text-sm italic text-muted-foreground">
             {postgraduate.otherStudiesNote}
           </p>
+        </Section>
+
+        <Section>
+          <SectionHeading eyebrow="Degree" title={bachelor.institution} />
+          <h3 className="mt-3 text-xl font-semibold">{bachelor.formalTitle}</h3>
+          <p className="mt-1 text-sm text-muted-foreground">{bachelor.descriptor}</p>
+          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+            {bachelor.summary}
+          </p>
+          <figure className="mt-8 max-w-3xl">
+            <div className="overflow-hidden rounded-xl border border-border">
+              <img
+                src={examenPhoto.url}
+                width={1280}
+                height={720}
+                alt="Rickard Sörlin with thesis colleagues and examiners at Mälardalen University"
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </div>
+            <figcaption className="mt-2 text-sm text-muted-foreground">
+              Degree project completed — Mälardalen University
+            </figcaption>
+          </figure>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {bachelor.coursework.map((group) => (
+              <div key={group.title} className="rounded-xl border border-border bg-card p-6">
+                <h3 className="text-base font-semibold">{group.title}</h3>
+                <div className="mt-4">
+                  <TagList items={group.items} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm italic text-muted-foreground">{bachelor.note}</p>
         </Section>
 
         <Section>

@@ -67,6 +67,111 @@ export const postgraduate = {
   ],
   entries: [
     {
+      id: "bth",
+      phase: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+      institution: "Blekinge Institute of Technology",
+      formalTitle:
+        "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
+      title:
+        "Advanced-Level Specialisation in Industrial Economics, Product & Requirements Management",
+      subtitle: "Product · Requirements · Strategy · Leadership",
+      period: "Aug 2025 – Jun 2026",
+      body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
+      body2:
+        "Advanced-level specialization covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organizations.",
+
+      projectCase: {
+        title: "Course project — Talking SCADA (product & requirements case)",
+        period: "Aug 2025 – Jun 2026",
+        body: "Used Talking SCADA as a recurring academic product case to apply New Product Development, product discovery, digital product strategy and requirements engineering to an AI-enabled decision-support concept for building automation and SCADA/BMS environments. Applied methods across opportunity identification, product vision and value proposition, structured requirements management, feature prioritisation, MVP definition, product development governance, portfolio considerations, business model development and go-to-market planning — connecting customer needs and technical feasibility with sustainable business value.",
+      },
+      topics: [],
+      relevance: [],
+
+      groups: [
+        {
+          title: "Industrial Economics and Management",
+          items: ["Business value", "Technology and business perspective", "Sustainable value"],
+        },
+        {
+          title: "Strategy and Business Models in Technology-Intensive Businesses",
+          items: [
+            "Product strategy",
+            "Value proposition",
+            "Business model development",
+            "Market relevance",
+            "Go-to-market planning",
+          ],
+        },
+        {
+          title: "Product Management",
+          items: [
+            "New Product Development",
+            "Opportunity identification",
+            "Product discovery",
+            "Product vision",
+            "Feature prioritisation",
+            "MVP definition",
+          ],
+        },
+        {
+          title: "Product and Requirements Management for Digital Environments",
+          items: [
+            "Product Requirements Document",
+            "System-level requirements",
+            "Functional and non-functional requirements",
+            "Explainability and reliability",
+            "Requirements prioritisation",
+            "Technical feasibility",
+          ],
+        },
+        {
+          title: "Agile Process and Project Management",
+          items: [
+            "Iterative concept refinement",
+            "MVP planning",
+            "Development planning",
+            "Product development governance",
+          ],
+        },
+        {
+          title: "Leadership in High-Technology and Knowledge-Intensive Organizations",
+          items: ["Stakeholder alignment", "Communication", "Cross-functional perspective"],
+        },
+      ],
+    },
+    {
+      id: "his",
+      phase: "Bridge · Aug 2025 – Jan 2026 · Innovation Management",
+      institution: "University of Skövde",
+      formalTitle: "Advanced-Level Studies in Innovation Management",
+      title: "Advanced-Level Studies in Innovation Management",
+      subtitle: "Innovation in Practice",
+      period: "Aug 2025 – Jan 2026",
+      body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership.",
+      body2:
+        "Studied in parallel with the advanced AI foundation, this formed the innovation and product bridge developed further at Blekinge Institute of Technology.",
+      chain: [
+        "Advanced AI",
+        "Innovation Opportunity",
+        "Talking SCADA — Initial Concept",
+        "Product / Requirements Development",
+      ],
+
+      projectCase: {
+        title: "Course project — Talking SCADA (concept origin)",
+        period: "Aug 2025 – Jan 2026",
+        body: "Developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could turn complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation later developed further through product management and requirements work.",
+      },
+      topics: [
+        "Strategic innovation",
+        "Applied innovation processes",
+        "Implementation",
+        "Innovation leadership",
+      ],
+      relevance: [],
+    },
+    {
       id: "liu",
       phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
       institution: "Linköping University",
@@ -149,111 +254,6 @@ export const postgraduate = {
       body: "Second-cycle studies in deep learning and computer vision applied to industrial imaging.",
       topics: ["Deep learning", "Computer vision", "Industrial imaging", "Industrial AI"],
       relevance: [],
-    },
-    {
-      id: "his",
-      phase: "Bridge · Aug 2025 – Jan 2026 · Innovation Management",
-      institution: "University of Skövde",
-      formalTitle: "Advanced-Level Studies in Innovation Management",
-      title: "Advanced-Level Studies in Innovation Management",
-      subtitle: "Innovation in Practice",
-      period: "Aug 2025 – Jan 2026",
-      body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership.",
-      body2:
-        "Studied in parallel with the advanced AI foundation, this formed the innovation and product bridge developed further at Blekinge Institute of Technology.",
-      chain: [
-        "Advanced AI",
-        "Innovation Opportunity",
-        "Talking SCADA — Initial Concept",
-        "Product / Requirements Development",
-      ],
-
-      projectCase: {
-        title: "Course project — Talking SCADA (concept origin)",
-        period: "Aug 2025 – Jan 2026",
-        body: "Developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could turn complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation later developed further through product management and requirements work.",
-      },
-      topics: [
-        "Strategic innovation",
-        "Applied innovation processes",
-        "Implementation",
-        "Innovation leadership",
-      ],
-      relevance: [],
-    },
-    {
-      id: "bth",
-      phase: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
-      institution: "Blekinge Institute of Technology",
-      formalTitle:
-        "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
-      title:
-        "Advanced-Level Specialisation in Industrial Economics, Product & Requirements Management",
-      subtitle: "Product · Requirements · Strategy · Leadership",
-      period: "Aug 2025 – Jun 2026",
-      body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
-      body2:
-        "Advanced-level specialization covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organizations.",
-
-      projectCase: {
-        title: "Course project — Talking SCADA (product & requirements case)",
-        period: "Aug 2025 – Jun 2026",
-        body: "Used Talking SCADA as a recurring academic product case to apply New Product Development, product discovery, digital product strategy and requirements engineering to an AI-enabled decision-support concept for building automation and SCADA/BMS environments. Applied methods across opportunity identification, product vision and value proposition, structured requirements management, feature prioritisation, MVP definition, product development governance, portfolio considerations, business model development and go-to-market planning — connecting customer needs and technical feasibility with sustainable business value.",
-      },
-      topics: [],
-      relevance: [],
-
-      groups: [
-        {
-          title: "Industrial Economics and Management",
-          items: ["Business value", "Technology and business perspective", "Sustainable value"],
-        },
-        {
-          title: "Strategy and Business Models in Technology-Intensive Businesses",
-          items: [
-            "Product strategy",
-            "Value proposition",
-            "Business model development",
-            "Market relevance",
-            "Go-to-market planning",
-          ],
-        },
-        {
-          title: "Product Management",
-          items: [
-            "New Product Development",
-            "Opportunity identification",
-            "Product discovery",
-            "Product vision",
-            "Feature prioritisation",
-            "MVP definition",
-          ],
-        },
-        {
-          title: "Product and Requirements Management for Digital Environments",
-          items: [
-            "Product Requirements Document",
-            "System-level requirements",
-            "Functional and non-functional requirements",
-            "Explainability and reliability",
-            "Requirements prioritisation",
-            "Technical feasibility",
-          ],
-        },
-        {
-          title: "Agile Process and Project Management",
-          items: [
-            "Iterative concept refinement",
-            "MVP planning",
-            "Development planning",
-            "Product development governance",
-          ],
-        },
-        {
-          title: "Leadership in High-Technology and Knowledge-Intensive Organizations",
-          items: ["Stakeholder alignment", "Communication", "Cross-functional perspective"],
-        },
-      ],
     },
   ],
   otherStudies: [
