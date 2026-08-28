@@ -158,7 +158,7 @@ function Index() {
               The journey
             </p>
             <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-night-foreground sm:text-4xl">
-              From industrial systems to AI-enabled products
+              AI-enabled products, built on industrial systems
             </h2>
             <div className="mt-6 max-w-3xl space-y-4">
               {journeyIntro.slice(0, 2).map((p) => (

@@ -18,6 +18,11 @@ import {
   type TimelineMilestone,
 } from "../content/timeline";
 
+/** The page reads newest first: the present, then what it was built on.
+ *  `milestones` stays in calendar order — it is the record, and other
+ *  readers of it must not inherit a presentation decision. */
+const newestFirst = [...milestones].reverse();
+
 function accentFor(track: TimelineMilestone["track"]) {
   return track === "development" ? "var(--development-accent)" : "var(--professional-accent)";
 }
@@ -1121,7 +1126,7 @@ export function Timeline() {
             height: "100%",
             scaleY: reduced ? 1 : smoothProgress,
             background:
-              "linear-gradient(180deg, var(--professional-accent), var(--aurora-green) 55%, var(--development-accent))",
+              "linear-gradient(180deg, var(--development-accent), var(--aurora-green) 55%, var(--professional-accent))",
             opacity: 0.75,
           }}
         />
@@ -1139,11 +1144,8 @@ export function Timeline() {
       </div>
 
       <ol className="relative space-y-14 min-[1100px]:space-y-20">
-        {milestones.map((entry) => (
+        {newestFirst.map((entry) => (
           <Fragment key={entry.id}>
-            {entry.id === parallelBridge.beforeMilestoneId ? (
-              <ParallelBridge key="bridge" />
-            ) : null}
             {entry.now ? (
               <NowRow key={entry.id} entry={entry} reduced={reduced} />
             ) : (
@@ -1155,6 +1157,13 @@ export function Timeline() {
                 onToggleRole={toggleRole}
               />
             )}
+            {/* The bridge marks the boundary between the professional and the
+                academic track. Its anchor names the milestone it precedes in
+                CALENDAR order, so reading newest-first puts the same boundary
+                on the other side of that milestone. */}
+            {entry.id === parallelBridge.beforeMilestoneId ? (
+              <ParallelBridge key="bridge" />
+            ) : null}
           </Fragment>
         ))}
       </ol>

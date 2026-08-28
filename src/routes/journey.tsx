@@ -7,7 +7,7 @@ import { seo } from "../lib/site";
 
 const title = "Journey — Rickard Sörlin";
 const description =
-  "From customer-facing engineering and national platform expertise to senior technical advisory and AI-enabled product work: one shared chronology of professional and academic development.";
+  "AI-enabled product work, senior technical advisory, national platform expertise and customer-facing engineering — newest first, in one shared chronology of professional and academic development.";
 
 export const Route = createFileRoute("/journey")({
   head: () => seo({ title, description, path: "/journey", type: "article" }),
@@ -24,7 +24,7 @@ function JourneyPage() {
               The journey
             </p>
             <h1 className="mx-auto mt-4 max-w-3xl text-balance-tight text-center text-4xl font-semibold text-night-foreground sm:text-[44px]">
-              From industrial systems to AI-enabled products
+              AI-enabled products, built on industrial systems
             </h1>
 
             <div className="mt-12">
