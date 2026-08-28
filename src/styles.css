@@ -206,8 +206,10 @@
 }
 
 @keyframes aurora-hue-breathe {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.86; }
+  0%, 100% { opacity: 0.3; }
+  38% { opacity: 0.62; }
+  50% { opacity: 1; }
+  72% { opacity: 0.55; }
 }
 
 @keyframes star-parallax {
@@ -243,24 +245,24 @@
   transform-origin: 50% 20%;
 }
 
-.aurora-ribbon-back { animation: aurora-drift-a 26s cubic-bezier(.42,0,.58,1) infinite; }
-.aurora-ribbon-mid { animation: aurora-drift-b 22s cubic-bezier(.42,0,.58,1) infinite; }
-.aurora-ribbon-front { animation: aurora-drift-c 18s cubic-bezier(.42,0,.58,1) infinite; }
+.aurora-ribbon-back { animation: aurora-drift-a 13s cubic-bezier(.42,0,.58,1) infinite; }
+.aurora-ribbon-mid { animation: aurora-drift-b 11s cubic-bezier(.42,0,.58,1) infinite; }
+.aurora-ribbon-front { animation: aurora-drift-c 9s cubic-bezier(.42,0,.58,1) infinite; }
 
 .aurora-colorwash {
-  animation: aurora-hue-breathe 24s ease-in-out infinite;
+  animation: aurora-hue-breathe 9s ease-in-out infinite;
 }
-.aurora-ribbon-mid .aurora-colorwash { animation-duration: 20s; animation-direction: reverse; }
-.aurora-ribbon-front .aurora-colorwash { animation-duration: 17s; }
+.aurora-ribbon-mid .aurora-colorwash { animation-duration: 7s; animation-direction: reverse; }
+.aurora-ribbon-front .aurora-colorwash { animation-duration: 6s; }
 
 .aurora-streak-sheet {
   will-change: transform;
   transform-origin: 50% 0;
-  animation: aurora-streaks 20s cubic-bezier(.42,0,.58,1) infinite;
+  animation: aurora-streaks 10s cubic-bezier(.42,0,.58,1) infinite;
 }
 
-.aurora-ribbon-mid .aurora-streak-sheet { animation-duration: 17s; animation-direction: reverse; }
-.aurora-ribbon-front .aurora-streak-sheet { animation-duration: 15s; }
+.aurora-ribbon-mid .aurora-streak-sheet { animation-duration: 8s; animation-direction: reverse; }
+.aurora-ribbon-front .aurora-streak-sheet { animation-duration: 7s; }
 
 .aurora-veil-dark {
   background:
