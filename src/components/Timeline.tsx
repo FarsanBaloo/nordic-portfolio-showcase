@@ -24,6 +24,24 @@ import {
  *  readers of it must not inherit a presentation decision. */
 const newestFirst = [...milestones].reverse();
 
+/** What the rail node says. Read newest first, a node carrying only the year
+ *  a period STARTED labels the most recent entry with its oldest date — the
+ *  postgraduate node read AUG 2025 for a period that ran to July 2026, and
+ *  sat directly above the degree's own 2025. So a milestone whose period is
+ *  a range is labelled with the range, in years: the sequence then descends,
+ *  and duration is stated in text rather than implied by a distance the
+ *  layout does not have. Derived from the card's own period, so the node and
+ *  the card cannot drift apart. */
+function railLabelFor(entry: TimelineMilestone) {
+  const fallback = entry.railMarker?.label ?? "";
+  const years = entry.period?.match(/\d{4}/g);
+  if (!years || years.length < 2) return fallback;
+  const from = years[0];
+  const to = years[years.length - 1];
+  if (!from || !to || from === to) return fallback;
+  return `${from}–${to}`;
+}
+
 function accentFor(track: TimelineMilestone["track"]) {
   return track === "development" ? "var(--development-accent)" : "var(--professional-accent)";
 }
@@ -836,7 +854,7 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
         <Node lit={active} isNow accent="var(--professional-accent)" level="major" />
         {entry.railMarker ? (
           <RailLabel
-            label={entry.railMarker.label}
+            label={railLabelFor(entry)}
             active={active}
             accent="var(--professional-accent)"
             className="-left-[26px] -top-[26px] min-[1100px]:left-1/2 min-[1100px]:top-[26px] min-[1100px]:-translate-x-1/2"
@@ -922,7 +940,7 @@ function MilestoneRow({
         <Node lit={active} isNow={false} accent={accent} level={marker?.kind ?? "minor"} />
         {marker ? (
           <RailLabel
-            label={marker.label}
+            label={railLabelFor(entry)}
             active={active}
             accent={accent}
             className="-left-[26px] -top-[26px] min-[1100px]:left-1/2 min-[1100px]:top-[26px] min-[1100px]:-translate-x-1/2"
