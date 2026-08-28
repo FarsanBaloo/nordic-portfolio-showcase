@@ -606,8 +606,11 @@ function Phase2Block({
 
       <div className="mt-8 grid gap-8 min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:gap-0">
         <div className="min-w-0 min-[1100px]:col-start-1 min-[1100px]:pr-10">
+          {/* Same cap and same side as the course column every other milestone
+              uses, so phase 2 lines up with phase 1 and with the degree's own
+              courses instead of spreading across the whole half. */}
           <div
-            className="grid gap-4"
+            className="grid gap-4 min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
             style={{ gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))" }}
           >
             {courses.map((child) => (
