@@ -910,6 +910,7 @@ function MilestoneRow({
   const phase2 = caseChild
     ? groupChildren(entry.children ?? []).find((g) => /^phase 2/i.test(g.title ?? ""))
     : undefined;
+  const spansBothColumns = !!phase2;
   const marker = entry.railMarker;
 
   return (
@@ -937,13 +938,26 @@ function MilestoneRow({
         }}
         className={[
           "min-w-0 min-[1100px]:row-start-1",
-          isDev ? "min-[1100px]:col-start-3 min-[1100px]:pl-10" : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
+          // A milestone whose own content spans both columns is the header of
+          // that block, not an entry in one track's column — so it is centred,
+          // the way the phase block below it centres its own header. Its rail
+          // node and track accent still say which track it belongs to, which
+          // is what keeps it distinct from the connectors, which have neither.
+          spansBothColumns
+            ? "min-[1100px]:col-span-3"
+            : isDev
+              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
+              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
         ].join(" ")}
       >
         <article
           className={[
             "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
-            isDev ? "min-[1100px]:max-w-[620px]" : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]",
+            spansBothColumns
+              ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
+              : isDev
+                ? "min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]",
           ].join(" ")}
           style={
             active
