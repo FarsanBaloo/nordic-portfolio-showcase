@@ -963,7 +963,7 @@ function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean
       </span>
       <div className="min-[1100px]:flex min-[1100px]:justify-center">
         <article
-          className="night-card mt-8 w-full rounded-2xl p-5 sm:p-6 min-[1100px]:mt-12 min-[1100px]:max-w-[440px] min-[1100px]:text-center"
+          className="night-card mt-8 w-full rounded-2xl p-5 sm:p-6 min-[1100px]:mt-20 min-[1100px]:max-w-[440px] min-[1100px]:text-center"
           style={{
             borderColor: "color-mix(in oklab, var(--development-accent) 30%, transparent)",
             boxShadow:
@@ -1216,7 +1216,13 @@ function MilestoneRow({
   return (
     <li
       ref={ref}
-      className="relative pl-10 sm:pl-12 min-[1100px]:grid min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:items-start min-[1100px]:gap-x-0 min-[1100px]:pl-0"
+      className={[
+        "relative pl-10 sm:pl-12 min-[1100px]:grid min-[1100px]:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] min-[1100px]:items-start min-[1100px]:gap-x-0 min-[1100px]:pl-0",
+        // Without a card, row 1 has no height and the first block lands on the
+        // rail label. Padding moves the content, not the node: an absolutely
+        // positioned label is measured from the padding box, so it stays put.
+        entry.hideOwnCard ? "pt-8 min-[1100px]:pt-12" : "",
+      ].join(" ")}
     >
       <span className="absolute left-[13px] top-6 z-10 -translate-x-1/2 min-[1100px]:left-1/2 min-[1100px]:top-7">
         <Node lit={active} isNow={false} accent={accent} level={marker?.kind ?? "minor"} />
