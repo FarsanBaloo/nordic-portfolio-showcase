@@ -14,6 +14,7 @@ import { ProjectEvidenceSheet } from "./ProjectEvidenceSheet";
 import {
   milestones,
   parallelBridge,
+  studyProgression,
   type TimelineChild,
   type TimelineMilestone,
 } from "../content/timeline";
@@ -798,6 +799,31 @@ function ParallelBridge() {
   );
 }
 
+/** Lighter than the track bridge: this joins two study periods rather than
+ *  marking a boundary, so it reads as a connector and not as a divider. */
+function StudyProgression() {
+  return (
+    <li className="relative pl-10 sm:pl-12 min-[1100px]:pl-0">
+      <div className="mx-auto max-w-[520px] text-center">
+        <span
+          aria-hidden="true"
+          className="mx-auto block h-10 w-px"
+          style={{
+            background:
+              "linear-gradient(180deg, transparent, color-mix(in oklab, var(--development-accent) 55%, transparent), transparent)",
+          }}
+        />
+        <p className="mt-3 font-mono text-[11.5px] uppercase tracking-[0.09em] text-development">
+          {studyProgression.label}
+        </p>
+        <p className="mt-2 text-[14px] leading-relaxed text-night-muted">
+          {studyProgression.body}
+        </p>
+      </div>
+    </li>
+  );
+}
+
 function NowRow({ entry, reduced }: { entry: TimelineMilestone; reduced: boolean }) {
   const ref = useRef<HTMLLIElement | null>(null);
   const { active } = useFocusMotion(ref, reduced);
@@ -1157,10 +1183,12 @@ export function Timeline() {
                 onToggleRole={toggleRole}
               />
             )}
-            {/* The bridge marks the boundary between the professional and the
-                academic track. Its anchor names the milestone it precedes in
-                CALENDAR order, so reading newest-first puts the same boundary
-                on the other side of that milestone. */}
+            {/* Both connectors name the milestone they precede in CALENDAR
+                order, so reading newest-first puts them on the other side of
+                that milestone — after the row rather than before it. */}
+            {entry.id === studyProgression.beforeMilestoneId ? (
+              <StudyProgression key="study-progression" />
+            ) : null}
             {entry.id === parallelBridge.beforeMilestoneId ? (
               <ParallelBridge key="bridge" />
             ) : null}
