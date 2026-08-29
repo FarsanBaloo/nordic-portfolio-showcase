@@ -275,6 +275,30 @@ export const milestones: TimelineMilestone[] = [
     childrenLabel: "Development work",
     children: [
       {
+        // One card for the coursework, courses first. Interaction Design is a
+        // course like the other five and was standing in a box of its own; the
+        // group label had to widen with it, because design is neither AI nor
+        // software engineering.
+        kind: "topics",
+        title:
+          "Artificial Intelligence 1 & 2 · Advanced Machine Learning · Deep Learning · Software Engineering for AI · Interaction Design",
+        university: "Mälardalen University",
+        variant: "compact",
+        topics: [],
+        signals: [
+          "AI Methods",
+          "Machine Learning",
+          "Deep Learning",
+          "AI Lifecycle",
+          "User Research",
+          "Figma Prototyping",
+          "Usability Validation",
+        ],
+        body: "AI methods and reasoning, modelling and evaluation, neural networks and model training, and the engineering practice of building and maintaining AI systems.",
+        body2: "Human-centred design worked end to end: user research and ideation, wireframes developed into high-fidelity prototypes in Figma, and evaluation of finished products through heuristic and accessibility review with usability validation against real users.",
+        group: "Selected AI, software engineering and design coursework",
+      },
+      {
         kind: "project",
         slug: "wind-power-forecasting",
         period: "2025",
@@ -287,38 +311,6 @@ export const milestones: TimelineMilestone[] = [
         period: "2025",
         datePrecision: "verified-year",
         group: "2025 · Applied AI",
-      },
-      {
-        kind: "course",
-        title: "Interaction Design",
-        university: "Mälardalen University",
-        signals: [
-          "User Research",
-          "Wireframing",
-          "Figma Prototyping",
-          "Heuristic Evaluation",
-          "Accessibility",
-          "Usability Validation",
-        ],
-        topics: [],
-        body: "Human-centred design worked end to end: user research and ideation, wireframes developed into high-fidelity prototypes in Figma, and evaluation of finished products through heuristic and accessibility review with usability validation against real users.",
-        group: "Selected AI & software engineering coursework",
-      },
-      {
-        // Five compact cards for five course titles was five boxes saying one
-        // thing. Named in a sentence instead: the same courses, one card.
-        kind: "topics",
-        // The course names ARE the heading here: the group label above already
-        // says what kind of coursework this is, so repeating it wastes the one
-        // line a reader actually scans.
-        title:
-          "Artificial Intelligence 1 & 2 · Advanced Machine Learning · Deep Learning · Software Engineering for AI",
-        university: "Mälardalen University",
-        variant: "compact",
-        topics: [],
-        signals: ["AI Methods", "Machine Learning", "Deep Learning", "AI Lifecycle"],
-        body: "AI methods and reasoning, modelling and evaluation, neural networks and model training, and the engineering practice of building and maintaining AI systems.",
-        group: "Selected AI & software engineering coursework",
       },
     ],
   },
