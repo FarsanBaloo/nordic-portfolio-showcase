@@ -1223,6 +1223,11 @@ function MilestoneRow({
   const parallel = entry.parallelMilestoneId
     ? milestones.find((m) => m.id === entry.parallelMilestoneId)
     : undefined;
+  // A parallel card spans rows 1-5, so anything placed in row 5 is pushed below
+  // it. This milestone's children move under its own card instead. Declared
+  // AFTER `parallel` — a const read one line above its own declaration is a
+  // ReferenceError, and this one would blank the whole view.
+  const childrenUnderCard = !!parallel;
   const marker = entry.railMarker;
 
   return (
@@ -1296,6 +1301,20 @@ function MilestoneRow({
               <div id={panelId}>
                 <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
               </div>
+            ) : null}
+            {/* And the children too, whenever a parallel milestone spans this
+                row. The child column's own grid row sits BELOW the rows the
+                parallel spans, so the grid stretches the card's row to make up
+                the parallel's height and the children start a screen further
+                down — an empty column between a card and the work it owns. */}
+            {childrenUnderCard ? (
+              <ChildColumn
+                entry={entry}
+                accent={accent}
+                side={isDev ? "right" : "left"}
+                reduced={reduced}
+                consumedGroups={consumedGroups}
+              />
             ) : null}
           </div>
         </motion.div>
@@ -1414,28 +1433,32 @@ function MilestoneRow({
         </div>
       ) : null}
 
-      <div
-        className={[
-          "min-w-0 min-[1100px]:row-start-5",
-          isDev
-            ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
-            : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
-        ].join(" ")}
-      >
+      {childrenUnderCard ? null : (
         <div
-          className={
-            isDev ? "min-[1100px]:max-w-[620px]" : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-          }
+          className={[
+            "min-w-0 min-[1100px]:row-start-5",
+            isDev
+              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
+              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
+          ].join(" ")}
         >
-          <ChildColumn
-            entry={entry}
-            accent={accent}
-            side={isDev ? "right" : "left"}
-            reduced={reduced}
-            consumedGroups={consumedGroups}
-          />
+          <div
+            className={
+              isDev
+                ? "min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+            }
+          >
+            <ChildColumn
+              entry={entry}
+              accent={accent}
+              side={isDev ? "right" : "left"}
+              reduced={reduced}
+              consumedGroups={consumedGroups}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
     </li>
   );
