@@ -242,10 +242,13 @@ export const milestones: TimelineMilestone[] = [
     },
     childrenLabel: "Selected work during this role",
     children: [
+      // Newest first, by the year each ended — the same axis the whole page
+      // reads on. They render two-up, so the pair on each row is a step back
+      // in time from the pair above it.
       { kind: "project", slug: "kth-living-lab", period: "2020–2023", datePrecision: "verified-range" },
+      { kind: "project", slug: "astrazeneca", period: "2020–2023", datePrecision: "verified-range" },
       { kind: "project", slug: "digital-realty-st06", period: "2021–2022", datePrecision: "verified-range" },
       { kind: "project", slug: "st-eriks", period: "2020–2021", datePrecision: "verified-range" },
-      { kind: "project", slug: "astrazeneca", period: "2020–2023", datePrecision: "verified-range" },
     ],
   },
   {
