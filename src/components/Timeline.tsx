@@ -271,7 +271,10 @@ function ProjectChildCard({
           </div>
         ) : null}
         <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
-          {child.period ?? project.type}
+          {/* Both, when the dates are verified: the period is the fact the
+              reader is looking for and the type is what the card IS. One
+              replacing the other loses whichever was written last. */}
+          {child.period ? `${child.period} · ${project.type}` : project.type}
         </p>
         <h4 className="mt-1 text-[17.5px] font-semibold text-night-foreground">{project.title}</h4>
 
@@ -1349,6 +1352,25 @@ function MilestoneRow({
               reduced={reduced}
               consumedGroups={EMPTY_GROUPS}
             />
+            {/* The years of this role that predate the milestone it stands
+                beside. Down is earlier here, so the foot of the column is
+                where 2020–2023 belongs — and aligned tops then say what
+                they should: both ran to 2025. */}
+            {parallel.preStudyNote ? (
+              <div
+                className="mt-6 border-l pl-4"
+                style={{
+                  borderColor: `color-mix(in oklab, ${accentFor(parallel.track)} 45%, transparent)`,
+                }}
+              >
+                <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+                  {parallel.preStudyNote.label}
+                </p>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-night-body">
+                  {parallel.preStudyNote.body}
+                </p>
+              </div>
+            ) : null}
           </div>
         </div>
       ) : null}

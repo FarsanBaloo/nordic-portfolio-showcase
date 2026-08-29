@@ -123,6 +123,10 @@ export type TimelineMilestone = {
    *  were happening at the same time, and the layout states it more strongly
    *  than any sentence would. */
   parallelMilestoneId?: string;
+  /** The stretch of a parallel milestone that came BEFORE the one it is drawn
+   *  beside. Newest-first means down is earlier, so it renders at the FOOT of
+   *  the parallel column — which is where those years actually belong. */
+  preStudyNote?: { label: string; body: string };
 };
 
 /** Shown once, at the boundary between the two phases of the postgraduate
@@ -138,7 +142,7 @@ export const studyProgression = {
 /** Shown once, as a centered bridge between the two tracks. */
 export const parallelBridge = {
   label: "Parallel professional & academic development",
-  body: "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from the professional role.",
+  body: "The Senior Technical Advisor role began in 2020 and ran full-time for three years before the Computer Science studies started in 2023; from then the two overlapped in calendar time, with some study periods undertaken during leave of absence.",
   /** Rendered immediately before this milestone id. */
   beforeMilestoneId: "bsc-development",
 };
@@ -230,12 +234,18 @@ export const milestones: TimelineMilestone[] = [
       "Technical-Commercial Trade-offs",
       "Lifecycle & Risk",
     ],
+    // Full-time for three years before the degree began. Without this the two
+    // cards standing side by side read as parallel from 2020.
+    preStudyNote: {
+      label: "2020–2023 · before the degree studies",
+      body: "Three years full-time in this role before the Computer Science studies began in 2023; from 2023 the degree ran alongside it, with periods of leave of absence.",
+    },
     childrenLabel: "Selected work during this role",
     children: [
-      { kind: "project", slug: "kth-living-lab", datePrecision: "unspecified" },
-      { kind: "project", slug: "digital-realty-st06", datePrecision: "unspecified" },
-      { kind: "project", slug: "st-eriks", datePrecision: "unspecified" },
-      { kind: "project", slug: "astrazeneca", datePrecision: "unspecified" },
+      { kind: "project", slug: "kth-living-lab", period: "2020–2023", datePrecision: "verified-range" },
+      { kind: "project", slug: "digital-realty-st06", period: "2021–2022", datePrecision: "verified-range" },
+      { kind: "project", slug: "st-eriks", period: "2020–2021", datePrecision: "verified-range" },
+      { kind: "project", slug: "astrazeneca", period: "2020–2023", datePrecision: "verified-range" },
     ],
   },
   {
@@ -295,48 +305,19 @@ export const milestones: TimelineMilestone[] = [
         group: "Selected AI & software engineering coursework",
       },
       {
-        kind: "course",
-        title: "Software Engineering for AI",
+        // Five compact cards for five course titles was five boxes saying one
+        // thing. Named in a sentence instead: the same courses, one card.
+        kind: "topics",
+        // The course names ARE the heading here: the group label above already
+        // says what kind of coursework this is, so repeating it wastes the one
+        // line a reader actually scans.
+        title:
+          "Artificial Intelligence 1 & 2 · Advanced Machine Learning · Deep Learning · Software Engineering for AI",
         university: "Mälardalen University",
         variant: "compact",
         topics: [],
-        signals: ["AI System Development", "Technical Feasibility", "AI Lifecycle"],
-        group: "Selected AI & software engineering coursework",
-      },
-      {
-        kind: "course",
-        title: "Deep Learning",
-        university: "Mälardalen University",
-        variant: "compact",
-        topics: [],
-        signals: ["Neural Networks", "Model Training", "Applied Deep Learning"],
-        group: "Selected AI & software engineering coursework",
-      },
-      {
-        kind: "course",
-        title: "Advanced Machine Learning",
-        university: "Mälardalen University",
-        variant: "compact",
-        topics: [],
-        signals: ["Machine Learning", "Modelling", "Evaluation"],
-        group: "Selected AI & software engineering coursework",
-      },
-      {
-        kind: "course",
-        title: "Artificial Intelligence 2",
-        university: "Mälardalen University",
-        variant: "compact",
-        topics: [],
-        signals: ["Advanced AI Methods", "Reasoning", "Applied AI"],
-        group: "Selected AI & software engineering coursework",
-      },
-      {
-        kind: "course",
-        title: "Artificial Intelligence 1",
-        university: "Mälardalen University",
-        variant: "compact",
-        topics: [],
-        signals: ["AI Methods", "Problem Solving", "Intelligent Systems"],
+        signals: ["AI Methods", "Machine Learning", "Deep Learning", "AI Lifecycle"],
+        body: "AI methods and reasoning, modelling and evaluation, neural networks and model training, and the engineering practice of building and maintaining AI systems.",
         group: "Selected AI & software engineering coursework",
       },
     ],
