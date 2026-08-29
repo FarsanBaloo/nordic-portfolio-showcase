@@ -27,10 +27,13 @@ const newestFirst = [...milestones].reverse();
 /** No phase block runs on the parallel path, so nothing is consumed there. */
 const EMPTY_GROUPS: ReadonlySet<string> = new Set();
 
-/** The first row in reading order that fills BOTH columns — the parallel card
- *  is what puts something in the opposite half — so the headings can be shown
- *  where they describe something. */
-const headingsBeforeId = [...milestones].reverse().find((m) => m.parallelMilestoneId)?.id;
+/** The headings name the two tracks, so they belong at the first row where the
+ *  reader actually meets both: a parallel card if one exists, otherwise the
+ *  first professional milestone under the run of study ones. Keyed off a
+ *  parallel alone, they vanished the moment the last parallel was removed. */
+const headingsBeforeId =
+  [...milestones].reverse().find((m) => m.parallelMilestoneId)?.id ??
+  [...milestones].reverse().find((m) => m.track === "professional")?.id;
 
 /** Milestones rendered inside another row, so the sequence must skip them. */
 const renderedInParallel = new Set(
@@ -1223,11 +1226,15 @@ function MilestoneRow({
   const parallel = entry.parallelMilestoneId
     ? milestones.find((m) => m.id === entry.parallelMilestoneId)
     : undefined;
-  // A parallel card spans rows 1-5, so anything placed in row 5 is pushed below
-  // it. This milestone's children move under its own card instead. Declared
-  // AFTER `parallel` — a const read one line above its own declaration is a
-  // ReferenceError, and this one would blank the whole view.
-  const childrenUnderCard = !!parallel;
+  // Children under the card rather than in their own grid row (5). Two reasons,
+  // one rule: a parallel card spans rows 1-5, so row 5 lands below it; and a
+  // role whose evidence panel is open pushes its own projects a screen down.
+  // Both are the same complaint — an empty column between a card and its work.
+  // Only roles qualify, and roles are professional, so the split below can put
+  // the strip on the rail side without asking which track this is.
+  // Declared AFTER `parallel` — a const read one line above its own
+  // declaration is a ReferenceError, and this one would blank the whole view.
+  const childrenUnderCard = !!parallel || (!!entry.roleId && !!entry.children?.length);
   const marker = entry.railMarker;
 
   return (
@@ -1275,46 +1282,71 @@ function MilestoneRow({
           ].join(" ")}
         >
           <div
-            className={
+            className={[
               spansBothColumns
                 ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
                 : isDev
-                  ? "min-[1100px]:max-w-[620px]"
-                  : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-            }
+                  ? "min-[1100px]:max-[1699px]:max-w-[620px]"
+                  : "min-[1100px]:ml-auto min-[1100px]:max-[1699px]:max-w-[620px]",
+              // Same split as the parallel path: card and evidence outside, the
+              // role's projects in the strip against the rail. The cap ENDS at
+              // 1699 rather than being overridden above it — two arbitrary
+              // variants share a specificity, so the winner would be decided by
+              // stylesheet order, which is how the strip once came out 165px.
+              childrenUnderCard
+                ? "min-[1700px]:grid min-[1700px]:grid-cols-[minmax(0,400px)_minmax(0,1fr)] min-[1700px]:items-start min-[1700px]:gap-6"
+                : "",
+            ].join(" ")}
           >
-            <MilestoneCard
-              entry={entry}
-              accent={accent}
-              active={active}
-              open={open}
-              panelId={panelId}
-              onToggleRole={onToggleRole}
-              className=""
-            />
-            {/* Under the card, not in a grid row of its own: the child column
-                sits between the two, so a row further down put the evidence
-                below the role's OWN projects. Same placement as the parallel
-                card's, which is the point — this is one rule, at both of its
-                sites. */}
-            {entry.roleId ? (
-              <div id={panelId}>
-                <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
-              </div>
-            ) : null}
-            {/* And the children too, whenever a parallel milestone spans this
-                row. The child column's own grid row sits BELOW the rows the
-                parallel spans, so the grid stretches the card's row to make up
-                the parallel's height and the children start a screen further
-                down — an empty column between a card and the work it owns. */}
-            {childrenUnderCard ? (
-              <ChildColumn
+            <div className="min-w-0">
+              <MilestoneCard
                 entry={entry}
                 accent={accent}
-                side={isDev ? "right" : "left"}
-                reduced={reduced}
-                consumedGroups={consumedGroups}
+                active={active}
+                open={open}
+                panelId={panelId}
+                onToggleRole={onToggleRole}
+                className=""
               />
+              {/* Under the card, not in a grid row of its own: the child column
+                  sits between the two, so a row further down put the evidence
+                  below the role's OWN projects. Same placement as the parallel
+                  card's, which is the point — this is one rule, at both of its
+                  sites. */}
+              {entry.roleId ? (
+                <div id={panelId}>
+                  <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
+                </div>
+              ) : null}
+            </div>
+            {childrenUnderCard ? (
+              <div className="min-w-0">
+                <ChildColumn
+                  entry={entry}
+                  accent={accent}
+                  side={isDev ? "right" : "left"}
+                  reduced={reduced}
+                  consumedGroups={consumedGroups}
+                />
+                {/* The years of this role that predate the milestone below it.
+                    Down is earlier here, so the foot of the column is where
+                    they belong. */}
+                {entry.preStudyNote ? (
+                  <div
+                    className="mt-6 border-l pl-4"
+                    style={{
+                      borderColor: `color-mix(in oklab, ${accent} 45%, transparent)`,
+                    }}
+                  >
+                    <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+                      {entry.preStudyNote.label}
+                    </p>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-night-body">
+                      {entry.preStudyNote.body}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
             ) : null}
           </div>
         </motion.div>

@@ -208,55 +208,13 @@ export const milestones: TimelineMilestone[] = [
     ],
   },
   {
-    id: "senior-advisor",
-    railMarker: { label: "2020", kind: "major", verified: true },
-    period: "2020–2025",
-    datePrecision: "verified-range",
-    title: "Senior Technical Advisor — Digital Platforms",
-    org: "Schneider Electric",
-    track: "professional",
-    roleId: "senior-technical-advisor",
-    // Stands beside the degree with a tall empty column under it, so the
-    // evidence is shown rather than hidden behind a toggle.
-    roleEvidenceOpenByDefault: true,
-    stage: "Discovery · Product / Solution Options · Business Value",
-    summary:
-      "Customer-facing technical leadership at the intersection of discovery, architecture, project delivery and business value.",
-    overviewBullets: [
-      "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and scalable solution directions.",
-      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs to reduce delivery and lifecycle risk and shape feasible, scalable outcomes.",
-    ],
-    relevanceSignals: [
-      "Customer Discovery",
-      "Requirements",
-      "Product / Solution Options",
-      "Technical-Commercial Trade-offs",
-      "Lifecycle & Risk",
-    ],
-    // Full-time for three years before the degree began. Without this the two
-    // cards standing side by side read as parallel from 2020.
-    preStudyNote: {
-      label: "2020–2023 · before the degree studies",
-      body: "Three years full-time in this role before the Computer Science studies began in 2023; from 2023 the degree ran alongside it, with periods of leave of absence.",
-    },
-    childrenLabel: "Selected work during this role",
-    children: [
-      // Newest first, by the year each ended — the same axis the whole page
-      // reads on. They render two-up, so the pair on each row is a step back
-      // in time from the pair above it.
-      { kind: "project", slug: "kth-living-lab", period: "2020–2023", datePrecision: "verified-range" },
-      { kind: "project", slug: "astrazeneca", period: "2020–2023", datePrecision: "verified-range" },
-      { kind: "project", slug: "digital-realty-st06", period: "2021–2022", datePrecision: "verified-range" },
-      { kind: "project", slug: "st-eriks", period: "2020–2021", datePrecision: "verified-range" },
-    ],
-  },
-  {
     id: "bsc-development",
-    railMarker: { label: "2025", kind: "major", verified: true },
-    // 2020–2025 against this degree's 2023–2025: employed throughout it. The
-    // postgraduate period is NOT covered — the role had ended by August 2025.
-    parallelMilestoneId: "senior-advisor",
+    // Anchored where it began. It stood beside the advisor role for a while,
+    // which is true — but two cards of equal weight on one row read as two
+    // equal claims, and at that point in the scroll the professional role is
+    // the one a reader is following. The overlap is still stated, once, on the
+    // bridge band above this card and on the role's own foot note.
+    railMarker: { label: "2023", kind: "major", verified: true },
     period: "2023–2025",
     datePrecision: "verified-range",
     title: "Computer Science / Intelligent Systems",
@@ -315,6 +273,50 @@ export const milestones: TimelineMilestone[] = [
         datePrecision: "verified-year",
         group: "2025 · Applied AI",
       },
+    ],
+  },
+  {
+    id: "senior-advisor",
+    railMarker: { label: "2020", kind: "major", verified: true },
+    period: "2020–2025",
+    datePrecision: "verified-range",
+    title: "Senior Technical Advisor — Digital Platforms",
+    org: "Schneider Electric",
+    track: "professional",
+    roleId: "senior-technical-advisor",
+    // Stands beside the degree with a tall empty column under it, so the
+    // evidence is shown rather than hidden behind a toggle.
+    roleEvidenceOpenByDefault: true,
+    stage: "Discovery · Product / Solution Options · Business Value",
+    summary:
+      "Customer-facing technical leadership at the intersection of discovery, architecture, project delivery and business value.",
+    overviewBullets: [
+      "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and scalable solution directions.",
+      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
+      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs to reduce delivery and lifecycle risk and shape feasible, scalable outcomes.",
+    ],
+    relevanceSignals: [
+      "Customer Discovery",
+      "Requirements",
+      "Product / Solution Options",
+      "Technical-Commercial Trade-offs",
+      "Lifecycle & Risk",
+    ],
+    // Full-time for three years before the degree began. Without this the two
+    // cards standing side by side read as parallel from 2020.
+    preStudyNote: {
+      label: "2020–2023 · before the degree studies",
+      body: "Three years full-time in this role before the Computer Science studies began in 2023; from 2023 the degree ran alongside it, with periods of leave of absence.",
+    },
+    childrenLabel: "Selected work during this role",
+    children: [
+      // Newest first, by the year each ended — the same axis the whole page
+      // reads on. They render two-up, so the pair on each row is a step back
+      // in time from the pair above it.
+      { kind: "project", slug: "kth-living-lab", period: "2020–2023", datePrecision: "verified-range" },
+      { kind: "project", slug: "astrazeneca", period: "2020–2023", datePrecision: "verified-range" },
+      { kind: "project", slug: "digital-realty-st06", period: "2021–2022", datePrecision: "verified-range" },
+      { kind: "project", slug: "st-eriks", period: "2020–2021", datePrecision: "verified-range" },
     ],
   },
   {
