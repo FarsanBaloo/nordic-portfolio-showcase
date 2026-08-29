@@ -1338,10 +1338,15 @@ function MilestoneRow({
               width the two stack the way they always did. */}
           <div
             className={[
-              isDev
-                ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:max-w-[620px]",
-              "min-[1700px]:grid min-[1700px]:max-w-none min-[1700px]:grid-cols-[minmax(0,400px)_minmax(0,1fr)] min-[1700px]:items-start min-[1700px]:gap-6",
+              // The cap stops AT 1699 rather than being overridden above it.
+              // `min-[1700px]:max-w-none` looked right and lost: two arbitrary
+              // variants carry the same specificity, so which one wins is a
+              // question of stylesheet order, not of which viewport is wider —
+              // measured live, the strip came out 165px instead of ~345. Two
+              // disjoint ranges cannot contradict each other.
+              isDev ? "min-[1100px]:ml-auto" : "",
+              "min-[1100px]:max-[1699px]:max-w-[620px]",
+              "min-[1700px]:grid min-[1700px]:grid-cols-[minmax(0,400px)_minmax(0,1fr)] min-[1700px]:items-start min-[1700px]:gap-6",
             ].join(" ")}
           >
             <div className="min-w-0">
