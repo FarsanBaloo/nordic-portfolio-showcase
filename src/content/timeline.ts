@@ -143,8 +143,11 @@ export const studyProgression = {
 export const parallelBridge = {
   label: "Parallel professional & academic development",
   body: "The Senior Technical Advisor role began in 2020 and ran full-time for three years before the Computer Science studies started in 2023; from then the two overlapped in calendar time, with some study periods undertaken during leave of absence.",
-  /** Rendered immediately before this milestone id. */
-  beforeMilestoneId: "bsc-development",
+  /** Rendered directly UNDER the row with this id — reading newest-first, that
+   *  is the position before the milestone it explains. Pointed at the degree
+   *  while the degree came first; now that the role does, it names the role,
+   *  so the band still lands between the two rather than below both. */
+  beforeMilestoneId: "senior-advisor",
 };
 
 export const milestones: TimelineMilestone[] = [
