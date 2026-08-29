@@ -1331,65 +1331,76 @@ function MilestoneRow({
               : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
           ].join(" ")}
         >
+          {/* From 1700px the side column is wide enough for two things at
+              once: the card and its evidence on the outside, the role's own
+              projects in the strip against the rail. Measured, not guessed —
+              a project card stops being readable under 280px, so below that
+              width the two stack the way they always did. */}
           <div
-            className={
+            className={[
               isDev
                 ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:max-w-[620px]"
-            }
+                : "min-[1100px]:max-w-[620px]",
+              "min-[1700px]:grid min-[1700px]:max-w-none min-[1700px]:grid-cols-[minmax(0,400px)_minmax(0,1fr)] min-[1700px]:items-start min-[1700px]:gap-6",
+            ].join(" ")}
           >
-            <MilestoneCard
-              entry={parallel}
-              accent={accentFor(parallel.track)}
-              active={active}
-              open={!!parallel.roleId && openRoleId === parallel.roleId}
-              panelId={`${panelId}-parallel`}
-              onToggleRole={onToggleRole}
-              className=""
-            />
-            {/* Directly under its own card, not in a row of its own further
-                down the grid: the evidence is what fills the tall column
-                beside the studies, and a panel two screens below the button
-                that opens it is not "under the role". */}
-            {parallel.roleId ? (
-              <div id={`${panelId}-parallel`}>
-                <RoleEvidence
-                  roleId={parallel.roleId}
-                  open={openRoleId === parallel.roleId}
-                  reduced={reduced}
-                />
-              </div>
-            ) : null}
+            <div className="min-w-0">
+              <MilestoneCard
+                entry={parallel}
+                accent={accentFor(parallel.track)}
+                active={active}
+                open={!!parallel.roleId && openRoleId === parallel.roleId}
+                panelId={`${panelId}-parallel`}
+                onToggleRole={onToggleRole}
+                className=""
+              />
+              {/* Directly under its own card, not in a row of its own further
+                  down the grid: the evidence is what fills the tall column
+                  beside the studies, and a panel two screens below the button
+                  that opens it is not "under the role". */}
+              {parallel.roleId ? (
+                <div id={`${panelId}-parallel`}>
+                  <RoleEvidence
+                    roleId={parallel.roleId}
+                    open={openRoleId === parallel.roleId}
+                    reduced={reduced}
+                  />
+                </div>
+              ) : null}
+            </div>
+
             {/* Its own children too. The milestone is skipped in the sequence,
                 so this is the ONLY place they can render — moving the card here
                 without them left the role's projects nowhere at all. Nothing is
                 consumed by a block on this path, so the set is empty. */}
-            <ChildColumn
-              entry={parallel}
-              accent={accentFor(parallel.track)}
-              side={parallel.track === "development" ? "right" : "left"}
-              reduced={reduced}
-              consumedGroups={EMPTY_GROUPS}
-            />
-            {/* The years of this role that predate the milestone it stands
-                beside. Down is earlier here, so the foot of the column is
-                where 2020–2023 belongs — and aligned tops then say what
-                they should: both ran to 2025. */}
-            {parallel.preStudyNote ? (
-              <div
-                className="mt-6 border-l pl-4"
-                style={{
-                  borderColor: `color-mix(in oklab, ${accentFor(parallel.track)} 45%, transparent)`,
-                }}
-              >
-                <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
-                  {parallel.preStudyNote.label}
-                </p>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-night-body">
-                  {parallel.preStudyNote.body}
-                </p>
-              </div>
-            ) : null}
+            <div className="min-w-0">
+              <ChildColumn
+                entry={parallel}
+                accent={accentFor(parallel.track)}
+                side={parallel.track === "development" ? "right" : "left"}
+                reduced={reduced}
+                consumedGroups={EMPTY_GROUPS}
+              />
+              {/* The years of this role that predate the milestone it stands
+                  beside. Down is earlier here, so the foot of the column is
+                  where 2020–2023 belongs — and aligned tops then say what
+                  they should: both ran to 2025. */}
+              {parallel.preStudyNote ? (
+                <div
+                  className="mt-6 border-l pl-4"
+                  style={{
+                    borderColor: `color-mix(in oklab, ${accentFor(parallel.track)} 45%, transparent)`,
+                  }}
+                >
+                  <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+                    {parallel.preStudyNote.label}
+                  </p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-night-body">
+                    {parallel.preStudyNote.body}
+                  </p>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
       ) : null}
@@ -1488,7 +1499,7 @@ export function Timeline() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto w-full max-w-[min(94vw,1480px)]"
+      className="relative mx-auto w-full max-w-[min(94vw,1760px)]"
     >
 
       {/* background rail */}
