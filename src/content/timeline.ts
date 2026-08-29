@@ -127,6 +127,12 @@ export type TimelineMilestone = {
    *  beside. Newest-first means down is earlier, so it renders at the FOOT of
    *  the parallel column — which is where those years actually belong. */
   preStudyNote?: { label: string; body: string };
+  /** Render this milestone's own card INSIDE its child column, directly after
+   *  the group with this title, instead of above the column. For a milestone
+   *  whose children straddle it in time: the 2025 work belongs above a card
+   *  anchored at 2023, and no grid row can put a card between two of its own
+   *  groups. */
+  cardAfterGroup?: string;
 };
 
 /** Shown once, at the boundary between the two phases of the postgraduate
@@ -236,8 +242,23 @@ export const milestones: TimelineMilestone[] = [
     stage: "Applied AI · Human-Centred Design · Research",
     summary:
       "Bachelor of Science in Computer Science with a specialisation in Intelligent Systems, developed alongside professional employment with periods of leave of absence for studies.",
+    cardAfterGroup: "2025 · Applied AI",
     childrenLabel: "Development work",
     children: [
+      {
+        kind: "project",
+        slug: "wind-power-forecasting",
+        period: "2025",
+        datePrecision: "verified-year",
+        group: "2025 · Bachelor thesis",
+      },
+      {
+        kind: "project",
+        slug: "talking-systems",
+        period: "2025",
+        datePrecision: "verified-year",
+        group: "2025 · Applied AI",
+      },
       {
         // One card for the coursework, courses first. Interaction Design is a
         // course like the other five and was standing in a box of its own; the
@@ -262,20 +283,6 @@ export const milestones: TimelineMilestone[] = [
         body2: "Human-centred design worked end to end: user research and ideation, wireframes developed into high-fidelity prototypes in Figma, and evaluation of finished products through heuristic and accessibility review with usability validation against real users.",
         group: "Selected AI, software engineering and design coursework",
       },
-      {
-        kind: "project",
-        slug: "wind-power-forecasting",
-        period: "2025",
-        datePrecision: "verified-year",
-        group: "2025 · Bachelor thesis",
-      },
-      {
-        kind: "project",
-        slug: "talking-systems",
-        period: "2025",
-        datePrecision: "verified-year",
-        group: "2025 · Applied AI",
-      },
     ],
   },
   {
@@ -287,9 +294,6 @@ export const milestones: TimelineMilestone[] = [
     org: "Schneider Electric",
     track: "professional",
     roleId: "senior-technical-advisor",
-    // Stands beside the degree with a tall empty column under it, so the
-    // evidence is shown rather than hidden behind a toggle.
-    roleEvidenceOpenByDefault: true,
     stage: "Discovery · Product / Solution Options · Business Value",
     summary:
       "Customer-facing technical leadership at the intersection of discovery, architecture, project delivery and business value.",

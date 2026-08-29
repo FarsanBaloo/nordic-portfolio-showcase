@@ -696,11 +696,15 @@ function ChildColumn({
   side,
   reduced,
   consumedGroups,
+  insertAfterGroup,
 }: {
   entry: TimelineMilestone;
   accent: string;
   side: "left" | "right";
   reduced: boolean;
+  /** Rendered directly after the group with this title. The milestone card
+   *  uses it to sit between two of its own groups, which no grid row can do. */
+  insertAfterGroup?: { title: string; node: React.ReactNode };
   /** Groups already rendered by a phase block. Passed in from the row that
    *  built those blocks rather than matched by title here, so a group can
    *  never be drawn twice or silently dropped by a pattern that stops
@@ -725,7 +729,8 @@ function ChildColumn({
         </p>
       ) : null}
       {visible.map((group) => (
-        <section key={group.title ?? "ungrouped"} className="min-w-0 space-y-3">
+        <Fragment key={group.title ?? "ungrouped"}>
+        <section className="min-w-0 space-y-3">
           {group.title ? (
             <h4
               className="font-mono text-[12px] uppercase tracking-[0.09em]"
@@ -793,6 +798,10 @@ function ChildColumn({
             );
           })}
         </section>
+          {insertAfterGroup && insertAfterGroup.title === group.title
+            ? insertAfterGroup.node
+            : null}
+        </Fragment>
       ))}
     </div>
   );
@@ -1260,7 +1269,7 @@ function MilestoneRow({
         ) : null}
       </span>
 
-      {entry.hideOwnCard ? null : (
+      {entry.hideOwnCard || entry.cardAfterGroup ? null : (
         <motion.div
           style={{
             scale: reduced ? 1 : scale,
@@ -1282,21 +1291,13 @@ function MilestoneRow({
           ].join(" ")}
         >
           <div
-            className={[
+            className={
               spansBothColumns
                 ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
                 : isDev
-                  ? "min-[1100px]:max-[1699px]:max-w-[620px]"
-                  : "min-[1100px]:ml-auto min-[1100px]:max-[1699px]:max-w-[620px]",
-              // Same split as the parallel path: card and evidence outside, the
-              // role's projects in the strip against the rail. The cap ENDS at
-              // 1699 rather than being overridden above it — two arbitrary
-              // variants share a specificity, so the winner would be decided by
-              // stylesheet order, which is how the strip once came out 165px.
-              childrenUnderCard
-                ? "min-[1700px]:grid min-[1700px]:grid-cols-[minmax(0,400px)_minmax(0,1fr)] min-[1700px]:items-start min-[1700px]:gap-6"
-                : "",
-            ].join(" ")}
+                  ? "min-[1100px]:max-w-[620px]"
+                  : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+            }
           >
             <div className="min-w-0">
               <MilestoneCard
@@ -1369,17 +1370,11 @@ function MilestoneRow({
               a project card stops being readable under 280px, so below that
               width the two stack the way they always did. */}
           <div
-            className={[
-              // The cap stops AT 1699 rather than being overridden above it.
-              // `min-[1700px]:max-w-none` looked right and lost: two arbitrary
-              // variants carry the same specificity, so which one wins is a
-              // question of stylesheet order, not of which viewport is wider —
-              // measured live, the strip came out 165px instead of ~345. Two
-              // disjoint ranges cannot contradict each other.
-              isDev ? "min-[1100px]:ml-auto" : "",
-              "min-[1100px]:max-[1699px]:max-w-[620px]",
-              "min-[1700px]:grid min-[1700px]:grid-cols-[minmax(0,400px)_minmax(0,1fr)] min-[1700px]:items-start min-[1700px]:gap-6",
-            ].join(" ")}
+            className={
+              isDev
+                ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:max-w-[620px]"
+            }
           >
             <div className="min-w-0">
               <MilestoneCard
@@ -1503,6 +1498,24 @@ function MilestoneRow({
               side={isDev ? "right" : "left"}
               reduced={reduced}
               consumedGroups={consumedGroups}
+              {...(entry.cardAfterGroup
+                ? {
+                    insertAfterGroup: {
+                      title: entry.cardAfterGroup,
+                      node: (
+                        <MilestoneCard
+                          entry={entry}
+                          accent={accent}
+                          active={active}
+                          open={open}
+                          panelId={panelId}
+                          onToggleRole={onToggleRole}
+                          className=""
+                        />
+                      ),
+                    },
+                  }
+                : {})}
             />
           </div>
         </div>
@@ -1536,7 +1549,7 @@ export function Timeline() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto w-full max-w-[min(94vw,1760px)]"
+      className="relative mx-auto w-full max-w-[min(94vw,1480px)]"
     >
 
       {/* background rail */}
