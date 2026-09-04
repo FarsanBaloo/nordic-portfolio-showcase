@@ -78,12 +78,22 @@ function Index() {
             {availability}
           </p>
 
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-night-muted">
+          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-night-body">
             {profile.heroPrimary}
           </p>
           <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-night-muted">
             {profile.heroSupporting}
           </p>
+
+          <ul className="mt-8 max-w-3xl space-y-2.5">
+            {profile.heroProof.map((item) => (
+              <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-night-body">
+                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-aurora-teal" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
 
           <ol className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-2">
             {profile.progression.map((step, i) => (
