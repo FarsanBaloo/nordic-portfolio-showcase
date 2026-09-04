@@ -5,9 +5,10 @@ import { Timeline } from "../components/Timeline";
 import { careerLens, journeyNarrative, productPhilosophy } from "../content/profile";
 import { seo } from "../lib/site";
 
-const title = "Journey — Rickard Sörlin";
+const title = "Journey — Rickard Sörlin, AI Product Manager";
 const description =
-  "AI-enabled product work, senior technical advisory, national platform expertise and customer-facing engineering — newest first, in one shared chronology of professional and academic development.";
+  "From control cabinets and SCADA to AI-enabled products: 25 years of industrial systems, national platform expertise and applied AI, told as one continuous chronology.";
+
 
 export const Route = createFileRoute("/journey")({
   head: () => seo({ title, description, path: "/journey", type: "article" }),
