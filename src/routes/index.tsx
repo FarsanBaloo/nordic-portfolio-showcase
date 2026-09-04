@@ -84,6 +84,10 @@ function Index() {
           <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-night-muted">
             {profile.heroSupporting}
           </p>
+          <p className="mt-5 max-w-3xl rounded-lg border border-aurora-teal/30 bg-aurora-teal/5 px-4 py-3 text-[15px] leading-relaxed text-night-foreground">
+            {profile.bridge}
+          </p>
+
 
           <ul className="mt-8 max-w-3xl space-y-2.5">
             {profile.heroProof.map((item) => (
