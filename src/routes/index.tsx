@@ -166,10 +166,10 @@ function Index() {
         <div className="relative py-20">
           <div className="mx-auto max-w-6xl px-5">
             <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
-              The journey
+              The journey · preview
             </p>
             <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-night-foreground sm:text-4xl">
-              AI-enabled products, built on industrial systems
+              From control cabinets to AI products
             </h2>
             <div className="mt-6 max-w-3xl space-y-4">
               {journeyIntro.slice(0, 2).map((p) => (
@@ -179,6 +179,7 @@ function Index() {
               ))}
             </div>
           </div>
+
           <div className="mt-14 w-full px-5 min-[1100px]:px-[clamp(24px,4vw,72px)]">
             <Timeline />
           </div>
