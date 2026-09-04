@@ -7,7 +7,7 @@ import { seo } from "../lib/site";
 
 const title = "Journey — Rickard Sörlin, AI Product Manager";
 const description =
-  "From control cabinets and SCADA to AI-enabled products: 25 years of industrial systems, national platform expertise and applied AI, told as one continuous chronology.";
+  "From customers' control cabinets to AI-enabled products: 25 years of discovery, stakeholder pains and jobs to be done, told as one continuous chronology.";
 
 
 export const Route = createFileRoute("/journey")({

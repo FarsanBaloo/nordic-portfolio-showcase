@@ -21,7 +21,7 @@ import { seo } from "../lib/site";
 
 const title = "Rickard Sörlin — AI Product Manager, Industrial Platforms & Applied AI";
 const description =
-  "AI Product Manager with 25 years inside SCADA, BMS/HVAC and IoT systems, now building AI-enabled products that hold up in real industrial operations.";
+  "AI Product Manager who turns real customer pains in complex B2B environments into AI-enabled products — 25 years of discovery with the people who run SCADA, IoT and mission-critical operations.";
 
 
 export const Route = createFileRoute("/")({
