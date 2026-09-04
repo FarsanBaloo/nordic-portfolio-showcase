@@ -18,7 +18,7 @@ export const profile = {
   heroProof: [
     "25 years spent with the people who run the systems — finding the real job to be done behind every request, and the pains behind every workaround",
     "AI products I shaped, built and validated with real users — from RAG and forecasting to agentic assistants on the factory floor",
-    "B.Sc. in Computer Science with Applied AI, plus postgraduate studies in product management, strategy and requirements",
+    "B.Sc. in Computer Science with Applied AI, plus postgraduate advanced-AI studies and product management, strategy, business models, requirements and leadership",
   ],
   progression: [
     "Industrial Systems",
