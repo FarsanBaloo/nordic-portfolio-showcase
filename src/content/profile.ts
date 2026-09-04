@@ -84,17 +84,19 @@ export const contactIntro =
 
 /** Editorial narrative shown at the top of the Journey page. */
 export const journeyNarrative = {
-  lead: "My professional foundation comes from working close to real systems, customers and operational constraints.",
+  lead: "This is the story of how someone who started in control cabinets ended up building AI products — and why the two belong together.",
   paragraphs: [
-    "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
-    "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated customer and operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value.",
-    "Alongside that professional journey, I deliberately expanded my capabilities through Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models and Leadership.",
+    "I began as a Project Engineer, out with customers. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — and then stood there when it went live. You learn quickly that a solution is only as good as the day-to-day reality it has to fit into.",
+    "Later I became the national technical expert for our digital platform. That put me close to how the product was really used: the recurring faults, the workarounds people invented, the releases that needed one more round of validation. I fed that back into the product, and I started thinking less about single installations and more about the platform as a whole.",
+    "As Senior Technical Advisor I sat where customer needs, technology and business meet. I ran the technical discovery, turned operational needs into architectures, took end-to-end technical ownership, and helped weigh options against feasibility, risk, lifecycle and cost — usually as the informal technical lead others turned to.",
+    "Then I made a deliberate choice. I went back to study: Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy and requirements. Not to leave industry behind, but to be able to build products on top of everything it taught me.",
   ],
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "The common thread has been understanding the real problem and turning it into something useful, feasible and valuable.",
+    "That is what I bring to an AI product role: I know where the data comes from, I know who has to use the result, and I know what it costs to get it wrong.",
 };
+
 
 /** Compact four-area career lens shown between the intro and the timeline. */
 export const careerLens = [
