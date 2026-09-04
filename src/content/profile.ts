@@ -11,6 +11,8 @@ export const profile = {
   linkedinDisplay: "linkedin.com/in/rickardsorlin/",
   positioning:
     "Turning real customer pains in complex, real-world B2B environments into AI-enabled products that hold up in production.",
+  bridge:
+    "I bridge engineering and business — machine learning, backend and frontend on one side, product and commercial reality on the other — grounded in deep domain knowledge of IoT and IIoT.",
   heroPrimary:
     "I help product teams find the problem worth solving: who actually has it, what job they are trying to get done, and for whom a solution creates real value. That is where every good product starts — and where most fail.",
   heroSupporting:
@@ -71,7 +73,7 @@ export const whatIBring = [
   },
   {
     title: "Technical Credibility",
-    body: "End-to-end technical ownership, solution architecture, system integration, SCADA, BMS/HVAC, IoT/IIoT and complex operational constraints.",
+    body: "Bridges engineering and business — machine learning, backend and frontend — with end-to-end technical ownership, solution architecture, system integration and complex operational constraints.",
   },
   {
     title: "Applied AI & Human-Centred Design",
