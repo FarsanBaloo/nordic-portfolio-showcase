@@ -39,12 +39,10 @@ export const profile = {
 } as const;
 
 export const journeyIntro = [
-  "My career started close to customers, operational teams and real systems.",
-  "I began with customer-facing engineering, system design, implementation, integration and commissioning. I later became a national digital-platform technical expert working close to real product usage, platform lifecycle, QA, release validation and release readiness.",
-  "As Senior Technical Advisor, my work moved further toward the intersection of customer needs, project delivery, technology and business. I led technical discovery, translated requirements into architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, risk, lifecycle, cost and commercial value.",
-  "Alongside this professional journey, I deliberately expanded my capabilities in Computer Science, Interaction Design, applied AI, innovation, Product Management, Strategy, Requirements and Leadership.",
-  "The common thread has always been understanding the real problem and turning it into something technically feasible, operationally useful and valuable.",
+  "I did not start in product. I started in plant rooms, control cabinets and control centres — close to the people who had to live with whatever we shipped.",
+  "That is still how I work. Twenty-five years later I am building AI-enabled products, and the questions are the same: what is the real problem, what does the data actually look like, and will this survive contact with the operators?",
 ];
+
 
 export const aboutParagraphs = [
   "My professional foundation comes from working close to real systems, customers and operational constraints.",
