@@ -19,9 +19,10 @@ import { sortedProjects } from "../content/projects";
 import { seo } from "../lib/site";
 
 
-const title = "Rickard Sörlin — Digital Platforms, Product & Applied AI";
+const title = "Rickard Sörlin — AI Product Manager, Industrial Platforms & Applied AI";
 const description =
-  "Product-oriented industrial digital-platform professional with 25+ years in SCADA, BMS/HVAC and IoT, combined with Computer Science, interaction design and applied AI.";
+  "AI Product Manager with 25 years inside SCADA, BMS/HVAC and IoT systems, now building AI-enabled products that hold up in real industrial operations.";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
