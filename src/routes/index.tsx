@@ -19,9 +19,10 @@ import { sortedProjects } from "../content/projects";
 import { seo } from "../lib/site";
 
 
-const title = "Rickard Sörlin — Digital Platforms, Product & Applied AI";
+const title = "Rickard Sörlin — AI Product Manager, Industrial Platforms & Applied AI";
 const description =
-  "Product-oriented industrial digital-platform professional with 25+ years in SCADA, BMS/HVAC and IoT, combined with Computer Science, interaction design and applied AI.";
+  "AI Product Manager with 25 years inside SCADA, BMS/HVAC and IoT systems, now building AI-enabled products that hold up in real industrial operations.";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,12 +78,22 @@ function Index() {
             {availability}
           </p>
 
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-night-muted">
+          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-night-body">
             {profile.heroPrimary}
           </p>
           <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-night-muted">
             {profile.heroSupporting}
           </p>
+
+          <ul className="mt-8 max-w-3xl space-y-2.5">
+            {profile.heroProof.map((item) => (
+              <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-night-body">
+                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-aurora-teal" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
 
           <ol className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-2">
             {profile.progression.map((step, i) => (
@@ -155,10 +166,10 @@ function Index() {
         <div className="relative py-20">
           <div className="mx-auto max-w-6xl px-5">
             <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
-              The journey
+              The journey · preview
             </p>
             <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-night-foreground sm:text-4xl">
-              AI-enabled products, built on industrial systems
+              From control cabinets to AI products
             </h2>
             <div className="mt-6 max-w-3xl space-y-4">
               {journeyIntro.slice(0, 2).map((p) => (
@@ -168,6 +179,7 @@ function Index() {
               ))}
             </div>
           </div>
+
           <div className="mt-14 w-full px-5 min-[1100px]:px-[clamp(24px,4vw,72px)]">
             <Timeline />
           </div>

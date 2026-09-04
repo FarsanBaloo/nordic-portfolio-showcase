@@ -1,6 +1,6 @@
 export const profile = {
   name: "Rickard Sörlin",
-  descriptor: "Digital Platforms · Product · Applied AI",
+  descriptor: "AI Product Manager — Industrial Platforms, SCADA & Applied AI",
   secondaryDescriptor:
     "Industrial Digital Platforms · Product Thinking · AI-Enabled Products",
   location: "Stockholm, Sweden",
@@ -10,17 +10,23 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rickardsorlin/",
   linkedinDisplay: "linkedin.com/in/rickardsorlin/",
   positioning:
-    "Bridging business, industrial operations, technology and AI to turn real-world challenges into scalable digital platform and product opportunities.",
+    "Bringing industrial reality and applied AI together, so that the products we build actually solve the problems people have.",
   heroPrimary:
-    "Product-oriented B2B industrial digital-platform professional with 25+ years across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments — combining deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management to validate high-value user problems and shape feasible, scalable solutions.",
+    "I am an AI Product Manager with 25 years spent inside the systems that keep buildings, energy and industry running. I have sat with the operators, seen where the data really comes from, and learned what breaks when a product ignores that reality.",
   heroSupporting:
-    "End-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders — contributing to prioritisation, feasibility assessment and technical and commercial trade-offs, and turning recurring customer issues and real-world usage into product feedback and enhancement proposals. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
+    "Today I use that background to find the problems worth solving, judge what is actually feasible, and turn messy operational needs into AI-enabled products that hold up in production — not just in a demo.",
+  heroProof: [
+    "25 years in real industrial systems — SCADA, BMS/HVAC, IoT and mission-critical operations",
+    "B.Sc. in Computer Science with Applied AI, plus postgraduate studies in product management and strategy",
+    "AI solutions I built and tested with real users — from RAG and forecasting to agentic assistants on the factory floor",
+  ],
   progression: [
     "Industrial Systems",
     "Digital Platforms",
     "Product",
     "AI",
   ],
+
   targetRoles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
   summary: [
     "Product-oriented B2B industrial digital-platform professional with 25+ years of experience across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments. Combines deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management capabilities to conduct customer and technical discovery, validate high-value user problems, translate operational needs and data into product opportunities, and shape feasible, scalable solutions.",
@@ -33,12 +39,10 @@ export const profile = {
 } as const;
 
 export const journeyIntro = [
-  "My career started close to customers, operational teams and real systems.",
-  "I began with customer-facing engineering, system design, implementation, integration and commissioning. I later became a national digital-platform technical expert working close to real product usage, platform lifecycle, QA, release validation and release readiness.",
-  "As Senior Technical Advisor, my work moved further toward the intersection of customer needs, project delivery, technology and business. I led technical discovery, translated requirements into architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, risk, lifecycle, cost and commercial value.",
-  "Alongside this professional journey, I deliberately expanded my capabilities in Computer Science, Interaction Design, applied AI, innovation, Product Management, Strategy, Requirements and Leadership.",
-  "The common thread has always been understanding the real problem and turning it into something technically feasible, operationally useful and valuable.",
+  "I did not start in product. I started in plant rooms, control cabinets and control centres — close to the people who had to live with whatever we shipped.",
+  "That is still how I work. Twenty-five years later I am building AI-enabled products, and the questions are the same: what is the real problem, what does the data actually look like, and will this survive contact with the operators?",
 ];
+
 
 export const aboutParagraphs = [
   "My professional foundation comes from working close to real systems, customers and operational constraints.",
@@ -49,7 +53,8 @@ export const aboutParagraphs = [
 ];
 
 export const productPhilosophy =
-  "The value of an AI product does not come from AI alone. It comes from solving the right user problem, understanding the available data, respecting operational reality, making sound technical and commercial trade-offs, and creating value people can actually use.";
+  "AI on its own creates nothing. Value shows up when you solve the right problem, know what your data can honestly support, respect how people actually work, and make the trade-offs out loud instead of hiding them.";
+
 
 export const whatIBring = [
   {
@@ -79,17 +84,19 @@ export const contactIntro =
 
 /** Editorial narrative shown at the top of the Journey page. */
 export const journeyNarrative = {
-  lead: "My professional foundation comes from working close to real systems, customers and operational constraints.",
+  lead: "This is the story of how someone who started in control cabinets ended up building AI products — and why the two belong together.",
   paragraphs: [
-    "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
-    "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated customer and operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value.",
-    "Alongside that professional journey, I deliberately expanded my capabilities through Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models and Leadership.",
+    "I began as a Project Engineer, out with customers. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — and then stood there when it went live. You learn quickly that a solution is only as good as the day-to-day reality it has to fit into.",
+    "Later I became the national technical expert for our digital platform. That put me close to how the product was really used: the recurring faults, the workarounds people invented, the releases that needed one more round of validation. I fed that back into the product, and I started thinking less about single installations and more about the platform as a whole.",
+    "As Senior Technical Advisor I sat where customer needs, technology and business meet. I ran the technical discovery, turned operational needs into architectures, took end-to-end technical ownership, and helped weigh options against feasibility, risk, lifecycle and cost — usually as the informal technical lead others turned to.",
+    "Then I made a deliberate choice. I went back to study: Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy and requirements. Not to leave industry behind, but to be able to build products on top of everything it taught me.",
   ],
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "The common thread has been understanding the real problem and turning it into something useful, feasible and valuable.",
+    "That is what I bring to an AI product role: I know where the data comes from, I know who has to use the result, and I know what it costs to get it wrong.",
 };
+
 
 /** Compact four-area career lens shown between the intro and the timeline. */
 export const careerLens = [
