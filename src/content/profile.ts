@@ -1,6 +1,6 @@
 export const profile = {
   name: "Rickard Sörlin",
-  descriptor: "Digital Platforms · Product · Applied AI",
+  descriptor: "AI Product Manager — Industrial Platforms, SCADA & Applied AI",
   secondaryDescriptor:
     "Industrial Digital Platforms · Product Thinking · AI-Enabled Products",
   location: "Stockholm, Sweden",
@@ -10,17 +10,23 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rickardsorlin/",
   linkedinDisplay: "linkedin.com/in/rickardsorlin/",
   positioning:
-    "Bridging business, industrial operations, technology and AI to turn real-world challenges into scalable digital platform and product opportunities.",
+    "Bringing industrial reality and applied AI together, so that the products we build actually solve the problems people have.",
   heroPrimary:
-    "Product-oriented B2B industrial digital-platform professional with 25+ years across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments — combining deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management to validate high-value user problems and shape feasible, scalable solutions.",
+    "I am an AI Product Manager with 25 years spent inside the systems that keep buildings, energy and industry running. I have sat with the operators, seen where the data really comes from, and learned what breaks when a product ignores that reality.",
   heroSupporting:
-    "End-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders — contributing to prioritisation, feasibility assessment and technical and commercial trade-offs, and turning recurring customer issues and real-world usage into product feedback and enhancement proposals. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
+    "Today I use that background to find the problems worth solving, judge what is actually feasible, and turn messy operational needs into AI-enabled products that hold up in production — not just in a demo.",
+  heroProof: [
+    "25 years in real industrial systems — SCADA, BMS/HVAC, IoT and mission-critical operations",
+    "B.Sc. in Computer Science with Applied AI, plus postgraduate studies in product management and strategy",
+    "AI solutions I built and tested with real users — from RAG and forecasting to agentic assistants on the factory floor",
+  ],
   progression: [
     "Industrial Systems",
     "Digital Platforms",
     "Product",
     "AI",
   ],
+
   targetRoles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
   summary: [
     "Product-oriented B2B industrial digital-platform professional with 25+ years of experience across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments. Combines deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management capabilities to conduct customer and technical discovery, validate high-value user problems, translate operational needs and data into product opportunities, and shape feasible, scalable solutions.",
