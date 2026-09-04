@@ -16,8 +16,8 @@ export const profile = {
   heroSupporting:
     "I can do that credibly because I have spent 25 years on the customer side of complex, real-world systems — SCADA, BMS/HVAC, IoT and mission-critical operations — listening to operators' pains, balancing them against internal stakeholders in engineering, QA and business, and turning what I learned into products. Today I build AI-enabled products the same way: tested with real users, honest about the data, built to survive production.",
   heroProof: [
-    "25 years of customer discovery in real operations — finding the job to be done behind every request, and the pains behind every workaround",
-    "AI products I discovered, built and validated with real users — from RAG and forecasting to agentic assistants on the factory floor",
+    "25 years spent with the people who run the systems — finding the real job to be done behind every request, and the pains behind every workaround",
+    "AI products I shaped, built and validated with real users — from RAG and forecasting to agentic assistants on the factory floor",
     "B.Sc. in Computer Science with Applied AI, plus postgraduate studies in product management, strategy and requirements",
   ],
   progression: [
@@ -59,7 +59,7 @@ export const productPhilosophy =
 export const whatIBring = [
   {
     title: "Customer & Stakeholder Focus",
-    body: "A career built on discovery with real customers — uncovering the job to be done and the pains of both external users and internal stakeholders in engineering, QA, R&D and business.",
+    body: "A career spent listening to real customers — uncovering the job to be done and the pains of both external users and internal stakeholders in engineering, QA, R&D and business.",
   },
   {
     title: "Industrial & Platform Depth",
@@ -88,7 +88,7 @@ export const journeyNarrative = {
   paragraphs: [
     "I began as a Project Engineer, out with customers. My job was to understand theirs: what they were really trying to get done, what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — and then stood next to the customer when it went live. You learn quickly that a product is only as good as the day-to-day reality of the people who depend on it.",
     "Later I became the national technical expert for our digital platform. That put me close to the customer's recurring pains — the faults that kept coming back, the workarounds people invented — and to the internal pains behind them: engineering constraints, QA and release readiness. My job was to carry both: turn real-world usage into product feedback and enhancement proposals, and help the platform evolve in the direction customers actually needed.",
-    "As Senior Technical Advisor I sat exactly where customer, technology and business meet. I ran the technical discovery — who has the problem, what job are they trying to get done, for whom does a solution create value — and weighed the options against feasibility, lifecycle risk, reliability and cost. Usually as the informal technical lead others turned to when the trade-offs got hard.",
+    "As Senior Technical Advisor I sat exactly where customer, technology and business meet. I led the technical discovery — who has the problem, what job are they trying to get done, for whom does a solution create value — and weighed the options against feasibility, lifecycle risk, reliability and cost. Usually as the informal technical lead others turned to when the trade-offs got hard.",
     "Then I made a deliberate choice. I went back to study: Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy and requirements. Not to leave the customer behind, but to build products on top of everything they taught me.",
   ],
   overlap:
