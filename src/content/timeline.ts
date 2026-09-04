@@ -168,7 +168,7 @@ export const milestones: TimelineMilestone[] = [
     roleId: "project-engineer",
     stage: "Customer Needs · Requirements · Delivery Reality",
     summary:
-      "Customer-facing engineering and digital-platform delivery, translating real customer and operational needs into workable system designs and taking technical responsibility through implementation and operational handover.",
+      "Ten years face to face with the people who run the systems — turning their needs into working platforms and standing beside them at go-live.",
     overviewBullets: [
       "Worked directly with customers, end users and operations teams to understand needs, workflows and operational constraints, translating them into implementation-ready requirements and system designs.",
       "Held end-to-end technical responsibility from solution design and programming through integration, commissioning, testing and operational handover, building strong judgement around feasibility, usability, reliability and maintainability.",
@@ -194,7 +194,7 @@ export const milestones: TimelineMilestone[] = [
     roleId: "support-engineer",
     stage: "Customer Insight · Product Lifecycle · Release Readiness",
     summary:
-      "National technical expert connecting real customer and field experience with platform quality, product lifecycle and release readiness.",
+      "National expert carrying the customer's recurring pains into product feedback, lifecycle decisions and release readiness.",
     overviewBullets: [
       "Translated recurring customer and field issues into structured product feedback, enhancement proposals and usability improvements, considering customer impact, market needs and business value.",
       "Worked close to the product lifecycle through QA testing, release validation, defect identification and deployment / release readiness, evaluating new and changed functionality from a real-world customer perspective.",
@@ -296,7 +296,7 @@ export const milestones: TimelineMilestone[] = [
     roleId: "senior-technical-advisor",
     stage: "Discovery · Product / Solution Options · Business Value",
     summary:
-      "Customer-facing technical leadership at the intersection of discovery, architecture, project delivery and business value.",
+      "Where customer, technology and business meet — leading discovery and the trade-offs behind feasible, scalable solutions.",
     overviewBullets: [
       "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and scalable solution directions.",
       "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",

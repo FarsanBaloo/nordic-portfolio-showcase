@@ -85,17 +85,17 @@ export const contactIntro =
 
 /** Editorial narrative shown at the top of the Journey page. */
 export const journeyNarrative = {
-  lead: "This is the story of how someone who started with customers in control cabinets ended up building AI products — and why the customer never left the centre of it.",
+  lead: "From customers' control cabinets to AI-enabled products — one continuous story, with the customer at the centre of every chapter.",
   paragraphs: [
-    "I began as a Project Engineer, out with customers. My job was to understand theirs: what they were really trying to get done, what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — and then stood next to the customer when it went live. You learn quickly that a product is only as good as the day-to-day reality of the people who depend on it.",
-    "Later I became the national technical expert for our digital platform. That put me close to the customer's recurring pains — the faults that kept coming back, the workarounds people invented — and to the internal pains behind them: engineering constraints, QA and release readiness. My job was to carry both: turn real-world usage into product feedback and enhancement proposals, and help the platform evolve in the direction customers actually needed.",
-    "As Senior Technical Advisor I sat exactly where customer, technology and business meet. I led the technical discovery — who has the problem, what job are they trying to get done, for whom does a solution create value — and weighed the options against feasibility, lifecycle risk, reliability and cost. Usually as the informal technical lead others turned to when the trade-offs got hard.",
-    "Then I made a deliberate choice. I went back to study: Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy and requirements. Not to leave the customer behind, but to build products on top of everything they taught me.",
+    "I began as a Project Engineer, out with customers. My job was to understand theirs: what they were really trying to get done, what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — then stood next to the customer when it went live. That is where I learned the lesson everything else builds on: a product is only as good as the day-to-day reality of the people who depend on it.",
+    "Later I became the national technical expert for our digital platform. The view widened: the faults that kept coming back, the workarounds customers invented — and the internal pains behind them, from engineering constraints to QA and release readiness. Carrying both sides taught me to turn real-world usage into product feedback and enhancement proposals, and to help a platform evolve in the direction customers actually needed.",
+    "As Senior Technical Advisor I sat exactly where customer, technology and business meet — leading technical discovery, weighing solution options against feasibility, lifecycle risk, reliability and cost, usually as the informal technical lead others turned to when the trade-offs got hard. That is where discovery stopped being instinct and became craft.",
+    "Then I made a deliberate choice: back to study — Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy, business models, requirements and leadership. Not to leave the customer behind, but to build AI products on top of everything they taught me.",
   ],
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "That is what I bring to an AI product role: I start with the customer's problem and the job to be done — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it.",
+    "That is what I bring to an AI product role: I start with the customer's problem — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it.",
 };
 
 
