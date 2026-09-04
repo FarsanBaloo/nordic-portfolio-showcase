@@ -25,8 +25,9 @@ function JourneyPage() {
               The journey
             </p>
             <h1 className="mx-auto mt-4 max-w-3xl text-balance-tight text-center text-4xl font-semibold text-night-foreground sm:text-[44px]">
-              AI-enabled products, built on industrial systems
+              From control cabinets to AI products
             </h1>
+
 
             <div className="mt-12">
               <JourneyPortrait />
