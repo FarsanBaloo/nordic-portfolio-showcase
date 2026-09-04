@@ -12,9 +12,9 @@ export const profile = {
   positioning:
     "Bridging business, industrial operations, technology and AI to turn real-world challenges into scalable digital platform and product opportunities.",
   heroPrimary:
-    "I bridge industrial reality, customer needs, digital platforms, product thinking and applied AI to turn complex operational challenges into feasible and valuable product opportunities.",
+    "Product-oriented B2B industrial digital-platform professional with 25+ years across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments — combining deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management to validate high-value user problems and shape feasible, scalable solutions.",
   heroSupporting:
-    "More than 25 years of customer-facing experience across industrial and building digital platforms, SCADA, BMS/HVAC, IoT/IIoT, energy, connected systems and mission-critical environments — complemented by Computer Science, human-centred design, advanced AI and postgraduate Product Management studies.",
+    "End-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders — contributing to prioritisation, feasibility assessment and technical and commercial trade-offs, and turning recurring customer issues and real-world usage into product feedback and enhancement proposals. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
   progression: [
     "Industrial Systems",
     "Digital Platforms",
@@ -23,9 +23,8 @@ export const profile = {
   ],
   targetRoles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
   summary: [
-    "Product-oriented B2B industrial digital-platform professional with more than 25 years of experience across building automation, BMS/HVAC, SCADA, IoT/IIoT, energy systems, connected systems and complex real-time environments.",
-    "Combines deep operational and technical domain expertise with customer-facing experience, product-management thinking, interaction design and applied AI.",
-    "Experienced in identifying customer and operational needs, translating them into requirements and technically feasible solution directions, evaluating architecture and product options, balancing risk, lifecycle, cost and commercial value, and helping deliver scalable solutions in demanding operational environments.",
+    "Product-oriented B2B industrial digital-platform professional with 25+ years of experience across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments. Combines deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management capabilities to conduct customer and technical discovery, validate high-value user problems, translate operational needs and data into product opportunities, and shape feasible, scalable solutions.",
+    "Brings end-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders, contributing to prioritisation, feasibility assessment and technical and commercial trade-offs. Has turned recurring customer issues and real-world usage into product feedback and enhancement proposals while supporting release validation and deployment readiness.",
   ],
   languages: [
     { language: "Swedish", level: "Native" },
