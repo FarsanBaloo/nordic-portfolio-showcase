@@ -53,7 +53,8 @@ export const aboutParagraphs = [
 ];
 
 export const productPhilosophy =
-  "The value of an AI product does not come from AI alone. It comes from solving the right user problem, understanding the available data, respecting operational reality, making sound technical and commercial trade-offs, and creating value people can actually use.";
+  "AI on its own creates nothing. Value shows up when you solve the right problem, know what your data can honestly support, respect how people actually work, and make the trade-offs out loud instead of hiding them.";
+
 
 export const whatIBring = [
   {
