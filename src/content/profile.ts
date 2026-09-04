@@ -10,17 +10,17 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rickardsorlin/",
   linkedinDisplay: "linkedin.com/in/rickardsorlin/",
   positioning:
-    "Turning real customer pains in complex, real-world B2B environments into AI-enabled products that hold up in production.",
+    "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
     "I bridge engineering and business — machine learning, backend and frontend on one side, product and commercial reality on the other — grounded in deep domain knowledge of IoT and IIoT.",
   heroPrimary:
-    "I help product teams find the problem worth solving: who actually has it, what job they are trying to get done, and for whom a solution creates real value. That is where every good product starts — and where most fail.",
+    "Every good product starts the same way: with the person who has the problem, the job they are actually trying to get done, and the people the solution has to work for. Finding that is what I do.",
   heroSupporting:
-    "I can do that credibly because I have spent 25 years on the customer side of complex, real-world systems — SCADA, BMS/HVAC, IoT and mission-critical operations — listening to operators' pains, balancing them against internal stakeholders in engineering, QA and business, and turning what I learned into products. Today I build AI-enabled products the same way: tested with real users, honest about the data, built to survive production.",
+    "Twenty-five years next to the customers who run complex systems — SCADA, BMS/HVAC, IoT, mission-critical operations — taught me to hear the pain behind every request and to weigh it against the teams who build and run the result. I bridge engineering and business: machine learning, backend and frontend on one side, product and commercial reality on the other. Today I build AI-enabled products exactly that way — tested with real users, honest about the data, built to survive production.",
   heroProof: [
-    "25 years spent with the people who run the systems — finding the real job to be done behind every request, and the pains behind every workaround",
-    "AI products I shaped, built and validated with real users — from RAG and forecasting to agentic assistants on the factory floor",
-    "B.Sc. in Computer Science with Applied AI, plus postgraduate advanced-AI studies and product management, strategy, business models, requirements and leadership",
+    "Customer depth: a career spent finding the job to be done behind every request",
+    "AI that shipped: RAG, forecasting and agentic assistants, validated with real users",
+    "Foundation: B.Sc. in Computer Science (Applied AI) plus postgraduate studies in advanced AI, product management, strategy and leadership",
   ],
   progression: [
     "Industrial Systems",
@@ -41,21 +41,20 @@ export const profile = {
 } as const;
 
 export const journeyIntro = [
-  "I did not start in product. I started where the customer is — in plant rooms, control cabinets and control centres — learning what job people were actually trying to get done, and what it costs them when a product ignores that.",
-  "That is still how I work. Twenty-five years later I build AI-enabled products, and the questions are the same: who has the problem, what job are they hiring this product to do, and will it survive contact with the people who have to live with it?",
+  "I did not start in product. I started where the customer is — in plant rooms, control cabinets and control centres — learning what people were actually trying to get done, and what it costs them when a product ignores that.",
+  "Twenty-five years later I build AI-enabled products. The setting has changed; the question has not.",
 ];
 
 
 export const aboutParagraphs = [
-  "My professional foundation comes from working close to real systems, customers and operational constraints.",
+  "My professional foundation comes from working close to real systems, customers and operational constraints — not from slideware.",
   "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
   "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value.",
-  "Alongside that professional journey, I deliberately expanded my capabilities through Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Product & Portfolio Strategy, Requirements, Strategy & Business Models and Leadership.",
-  "Today, I am particularly interested in roles where deep industrial domain knowledge, customer understanding, technical credibility, product thinking and AI can be brought together to create useful, feasible and scalable products.",
+  "Alongside that journey I deliberately expanded my capabilities — Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Strategy, Business Models, Requirements and Leadership. The direction from here is clear: roles where industrial domain depth, customer understanding, technical credibility, product thinking and AI come together to build products that are useful, feasible and scalable.",
 ];
 
 export const productPhilosophy =
-  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the real pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs out loud: for the customer, for engineering, and for the business.";
+  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs out loud: for the customer, for engineering, and for the business.";
 
 
 export const whatIBring = [
@@ -86,17 +85,17 @@ export const contactIntro =
 
 /** Editorial narrative shown at the top of the Journey page. */
 export const journeyNarrative = {
-  lead: "This is the story of how someone who started with customers in control cabinets ended up building AI products — and why the customer never left the centre of it.",
+  lead: "From customers' control cabinets to AI-enabled products — one continuous story, with the customer at the centre of every chapter.",
   paragraphs: [
-    "I began as a Project Engineer, out with customers. My job was to understand theirs: what they were really trying to get done, what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — and then stood next to the customer when it went live. You learn quickly that a product is only as good as the day-to-day reality of the people who depend on it.",
-    "Later I became the national technical expert for our digital platform. That put me close to the customer's recurring pains — the faults that kept coming back, the workarounds people invented — and to the internal pains behind them: engineering constraints, QA and release readiness. My job was to carry both: turn real-world usage into product feedback and enhancement proposals, and help the platform evolve in the direction customers actually needed.",
-    "As Senior Technical Advisor I sat exactly where customer, technology and business meet. I led the technical discovery — who has the problem, what job are they trying to get done, for whom does a solution create value — and weighed the options against feasibility, lifecycle risk, reliability and cost. Usually as the informal technical lead others turned to when the trade-offs got hard.",
-    "Then I made a deliberate choice. I went back to study: Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy and requirements. Not to leave the customer behind, but to build products on top of everything they taught me.",
+    "I began as a Project Engineer, out with customers. My job was to understand theirs: what they were really trying to get done, what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — then stood next to the customer when it went live. That is where I learned the lesson everything else builds on: a product is only as good as the day-to-day reality of the people who depend on it.",
+    "Later I became the national technical expert for our digital platform. The view widened: the faults that kept coming back, the workarounds customers invented — and the internal pains behind them, from engineering constraints to QA and release readiness. Carrying both sides taught me to turn real-world usage into product feedback and enhancement proposals, and to help a platform evolve in the direction customers actually needed.",
+    "As Senior Technical Advisor I sat exactly where customer, technology and business meet — leading technical discovery, weighing solution options against feasibility, lifecycle risk, reliability and cost, usually as the informal technical lead others turned to when the trade-offs got hard. That is where discovery stopped being instinct and became craft.",
+    "Then I made a deliberate choice: back to study — Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy, business models, requirements and leadership. Not to leave the customer behind, but to build AI products on top of everything they taught me.",
   ],
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "That is what I bring to an AI product role: I start with the customer's problem and the job to be done — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it.",
+    "That is what I bring to an AI product role: I start with the customer's problem — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it.",
 };
 
 
