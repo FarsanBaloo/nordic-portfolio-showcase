@@ -23,11 +23,12 @@ export function ProjectCard({ project }: { project: Project }) {
         <Eyebrow>{project.type}</Eyebrow>
         {isAi ? (
           <span
-            className="inline-flex items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-2 py-1 text-primary"
+            className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary"
             title="AI project"
             aria-label="AI project"
           >
             <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            AI
           </span>
         ) : null}
       </div>
