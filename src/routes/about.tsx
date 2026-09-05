@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
 import { NightHero, Page, Section } from "../components/site";
 import { BulletList, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
@@ -52,9 +53,19 @@ function AboutPage() {
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+            className="inline-flex items-center gap-2 rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
           >
+            <LinkedinIcon />
             LinkedIn
+          </a>
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+          >
+            <GithubIcon />
+            GitHub
           </a>
         </div>
       </NightHero>

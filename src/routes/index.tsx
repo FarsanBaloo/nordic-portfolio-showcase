@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
 import { ProjectCard } from "../components/ProjectCard";
 import { PortraitFrame, Section } from "../components/site";
 import { Timeline } from "../components/Timeline";
@@ -39,7 +40,7 @@ export const Route = createFileRoute("/")({
           email: `mailto:${profile.email}`,
           telephone: "+46730795308",
           address: { "@type": "PostalAddress", addressLocality: "Stockholm", addressCountry: "SE" },
-          sameAs: [profile.linkedin],
+          sameAs: [profile.linkedin, profile.github],
           description: profile.positioning,
         }),
       },
@@ -155,9 +156,19 @@ function Index() {
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
             >
+              <LinkedinIcon />
               Connect on LinkedIn
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+            >
+              <GithubIcon />
+              GitHub
             </a>
           </div>
         </div>
@@ -301,7 +312,7 @@ function Index() {
 
         <Section id="contact">
           <SectionHeading eyebrow="Contact" title="Let's talk" intro={contactIntro} />
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <a
               href={`mailto:${profile.email}`}
               className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
@@ -309,7 +320,7 @@ function Index() {
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
                 Email
               </p>
-              <p className="mt-2 text-[15px] font-medium">{profile.email}</p>
+              <p className="mt-2 break-all text-[15px] font-medium">{profile.email}</p>
             </a>
             <a
               href={profile.phoneLink}
@@ -326,10 +337,23 @@ function Index() {
               rel="noreferrer"
               className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <LinkedinIcon className="h-5 w-5" />
                 LinkedIn
               </p>
-              <p className="mt-2 text-[15px] font-medium">{profile.linkedinDisplay}</p>
+              <p className="mt-2 break-all text-[15px] font-medium">{profile.linkedinDisplay}</p>
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+            >
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <GithubIcon className="h-5 w-5" />
+                GitHub
+              </p>
+              <p className="mt-2 break-all text-[15px] font-medium">{profile.githubDisplay}</p>
             </a>
           </div>
           <div className="mt-8">

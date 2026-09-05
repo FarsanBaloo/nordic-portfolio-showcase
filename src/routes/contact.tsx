@@ -1,9 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 
+import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
 import { NightHero, Page } from "../components/site";
 import { TagList } from "../components/ui-bits";
 import { availability, contactIntro, profile } from "../content/profile";
 import { seo } from "../lib/site";
+
+type Channel = {
+  label: string;
+  value: string;
+  href: string;
+  external: boolean;
+  icon?: ReactNode;
+};
 
 const title = "Contact Rickard Sörlin";
 const description =
@@ -14,10 +24,23 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const channels = [
-  { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-  { label: "Phone", value: profile.phoneDisplay, href: profile.phoneLink },
-  { label: "LinkedIn", value: profile.linkedinDisplay, href: profile.linkedin },
+const channels: Channel[] = [
+  { label: "Email", value: profile.email, href: `mailto:${profile.email}`, external: false },
+  { label: "Phone", value: profile.phoneDisplay, href: profile.phoneLink, external: false },
+  {
+    label: "LinkedIn",
+    value: profile.linkedinDisplay,
+    href: profile.linkedin,
+    external: true,
+    icon: <LinkedinIcon className="h-5 w-5" />,
+  },
+  {
+    label: "GitHub",
+    value: profile.githubDisplay,
+    href: profile.github,
+    external: true,
+    icon: <GithubIcon className="h-5 w-5" />,
+  },
 ];
 
 function ContactPage() {
@@ -31,20 +54,19 @@ function ContactPage() {
       </NightHero>
 
       <Page>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {channels.map((channel) => (
             <a
               key={channel.label}
               href={channel.href}
-              {...(channel.label === "LinkedIn"
-                ? { target: "_blank", rel: "noreferrer" }
-                : {})}
+              {...(channel.external ? { target: "_blank", rel: "noreferrer" } : {})}
               className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                {channel.icon}
                 {channel.label}
               </p>
-              <p className="mt-2 text-[15px] font-medium">{channel.value}</p>
+              <p className="mt-2 break-all text-[15px] font-medium">{channel.value}</p>
             </a>
           ))}
         </div>

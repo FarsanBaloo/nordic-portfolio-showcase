@@ -9,6 +9,8 @@ export const profile = {
   phoneLink: "tel:+46730795308",
   linkedin: "https://www.linkedin.com/in/rickardsorlin/",
   linkedinDisplay: "linkedin.com/in/rickardsorlin/",
+  github: "https://github.com/FarsanBaloo",
+  githubDisplay: "github.com/FarsanBaloo",
   positioning:
     "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
