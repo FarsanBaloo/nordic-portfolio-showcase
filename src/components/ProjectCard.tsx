@@ -4,8 +4,19 @@ import type { Project } from "../content/projects";
 import { Eyebrow, TagList } from "./ui-bits";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const lead = project.images?.slots.find((slot) => slot.lead && slot.src) ??
+    project.images?.slots.find((slot) => slot.src);
   return (
-    <article className="group relative flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
+      {lead?.src ? (
+        <img
+          src={lead.src}
+          alt={lead.alt ?? `${project.title} project image`}
+          loading="lazy"
+          className="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      ) : null}
+      <div className="flex flex-1 flex-col p-6">
       <div className="flex items-start justify-between gap-3">
         <Eyebrow>{project.type}</Eyebrow>
         {project.flagship ? (
@@ -36,6 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <TagList items={project.tags.slice(0, 5)} />
       </div>
       <p className="mt-5 text-sm font-medium text-primary">Read the case study →</p>
+      </div>
     </article>
   );
 }
