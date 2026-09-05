@@ -3,7 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { NightHero, Page, Section } from "../components/site";
 import { BulletList, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
-import { availability, profile } from "../content/profile";
+import {
+  aboutParagraphs,
+  availability,
+  productPhilosophy,
+  profile,
+  whatIBring,
+} from "../content/profile";
 
 import { seo } from "../lib/site";
 
@@ -20,6 +26,9 @@ function AboutPage() {
   return (
     <>
       <NightHero eyebrow="About" title="Profile summary" intro={profile.positioning}>
+        <p className="mt-4 max-w-2xl text-base text-night-foreground/80">
+          {profile.bridge}
+        </p>
         <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
           <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
           {availability}
@@ -53,6 +62,42 @@ function AboutPage() {
         <Section>
           <div className="max-w-3xl">
             <BulletList items={profile.summary} />
+          </div>
+        </Section>
+
+        <Section>
+          <SectionHeading eyebrow="Background" title="My journey in short" />
+          <div className="mt-6 max-w-3xl space-y-5">
+            {aboutParagraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)} className="text-muted-foreground leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Section>
+
+        <Section>
+          <blockquote className="max-w-3xl rounded-xl border-l-4 border-aurora-teal bg-card p-6 sm:p-8">
+            <p className="text-lg font-medium leading-relaxed text-night-foreground sm:text-xl">
+              {productPhilosophy}
+            </p>
+            <footer className="mt-4 text-sm text-muted-foreground">
+              My product philosophy
+            </footer>
+          </blockquote>
+        </Section>
+
+        <Section>
+          <SectionHeading eyebrow="Strengths" title="What I bring" />
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {whatIBring.map((item) => (
+              <div key={item.title} className="rounded-xl border border-border bg-card p-6">
+                <h2 className="text-base font-semibold">{item.title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.body}
+                </p>
+              </div>
+            ))}
           </div>
         </Section>
 
