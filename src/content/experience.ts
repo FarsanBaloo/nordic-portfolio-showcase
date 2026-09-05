@@ -166,20 +166,26 @@ export const roles: Role[] = [
         ],
       },
       {
-        title: "Support tooling",
+        title: "Capability ownership & support tooling",
         items: [
+          "Owned a reusable HVAC deviation-management capability",
+          "Deviation detection, alarms, logging and visualisation",
+          "Consistent deployment across customer systems",
           "Co-developed digital support tools",
           "Troubleshooting workflows",
-          "Engineer productivity",
-          "Knowledge sharing",
+          "Engineer productivity and knowledge sharing",
           "Platform adoption",
         ],
       },
     ],
     notes: [
       {
-        label: "Lifecycle & adoption readiness",
-        body: "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment-readiness assessment and controlled rollout risk evaluation.",
+        label: "Capability ownership",
+        body: "Owned the development of a reusable HVAC deviation-management capability for the market organisation, turning operational data into actionable insights that supported troubleshooting and energy optimisation and could be deployed consistently across customer systems.",
+      },
+      {
+        label: "Issue prioritisation & root cause",
+        body: "Prioritised and coordinated critical technical issues by operational impact, urgency, customer need and technical risk, and performed root-cause analysis that separated implementation problems from potential product defects before escalating verified defects to Global Product Support and R&D.",
       },
       {
         label: "Collaboration context",
@@ -196,8 +202,10 @@ export const roles: Role[] = [
     progression:
       "This period connected two sides of the product: how the platform behaved in real customer environments and how functionality needed to be tested, validated and prepared for reliable deployment.",
     tags: [
+      "Capability Ownership",
       "Customer Facing",
       "National Technical Expert",
+      "Root-Cause Analysis",
       "Product Lifecycle",
       "QA Testing",
       "Release Validation",
@@ -206,6 +214,7 @@ export const roles: Role[] = [
       "Usability",
       "Platform Quality",
     ],
+
   },
   {
     id: "senior-technical-advisor",
