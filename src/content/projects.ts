@@ -15,6 +15,7 @@ import {
   hallbarHalsaDashboard,
   hallbarHalsaOnboarding,
   hallbarHalsaFlow,
+  kthLivingLab,
 } from "../assets/local-images";
 
 export type ImageSlot = {
@@ -550,6 +551,17 @@ export const projects: Project[] = [
     },
     contributionNote:
       "Formal employment role during this period: Senior Technical Advisor — Digital Platforms. EcoStruxure Subject Matter Expert was the project role.",
+    images: {
+      slots: [
+        {
+          caption: "KTH Live-in Lab — full-scale testbed building for smart-building and energy research",
+          aspect: "16/9",
+          src: kthLivingLab.url,
+          alt: "Low-angle view of the KTH Live-in Lab concrete building with a ground-floor glass storefront",
+          lead: true,
+        },
+      ],
+    },
     links: [
       { label: "KTH Live-In Lab", href: "https://www.liveinlab.kth.se/en/start-1.1064463" },
     ],
