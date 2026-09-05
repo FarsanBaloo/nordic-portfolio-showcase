@@ -311,7 +311,7 @@ function Index() {
 
         <Section id="contact">
           <SectionHeading eyebrow="Contact" title="Let's talk" intro={contactIntro} />
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <a
               href={`mailto:${profile.email}`}
               className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
@@ -319,7 +319,7 @@ function Index() {
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
                 Email
               </p>
-              <p className="mt-2 text-[15px] font-medium">{profile.email}</p>
+              <p className="mt-2 break-all text-[15px] font-medium">{profile.email}</p>
             </a>
             <a
               href={profile.phoneLink}
@@ -336,10 +336,23 @@ function Index() {
               rel="noreferrer"
               className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <LinkedinIcon className="h-5 w-5" />
                 LinkedIn
               </p>
-              <p className="mt-2 text-[15px] font-medium">{profile.linkedinDisplay}</p>
+              <p className="mt-2 break-all text-[15px] font-medium">{profile.linkedinDisplay}</p>
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+            >
+              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                <GithubIcon className="h-5 w-5" />
+                GitHub
+              </p>
+              <p className="mt-2 break-all text-[15px] font-medium">{profile.githubDisplay}</p>
             </a>
           </div>
           <div className="mt-8">
