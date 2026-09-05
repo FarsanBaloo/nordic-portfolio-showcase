@@ -199,7 +199,7 @@ export const milestones: TimelineMilestone[] = [
     overviewBullets: [
       "Owned the development of a reusable HVAC deviation-management capability for the market organisation — detection, alarms, logging and visualisation — turning operational data into actionable insight and enabling consistent deployment across customer systems.",
       "Turned recurring customer issues and real-world usage into structured product feedback and enhancement proposals justified on customer impact, business value and market needs, working with Product Owners, Global Product Support and R&D.",
-      "Prioritised critical issues by operational impact, urgency and technical risk, performed root-cause analysis separating implementation problems from product defects, and supported release validation, deployment readiness and controlled rollout.",
+      "Prioritised critical issues by operational impact, urgency and technical risk, performed root-cause analysis separating implementation problems from product defects, and collaborated with R&D as quality tester for the building-automation platform while supporting release validation, deployment readiness and controlled rollout.",
     ],
     relevanceSignals: [
       "Capability Ownership",
