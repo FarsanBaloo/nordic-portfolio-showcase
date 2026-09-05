@@ -83,7 +83,7 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["AI & Product", "Academic / Research", "Innovation"],
     teaser:
-      "A proof-of-concept AI assistant that explains industrial machine behaviour in natural language, validated with non-specialist users in a smart-factory testbed.",
+      "Discovery-led proof-of-concept AI assistant that explains industrial machine behaviour in natural language — validated with non-specialist users who resolved real incidents without waiting for specialist support.",
     highlight:
       "What if industrial systems could explain themselves in natural language instead of cryptic error codes?",
     tags: [
