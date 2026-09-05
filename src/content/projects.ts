@@ -16,6 +16,7 @@ import {
   hallbarHalsaOnboarding,
   hallbarHalsaFlow,
   kthLivingLab,
+  stEriksHmi,
 } from "../assets/local-images";
 
 export type ImageSlot = {
@@ -730,6 +731,17 @@ export const projects: Project[] = [
       "Customer-facing discovery, requirements, solution direction and end-to-end technical ownership as Senior Technical Advisor.",
     reflection:
       "Discovery with the user in their real environment is what turned a technical integration into a solution people could rely on.",
+    images: {
+      slots: [
+        {
+          caption: "Operating-theatre touch-panel HMI — scenario lighting, group selection and RGB control on the unified edge platform",
+          aspect: "16/9",
+          src: stEriksHmi.url,
+          alt: "Schneider Electric touch-panel interface showing an electrical-alarm status bar, a digital clock, and columns for lighting scenarios, light-group selection and RGB color sliders",
+          lead: true,
+        },
+      ],
+    },
   },
   {
     slug: "hvac-monitoring",
