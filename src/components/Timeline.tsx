@@ -1090,8 +1090,8 @@ function MilestoneCard({
         ["--card-accent" as string]: accent,
         ...(active
           ? {
-              borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
-              boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
+          borderColor: `color-mix(in oklab, ${accent} 55%, transparent)`,
+          boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 30%, transparent), 0 0 32px -6px color-mix(in oklab, ${accent} 50%, transparent), 0 28px 70px -26px color-mix(in oklab, ${accent} 85%, transparent)`,
             }
           : {}),
       }}
