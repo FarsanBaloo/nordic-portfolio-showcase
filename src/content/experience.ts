@@ -310,6 +310,10 @@ export const roles: Role[] = [
         body: "Acted as the de-facto technical authority across teams and disciplines — shaping architecture and direction through trusted expertise, mentorship and influence rather than a formal management mandate.",
       },
       {
+        label: "Research & innovation collaboration",
+        body: "Represented Schneider Electric in KTH Live-In Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
+      },
+      {
         label: "Risk reduction",
         body: "Identified integration constraints, technical dependencies and long-term consequences early in order to reduce delivery risk, lifecycle risk and avoid unnecessary cost.",
       },
@@ -331,11 +335,14 @@ export const roles: Role[] = [
       "Solution Architecture",
       "Product / Solution Selection",
       "Architectural Trade-offs",
+      "Mission-Critical Delivery",
       "Lifecycle Risk",
       "Cost",
       "Commercial Value",
       "Stakeholder Alignment",
+      "Mentoring",
     ],
+
   },
 ];
 
