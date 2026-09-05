@@ -47,6 +47,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <TagList items={project.tags.slice(0, 5)} />
       </div>
       <p className="mt-5 text-sm font-medium text-primary">Read the case study →</p>
+      </div>
     </article>
   );
 }
