@@ -620,7 +620,7 @@ export const projectRoleContext: Record<
   },
   "talking-systems": {
     label: "My focus",
-    body: "Explored the operational problem through discovery with testbed stakeholders and helped shape, prototype and validate an AI-enabled troubleshooting assistant combining machine data, technical documentation and natural-language guidance.",
+    body: "Drove the project from the operational problem, not the technology: led discovery with system owners and testbed operators, identified specialist dependency as the core pain point, defined the AI-assistant concept around explainability and self-service, and validated it with non-specialist users in a smart-factory testbed.",
   },
   "talking-scada": {
     label: "My focus",
