@@ -81,18 +81,18 @@ function useFocusMotion(
     offset: ["start 90%", "end 20%"],
   });
   const smooth = useSpring(scrollYProgress, FOCUS_SPRING);
-  const parentScale = [0.992, 1, 1.021, 1.002, 0.995];
-  const childScale = [0.996, 1, 1.011, 1.001, 0.997];
+  const parentScale = [0.972, 1, 1.045, 1.0, 0.976];
+  const childScale = [0.986, 1, 1.022, 1.0, 0.989];
   const scale = useTransform(
     smooth,
     [0, 0.3, 0.5, 0.72, 1],
     variant === "parent" ? parentScale : childScale,
   );
-  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.9, 0.96, 1, 0.98, 0.93]);
+  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.86, 0.95, 1, 0.97, 0.9]);
   const y = useTransform(
     smooth,
     [0, 0.3, 0.5, 0.72, 1],
-    variant === "parent" ? [0, 0, -3, 0, 0] : [0, 0, -1, 0, 0],
+    variant === "parent" ? [0, 0, -6, 0, 0] : [0, 0, -2, 0, 0],
   );
   const [active, setActive] = useState(false);
   const activeRef = useRef(false);
