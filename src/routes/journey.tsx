@@ -67,14 +67,24 @@ function JourneyPage() {
               ))}
             </div>
 
-            <div className="mt-14 border-l-2 border-aurora-teal/60 pl-5">
-              <h2 className="font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+            <figure className="philosophy-hero mt-14 p-8 sm:p-10">
+              <span
+                aria-hidden="true"
+                className="philosophy-quote-mark block text-6xl font-semibold"
+              >
+                “
+              </span>
+              <figcaption className="mb-2 flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-gradient-to-r from-aurora-teal to-aurora-violet"
+                />
                 Product philosophy
-              </h2>
-              <p className="mt-2 text-[16px] leading-relaxed text-night-body">
+              </figcaption>
+              <p className="text-balance-tight text-[16px] leading-relaxed text-night-body sm:text-lg">
                 {productPhilosophy}
               </p>
-            </div>
+            </figure>
           </div>
         </div>
       </section>
