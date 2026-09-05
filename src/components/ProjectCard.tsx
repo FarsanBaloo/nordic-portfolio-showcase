@@ -3,107 +3,37 @@ import { Link } from "@tanstack/react-router";
 import type { Project } from "../content/projects";
 import { Eyebrow, TagList } from "./ui-bits";
 
-/* ---------- 3D chip icons ---------- */
+import chipAi from "../assets/chip-ai.png";
+import chipIiot from "../assets/chip-iiot.png";
+import chipInnovation from "../assets/chip-innovation.png";
+import chipUx from "../assets/chip-ux.png";
+
+/* ---------- 3D chip icons (ray-traced PNGs) ---------- */
 
 type ChipKind = "ai" | "iiot" | "innovation" | "ux";
 
 type TypeChip = {
   label: string;
   kind: ChipKind;
+  src: string;
   tone: "ai" | "neutral";
 };
 
 function typeChip(project: Project): TypeChip {
   const cats = project.categories;
   if (cats.includes("AI & Product")) {
-    return { label: "AI", kind: "ai", tone: "ai" };
+    return { label: "AI", kind: "ai", src: chipAi, tone: "ai" };
   }
   if (cats.includes("Innovation")) {
-    return { label: "Open Innovation", kind: "innovation", tone: "neutral" };
+    return { label: "Open Innovation", kind: "innovation", src: chipInnovation, tone: "neutral" };
   }
   if (cats.includes("Industry")) {
-    return { label: "IIoT", kind: "iiot", tone: "neutral" };
+    return { label: "IIoT", kind: "iiot", src: chipIiot, tone: "neutral" };
   }
   if (cats.includes("UX & Interaction")) {
-    return { label: "UX", kind: "ux", tone: "neutral" };
+    return { label: "UX", kind: "ux", src: chipUx, tone: "neutral" };
   }
-  return { label: "Research", kind: "innovation", tone: "neutral" };
-}
-
-/** Dimensional icon — filled gradient body, specular highlight, soft edge. */
-function ChipIcon({ kind }: { kind: ChipKind }) {
-  if (kind === "ai") {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        width="18"
-        height="18"
-        fill="none"
-        aria-hidden="true"
-        className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
-      >
-        <defs>
-          <linearGradient id="chip-ai-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-            <stop stopColor="var(--aurora-green)" />
-            <stop offset="0.5" stopColor="var(--aurora-violet)" />
-            <stop offset="1" stopColor="var(--aurora-magenta-hex)" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M12 2 14.1 9.9 22 12 14.1 14.1 12 22 9.9 14.1 2 12 9.9 9.9Z"
-          fill="url(#chip-ai-grad)"
-          stroke="white"
-          strokeOpacity="0.55"
-          strokeWidth="0.7"
-          strokeLinejoin="round"
-        />
-        <ellipse cx="9.4" cy="9.2" rx="1.7" ry="1" fill="white" opacity="0.75" />
-      </svg>
-    );
-  }
-
-  // neutral slate gradient, shared by IIoT / Innovation / UX
-  const grad = (
-    <defs>
-      <linearGradient id="chip-neutral-grad" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#e2e8f0" />
-        <stop offset="1" stopColor="#64748b" />
-      </linearGradient>
-    </defs>
-  );
-  const stroke = { stroke: "white", strokeOpacity: 0.35, strokeWidth: 0.7, strokeLinejoin: "round" as const };
-
-  if (kind === "iiot") {
-    return (
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-        {grad}
-        <rect x="6" y="6" width="12" height="12" rx="3" fill="url(#chip-neutral-grad)" {...stroke} />
-        <rect x="9.6" y="9.6" width="4.8" height="4.8" rx="1.2" fill="white" fillOpacity="0.5" />
-        <ellipse cx="8.6" cy="8.6" rx="1.3" ry="0.8" fill="white" opacity="0.65" />
-      </svg>
-    );
-  }
-  if (kind === "innovation") {
-    return (
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-        {grad}
-        <path
-          d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.8 10.6c.7.6 1.1 1.4 1.3 2.4h5c.2-1 .6-1.8 1.3-2.4A6 6 0 0 0 12 3Z"
-          fill="url(#chip-neutral-grad)"
-          {...stroke}
-        />
-        <ellipse cx="9.8" cy="8" rx="1.4" ry="0.9" fill="white" opacity="0.6" />
-      </svg>
-    );
-  }
-  // ux — cursor
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true" className="drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-      {grad}
-      <path d="M5 3 18.5 11.8 12 13.8 10 21 5 3Z" fill="url(#chip-neutral-grad)" {...stroke} />
-      <ellipse cx="7.4" cy="6" rx="1.3" ry="0.8" fill="white" opacity="0.6" />
-    </svg>
-  );
+  return { label: "Research", kind: "innovation", src: chipInnovation, tone: "neutral" };
 }
 
 /* ---------- card ---------- */
@@ -131,19 +61,26 @@ export function ProjectCard({ project }: { project: Project }) {
           {isAi ? (
             <span
               aria-hidden="true"
-              className="absolute -inset-2 rounded-full bg-[radial-gradient(closest-side,var(--aurora-green)_0%,transparent_70%)] opacity-30 blur-md"
+              className="absolute -inset-3 rounded-full bg-[radial-gradient(closest-side,var(--aurora-green)_0%,var(--aurora-violet)_45%,transparent_75%)] opacity-40 blur-lg"
             />
           ) : null}
           <span
             className={
               isAi
-                ? "relative inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/15 px-3 py-1.5 text-[11px] font-semibold text-primary"
-                : "relative inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1.5 text-[11px] font-semibold text-muted-foreground"
+                ? "relative inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1.5 text-[11px] font-semibold text-primary"
+                : "relative inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground"
             }
             title={`${chip.label} project`}
             aria-label={`${chip.label} project`}
           >
-            <ChipIcon kind={chip.kind} />
+            <img
+              src={chip.src}
+              alt=""
+              aria-hidden="true"
+              width={816}
+              height={816}
+              className="h-6 w-6 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)]"
+            />
             {chip.label}
           </span>
         </span>
