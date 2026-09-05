@@ -120,12 +120,14 @@ export const roles: Role[] = [
     summary:
       "Customer-facing national technical expert supporting complex platform environments while working close to real-world product usage, platform lifecycle, product quality, release validation and deployment readiness.",
     bullets: [
-      "Worked directly with customers, field engineers and service teams on complex digital-platform issues, gaining deep insight into real-world product usage and operational constraints.",
-      "Acted as a national technical expert across digital-building and industrial platform environments including SCADA, automation, energy, IoT/IIoT and connected systems.",
-      "Translated recurring customer issues and usage patterns into structured product feedback, enhancement proposals and usability-improvement input.",
-      "Worked close to the product lifecycle through QA testing, release validation, defect identification, deployment readiness and controlled rollout / release-readiness assessment.",
-      "Evaluated platform functionality from real customer and field perspectives, helping improve product quality, adoption and operational continuity.",
+      "Owned the development of a reusable HVAC deviation-management capability for the market organisation, combining deviation detection, alarms, logging and visualisation to turn operational data into actionable insights and enable consistent deployment across customer systems.",
+      "Prioritised and coordinated critical technical issues based on operational impact, urgency, customer need and technical risk, working across field engineers, Advanced Solution Support, system architects, Global Product Support, R&D and market teams.",
+      "Performed root-cause analysis of complex customer and project issues, distinguishing implementation problems from potential product defects and escalating verified defects to Global Product Support and R&D.",
+      "Translated recurring issues and real-world usage patterns into structured product feedback and usability-improvement input, and submitted enhancement proposals justified on customer impact, business value and market needs.",
+      "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment readiness and controlled rollout risk assessments with engineering and product stakeholders.",
+      "Co-developed digital support tools and troubleshooting workflows with the market organisation and engineering teams, supporting engineer productivity, knowledge sharing and platform adoption.",
     ],
+
     detailGroups: [
       {
         title: "Customer-facing work",
