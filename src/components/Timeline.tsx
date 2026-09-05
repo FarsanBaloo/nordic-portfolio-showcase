@@ -1081,17 +1081,20 @@ function MilestoneCard({
   return (
     <article
       className={[
-        "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
+        "night-card timeline-card-hover relative rounded-2xl p-5 transition-colors duration-500 hover:z-10 sm:p-6",
         className,
       ].join(" ")}
-      style={
-        active
+      style={{
+        // Accent for the hover tint; active rows keep their stronger inline
+        // border/shadow, which win over the hover rule.
+        ["--card-accent" as string]: accent,
+        ...(active
           ? {
               borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
               boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
             }
-          : undefined
-      }
+          : {}),
+      }}
     >
       <p
         className="font-mono text-[12.5px] uppercase tracking-[0.09em]"
