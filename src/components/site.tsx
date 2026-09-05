@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import { rickardPortrait as portraitAsset } from "../assets/local-images";
+import { GithubIcon, LinkedinIcon } from "./brand-icons";
 import { profile } from "../content/profile";
 
 const nav = [
