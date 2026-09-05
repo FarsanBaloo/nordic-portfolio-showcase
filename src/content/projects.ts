@@ -17,6 +17,9 @@ import {
   hallbarHalsaFlow,
   kthLivingLab,
   stEriksHmi,
+  stEriksRoomOverview,
+  stEriksVideoRouting,
+  stEriksStatusPanel,
 } from "../assets/local-images";
 
 export type ImageSlot = {
