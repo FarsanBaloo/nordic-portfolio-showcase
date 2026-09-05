@@ -29,12 +29,14 @@ export const roles: Role[] = [
     summary:
       "Customer-facing Project Engineer delivering digital-platform, building-automation and connected-system solutions from customer and operational requirements through system design, implementation, integration, commissioning, testing and operational handover.",
     bullets: [
-      "Worked directly with customers, end users, operations teams and project stakeholders to understand needs, workflows and operational constraints.",
-      "Translated customer and operational needs into implementation-ready system designs, configurations and connected-platform solutions.",
-      "Held end-to-end technical responsibility for implementation from solution design and programming through integration, commissioning, testing and operational handover.",
-      "Contributed to solution architecture, integration patterns and maintainable technical designs across real building-automation environments.",
-      "Contributed to platform quality through QA testing, defect identification and functionality validation.",
+      "Worked with property managers, operations technicians, facility teams, project managers and end users to gather and translate operational needs into implementation-ready configurations and system designs.",
+      "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations.",
+      "Held technical ownership for large-scale building-automation and integrated-control projects, from system design, configuration and programming through integration, testing, commissioning, documentation and operational handover.",
+      "Collaborated with R&D as a quality tester for the IoT building-automation platform, identifying defects, validating functionality and supporting platform improvement.",
+      "Participated in a local technology network to strengthen engineering capability, knowledge sharing and adoption of new platform functionality.",
+      "Mentored technical teams on platform capabilities, integration patterns and scalable solution design, improving consistency, maintainability and alignment between architecture, delivery and operational needs.",
     ],
+
     detailGroups: [
       {
         title: "Delivery scope",
