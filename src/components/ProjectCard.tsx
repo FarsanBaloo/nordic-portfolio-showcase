@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Sparkles } from "lucide-react";
 
 import type { Project } from "../content/projects";
 import { Eyebrow, TagList } from "./ui-bits";
@@ -6,6 +7,7 @@ import { Eyebrow, TagList } from "./ui-bits";
 export function ProjectCard({ project }: { project: Project }) {
   const lead = project.images?.slots.find((slot) => slot.lead && slot.src) ??
     project.images?.slots.find((slot) => slot.src);
+  const isAi = project.categories.includes("AI & Product");
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
       {lead?.src ? (
@@ -19,9 +21,13 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col p-6">
       <div className="flex items-start justify-between gap-3">
         <Eyebrow>{project.type}</Eyebrow>
-        {project.flagship ? (
-          <span className="rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-medium text-accent-foreground">
-            Flagship
+        {isAi ? (
+          <span
+            className="inline-flex items-center justify-center rounded-full border border-primary/30 bg-primary/10 px-2 py-1 text-primary"
+            title="AI project"
+            aria-label="AI project"
+          >
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
           </span>
         ) : null}
       </div>
