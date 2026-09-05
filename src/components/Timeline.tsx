@@ -81,18 +81,18 @@ function useFocusMotion(
     offset: ["start 90%", "end 20%"],
   });
   const smooth = useSpring(scrollYProgress, FOCUS_SPRING);
-  const parentScale = [0.992, 1, 1.021, 1.002, 0.995];
-  const childScale = [0.996, 1, 1.011, 1.001, 0.997];
+  const parentScale = [0.972, 1, 1.045, 1.0, 0.976];
+  const childScale = [0.986, 1, 1.022, 1.0, 0.989];
   const scale = useTransform(
     smooth,
     [0, 0.3, 0.5, 0.72, 1],
     variant === "parent" ? parentScale : childScale,
   );
-  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.9, 0.96, 1, 0.98, 0.93]);
+  const opacity = useTransform(smooth, [0, 0.3, 0.5, 0.72, 1], [0.86, 0.95, 1, 0.97, 0.9]);
   const y = useTransform(
     smooth,
     [0, 0.3, 0.5, 0.72, 1],
-    variant === "parent" ? [0, 0, -3, 0, 0] : [0, 0, -1, 0, 0],
+    variant === "parent" ? [0, 0, -6, 0, 0] : [0, 0, -2, 0, 0],
   );
   const [active, setActive] = useState(false);
   const activeRef = useRef(false);
@@ -257,8 +257,8 @@ function ProjectChildCard({
     <ProjectEvidenceSheet project={project} period={child.period}>
       <button
         type="button"
-        className="night-card group flex h-full w-full min-w-0 flex-col rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
-        style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
+        className="night-card timeline-card-hover group flex h-full w-full min-w-0 flex-col rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] hover:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
+        style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)`, ["--card-accent" as string]: accent }}
       >
         {lead ? (
           <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
@@ -340,8 +340,8 @@ function StudyChildCard({
   const compact = child.variant === "compact";
   return (
     <div
-      className="night-card flex h-full min-w-0 flex-col rounded-xl p-4 sm:p-[18px]"
-      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
+      className="night-card timeline-card-hover flex h-full min-w-0 flex-col rounded-xl p-4 hover:z-10 sm:p-[18px]"
+      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)`, ["--card-accent" as string]: accent }}
     >
       {child.org ? (
         <p className="font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
@@ -513,8 +513,8 @@ function CaseTrackCard({
 
   return (
     <div
-      className="night-card rounded-2xl p-5 sm:p-6"
-      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
+      className="night-card timeline-card-hover rounded-2xl p-5 hover:z-10 sm:p-6"
+      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)`, ["--card-accent" as string]: accent }}
     >
       {caseLead?.src ? (
         <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
@@ -1081,17 +1081,20 @@ function MilestoneCard({
   return (
     <article
       className={[
-        "night-card relative rounded-2xl p-5 transition-colors duration-500 sm:p-6",
+        "night-card timeline-card-hover relative rounded-2xl p-5 transition-colors duration-500 hover:z-10 sm:p-6",
         className,
       ].join(" ")}
-      style={
-        active
+      style={{
+        // Accent for the hover tint; active rows keep their stronger inline
+        // border/shadow, which win over the hover rule.
+        ["--card-accent" as string]: accent,
+        ...(active
           ? {
               borderColor: `color-mix(in oklab, ${accent} 40%, transparent)`,
               boxShadow: `0 0 0 1px color-mix(in oklab, ${accent} 18%, transparent), 0 24px 60px -34px color-mix(in oklab, ${accent} 70%, transparent)`,
             }
-          : undefined
-      }
+          : {}),
+      }}
     >
       <p
         className="font-mono text-[12.5px] uppercase tracking-[0.09em]"

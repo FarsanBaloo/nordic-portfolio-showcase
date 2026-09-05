@@ -152,6 +152,25 @@
   color: var(--color-night-foreground);
 }
 
+/* Hover lift for journey timeline cards. The accent is supplied per-card
+   via the --card-accent custom property, so the tint matches each track.
+   Inline active-state border/shadow on MilestoneCard still wins when a row
+   is the focused one. */
+.timeline-card-hover {
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+.timeline-card-hover:hover {
+  transform: scale(1.04) translateY(-5px);
+  border-color: color-mix(in oklab, var(--card-accent, #fff) 55%, transparent);
+  box-shadow: 0 20px 55px -26px color-mix(in oklab, var(--card-accent, #fff) 65%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline-card-hover:hover {
+    transform: none;
+  }
+}
+
 @utility text-balance-tight {
   text-wrap: balance;
 }
