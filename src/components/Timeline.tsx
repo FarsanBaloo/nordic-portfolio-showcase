@@ -513,8 +513,8 @@ function CaseTrackCard({
 
   return (
     <div
-      className="night-card rounded-2xl p-5 sm:p-6"
-      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
+      className="night-card timeline-card-hover rounded-2xl p-5 hover:z-10 sm:p-6"
+      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)`, ["--card-accent" as string]: accent }}
     >
       {caseLead?.src ? (
         <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
