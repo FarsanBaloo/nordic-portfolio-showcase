@@ -635,7 +635,7 @@ export const projects: Project[] = [
   {
     slug: "st-eriks",
     title: "S:t Eriks Eye Center of Excellence",
-    subtitle: "Operating Theatre Digital Platform",
+    subtitle: "Mission-critical operating-theatre digital platform — discovery to delivery",
     org: "Schneider Electric",
     meta: "Healthcare",
     type: "Professional Project",
@@ -643,45 +643,81 @@ export const projects: Project[] = [
     flagship: false,
     categories: ["Industry", "UX & Interaction"],
     teaser:
-      "A tailored HMI unifying operating-theatre room functions into one operational interface built on an edge architecture.",
+      "Discovery with the customer inside an operating theatre, translated into a unified HMI that consolidated every room system on an edge architecture — proven in one theatre, then rolled out to the rest.",
     tags: [
       "Healthcare",
+      "Customer Discovery",
+      "Requirements",
+      "UX & Interaction",
       "HMI",
       "Edge Architecture",
-      "Automation",
       "Integration",
-      "User Experience",
+      "Phased Rollout",
       "Mission Critical",
     ],
+    highlight:
+      "Translated operational needs into a solution that actually worked for the user in a critical healthcare environment.",
     sections: [
       {
-        heading: "Summary",
+        heading: "The job to be done",
         body: [
-          "Delivered a tailored HMI interface and supporting software integrating multiple operating-theatre room functions into a unified operational interface.",
+          "Surgeons, nurses and theatre staff needed one interface to control the room and follow procedures, instead of scattered subsystems and handovers between teams. The work began with discovery with the customer inside an actual operating theatre, observing the real workflow before anything was designed.",
         ],
       },
       {
-        heading: "Functions integrated",
+        heading: "Discovery & iterative UX",
+        body: [
+          "Functionality and UX were adapted step by step based on customer need. The interface and the complex integration behind it were tailored around the real workflow — not the other way around — so the solution fit how the team actually worked during surgery.",
+        ],
+      },
+      {
+        heading: "What was integrated",
         items: [
-          "Video integration",
           "Lighting control",
+          "Blind / shade control",
           "HVAC",
-          "Blind control",
+          "CCTV control",
+          "Door-lock interlocks in the operating theatre",
           "Nurse call",
           "Alarm systems",
+          "Microscope-camera video routed to large screens",
         ],
       },
       {
         heading: "Architecture",
-        body: ["Automation Server edge architecture."],
+        body: [
+          "An edge server consolidated all technical subsystems into a single platform. The design was proven in one operating theatre — including door-lock interlocks — before being rolled out to the remaining theatres.",
+        ],
       },
       {
-        heading: "Product / UX perspective",
+        heading: "The interface",
         body: [
-          "Required translating several technical subsystems into a usable operational interface aligned with real workflows in a critical healthcare environment.",
+          "Outside the theatre, a wall-mounted touch panel let staff control cameras inside and outside, gave visitors outside a live view of the procedure from the microscope camera, and let everyone follow what was happening from the corridor.",
+          "Inside the theatre, the full UX was visualised on a 42-inch TV screen and driven from a 24-inch panel PC, giving the surgical team one place to see and control the whole room.",
+        ],
+      },
+      {
+        heading: "Outcome",
+        body: [
+          "Phased rollout from the pilot theatre to the remaining theatres, leaving the clinical team with a single operational interface they could trust in a mission-critical environment.",
         ],
       },
     ],
+    flow: {
+      label: "From discovery to rollout",
+      steps: [
+        "Operational need",
+        "Discovery in theatre",
+        "Tailored UX & integration",
+        "Edge architecture",
+        "Pilot theatre",
+        "Rollout to remaining theatres",
+      ],
+    },
+    contributionNote:
+      "Customer-facing discovery, requirements, solution direction and end-to-end technical ownership as Senior Technical Advisor.",
+    reflection:
+      "Discovery with the user in their real environment is what turned a technical integration into a solution people could rely on.",
   },
   {
     slug: "hvac-monitoring",
