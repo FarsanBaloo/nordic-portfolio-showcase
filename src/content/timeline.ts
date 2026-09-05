@@ -608,7 +608,7 @@ export const projectRoleContext: Record<
   },
   "st-eriks": {
     label: "My role",
-    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: solution direction and technical ownership for a unified HMI and edge-based architecture in a healthcare environment.",
+    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: led customer-facing discovery inside an operating theatre and translated the real workflow into a tailored, unified HMI on an edge architecture. End-to-end technical ownership — requirements, solution direction and integration of lighting, HVAC, CCTV, door-lock interlocks and microscope-video routing — proven in one theatre and then rolled out to the rest in a mission-critical healthcare environment.",
   },
   astrazeneca: {
     label: "My role",
