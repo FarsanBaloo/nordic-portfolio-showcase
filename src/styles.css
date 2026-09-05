@@ -161,9 +161,9 @@
   will-change: transform;
 }
 .timeline-card-hover:hover {
-  transform: scale(1.02) translateY(-3px);
+  transform: scale(1.04) translateY(-5px);
   border-color: color-mix(in oklab, var(--card-accent, #fff) 55%, transparent);
-  box-shadow: 0 18px 50px -28px color-mix(in oklab, var(--card-accent, #fff) 60%, transparent);
+  box-shadow: 0 20px 55px -26px color-mix(in oklab, var(--card-accent, #fff) 65%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
   .timeline-card-hover:hover {
