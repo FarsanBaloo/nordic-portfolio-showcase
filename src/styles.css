@@ -147,7 +147,7 @@
 /* Stable dark reading surface used by all timeline cards so text stays
    legible over the aurora backdrop. */
 @utility night-card {
-  background-color: rgb(11 17 23 / 0.92);
+  background-color: rgb(11 17 23 / 1);
   border: 1px solid rgb(160 185 198 / 0.18);
   color: var(--color-night-foreground);
 }
@@ -162,8 +162,11 @@
 }
 .timeline-card-hover:hover {
   transform: scale(1.04) translateY(-5px);
-  border-color: color-mix(in oklab, var(--card-accent, #fff) 55%, transparent);
-  box-shadow: 0 20px 55px -26px color-mix(in oklab, var(--card-accent, #fff) 65%, transparent);
+  border-color: color-mix(in oklab, var(--card-accent, #fff) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--card-accent, #fff) 35%, transparent),
+    0 0 28px -4px color-mix(in oklab, var(--card-accent, #fff) 55%, transparent),
+    0 26px 70px -22px color-mix(in oklab, var(--card-accent, #fff) 85%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
   .timeline-card-hover:hover {
