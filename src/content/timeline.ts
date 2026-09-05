@@ -197,17 +197,18 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "National expert carrying the customer's recurring pains into product feedback, lifecycle decisions and release readiness.",
     overviewBullets: [
-      "Translated recurring customer and field issues into structured product feedback, enhancement proposals and usability improvements, considering customer impact, market needs and business value.",
-      "Worked close to the product lifecycle through QA testing, release validation, defect identification and deployment / release readiness, evaluating new and changed functionality from a real-world customer perspective.",
-      "Connected national platform expertise and customer insight with technical feasibility to support product quality, adoption readiness and roadmap-relevant improvement decisions.",
+      "Owned the development of a reusable HVAC deviation-management capability for the market organisation — detection, alarms, logging and visualisation — turning operational data into actionable insight and enabling consistent deployment across customer systems.",
+      "Turned recurring customer issues and real-world usage into structured product feedback and enhancement proposals justified on customer impact, business value and market needs, working with Product Owners, Global Product Support and R&D.",
+      "Prioritised critical issues by operational impact, urgency and technical risk, performed root-cause analysis separating implementation problems from product defects, and supported release validation, deployment readiness and controlled rollout.",
     ],
     relevanceSignals: [
+      "Capability Ownership",
       "Customer Insight",
       "Product Feedback",
-      "Product Lifecycle",
       "Release Readiness",
       "Enhancement Proposals",
     ],
+
     childrenLabel: "Selected product / platform capability",
     children: [
       {
