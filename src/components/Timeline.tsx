@@ -257,8 +257,8 @@ function ProjectChildCard({
     <ProjectEvidenceSheet project={project} period={child.period}>
       <button
         type="button"
-        className="night-card group flex h-full w-full min-w-0 flex-col rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
-        style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)` }}
+        className="night-card timeline-card-hover group flex h-full w-full min-w-0 flex-col rounded-xl p-4 text-left transition-colors duration-300 hover:bg-white/[0.06] hover:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-night"
+        style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)`, ["--card-accent" as string]: accent }}
       >
         {lead ? (
           <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
