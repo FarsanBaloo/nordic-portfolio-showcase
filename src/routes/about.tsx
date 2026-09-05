@@ -3,7 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { NightHero, Page, Section } from "../components/site";
 import { BulletList, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
-import { availability, profile } from "../content/profile";
+import {
+  aboutParagraphs,
+  availability,
+  productPhilosophy,
+  profile,
+  whatIBring,
+} from "../content/profile";
 
 import { seo } from "../lib/site";
 
