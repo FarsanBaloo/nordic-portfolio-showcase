@@ -177,6 +177,23 @@ export const projects: Project[] = [
         ],
       },
     ],
+    metrics: [
+      {
+        label: "Validation",
+        value: "Smart-factory testbed",
+        note: "FESTO CP-Factory at MITC, together with project partners",
+      },
+      {
+        label: "User outcome",
+        value: "Self-service incidents",
+        note: "Non-specialist users resolved incidents without waiting for specialist support",
+      },
+      {
+        label: "Architecture",
+        value: "Edge + RAG",
+        note: "Industrial data stays on-site; domain knowledge retrieved over technical documentation",
+      },
+    ],
     flow: {
       label: "From problem to product opportunity",
       steps: [
