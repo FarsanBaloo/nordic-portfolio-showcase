@@ -1,49 +1,45 @@
-# Plan: Polished metallic / steel chip icons
+# Make the journey timeline cards feel more alive
 
 ## Goal
-Make the project type chips shine like polished silver/steel (chrome) instead
-of the flat-ish current treatment. The icons should read as small metal gems —
-reflective, dimensional, with a bright specular streak. AI keeps its aurora
-color identity but with a chrome-like metallic sheen; the neutral chips become
-true silver/steel chrome.
+Each timeline box should react more strongly — growing when hovered with the mouse, and growing / lifting more noticeably as it becomes the active row while scrolling down. Today the scroll scale peaks at only ~1.02 and most cards have no hover response, so the timeline reads as static.
 
-## What changes (frontend only)
-File: `src/components/ProjectCard.tsx`
+## Current state (verified)
+- `src/components/Timeline.tsx` `useFocusMotion` drives a scroll-linked scale on each row's outer `motion.div`. Peaks are subtle: parent `1.021`, child `1.011`, opacity dips only to `0.9/0.93`.
+- `MilestoneCard` (`<article class="night-card …">`) gains a border-color + box-shadow glow when `active`, but no scale and no hover transition.
+- `StudyChildCard` has no hover effect at all. `ProjectChildCard` only lightens background + image opacity on hover.
+- `night-card` utility (`src/styles.css` ~L149) is a flat bg/border/color with no transition.
 
-1. **Chrome/metallic icon gradients** — replace the simple 2-stop gradients
-   with a multi-stop metallic gradient that mimics polished steel: dark edge
-   → bright mid sheen → soft highlight → dark edge. This gives the
-   "silver/steel" reflective look.
+## Plan
 
-2. **Specular streak** — a brighter, narrower white highlight band running
-   diagonally across each icon, plus a soft top-left gloss dot, so the icons
-   read as shiny metal, not flat fills.
+### 1. Stronger scroll-driven "active row" growth (`useFocusMotion`)
+- Raise the parent scale curve so the focused row clearly stands out and off-focus rows recede:
+  - parent: `~0.97 → 1.0 → 1.045 → 1.0 → 0.975` (peak ~1.045 at focus, was 1.021)
+  - child: `~0.985 → 1.0 → 1.022 → 1.0 → 0.988`
+- Increase the focus lift `y` slightly (e.g. parent `-6px` at focus) so the active card floats.
+- Keep the active-state React threshold unchanged so glow/label still fire in the same band.
 
-3. **AI chip** — keep the aurora green→violet→magenta hues but layer the
-   chrome sheen on top (metallic aurora), so it still glows and stands out
-   while feeling polished/premium. The aurora bloom behind the pill stays.
+### 2. Hover lift + scale on every card (inner element, so it composes with the outer scroll scale)
+Apply on the inner card element (not the outer motion.div), using CSS transitions so it doesn't fight the motion-value transform:
+- `MilestoneCard` `<article>`: on hover, `scale(1.02)` + `translateY(-3px)` + brighter border + stronger shadow. Add `transition: transform .35s, border-color .35s, box-shadow .35s`.
+- `StudyChildCard` `<div>`: same hover lift/scale + subtle border brighten.
+- `ProjectChildCard` `<button>`: add `scale(1.02)` + `translateY(-3px)` to its existing hover, keep image opacity lift.
+- Keep tap target sizing/`min-h-[44px]` buttons intact.
 
-4. **Neutral chips (IIoT / Open Innovation / UX)** — pure silver/steel chrome
-   gradient, bright specular streak, subtle edge. No color — just metal. A
-   faint outer rim light so they read against dark and light cards.
+### 3. Add transitions to `night-card`
+Add `transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease` so all night-card surfaces animate smoothly (hover growth applies to the relevant cards; other night-card surfaces just get a border/shadow transition with no transform change).
 
-5. **Pill surface** — give the chip pill itself a subtle glassy sheen
-   (very light top-to-bottom gradient, thin top highlight line) so the whole
-   badge reads as a polished insert, not a flat label. AI pill keeps its
-   translucent aurora tint; neutral pills get a faint silver tint.
+### 4. Reduced motion
+- `useReducedMotion` already short-circuits `useFocusMotion` (scale=1, opacity=1, y=0). Extend the guard so hover transforms are also disabled (skip `scale`/`translateY` on hover when reduced) — cards still brighten border/shadow on hover for feedback.
 
-6. **Size** — keep the slightly larger size (18px icon, taller pill) so the
-   metallic detail is visible.
+### 5. Polish (subtle, not neon)
+- On hover, brighten the card border toward the track accent (`color-mix(in oklab, ${accent} 55%, transparent)`) and add a soft accent-tinted shadow. This matches the existing active-state glow, not a new color language.
+- z-index: raise hovered card above neighbours so the scaled card isn't clipped by the next row (`relative z-10` on hover via `hover:z-10`).
 
-7. **Accessibility** — unchanged: `title`/`aria-label` per chip,
-   `aria-hidden` icons, crisp high-contrast label text in both themes.
+## Files changed
+- `src/components/Timeline.tsx` — `useFocusMotion` curves, hover styles on `MilestoneCard`/`StudyChildCard`/`ProjectChildCard`, reduced-motion guard.
+- `src/styles.css` — `night-card` transition.
 
-## Out of scope
-- No data, route, or other-component changes.
-- Still one pill per card, top-right.
-
-## Verify
-- `npx tsgo --noEmit` clean + build OK.
-- Screenshot `/projects` at larger zoom on the chip to confirm the metallic
-  shine, silver/steel neutral chips, and glowing aurora AI chip are visible
-  and readable in dark mode.
+## Verification
+- `npx tsgo --noEmit` passes.
+- Production build passes.
+- Playwright screenshots of `/journey`: capture a row at rest, then a hovered card, then scroll to make a row active — confirm visible growth/lift without layout shift or clipping. Confirm reduced-motion shows no transform.
