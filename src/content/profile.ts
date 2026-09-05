@@ -12,15 +12,16 @@ export const profile = {
   positioning:
     "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
-    "I bridge engineering and business — machine learning, backend and frontend on one side, product and commercial reality on the other — grounded in deep domain knowledge of IoT and IIoT.",
+    "I bridge engineering and business — applied AI, software and platform engineering on one side, product and commercial reality on the other — grounded in deep domain knowledge of IoT and IIoT.",
   heroPrimary:
     "Every good product starts the same way: with the person who has the problem, the job they are actually trying to get done, and the people the solution has to work for. Finding that is what I do.",
   heroSupporting:
-    "Twenty-five years next to the customers who run complex systems — SCADA, BMS/HVAC, IoT, mission-critical operations — taught me to hear the pain behind every request and to weigh it against the teams who build and run the result. I bridge engineering and business: machine learning, backend and frontend on one side, product and commercial reality on the other. Today I build AI-enabled products exactly that way — tested with real users, honest about the data, built to survive production.",
+    "Twenty-five years next to the customers who run complex systems — SCADA, BMS/HVAC, IoT, mission-critical operations — taught me to hear the pain behind every request and to weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support, designed to hold up in real use.",
   heroProof: [
-    "Customer depth: a career spent finding the job to be done behind every request",
-    "AI that shipped: RAG, forecasting and agentic assistants, validated with real users",
-    "Foundation: B.Sc. in Computer Science (Applied AI) plus postgraduate studies in advanced AI, product management, strategy and leadership",
+    "Customer depth: 25 years finding the job to be done behind every request",
+    "AI built and validated: RAG, forecasting and agentic assistants from degree and course work, tested with real users and real data",
+    "B.Sc. in Computer Science (Intelligent Systems) plus advanced postgraduate AI — Natural Language Processing, Computer Vision and Autonomous Systems",
+    "Postgraduate specialisation in Industrial Economics & Management — product & requirements management, strategy, business models and leadership",
   ],
   progression: [
     "Industrial Systems",
@@ -76,7 +77,7 @@ export const whatIBring = [
   },
   {
     title: "Applied AI & Human-Centred Design",
-    body: "Hands-on work spanning RAG, Generative AI, forecasting, agentic AI, Interaction Design, prototyping, user testing and accessibility — always validated with real users.",
+    body: "Hands-on work spanning RAG, Generative AI, forecasting, agentic AI, Interaction Design, prototyping, user testing and accessibility — validated with real users and real data.",
   },
 ];
 
@@ -87,7 +88,7 @@ export const contactIntro =
 export const journeyNarrative = {
   lead: "From customers' control cabinets to AI-enabled products — one continuous story, with the customer at the centre of every chapter.",
   paragraphs: [
-    "I began as a Project Engineer, out with customers. My job was to understand theirs: what they were really trying to get done, what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — then stood next to the customer when it went live. That is where I learned the lesson everything else builds on: a product is only as good as the day-to-day reality of the people who depend on it.",
+    "I began as a Project Engineer, working alongside customers. My job was to understand what they were really trying to get done — what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — then stood next to the customer when it went live. That is where I learned the lesson everything else builds on: a product is only as good as the day-to-day reality of the people who depend on it.",
     "Later I became the national technical expert for our digital platform. The view widened: the faults that kept coming back, the workarounds customers invented — and the internal pains behind them, from engineering constraints to QA and release readiness. Carrying both sides taught me to turn real-world usage into product feedback and enhancement proposals, and to help a platform evolve in the direction customers actually needed.",
     "As Senior Technical Advisor I sat exactly where customer, technology and business meet — leading technical discovery, weighing solution options against feasibility, lifecycle risk, reliability and cost, usually as the informal technical lead others turned to when the trade-offs got hard. That is where discovery stopped being instinct and became craft.",
     "Then I made a deliberate choice: back to study — Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy, business models, requirements and leadership. Not to leave the customer behind, but to build AI products on top of everything they taught me.",
