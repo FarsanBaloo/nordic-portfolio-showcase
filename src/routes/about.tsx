@@ -88,14 +88,24 @@ function AboutPage() {
         </Section>
 
         <Section>
-          <blockquote className="max-w-3xl rounded-xl border-l-4 border-aurora-teal bg-card p-6 sm:p-8">
-            <p className="text-lg font-medium leading-relaxed text-night-foreground sm:text-xl">
+          <figure className="philosophy-hero max-w-3xl p-8 sm:p-10">
+            <span
+              aria-hidden="true"
+              className="philosophy-quote-mark block text-6xl font-semibold"
+            >
+              “
+            </span>
+            <p className="text-balance-tight -mt-4 text-lg font-medium leading-relaxed text-night-foreground sm:text-xl">
               {productPhilosophy}
             </p>
-            <footer className="mt-4 text-sm text-muted-foreground">
+            <figcaption className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
+              <span
+                aria-hidden="true"
+                className="h-px w-8 bg-gradient-to-r from-aurora-teal to-aurora-violet"
+              />
               My product philosophy
-            </footer>
-          </blockquote>
+            </figcaption>
+          </figure>
         </Section>
 
         <Section>

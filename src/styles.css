@@ -178,6 +178,45 @@
   text-wrap: balance;
 }
 
+/* Hero card framing the Product Philosophy statement on the About page.
+   Opaque dark surface so the aurora backdrop never washes the text out,
+   with an aurora-tinted gradient ring and a soft matching glow. */
+.philosophy-hero {
+  position: relative;
+  border-radius: 1.5rem;
+  background-color: rgb(11 17 23 / 1);
+  background-image:
+    radial-gradient(120% 120% at 0% 0%, color-mix(in oklab, var(--aurora-teal) 14%, transparent) 0%, transparent 55%),
+    radial-gradient(120% 120% at 100% 100%, color-mix(in oklab, var(--aurora-violet) 14%, transparent) 0%, transparent 55%);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--aurora-teal) 35%, transparent),
+    inset 0 0 0 1px color-mix(in oklab, var(--aurora-violet) 22%, transparent),
+    0 30px 80px -30px color-mix(in oklab, var(--aurora-teal) 45%, transparent);
+}
+.philosophy-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg,
+    color-mix(in oklab, var(--aurora-teal) 80%, transparent),
+    color-mix(in oklab, var(--aurora-violet) 70%, transparent),
+    color-mix(in oklab, var(--aurora-rose, #ff7ab8) 60%, transparent));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.philosophy-quote-mark {
+  line-height: 1;
+  background: linear-gradient(135deg, var(--aurora-teal), var(--aurora-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 @keyframes star-breathe {
   0%,
   100% {
