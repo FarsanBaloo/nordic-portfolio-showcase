@@ -655,8 +655,8 @@ export const projects: Project[] = [
     org: "Schneider Electric",
     meta: "Healthcare",
     type: "Professional Project",
-    priority: 7,
-    flagship: false,
+    priority: 3,
+    flagship: true,
     categories: ["Industry", "UX & Interaction"],
     teaser:
       "Discovery with the customer inside an operating theatre, translated into a unified HMI that consolidated every room system on an edge architecture — proven in one theatre, then rolled out to the rest.",
@@ -1128,34 +1128,6 @@ export const projects: Project[] = [
         { caption: "Help screen", aspect: "9/16" },
       ],
     },
-  },
-  {
-    slug: "astrazeneca",
-    title: "AstraZeneca",
-    subtitle: "Pharmaceutical Digital Platform Environment",
-    org: "Schneider Electric",
-    meta: "Pharmaceutical",
-    type: "Professional Project",
-    priority: 12,
-    flagship: false,
-    categories: ["Industry"],
-    teaser:
-      "Digital-platform integration and delivery in a complex pharmaceutical environment with high reliability and lifecycle demands.",
-    tags: ["Pharmaceutical", "Digital Platform", "Integration", "Reliability", "Lifecycle"],
-    sections: [
-      {
-        heading: "Summary",
-        body: [
-          "Contributed to digital-platform integration and delivery in a complex pharmaceutical environment where reliability, integration quality, lifecycle considerations and operational requirements were important.",
-        ],
-      },
-      {
-        heading: "Note",
-        body: [
-          "Kept deliberately high-level — no confidential customer detail is published.",
-        ],
-      },
-    ],
   },
 ];
 

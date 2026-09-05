@@ -324,7 +324,6 @@ export const milestones: TimelineMilestone[] = [
       // reads on. They render two-up, so the pair on each row is a step back
       // in time from the pair above it.
       { kind: "project", slug: "kth-living-lab", period: "2020–2023", datePrecision: "verified-range" },
-      { kind: "project", slug: "astrazeneca", period: "2020–2023", datePrecision: "verified-range" },
       { kind: "project", slug: "digital-realty-st06", period: "2021–2022", datePrecision: "verified-range" },
       { kind: "project", slug: "st-eriks", period: "2020–2021", datePrecision: "verified-range" },
     ],
@@ -609,10 +608,6 @@ export const projectRoleContext: Record<
   "st-eriks": {
     label: "My role",
     body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: led customer-facing discovery inside an operating theatre and translated the real workflow into a tailored, unified HMI on an edge architecture. End-to-end technical ownership — requirements, solution direction and integration of lighting, HVAC, CCTV, door-lock interlocks and microscope-video routing — proven in one theatre and then rolled out to the rest in a mission-critical healthcare environment.",
-  },
-  astrazeneca: {
-    label: "My role",
-    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: developed a customer-specific technical standard and supported engineers in applying it consistently across project delivery.",
   },
   "hvac-monitoring": {
     label: "My role",
