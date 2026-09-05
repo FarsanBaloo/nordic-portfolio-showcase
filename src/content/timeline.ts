@@ -302,7 +302,7 @@ export const milestones: TimelineMilestone[] = [
     overviewBullets: [
       "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and product / solution options.",
       "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture — and contributed domain expertise in KTH Living Lab.",
+      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture — contributed domain expertise in KTH Living Lab, and provided informal technical leadership and mentoring across teams through influence rather than formal authority.",
     ],
     relevanceSignals: [
       "Customer Discovery",
@@ -310,6 +310,7 @@ export const milestones: TimelineMilestone[] = [
       "Product / Solution Options",
       "Technical-Commercial Trade-offs",
       "Mission-Critical Delivery",
+      "Technical Leadership",
     ],
 
     // Full-time for three years before the degree began. Without this the two
