@@ -1,13 +1,49 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import {
+  Sparkles,
+  Cpu,
+  Lightbulb,
+  MousePointerClick,
+  BookOpen,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import type { Project } from "../content/projects";
 import { Eyebrow, TagList } from "./ui-bits";
 
+type TypeChip = {
+  label: string;
+  icon: LucideIcon;
+  tone: "ai" | "neutral";
+};
+
+/**
+ * Pick one short, recruiter-readable type label per project.
+ * AI work is highlighted with the accent tone; everything else uses a
+ * muted neutral chip so the AI projects still stand out.
+ */
+function typeChip(project: Project): TypeChip {
+  const cats = project.categories;
+  if (cats.includes("AI & Product")) {
+    return { label: "AI", icon: Sparkles, tone: "ai" };
+  }
+  if (cats.includes("Innovation")) {
+    return { label: "Open Innovation", icon: Lightbulb, tone: "neutral" };
+  }
+  if (cats.includes("Industry")) {
+    return { label: "IIoT", icon: Cpu, tone: "neutral" };
+  }
+  if (cats.includes("UX & Interaction")) {
+    return { label: "UX", icon: MousePointerClick, tone: "neutral" };
+  }
+  return { label: "Research", icon: BookOpen, tone: "neutral" };
+}
+
 export function ProjectCard({ project }: { project: Project }) {
   const lead = project.images?.slots.find((slot) => slot.lead && slot.src) ??
     project.images?.slots.find((slot) => slot.src);
-  const isAi = project.categories.includes("AI & Product");
+  const chip = typeChip(project);
+  const Icon = chip.icon;
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/50 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
       {lead?.src ? (
@@ -21,16 +57,18 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col p-6">
       <div className="flex items-start justify-between gap-3">
         <Eyebrow>{project.type}</Eyebrow>
-        {isAi ? (
-          <span
-            className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary"
-            title="AI project"
-            aria-label="AI project"
-          >
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            AI
-          </span>
-        ) : null}
+        <span
+          className={
+            chip.tone === "ai"
+              ? "inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary"
+              : "inline-flex items-center gap-1 rounded-full border border-border bg-muted px-2.5 py-1 text-[11px] font-semibold text-muted-foreground"
+          }
+          title={`${chip.label} project`}
+          aria-label={`${chip.label} project`}
+        >
+          <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+          {chip.label}
+        </span>
       </div>
       <h3 className="mt-3 text-xl font-semibold">
         <Link
