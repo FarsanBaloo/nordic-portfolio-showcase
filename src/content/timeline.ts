@@ -170,17 +170,18 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Ten years face to face with the people who run the systems — turning their needs into working platforms and standing beside them at go-live.",
     overviewBullets: [
-      "Worked directly with customers, end users and operations teams to understand needs, workflows and operational constraints, translating them into implementation-ready requirements and system designs.",
-      "Held end-to-end technical responsibility from solution design and programming through integration, commissioning, testing and operational handover, building strong judgement around feasibility, usability, reliability and maintainability.",
-      "Used delivery experience and QA findings to improve platform quality, integration patterns and maintainable solution design.",
+      "Gathered operational needs from property managers, operations technicians, facility teams, project managers and end users, and turned them into implementation-ready system designs and configurations.",
+      "Managed smaller customer projects and technical work packages, and held technical ownership of large-scale building-automation and integrated-control projects from design and programming through integration, testing, commissioning and operational handover.",
+      "Acted as quality tester with R&D on the IoT building-automation platform, and mentored engineers on platform capabilities, integration patterns and scalable, maintainable solution design.",
     ],
     relevanceSignals: [
       "Customer Needs",
       "Requirements",
+      "Project & Work-Package Ownership",
       "End-to-End Delivery",
-      "Technical Feasibility",
       "Platform Quality",
     ],
+
   },
   {
     id: "national-expert",
