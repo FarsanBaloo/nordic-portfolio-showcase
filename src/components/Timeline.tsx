@@ -340,8 +340,8 @@ function StudyChildCard({
   const compact = child.variant === "compact";
   return (
     <div
-      className="night-card flex h-full min-w-0 flex-col rounded-xl p-4 sm:p-[18px]"
-      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)` }}
+      className="night-card timeline-card-hover flex h-full min-w-0 flex-col rounded-xl p-4 hover:z-10 sm:p-[18px]"
+      style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 45%, transparent)`, ["--card-accent" as string]: accent }}
     >
       {child.org ? (
         <p className="font-mono text-[12.5px] uppercase tracking-[0.09em] text-[#929FAA]">
