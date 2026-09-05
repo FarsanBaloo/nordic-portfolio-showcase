@@ -94,8 +94,9 @@ export const roles: Role[] = [
       "Built a strong customer-facing foundation combining technical responsibility, implementation reality and direct understanding of how users, operational teams and connected systems interact.",
     tags: [
       "Customer Facing",
+      "Project & Work-Package Management",
       "System Design",
-      "Technical Responsibility",
+      "Technical Ownership",
       "Solution Architecture",
       "Integration",
       "Building Automation",
@@ -103,8 +104,10 @@ export const roles: Role[] = [
       "BMS/HVAC",
       "Commissioning",
       "QA",
+      "Mentoring",
       "Operational Handover",
     ],
+
   },
   {
     id: "support-engineer",
