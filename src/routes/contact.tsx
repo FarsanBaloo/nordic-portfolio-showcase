@@ -1,9 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 
+import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
 import { NightHero, Page } from "../components/site";
 import { TagList } from "../components/ui-bits";
 import { availability, contactIntro, profile } from "../content/profile";
 import { seo } from "../lib/site";
+
+type Channel = {
+  label: string;
+  value: string;
+  href: string;
+  external: boolean;
+  icon?: ReactNode;
+};
 
 const title = "Contact Rickard Sörlin";
 const description =
@@ -14,7 +24,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const channels = [
+const channels: Channel[] = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}`, external: false },
   { label: "Phone", value: profile.phoneDisplay, href: profile.phoneLink, external: false },
   {
