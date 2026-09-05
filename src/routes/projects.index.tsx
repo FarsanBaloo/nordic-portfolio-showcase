@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { ProjectCard } from "../components/ProjectCard";
+import { GithubIcon } from "../components/brand-icons";
 import { NightHero, Page } from "../components/site";
+import { profile } from "../content/profile";
 import { projectFilters, sortedProjects, type ProjectCategory } from "../content/projects";
 import { seo } from "../lib/site";
 
@@ -51,11 +53,31 @@ function ProjectsPage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((project) => (
             <div key={project.slug} className="relative">
-              <ProjectCard project={project} />
-            </div>
-          ))}
-        </div>
-      </Page>
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+
+      <a
+        href={profile.github}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="More study projects on GitHub (opens in a new tab)"
+        className="mt-10 flex flex-wrap items-center gap-4 rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+      >
+        <GithubIcon className="h-8 w-8 shrink-0 text-foreground" />
+        <span className="min-w-0 flex-1">
+          <span className="block font-semibold">More on GitHub</span>
+          <span className="mt-1 block text-sm text-muted-foreground">
+            Study projects in Computer Vision, Natural Language Processing, Machine Learning and
+            more — code and experiments from my BSc in Computer Science.
+          </span>
+        </span>
+        <span className="shrink-0 text-sm font-medium text-primary">
+          {profile.githubDisplay} →
+        </span>
+      </a>
+    </Page>
     </>
   );
 }
