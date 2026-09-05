@@ -26,6 +26,9 @@ function AboutPage() {
   return (
     <>
       <NightHero eyebrow="About" title="Profile summary" intro={profile.positioning}>
+        <p className="mt-4 max-w-2xl text-base text-night-foreground/80">
+          {profile.bridge}
+        </p>
         <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
           <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
           {availability}
