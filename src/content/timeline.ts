@@ -300,17 +300,18 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Where customer, technology and business meet — leading discovery and the trade-offs behind feasible, scalable solutions.",
     overviewBullets: [
-      "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and scalable solution directions.",
-      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs to reduce delivery and lifecycle risk and shape feasible, scalable outcomes.",
+      "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and product / solution options.",
+      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
+      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture — and contributed domain expertise in KTH Living Lab.",
     ],
     relevanceSignals: [
       "Customer Discovery",
       "Requirements",
       "Product / Solution Options",
       "Technical-Commercial Trade-offs",
-      "Lifecycle & Risk",
+      "Mission-Critical Delivery",
     ],
+
     // Full-time for three years before the degree began. Without this the two
     // cards standing side by side read as parallel from 2020.
     preStudyNote: {
