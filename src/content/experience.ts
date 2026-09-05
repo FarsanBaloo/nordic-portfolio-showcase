@@ -30,7 +30,7 @@ export const roles: Role[] = [
       "Customer-facing Project Engineer delivering digital-platform, building-automation and connected-system solutions from customer and operational requirements through system design, implementation, integration, commissioning, testing and operational handover.",
     bullets: [
       "Worked with property managers, operations technicians, facility teams, project managers and end users to gather and translate operational needs into implementation-ready configurations and system designs.",
-      "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations.",
+      "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations — succeeding together as one delivery team.",
       "Held technical ownership for large-scale building-automation and integrated-control projects, from system design, configuration and programming through integration, testing, commissioning, documentation and operational handover.",
       "Collaborated with R&D as a quality tester for the IoT building-automation platform, identifying defects, validating functionality and supporting platform improvement.",
       "Participated in a local technology network to strengthen engineering capability, knowledge sharing and adoption of new platform functionality.",
@@ -118,8 +118,9 @@ export const roles: Role[] = [
     stage:
       "Customer-Facing Platform Expertise, Product Lifecycle & Release Readiness",
     summary:
-      "Customer-facing national technical expert supporting complex platform environments while working close to real-world product usage, platform lifecycle, product quality, release validation and deployment readiness.",
+      "Customer-facing national technical expert supporting complex platform environments while working close to real-world product usage, platform lifecycle, product quality, release validation and deployment readiness — built on listening in and adapting the support to each customer's and colleague's needs.",
     bullets: [
+      "Solved problems together with field engineers and customers — listening to each person's situation and adapting guidance, troubleshooting and tooling to their needs, experience level and context.",
       "Owned the development of a reusable HVAC deviation-management capability for the market organisation, combining deviation detection, alarms, logging and visualisation to turn operational data into actionable insights and enable consistent deployment across customer systems.",
       "Prioritised and coordinated critical technical issues based on operational impact, urgency, customer need and technical risk, working across field engineers, Advanced Solution Support, system architects, Global Product Support, R&D and market teams.",
       "Performed root-cause analysis of complex customer and project issues, distinguishing implementation problems from potential product defects and escalating verified defects to Global Product Support and R&D.",
@@ -230,7 +231,7 @@ export const roles: Role[] = [
       "Translated customer, operational and project needs into structured technical requirements, alternative architectures and scalable solution designs.",
       "Held end-to-end technical ownership from problem definition and requirements through architecture, integration, validation and delivery.",
       "Provided informal technical leadership — guiding engineering teams, peers and stakeholders toward sound technical direction through influence, mentorship and trusted authority rather than formal line management.",
-      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing lifecycle risk, technical feasibility, cost and commercial value.",
+      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing lifecycle risk, technical feasibility, cost and commercial value — embracing different perspectives across disciplines to reach solutions the whole team could stand behind.",
       "Influenced technical prioritisation, solution direction, product selection and architectural trade-offs by balancing customer value, integration risk, scalability, reliability and operational constraints.",
       "Delivered mission-critical digital-platform integrations across data-centre, pharmaceutical and healthcare environments, including consolidating multiple systems into a unified HMI and edge-based architecture.",
       "Represented Schneider Electric in KTH Living Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
