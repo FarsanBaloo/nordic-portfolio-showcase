@@ -3,37 +3,20 @@ import { Link } from "@tanstack/react-router";
 import type { Project } from "../content/projects";
 import { Eyebrow, TagList } from "./ui-bits";
 
-import chipAi from "../assets/chip-ai.png";
-import chipIiot from "../assets/chip-iiot.png";
-import chipInnovation from "../assets/chip-innovation.png";
-import chipUx from "../assets/chip-ux.png";
-
-/* ---------- 3D chip icons (ray-traced PNGs) ---------- */
-
-type ChipKind = "ai" | "iiot" | "innovation" | "ux";
+/* ---------- type chips (text-only, 3D metallic lettering) ---------- */
 
 type TypeChip = {
   label: string;
-  kind: ChipKind;
-  src: string;
   tone: "ai" | "neutral";
 };
 
 function typeChip(project: Project): TypeChip {
   const cats = project.categories;
-  if (cats.includes("AI & Product")) {
-    return { label: "AI", kind: "ai", src: chipAi, tone: "ai" };
-  }
-  if (cats.includes("Innovation")) {
-    return { label: "Open Innovation", kind: "innovation", src: chipInnovation, tone: "neutral" };
-  }
-  if (cats.includes("Industry")) {
-    return { label: "IIoT", kind: "iiot", src: chipIiot, tone: "neutral" };
-  }
-  if (cats.includes("UX & Interaction")) {
-    return { label: "UX", kind: "ux", src: chipUx, tone: "neutral" };
-  }
-  return { label: "Research", kind: "innovation", src: chipInnovation, tone: "neutral" };
+  if (cats.includes("AI & Product")) return { label: "AI", tone: "ai" };
+  if (cats.includes("Innovation")) return { label: "Open Innovation", tone: "neutral" };
+  if (cats.includes("Industry")) return { label: "IIoT", tone: "neutral" };
+  if (cats.includes("UX & Interaction")) return { label: "UX", tone: "neutral" };
+  return { label: "Research", tone: "neutral" };
 }
 
 /* ---------- card ---------- */
@@ -56,31 +39,52 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col p-6">
       <div className="flex items-start justify-between gap-3">
         <Eyebrow>{project.type}</Eyebrow>
-        <span className="relative inline-flex shrink-0 items-center">
-          {/* aurora bloom behind AI chip */}
-          {isAi ? (
-            <span
-              aria-hidden="true"
-              className="absolute -inset-3 rounded-full bg-[radial-gradient(closest-side,var(--aurora-green)_0%,var(--aurora-violet)_45%,transparent_75%)] opacity-40 blur-lg"
-            />
-          ) : null}
+        <span
+          className="relative inline-flex shrink-0 items-center rounded-full border px-3 py-1.5"
+          style={
+            isAi
+              ? {
+                  borderColor: "color-mix(in oklab, var(--aurora-violet) 55%, transparent)",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02) 45%, rgba(0,0,0,0.25))",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 2px rgba(0,0,0,0.4), 0 0 18px color-mix(in oklab, var(--aurora-green) 35%, transparent), 0 2px 10px rgba(0,0,0,0.45)",
+                }
+              : {
+                  borderColor: "color-mix(in oklab, var(--foreground) 18%, transparent)",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.03) 45%, rgba(0,0,0,0.28))",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 2px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.35)",
+                }
+          }
+          title={`${chip.label} project`}
+          aria-label={`${chip.label} project`}
+        >
           <span
-            className={
+            className="text-[11px] font-extrabold uppercase tracking-[0.14em]"
+            style={
               isAi
-                ? "relative inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/15 px-2.5 py-1.5 text-[11px] font-semibold text-primary"
-                : "relative inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground"
+                ? {
+                    backgroundImage:
+                      "linear-gradient(105deg, var(--aurora-green) 0%, #9ff5d2 22%, var(--aurora-violet) 48%, #e9d5ff 62%, var(--aurora-magenta, #f0a) 82%, #ffffff 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    filter:
+                      "drop-shadow(0 1px 0 rgba(255,255,255,0.45)) drop-shadow(0 2px 3px rgba(0,0,0,0.6)) drop-shadow(0 0 8px color-mix(in oklab, var(--aurora-green) 45%, transparent))",
+                  }
+                : {
+                    backgroundImage:
+                      "linear-gradient(180deg, #f4f6f8 0%, #cdd3da 28%, #8f99a6 50%, #e7ecf1 62%, #6b7480 82%, #b8c0ca 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    filter:
+                      "drop-shadow(0 1px 0 rgba(255,255,255,0.4)) drop-shadow(0 2px 3px rgba(0,0,0,0.65))",
+                  }
             }
-            title={`${chip.label} project`}
-            aria-label={`${chip.label} project`}
           >
-            <img
-              src={chip.src}
-              alt=""
-              aria-hidden="true"
-              width={816}
-              height={816}
-              className="h-6 w-6 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.55)]"
-            />
             {chip.label}
           </span>
         </span>
