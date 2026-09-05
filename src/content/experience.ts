@@ -29,12 +29,14 @@ export const roles: Role[] = [
     summary:
       "Customer-facing Project Engineer delivering digital-platform, building-automation and connected-system solutions from customer and operational requirements through system design, implementation, integration, commissioning, testing and operational handover.",
     bullets: [
-      "Worked directly with customers, end users, operations teams and project stakeholders to understand needs, workflows and operational constraints.",
-      "Translated customer and operational needs into implementation-ready system designs, configurations and connected-platform solutions.",
-      "Held end-to-end technical responsibility for implementation from solution design and programming through integration, commissioning, testing and operational handover.",
-      "Contributed to solution architecture, integration patterns and maintainable technical designs across real building-automation environments.",
-      "Contributed to platform quality through QA testing, defect identification and functionality validation.",
+      "Worked with property managers, operations technicians, facility teams, project managers and end users to gather and translate operational needs into implementation-ready configurations and system designs.",
+      "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations.",
+      "Held technical ownership for large-scale building-automation and integrated-control projects, from system design, configuration and programming through integration, testing, commissioning, documentation and operational handover.",
+      "Collaborated with R&D as a quality tester for the IoT building-automation platform, identifying defects, validating functionality and supporting platform improvement.",
+      "Participated in a local technology network to strengthen engineering capability, knowledge sharing and adoption of new platform functionality.",
+      "Mentored technical teams on platform capabilities, integration patterns and scalable solution design, improving consistency, maintainability and alignment between architecture, delivery and operational needs.",
     ],
+
     detailGroups: [
       {
         title: "Delivery scope",
@@ -92,8 +94,9 @@ export const roles: Role[] = [
       "Built a strong customer-facing foundation combining technical responsibility, implementation reality and direct understanding of how users, operational teams and connected systems interact.",
     tags: [
       "Customer Facing",
+      "Project & Work-Package Management",
       "System Design",
-      "Technical Responsibility",
+      "Technical Ownership",
       "Solution Architecture",
       "Integration",
       "Building Automation",
@@ -101,8 +104,10 @@ export const roles: Role[] = [
       "BMS/HVAC",
       "Commissioning",
       "QA",
+      "Mentoring",
       "Operational Handover",
     ],
+
   },
   {
     id: "support-engineer",
@@ -115,12 +120,14 @@ export const roles: Role[] = [
     summary:
       "Customer-facing national technical expert supporting complex platform environments while working close to real-world product usage, platform lifecycle, product quality, release validation and deployment readiness.",
     bullets: [
-      "Worked directly with customers, field engineers and service teams on complex digital-platform issues, gaining deep insight into real-world product usage and operational constraints.",
-      "Acted as a national technical expert across digital-building and industrial platform environments including SCADA, automation, energy, IoT/IIoT and connected systems.",
-      "Translated recurring customer issues and usage patterns into structured product feedback, enhancement proposals and usability-improvement input.",
-      "Worked close to the product lifecycle through QA testing, release validation, defect identification, deployment readiness and controlled rollout / release-readiness assessment.",
-      "Evaluated platform functionality from real customer and field perspectives, helping improve product quality, adoption and operational continuity.",
+      "Owned the development of a reusable HVAC deviation-management capability for the market organisation, combining deviation detection, alarms, logging and visualisation to turn operational data into actionable insights and enable consistent deployment across customer systems.",
+      "Prioritised and coordinated critical technical issues based on operational impact, urgency, customer need and technical risk, working across field engineers, Advanced Solution Support, system architects, Global Product Support, R&D and market teams.",
+      "Performed root-cause analysis of complex customer and project issues, distinguishing implementation problems from potential product defects and escalating verified defects to Global Product Support and R&D.",
+      "Translated recurring issues and real-world usage patterns into structured product feedback and usability-improvement input, and submitted enhancement proposals justified on customer impact, business value and market needs.",
+      "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment readiness and controlled rollout risk assessments with engineering and product stakeholders.",
+      "Co-developed digital support tools and troubleshooting workflows with the market organisation and engineering teams, supporting engineer productivity, knowledge sharing and platform adoption.",
     ],
+
     detailGroups: [
       {
         title: "Customer-facing work",
@@ -159,20 +166,26 @@ export const roles: Role[] = [
         ],
       },
       {
-        title: "Support tooling",
+        title: "Capability ownership & support tooling",
         items: [
+          "Owned a reusable HVAC deviation-management capability",
+          "Deviation detection, alarms, logging and visualisation",
+          "Consistent deployment across customer systems",
           "Co-developed digital support tools",
           "Troubleshooting workflows",
-          "Engineer productivity",
-          "Knowledge sharing",
+          "Engineer productivity and knowledge sharing",
           "Platform adoption",
         ],
       },
     ],
     notes: [
       {
-        label: "Lifecycle & adoption readiness",
-        body: "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment-readiness assessment and controlled rollout risk evaluation.",
+        label: "Capability ownership",
+        body: "Owned the development of a reusable HVAC deviation-management capability for the market organisation, turning operational data into actionable insights that supported troubleshooting and energy optimisation and could be deployed consistently across customer systems.",
+      },
+      {
+        label: "Issue prioritisation & root cause",
+        body: "Prioritised and coordinated critical technical issues by operational impact, urgency, customer need and technical risk, and performed root-cause analysis that separated implementation problems from potential product defects before escalating verified defects to Global Product Support and R&D.",
       },
       {
         label: "Collaboration context",
@@ -189,8 +202,10 @@ export const roles: Role[] = [
     progression:
       "This period connected two sides of the product: how the platform behaved in real customer environments and how functionality needed to be tested, validated and prepared for reliable deployment.",
     tags: [
+      "Capability Ownership",
       "Customer Facing",
       "National Technical Expert",
+      "Root-Cause Analysis",
       "Product Lifecycle",
       "QA Testing",
       "Release Validation",
@@ -199,6 +214,7 @@ export const roles: Role[] = [
       "Usability",
       "Platform Quality",
     ],
+
   },
   {
     id: "senior-technical-advisor",

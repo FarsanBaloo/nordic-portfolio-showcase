@@ -170,17 +170,18 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Ten years face to face with the people who run the systems — turning their needs into working platforms and standing beside them at go-live.",
     overviewBullets: [
-      "Worked directly with customers, end users and operations teams to understand needs, workflows and operational constraints, translating them into implementation-ready requirements and system designs.",
-      "Held end-to-end technical responsibility from solution design and programming through integration, commissioning, testing and operational handover, building strong judgement around feasibility, usability, reliability and maintainability.",
-      "Used delivery experience and QA findings to improve platform quality, integration patterns and maintainable solution design.",
+      "Gathered operational needs from property managers, operations technicians, facility teams, project managers and end users, and turned them into implementation-ready system designs and configurations.",
+      "Managed smaller customer projects and technical work packages, and held technical ownership of large-scale building-automation and integrated-control projects from design and programming through integration, testing, commissioning and operational handover.",
+      "Acted as quality tester with R&D on the IoT building-automation platform, and mentored engineers on platform capabilities, integration patterns and scalable, maintainable solution design.",
     ],
     relevanceSignals: [
       "Customer Needs",
       "Requirements",
+      "Project & Work-Package Ownership",
       "End-to-End Delivery",
-      "Technical Feasibility",
       "Platform Quality",
     ],
+
   },
   {
     id: "national-expert",
@@ -196,17 +197,18 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "National expert carrying the customer's recurring pains into product feedback, lifecycle decisions and release readiness.",
     overviewBullets: [
-      "Translated recurring customer and field issues into structured product feedback, enhancement proposals and usability improvements, considering customer impact, market needs and business value.",
-      "Worked close to the product lifecycle through QA testing, release validation, defect identification and deployment / release readiness, evaluating new and changed functionality from a real-world customer perspective.",
-      "Connected national platform expertise and customer insight with technical feasibility to support product quality, adoption readiness and roadmap-relevant improvement decisions.",
+      "Owned the development of a reusable HVAC deviation-management capability for the market organisation — detection, alarms, logging and visualisation — turning operational data into actionable insight and enabling consistent deployment across customer systems.",
+      "Turned recurring customer issues and real-world usage into structured product feedback and enhancement proposals justified on customer impact, business value and market needs, working with Product Owners, Global Product Support and R&D.",
+      "Prioritised critical issues by operational impact, urgency and technical risk, performed root-cause analysis separating implementation problems from product defects, and supported release validation, deployment readiness and controlled rollout.",
     ],
     relevanceSignals: [
+      "Capability Ownership",
       "Customer Insight",
       "Product Feedback",
-      "Product Lifecycle",
       "Release Readiness",
       "Enhancement Proposals",
     ],
+
     childrenLabel: "Selected product / platform capability",
     children: [
       {
@@ -298,17 +300,18 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Where customer, technology and business meet — leading discovery and the trade-offs behind feasible, scalable solutions.",
     overviewBullets: [
-      "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and scalable solution directions.",
-      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs to reduce delivery and lifecycle risk and shape feasible, scalable outcomes.",
+      "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and product / solution options.",
+      "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
+      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture — and contributed domain expertise in KTH Living Lab.",
     ],
     relevanceSignals: [
       "Customer Discovery",
       "Requirements",
       "Product / Solution Options",
       "Technical-Commercial Trade-offs",
-      "Lifecycle & Risk",
+      "Mission-Critical Delivery",
     ],
+
     // Full-time for three years before the degree began. Without this the two
     // cards standing side by side read as parallel from 2020.
     preStudyNote: {
