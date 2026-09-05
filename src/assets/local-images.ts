@@ -25,3 +25,6 @@ export const hallbarHalsaOnboarding = localAsset("hallbar-halsa-onboarding.png")
 export const hallbarHalsaFlow = localAsset("hallbar-halsa-flow.png");
 export const kthLivingLab = localAsset("kth-living-lab.jpg");
 export const stEriksHmi = localAsset("st-eriks-hmi.jpg");
+export const stEriksRoomOverview = localAsset("st-eriks-room-overview.jpg");
+export const stEriksVideoRouting = localAsset("st-eriks-video-routing.jpg");
+export const stEriksStatusPanel = localAsset("st-eriks-status-panel.jpg");
