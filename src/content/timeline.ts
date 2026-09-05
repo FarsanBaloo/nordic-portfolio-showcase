@@ -199,7 +199,7 @@ export const milestones: TimelineMilestone[] = [
     overviewBullets: [
       "Owned the development of a reusable HVAC deviation-management capability for the market organisation — detection, alarms, logging and visualisation — turning operational data into actionable insight and enabling consistent deployment across customer systems.",
       "Turned recurring customer issues and real-world usage into structured product feedback and enhancement proposals justified on customer impact, business value and market needs, working with Product Owners, Global Product Support and R&D.",
-      "Prioritised critical issues by operational impact, urgency and technical risk, performed root-cause analysis separating implementation problems from product defects, and supported release validation, deployment readiness and controlled rollout.",
+      "Prioritised critical issues by operational impact, urgency and technical risk, performed root-cause analysis separating implementation problems from product defects, and collaborated with R&D as quality tester for the building-automation platform while supporting release validation, deployment readiness and controlled rollout.",
     ],
     relevanceSignals: [
       "Capability Ownership",
@@ -302,7 +302,7 @@ export const milestones: TimelineMilestone[] = [
     overviewBullets: [
       "Led customer-facing technical discovery and translated customer, operational and project needs into structured requirements, alternative architectures and product / solution options.",
       "Held end-to-end technical ownership and influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture — and contributed domain expertise in KTH Living Lab.",
+      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture — contributed domain expertise in KTH Living Lab, and provided informal technical leadership and mentoring across teams through influence rather than formal authority.",
     ],
     relevanceSignals: [
       "Customer Discovery",
@@ -310,6 +310,7 @@ export const milestones: TimelineMilestone[] = [
       "Product / Solution Options",
       "Technical-Commercial Trade-offs",
       "Mission-Critical Delivery",
+      "Technical Leadership",
     ],
 
     // Full-time for three years before the degree began. Without this the two

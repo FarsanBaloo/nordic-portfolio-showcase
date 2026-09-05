@@ -126,6 +126,7 @@ export const roles: Role[] = [
       "Translated recurring issues and real-world usage patterns into structured product feedback and usability-improvement input, and submitted enhancement proposals justified on customer impact, business value and market needs.",
       "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment readiness and controlled rollout risk assessments with engineering and product stakeholders.",
       "Co-developed digital support tools and troubleshooting workflows with the market organisation and engineering teams, supporting engineer productivity, knowledge sharing and platform adoption.",
+      "Collaborated with R&D as a quality tester for Schneider Electric's building-automation platform, identifying defects, validating functionality and contributing product-improvement feedback.",
     ],
 
     detailGroups: [
