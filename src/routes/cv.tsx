@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
 import { Page } from "../components/site";
 import {
   coreSkills,

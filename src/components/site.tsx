@@ -68,12 +68,24 @@ export function Footer() {
           </li>
           <li>
             <a
-              className="text-aurora-teal hover:underline"
+              className="inline-flex items-center gap-1.5 text-aurora-teal hover:underline"
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
             >
+              <LinkedinIcon />
               {profile.linkedinDisplay}
+            </a>
+          </li>
+          <li>
+            <a
+              className="inline-flex items-center gap-1.5 text-aurora-teal hover:underline"
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GithubIcon />
+              {profile.githubDisplay}
             </a>
           </li>
         </ul>
