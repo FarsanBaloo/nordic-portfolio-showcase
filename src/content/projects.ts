@@ -15,6 +15,7 @@ import {
   hallbarHalsaDashboard,
   hallbarHalsaOnboarding,
   hallbarHalsaFlow,
+  kthLivingLab,
 } from "../assets/local-images";
 
 export type ImageSlot = {
