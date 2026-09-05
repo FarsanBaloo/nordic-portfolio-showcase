@@ -66,6 +66,42 @@ function AboutPage() {
         </Section>
 
         <Section>
+          <SectionHeading eyebrow="Background" title="My journey in short" />
+          <div className="mt-6 max-w-3xl space-y-5">
+            {aboutParagraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)} className="text-muted-foreground leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </Section>
+
+        <Section>
+          <blockquote className="max-w-3xl rounded-xl border-l-4 border-aurora-teal bg-card p-6 sm:p-8">
+            <p className="text-lg font-medium leading-relaxed text-night-foreground sm:text-xl">
+              {productPhilosophy}
+            </p>
+            <footer className="mt-4 text-sm text-muted-foreground">
+              My product philosophy
+            </footer>
+          </blockquote>
+        </Section>
+
+        <Section>
+          <SectionHeading eyebrow="Strengths" title="What I bring" />
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {whatIBring.map((item) => (
+              <div key={item.title} className="rounded-xl border border-border bg-card p-6">
+                <h2 className="text-base font-semibold">{item.title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section>
           <SectionHeading eyebrow="Focus" title="Target roles and core areas" />
           <div className="mt-6">
             <TagList items={profile.targetRoles} />
