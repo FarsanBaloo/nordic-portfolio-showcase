@@ -51,13 +51,13 @@ export const journeyIntro = [
 
 export const aboutParagraphs = [
   "My professional foundation comes from working close to real systems, customers and operational constraints — not from slideware.",
-  "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
+  "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams — listening in, meeting people where they were, and adapting guidance to each person and situation — while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
   "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value — often as the informal technical lead colleagues turned to when the trade-offs got hard, mentoring and guiding teams through complex deliveries.",
   "Alongside that journey I deliberately expanded my capabilities — Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Strategy, Business Models, Requirements and Leadership. The direction from here is clear: roles where industrial domain depth, customer understanding, technical credibility, product thinking and AI come together to build products that are useful, feasible and scalable.",
 ];
 
 export const productPhilosophy =
-  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs out loud: for the customer, for engineering, and for the business.";
+  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs out loud: for the customer, for engineering, and for the business. And no product is built alone — the best solutions come from teams that welcome different perspectives and deliver together.";
 
 
 export const whatIBring = [
@@ -81,6 +81,10 @@ export const whatIBring = [
     title: "Applied AI & Human-Centred Design",
     body: "Hands-on work spanning RAG, Generative AI, forecasting, agentic AI, Interaction Design, prototyping, user testing and accessibility — validated with real users and real data.",
   },
+  {
+    title: "Team Spirit & People",
+    body: "A team player driven by solving and delivering together — embracing different perspectives, disciplines and backgrounds. Years of front-line support taught me to listen first and adapt guidance to each person's needs.",
+  },
 ];
 
 export const contactIntro =
@@ -91,14 +95,14 @@ export const journeyNarrative = {
   lead: "From customers' control cabinets to AI-enabled products — one continuous story, with the customer at the centre of every chapter.",
   paragraphs: [
     "I began as a Project Engineer, working alongside customers. My job was to understand what they were really trying to get done — what hurt today, and what would break if we got it wrong. I gathered the requirements, designed the system, wrote the code, integrated it and commissioned it — then stood next to the customer when it went live. That is where I learned the lesson everything else builds on: a product is only as good as the day-to-day reality of the people who depend on it.",
-    "Later I became the national technical expert for our digital platform. The view widened: the faults that kept coming back, the workarounds customers invented — and the internal pains behind them, from engineering constraints to QA and release readiness. Carrying both sides taught me to turn real-world usage into product feedback and enhancement proposals, and to help a platform evolve in the direction customers actually needed.",
+    "Later I became the national technical expert for our digital platform. The view widened: the faults that kept coming back, the workarounds customers invented — and the internal pains behind them, from engineering constraints to QA and release readiness. Day after day I listened to people in very different roles and situations, adapting the support to what each person actually needed. Carrying both sides taught me to turn real-world usage into product feedback and enhancement proposals, and to help a platform evolve in the direction customers actually needed.",
     "As Senior Technical Advisor I sat exactly where customer, technology and business meet — leading technical discovery, weighing solution options against feasibility, lifecycle risk, reliability and cost, usually as the informal technical lead others turned to when the trade-offs got hard. That is where discovery stopped being instinct and became craft.",
     "Then I made a deliberate choice: back to study — Computer Science with applied AI, interaction design, innovation management, and postgraduate work in product management, strategy, business models, requirements and leadership. Not to leave the customer behind, but to build AI products on top of everything they taught me.",
   ],
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "That is what I bring to an AI product role: I start with the customer's problem — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it.",
+    "That is what I bring to an AI product role: I start with the customer's problem — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it. And I know solutions are delivered together, by teams that embrace different perspectives.",
 };
 
 
