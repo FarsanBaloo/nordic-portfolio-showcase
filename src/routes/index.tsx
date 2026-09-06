@@ -1,28 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
-import { ProjectCard } from "../components/ProjectCard";
-import { PortraitFrame, Section } from "../components/site";
+import { PortraitFrame } from "../components/site";
 import { Timeline } from "../components/Timeline";
-import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
-import { mainCapabilities, capabilityNote } from "../content/capabilities";
-import { bachelor, postgraduate, certifications } from "../content/education";
 import {
-  aboutParagraphs,
   availability,
-  contactIntro,
-  journeyIntro,
+  careerLens,
+  journeyNarrative,
   productPhilosophy,
   profile,
-  whatIBring,
 } from "../content/profile";
 import { sortedProjects } from "../content/projects";
 import { seo } from "../lib/site";
 
 
-const title = "Rickard Sörlin — AI Product Manager, Industrial Platforms & Applied AI";
+const title = "Rickard Sörlin — AI Product Manager, from Control Cabinets to AI Products";
 const description =
-  "AI Product Manager who turns real customer pains in complex B2B environments into AI-enabled products — 25 years of discovery with the people who run SCADA, IoT and mission-critical operations.";
+  "The story of 25 years next to the customers who run SCADA, IoT and mission-critical operations — and how it became a career in AI-enabled products.";
 
 
 export const Route = createFileRoute("/")({
@@ -50,8 +44,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const featured = sortedProjects.slice(0, 6);
-
   return (
     <>
       <section className="relative overflow-hidden night-panel">
@@ -81,9 +73,6 @@ function Index() {
 
           <p className="mt-8 max-w-3xl text-lg leading-relaxed text-night-body">
             {profile.heroPrimary}
-          </p>
-          <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-night-muted">
-            {profile.heroSupporting}
           </p>
           <p className="mt-5 max-w-3xl rounded-lg border border-aurora-teal/30 bg-aurora-teal/5 px-4 py-3 text-[15px] leading-relaxed text-night-foreground">
             {profile.bridge}
@@ -133,14 +122,8 @@ function Index() {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              to="/journey"
-              className="rounded-md bg-aurora-teal px-5 py-2.5 text-sm font-medium text-night transition-opacity hover:opacity-90"
-            >
-              Explore my journey
-            </Link>
-            <Link
               to="/projects"
-              className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
+              className="rounded-md bg-aurora-teal px-5 py-2.5 text-sm font-medium text-night transition-opacity hover:opacity-90"
             >
               View selected projects
             </Link>
@@ -178,189 +161,114 @@ function Index() {
       </section>
 
       <section className="relative overflow-hidden night-panel">
-        <div className="relative py-20">
-          <div className="mx-auto max-w-6xl px-5">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-aurora-teal">
-              The journey · preview
+        <div className="relative mx-auto max-w-[1280px] px-5 py-20 sm:py-24">
+          <div className="mx-auto max-w-[880px]">
+            <p className="text-center font-mono text-[12px] uppercase tracking-[0.11em] text-aurora-teal">
+              The journey
             </p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-semibold text-night-foreground sm:text-4xl">
+            <h2 className="mx-auto mt-4 max-w-3xl text-balance-tight text-center text-4xl font-semibold text-night-foreground sm:text-[44px]">
               From control cabinets to AI products
             </h2>
-            <div className="mt-6 max-w-3xl space-y-4">
-              {journeyIntro.slice(0, 2).map((p) => (
-                <p key={p} className="text-[15px] leading-relaxed text-night-muted">
+
+            <div className="mt-12 space-y-5">
+              <p className="text-[17.5px] font-semibold leading-[1.7] text-night-foreground">
+                {journeyNarrative.lead}
+              </p>
+              {journeyNarrative.paragraphs.map((p) => (
+                <p key={p} className="text-[17px] leading-[1.7] text-night-body">
                   {p}
                 </p>
               ))}
+              <p className="text-[17.5px] font-semibold leading-[1.7] text-night-foreground">
+                {journeyNarrative.emphasis}
+              </p>
             </div>
-          </div>
 
-          <div className="mt-14 w-full px-5 min-[1100px]:px-[clamp(24px,4vw,72px)]">
-            <Timeline />
-          </div>
-          <div className="mx-auto max-w-6xl px-5">
-            <Link
-              to="/journey"
-              className="mt-12 inline-block text-sm font-medium text-aurora-teal hover:underline"
-            >
-              Read the full journey →
-            </Link>
+            <div className="mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+              {careerLens.map((group) => (
+                <section key={group.title}>
+                  <h3 className="font-mono text-[12px] uppercase tracking-[0.11em] text-aurora-teal">
+                    {group.title}
+                  </h3>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full border border-night-border px-3 py-1 text-[13px] text-night-body"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            <figure className="philosophy-hero mt-14 p-8 sm:p-10">
+              <span
+                aria-hidden="true"
+                className="philosophy-quote-mark block text-6xl font-semibold"
+              >
+                “
+              </span>
+              <figcaption className="mb-2 flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
+                <span
+                  aria-hidden="true"
+                  className="h-px w-8 bg-gradient-to-r from-aurora-teal to-aurora-violet"
+                />
+                Product philosophy
+              </figcaption>
+              <p className="text-balance-tight text-[16px] leading-relaxed text-night-body sm:text-lg">
+                {productPhilosophy}
+              </p>
+            </figure>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-6xl px-5">
-        <Section id="capabilities">
-          <SectionHeading
-            eyebrow="Capabilities"
-            title="Where product, platforms and AI meet"
-            intro={capabilityNote}
-          />
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {mainCapabilities.map((group) => (
-              <div key={group.title} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-lg font-semibold">{group.title}</h3>
-                <div className="mt-4">
-                  <TagList items={group.items} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </Section>
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1560px] px-5 py-16 sm:py-20 min-[1100px]:px-[clamp(24px,4vw,72px)]">
+          <Timeline />
+        </div>
+      </section>
 
-
-        <Section id="projects">
-          <SectionHeading
-            eyebrow="Selected work"
-            title="Projects and case studies"
-            intro="Applied AI, industrial platforms, interaction design and innovation work — each with the full story behind it."
-          />
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((project) => (
-              <div key={project.slug} className="relative">
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
-          <Link
-            to="/projects"
-            className="mt-8 inline-block text-sm font-medium text-primary hover:underline"
-          >
-            See all {sortedProjects.length} projects →
-          </Link>
-        </Section>
-
-        <Section id="education">
-          <SectionHeading
-            eyebrow="Education"
-            title="Deliberate, continuous development"
-            intro={`${bachelor.title} — ${bachelor.specialisation}, plus advanced postgraduate studies in AI, innovation, product and requirements management.`}
-          />
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {postgraduate.entries.map((entry) => (
-              <div key={entry.id} className="rounded-xl border border-border bg-card p-6">
-                <Eyebrow>{entry.period}</Eyebrow>
-                <h3 className="mt-2 text-lg font-semibold">{entry.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{entry.institution}</p>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                  {entry.body}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {certifications.map((cert) => (
-              <span
-                key={cert.title}
-                className="rounded-full border border-border bg-secondary px-3 py-1 text-xs text-secondary-foreground"
-              >
-                {cert.title} · {cert.institution}
-              </span>
-            ))}
-          </div>
-          <Link
-            to="/education"
-            className="mt-8 inline-block text-sm font-medium text-primary hover:underline"
-          >
-            Full education overview →
-          </Link>
-        </Section>
-
-        <Section id="about">
-          <SectionHeading eyebrow="About" title="How I work" />
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-            <div className="space-y-4">
-              {aboutParagraphs.slice(0, 3).map((p) => (
-                <p key={p} className="text-[15px] leading-relaxed text-muted-foreground">
-                  {p}
-                </p>
-              ))}
-              <Callout label="Product philosophy">{productPhilosophy}</Callout>
-            </div>
-            <div className="space-y-4">
-              {whatIBring.map((item) => (
-                <div key={item.title} className="rounded-lg border border-border bg-card p-5">
-                  <h3 className="text-sm font-semibold">{item.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                    {item.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Section>
-
-        <Section id="contact">
-          <SectionHeading eyebrow="Contact" title="Let's talk" intro={contactIntro} />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <a
-              href={`mailto:${profile.email}`}
-              className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+      <section className="relative overflow-hidden night-panel">
+        <div className="relative mx-auto max-w-6xl px-5 py-16 sm:py-20">
+          <h2 className="text-3xl font-semibold text-night-foreground">
+            Where the story continues
+          </h2>
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-night-muted">
+            Each chapter has its own case study — discovery, decisions and what it changed for
+            the people who use the result.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/projects"
+              className="rounded-md bg-aurora-teal px-5 py-2.5 text-sm font-medium text-night transition-opacity hover:opacity-90"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                Email
-              </p>
-              <p className="mt-2 break-all text-[15px] font-medium">{profile.email}</p>
-            </a>
-            <a
-              href={profile.phoneLink}
-              className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
+              See all {sortedProjects.length} projects
+            </Link>
+            <Link
+              to="/contact"
+              className="rounded-md border border-night-border px-5 py-2.5 text-sm font-medium text-night-foreground transition-colors hover:bg-white/10"
             >
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                Phone
-              </p>
-              <p className="mt-2 text-[15px] font-medium">{profile.phoneDisplay}</p>
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
-            >
-              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                <LinkedinIcon className="h-5 w-5" />
-                LinkedIn
-              </p>
-              <p className="mt-2 break-all text-[15px] font-medium">{profile.linkedinDisplay}</p>
-            </a>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
-            >
-              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                <GithubIcon className="h-5 w-5" />
-                GitHub
-              </p>
-              <p className="mt-2 break-all text-[15px] font-medium">{profile.githubDisplay}</p>
-            </a>
+              Get in touch
+            </Link>
           </div>
-          <div className="mt-8">
-            <BulletList items={profile.summary} />
-          </div>
-        </Section>
-      </div>
+          <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            <li>
+              <a className="text-aurora-teal hover:underline" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+            </li>
+            <li>
+              <a className="text-aurora-teal hover:underline" href={profile.phoneLink}>
+                {profile.phoneDisplay}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
     </>
   );
 }
