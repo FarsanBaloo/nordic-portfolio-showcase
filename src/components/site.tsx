@@ -7,7 +7,6 @@ import { profile } from "../content/profile";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/journey", label: "Journey" },
   { to: "/projects", label: "Projects" },
   { to: "/education", label: "Education" },
   { to: "/about", label: "About" },
