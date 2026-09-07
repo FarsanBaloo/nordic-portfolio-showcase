@@ -107,14 +107,16 @@ export const projects: Project[] = [
     ],
     sections: [
       {
-        heading: "Opportunity",
+        heading: "The problem",
         body: [
           "Industrial operators often depend on specialists to interpret alarms, error codes and technical documentation, resulting in delayed troubleshooting and unnecessary dependency on specialist support.",
+          "The discovery question was therefore not how can we use an LLM? but how can we reduce dependency on specialists when something goes wrong?",
         ],
       },
       {
         heading: "Discovery",
-        quote: "The project started with the operational problem, not with the AI technology.",
+        quote:
+          "Product hypothesis: could AI translate industrial system context and specialist knowledge into understandable and actionable guidance?",
         items: [
           "Interviewed system owners and testbed operators",
           "Studied incident and troubleshooting workflows",
