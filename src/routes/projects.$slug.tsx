@@ -136,7 +136,16 @@ function CaseStudy() {
               </section>
             ))}
 
-            {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
+            {project.flow ? (
+              <section>
+                <FlowSteps steps={project.flow.steps} label={project.flow.label} />
+                {project.valueTagline ? (
+                  <p className="mt-5 text-lg font-semibold text-foreground">
+                    {project.valueTagline}
+                  </p>
+                ) : null}
+              </section>
+            ) : null}
 
             {project.images?.slots.length ? (
               <section>
@@ -151,6 +160,9 @@ function CaseStudy() {
             {project.reflection ? <Callout label="Reflection">{project.reflection}</Callout> : null}
             {project.contributionNote ? (
               <Callout label="My contribution">{project.contributionNote}</Callout>
+            ) : null}
+            {project.footnote ? (
+              <p className="text-sm leading-relaxed text-muted-foreground">{project.footnote}</p>
             ) : null}
           </article>
 
