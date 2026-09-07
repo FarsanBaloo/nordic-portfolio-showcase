@@ -184,6 +184,16 @@ export const projects: Project[] = [
           "Sales enablement",
         ],
       },
+      {
+        heading: "What this demonstrates",
+        items: [
+          "Problem-first AI discovery",
+          "Translating specialist knowledge for non-specialist users",
+          "Rapid validation with real users",
+          "Communication and usability as part of technical feasibility",
+          "Judging AI by whether it improves the user's job rather than model sophistication alone",
+        ],
+      },
     ],
     metrics: [
       {
