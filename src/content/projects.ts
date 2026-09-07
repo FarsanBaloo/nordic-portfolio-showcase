@@ -262,7 +262,7 @@ export const projects: Project[] = [
   {
     slug: "talking-scada",
     title: "Talking SCADA",
-    subtitle: "From Innovation Concept to AI-Enabled Product Case",
+    subtitle: "Academic AI Product Concept",
     org: "University of Skövde · Blekinge Institute of Technology",
     meta: "Innovation in Practice → Product & Requirements Management",
     type: "AI / Innovation Product Concept",
@@ -270,76 +270,160 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["AI & Product", "Innovation", "Academic / Research"],
     teaser:
-      "An AI-enabled decision-support concept for SCADA/BMS environments, carried from initial innovation framing through discovery, requirements, MVP definition, product strategy and go-to-market.",
+      "A product concept exploring how AI could help buildings explain why their energy behaviour changed — carried from problem framing through discovery, requirements, MVP definition, product strategy and go-to-market.",
+    pitch: {
+      vision: "Today, buildings generate data. Tomorrow, buildings should explain themselves.",
+      explainer:
+        "Talking SCADA explores how AI could help turn complex building data into understandable explanations of energy deviations — helping users move from what changed? to why did it change? and where should I investigate?",
+    },
     highlight:
-      "How can existing SCADA/BMS operational data and modern AI capabilities become a product that solves meaningful operator and facility-management problems while remaining technically feasible and commercially sustainable?",
+      "What if the building could explain why it is consuming more energy now than at the same time last year?",
     tags: [
-      "AI Product Concept",
-      "Innovation Management",
+      "Product Vision",
       "Product Discovery",
-      "Requirements",
+      "Jobs to Be Done",
+      "Problem Validation",
+      "Requirements / PRD",
+      "Prioritisation",
       "MVP",
       "Product Strategy",
       "Business Model",
       "Go-to-Market",
+      "Applied AI",
       "SCADA",
       "BMS",
     ],
     sections: [
       {
-        heading: "Stage 1 — Initial innovation concept (University of Skövde)",
+        heading: "Why",
         body: [
-          "Explored how AI and existing operational data from building systems could transform complex SCADA/BMS information into understandable insights and decision support for facility managers and operators.",
-          "Building systems contain large amounts of alarms, trends, operational data and technical knowledge, but extracting useful insight can require significant specialist expertise.",
+          "Buildings account for a significant share of global energy use, and a modern building is not one system but many: heating, ventilation, cooling, HVAC controls, sensors, schedules, setpoints, energy management and other connected systems that all influence each other.",
+          "An energy deviation seen at building level may therefore have its cause somewhere else entirely — in a changed schedule or setpoint, an incorrect configuration, a faulty sensor, control sequences interacting unexpectedly, equipment running when it should not, or heating and cooling quietly working against each other.",
+          "The problem is not always a lack of data. The problem is understanding what the data means.",
+        ],
+      },
+      {
+        heading: "Whom",
+        body: [
+          "Building operators, facility managers, energy managers and technical teams responsible for understanding and improving building performance.",
+          "These users have very different levels of HVAC/BMS depth, and deep diagnostic expertise is scarce — complex cross-system investigation often depends on a small number of specialists.",
+        ],
+      },
+      {
+        heading: "Pain",
+        quote: "I can see that something changed, but I do not know why.",
+        body: [
+          "Users may be able to see that energy consumption has changed without being able to quickly identify why. Investigation can require navigating trends, alarms, schedules, configurations and relationships across multiple systems, together with specialist HVAC/BMS knowledge.",
         ],
         items: [
+          "Investigation effort and complexity",
+          "Relationships that cross several systems",
+          "Large amounts of operational data",
+          "Difficulty identifying root causes",
+          "Dependency on scarce specialist domain knowledge",
+        ],
+      },
+      {
+        heading: "Job to be done",
+        quote:
+          "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act.",
+      },
+      {
+        heading: "What the concept is",
+        body: [
+          "Talking SCADA explores an AI-enabled explanation and decision-support layer for building platforms that could combine operational data, historical behaviour, system relationships and domain context to help explain likely causes of energy deviations.",
+          "The intent is to move the user from what changed? to why did it change? and then toward where should I investigate next? — decision support and context rather than autonomous control. Human judgement stays part of the decision.",
+        ],
+      },
+      {
+        heading: "Gain",
+        body: ["The concept aims to support:"],
+        items: [
+          "Faster investigation of energy deviations",
+          "Reduced dependency on scarce specialist knowledge",
+          "More understandable building behaviour",
+          "More actionable operational data",
+          "Better-informed energy decisions",
+          "Earlier identification of abnormal or inefficient behaviour",
+        ],
+      },
+      {
+        heading: "Product vision",
+        body: [
+          "Talking SCADA explores a future where building platforms do more than display values, alarms and trends. They help users understand the behaviour behind them.",
+          "The goal is not to replace domain experts, but to make domain knowledge and system context more accessible and help more users investigate complex building behaviour.",
+          "AI should support the user by explaining evidence and relationships, not simply returning an unexplained answer.",
+        ],
+      },
+      {
+        heading: "Why AI?",
+        body: [
+          "AI was not the starting point. It became relevant only once the problem was understood: large amounts of operational information, historical behaviour, relationships between systems, contextual interpretation, domain knowledge and explanation all have to come together before a user can act.",
+          "That turned into a feasibility question rather than an assumption: can AI help make specialist building-domain reasoning more accessible to more users while keeping explanations grounded in actual building data and system context?",
+        ],
+      },
+      {
+        heading: "Product work — Stage 1, initial concept (University of Skövde)",
+        body: [
+          "Innovation work that established the opportunity and problem framing: how existing operational data from building systems could become understandable insight and decision support for facility managers and operators.",
+        ],
+        items: [
+          "Opportunity identification",
+          "Problem framing and validation",
           "Understandable operational data",
           "Facility-manager decision support",
           "Operator support and troubleshooting",
-          "Reduced information fragmentation",
           "Use of existing platform data",
-          "AI-enabled explanation",
           "Operational value",
         ],
       },
       {
-        heading: "Stage 2 — Product development case (Blekinge Institute of Technology)",
+        heading: "Product work — Stage 2, product case (Blekinge Institute of Technology)",
         body: [
-          "Talking SCADA was used as a recurring academic product case to apply New Product Development, Product Discovery, digital product strategy and Requirements Engineering to an AI-enabled decision-support concept for building automation and SCADA/BMS environments.",
+          "Talking SCADA was then used as a recurring academic product case to apply New Product Development, Product Discovery, digital product strategy and Requirements Engineering to the concept.",
         ],
         items: [
-          "Opportunity identification",
           "Product discovery",
           "Product vision",
           "Value proposition",
-          "Customer needs",
-          "Requirements management",
+          "Customer needs and jobs to be done",
+          "AI and technical feasibility",
+          "Product definition",
+          "Requirements management / PRD",
           "Feature prioritisation",
           "MVP definition",
+          "Validation thinking",
           "Product-development governance",
-          "Portfolio considerations",
+          "Product strategy and portfolio considerations",
           "Business-model development",
-          "Go-to-market planning",
+          "Market relevance",
+          "Go-to-market and adoption considerations",
         ],
       },
       {
-        heading: "Product perspective",
+        heading: "Product leadership perspective",
         body: [
-          "Connected customer needs and operational reality with technical feasibility, product strategy, requirements and sustainable business value.",
+          "The case also explores the less visible side of product work: bringing user, business and technical perspectives into the same decision process, making assumptions and trade-offs explicit, defining what the product should and should not do, and creating a direction that different stakeholders can understand and evaluate.",
+        ],
+      },
+      {
+        heading: "Product relevance",
+        body: [
+          "Talking SCADA is not primarily about creating another dashboard or chatbot. The core product opportunity is to help users move from seeing a deviation to understanding the likely reasons behind it.",
+          "The concept explores whether AI can help make complex building-domain reasoning more accessible while keeping explanations grounded in operational data, system context and human judgement.",
         ],
       },
     ],
+    valueTagline: "From building data to building understanding.",
     flow: {
-      label: "Concept to market",
+      label: "The user's path through a deviation",
       steps: [
-        "Innovation Opportunity",
-        "Product Concept",
-        "Discovery",
-        "Requirements",
-        "MVP",
-        "Product Strategy",
-        "Business Model",
-        "Go-to-Market",
+        "Energy deviation",
+        "What changed?",
+        "Cross-system context",
+        "Why did it change?",
+        "Evidence-based explanation",
+        "Where should I investigate?",
       ],
     },
     images: {
@@ -356,6 +440,8 @@ export const projects: Project[] = [
     },
     reflection:
       "The Innovation Management work established the opportunity and problem framing; the product-management specialisation turned it into a structured product case. Two stages of the same concept, not two separate projects.",
+    footnote:
+      "Academic AI product case based on general industry and domain knowledge. It does not disclose confidential customer or employer information.",
   },
   {
     slug: "wind-power-forecasting",
