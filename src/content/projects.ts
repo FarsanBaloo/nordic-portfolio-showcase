@@ -610,6 +610,7 @@ export const projects: Project[] = [
         heading: "Product / business perspective",
         body: [
           "Required balancing customer needs, technical feasibility, integration complexity, operational continuity, lifecycle implications and long-term maintainability.",
+          "Leadership relevance: Complex integration required coordination across systems and stakeholders, clear handling of constraints and disciplined technical decision-making in a mission-critical environment.",
         ],
       },
     ],
