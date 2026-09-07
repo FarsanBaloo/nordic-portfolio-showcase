@@ -92,6 +92,16 @@ function CaseStudy() {
         intro={project.subtitle ?? project.teaser}
       >
         <p className="mt-6 max-w-2xl text-sm text-night-muted">{project.org}</p>
+        {project.pitch ? (
+          <div className="philosophy-hero mt-8 max-w-2xl p-7 sm:p-8">
+            <p className="text-balance-tight text-2xl font-semibold leading-snug text-night-foreground sm:text-3xl">
+              {project.pitch.vision}
+            </p>
+            <p className="mt-4 text-[15px] leading-relaxed text-night-body">
+              {project.pitch.explainer}
+            </p>
+          </div>
+        ) : null}
         {project.highlight ? (
           <p className="mt-8 max-w-2xl border-l-2 border-aurora-teal pl-5 text-lg italic leading-relaxed text-night-foreground">
             {project.highlight}
@@ -126,7 +136,16 @@ function CaseStudy() {
               </section>
             ))}
 
-            {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
+            {project.flow ? (
+              <section>
+                <FlowSteps steps={project.flow.steps} label={project.flow.label} />
+                {project.valueTagline ? (
+                  <p className="mt-5 text-lg font-semibold text-foreground">
+                    {project.valueTagline}
+                  </p>
+                ) : null}
+              </section>
+            ) : null}
 
             {project.images?.slots.length ? (
               <section>
@@ -141,6 +160,9 @@ function CaseStudy() {
             {project.reflection ? <Callout label="Reflection">{project.reflection}</Callout> : null}
             {project.contributionNote ? (
               <Callout label="My contribution">{project.contributionNote}</Callout>
+            ) : null}
+            {project.footnote ? (
+              <p className="text-sm leading-relaxed text-muted-foreground">{project.footnote}</p>
             ) : null}
           </article>
 
