@@ -662,6 +662,7 @@ export const projects: Project[] = [
         heading: "Product / innovation perspective",
         body: [
           "The collaboration connected research opportunities with real industrial-platform capabilities and constraints, helping transform ideas into technically feasible applied solutions.",
+          "Collaboration relevance: Worked at the boundary between applied research and real industrial-platform constraints, contributing domain expertise while balancing experimental ambition with what could realistically work in deployed systems.",
         ],
       },
     ],
