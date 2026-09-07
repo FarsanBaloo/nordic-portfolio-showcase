@@ -61,6 +61,12 @@ export type Project = {
   teaser: string;
   tags: string[];
   highlight?: string;
+  /** Prominent product pitch shown above everything else in the hero. */
+  pitch?: { vision: string; explainer: string };
+  /** Short value transformation line shown with the flow sequence. */
+  valueTagline?: string;
+  /** Small context note shown at the end of the case. */
+  footnote?: string;
   sections: CaseSection[];
   flow?: { label: string; steps: string[] };
   metrics?: { label: string; value: string; note?: string }[];
