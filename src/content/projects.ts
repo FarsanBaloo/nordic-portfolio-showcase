@@ -751,8 +751,11 @@ export const projects: Project[] = [
       },
       {
         heading: "Product perspective",
+        quote:
+          "Could agentic AI become a reusable platform capability that helps users make better decisions without hiding uncertainty or operational context?",
         body: [
           "Explored how agentic AI could become a reusable capability inside a smart-building / energy platform rather than merely a standalone chatbot.",
+          "Product relevance: Evaluating not only what the technology could do, but where a reusable capability would create value, what information users would need to trust it, and where human judgement must remain part of the decision.",
         ],
       },
     ],
