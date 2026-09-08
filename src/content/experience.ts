@@ -225,7 +225,7 @@ export const roles: Role[] = [
     period: "2020–2025",
     stage: "Customer-Facing Technical Leadership, Architecture & Business Value",
     summary:
-      "Connected customer and operational needs with digital-platform capabilities, technical feasibility, delivery reality and business value across SCADA, HVAC, IoT, building automation, energy and mission-critical environments.",
+      "Connected customer and operational needs with digital-platform capabilities, technical feasibility, delivery reality and business value across SCADA, HVAC, IoT, building automation, energy and mission-critical environments — making options and trade-offs explicit so customers, delivery teams and stakeholders could decide on a shared direction.",
     bullets: [
       "Led customer-facing technical discovery and solution definition for complex digital-platform initiatives.",
       "Translated customer, operational and project needs into structured technical requirements, alternative architectures and scalable solution designs.",
