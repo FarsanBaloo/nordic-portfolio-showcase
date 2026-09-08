@@ -643,7 +643,7 @@ export const projects: Project[] = [
         heading: "Context",
         body: [
           "KTH Live-In Lab is a research centre and open innovation platform at KTH where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency. It offers full-scale testbeds in real residential buildings, shared data and a structured project process — designed to increase the pace of innovation in the construction and real-estate sector.",
-          "Several test environments were connected to Schneider Electric's EcoStruxure IoT / digital-building platform. My role was to be Schneider Electric's contact at KTH Live-In Lab.",
+          "Several test environments were connected to Schneider Electric's EcoStruxure Building Operation platform — Schneider Electric's software platform for building management, which connects a building's technical systems (HVAC, lighting, energy, sensors and more) into one place for monitoring, control and data. That platform data is what made the lab's smart-building and energy research possible. My role was to be Schneider Electric's contact at KTH Live-In Lab.",
         ],
       },
       {
