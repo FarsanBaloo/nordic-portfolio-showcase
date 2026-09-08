@@ -1251,9 +1251,7 @@ function MilestoneRow({
   // the strip on the rail side without asking which track this is.
   // Declared AFTER `parallel` — a const read one line above its own
   // declaration is a ReferenceError, and this one would blank the whole view.
-  const oppositeSide = !!entry.childrenOppositeSide;
-  const childrenUnderCard =
-    (!!parallel || (!!entry.roleId && !!entry.children?.length)) && !oppositeSide;
+  const childrenUnderCard = !!parallel || (!!entry.roleId && !!entry.children?.length);
   const marker = entry.railMarker;
 
   return (
@@ -1327,23 +1325,6 @@ function MilestoneRow({
               {entry.roleId ? (
                 <div id={panelId}>
                   <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
-                </div>
-              ) : null}
-              {/* preStudyNote stays with the parent card when children are on
-                  the opposite side of the rail. */}
-              {oppositeSide && entry.preStudyNote ? (
-                <div
-                  className="mt-6 border-l pl-4"
-                  style={{
-                    borderColor: `color-mix(in oklab, ${accent} 45%, transparent)`,
-                  }}
-                >
-                  <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
-                    {entry.preStudyNote.label}
-                  </p>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-night-body">
-                    {entry.preStudyNote.body}
-                  </p>
                 </div>
               ) : null}
             </div>
@@ -1506,40 +1487,7 @@ function MilestoneRow({
 
       {childrenUnderCard
         ? null
-        : oppositeSide
-          ? (() => {
-              // childrenOppositeSide: render the children BESIDE the parent card,
-              // in the same grid row (row-start-1) but the opposite column, so the
-              // projects sit directly across the rail instead of 1200px below it.
-              const childOnLeft = isDev;
-              return (
-                <div
-                  className={[
-                    "mt-8 min-w-0 min-[1100px]:mt-0 min-[1100px]:row-start-1",
-                    childOnLeft
-                      ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
-                      : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
-                  ].join(" ")}
-                >
-                  <div
-                    className={
-                      childOnLeft
-                        ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
-                        : "min-[1100px]:max-w-[620px]"
-                    }
-                  >
-                    <ChildColumn
-                      entry={entry}
-                      accent={accent}
-                      side={childOnLeft ? "left" : "right"}
-                      reduced={reduced}
-                      consumedGroups={consumedGroups}
-                    />
-                  </div>
-                </div>
-              );
-            })()
-          : (() => {
+        : (() => {
               // Normal path: dev children render on their own side in row 5,
               // below any phase blocks that sit between the card and them.
               const childOnLeft = !isDev;
