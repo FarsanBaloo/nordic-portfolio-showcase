@@ -518,6 +518,7 @@ export const projects: Project[] = [
         heading: "Product / platform relevance",
         body: [
           "By combining forecasts with uncertainty ranges rather than a single predicted value, planners can make decisions with a clearer understanding of risk.",
+          "Product relevance: The work reinforced that an AI output is only useful when the uncertainty and limitations are presented in a way that supports the user's actual decision.",
         ],
         items: [
           "Demand-side flexibility",
