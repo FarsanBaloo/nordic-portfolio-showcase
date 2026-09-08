@@ -27,7 +27,7 @@ export const roles: Role[] = [
     period: "2003–2013",
     stage: "Customer-Facing Engineering, Technical Responsibility & Delivery",
     summary:
-      "Customer-facing Project Engineer delivering digital-platform, building-automation and connected-system solutions from customer and operational requirements through system design, implementation, integration, commissioning, testing and operational handover.",
+      "Customer-facing Project Engineer where understanding the customer's operational reality came before designing the solution — delivering digital-platform, building-automation and connected-system solutions from requirements through system design, implementation, integration, commissioning, testing and operational handover.",
     bullets: [
       "Worked with property managers, operations technicians, facility teams, project managers and end users to gather and translate operational needs into implementation-ready configurations and system designs.",
       "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations — succeeding together as one delivery team.",
