@@ -618,16 +618,16 @@ export const projects: Project[] = [
   },
   {
     slug: "kth-living-lab",
-    title: "KTH Living Lab",
-    subtitle: "Applied Smart-Building Innovation",
+    title: "KTH Live-In Lab",
+    subtitle: "Open innovation platform for smart buildings and energy",
     org: "Schneider Electric",
-    meta: "Project role: EcoStruxure Subject Matter Expert",
-    type: "Applied Research Collaboration",
+    meta: "Project role: EcoStruxure Subject Matter Expert · Schneider's contact at KTH Live-In Lab",
+    type: "Open Innovation Collaboration",
     priority: 5,
     flagship: true,
     categories: ["Industry", "Innovation", "Academic / Research"],
     teaser:
-      "Connected applied smart-building research with real industrial-platform capabilities and constraints as EcoStruxure subject matter expert.",
+      "Acted as Schneider Electric's contact and EcoStruxure subject matter expert at KTH Live-In Lab — an open innovation platform where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency.",
     tags: [
       "Smart Buildings",
       "IoT",
@@ -635,21 +635,24 @@ export const projects: Project[] = [
       "Energy Efficiency",
       "Platform Capability",
       "Feasibility",
+      "Open Innovation",
+      "Industry-Academia Collaboration",
     ],
     sections: [
       {
         heading: "Context",
         body: [
-          "KTH Living Lab provided full-scale testbeds intended to increase the pace of innovation in the construction and real-estate sector.",
-          "Multiple test environments were connected to Schneider Electric's EcoStruxure IoT / digital-building platform.",
+          "KTH Live-In Lab is a research centre and open innovation platform at KTH where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency. It offers full-scale testbeds in real residential buildings, shared data and a structured project process — designed to increase the pace of innovation in the construction and real-estate sector.",
+          "Several test environments were connected to Schneider Electric's EcoStruxure IoT / digital-building platform. My role was to be Schneider Electric's contact at KTH Live-In Lab.",
         ],
       },
       {
         heading: "Contribution",
         items: [
-          "Represented Schneider Electric in the collaboration",
-          "Worked with KTH researchers and industry partners",
-          "Acted as EcoStruxure platform subject matter expert",
+          "Represented Schneider Electric as one of the centre's industry members and acted as Schneider's contact at KTH Live-In Lab",
+          "Acted as subject matter expert for Schneider Electric's digital building-management platform and its ecosystem",
+          "Worked in cross-disciplinary constellations with KTH researchers and other partner companies",
+          "Helped KTH researchers with technical questions and with the engineering parts needed for their research on sustainable buildings and energy efficiency",
           "Contributed building-automation and digital-platform expertise",
           "Explained what the platform could support and where its constraints were",
           "Assessed what was technically possible",
@@ -664,6 +667,7 @@ export const projects: Project[] = [
         body: [
           "The collaboration connected research opportunities with real industrial-platform capabilities and constraints, helping transform ideas into technically feasible applied solutions.",
           "Collaboration relevance: Worked at the boundary between applied research and real industrial-platform constraints, contributing domain expertise while balancing experimental ambition with what could realistically work in deployed systems.",
+          "Open innovation in practice: value came from combining several organisations' capabilities around a shared testbed, so ideas were assessed against both research ambition and what deployed industrial platforms can actually support.",
         ],
       },
     ],
@@ -692,6 +696,7 @@ export const projects: Project[] = [
     },
     links: [
       { label: "KTH Live-In Lab", href: "https://www.liveinlab.kth.se/en/start-1.1064463" },
+      { label: "Centre and project partners", href: "https://www.liveinlab.kth.se/en/om-kth-live-in-lab/centrum-och-projektpartners-1.965775" },
     ],
   },
   {
