@@ -844,6 +844,12 @@ export const projects: Project[] = [
           "Phased rollout from the pilot theatre to the remaining theatres, leaving the clinical team with a single operational interface they could trust in a mission-critical environment.",
         ],
       },
+      {
+        heading: "Product relevance",
+        body: [
+          "This was not only a technical integration problem. It required understanding how different users worked, reconciling operational and technical constraints, creating confidence in a shared direction and proving the solution before broader rollout.",
+        ],
+      },
     ],
     flow: {
       label: "From discovery to rollout",
