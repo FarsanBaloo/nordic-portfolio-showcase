@@ -133,6 +133,8 @@ export type TimelineMilestone = {
    *  anchored at 2023, and no grid row can put a card between two of its own
    *  groups. */
   cardAfterGroup?: string;
+  /** A quieter card treatment for supporting development milestones. */
+  presentation?: "secondary";
 };
 
 /** Shown once, at the boundary between the two phases of the postgraduate
@@ -148,7 +150,7 @@ export const studyProgression = {
 /** Shown once, as a centered bridge between the two tracks. */
 export const parallelBridge = {
   label: "Parallel professional & academic development",
-  body: "The Senior Technical Advisor role began in 2020 and ran full-time for three years before the Computer Science studies started in 2023; from then the two overlapped in calendar time, with some study periods undertaken during leave of absence.",
+  body: "The Senior Technical Advisor role began in 2020. From 2023, Computer Science and AI studies developed alongside the professional role, adding formal AI, software and human-centred design capabilities to extensive industrial experience.",
   /** Rendered directly UNDER the row with this id — reading newest-first, that
    *  is the position before the milestone it explains. Pointed at the degree
    *  while the degree came first; now that the role does, it names the role,
@@ -228,11 +230,11 @@ export const milestones: TimelineMilestone[] = [
     railMarker: { label: "2023", kind: "major", verified: true },
     period: "2023–2025",
     datePrecision: "verified-range",
-    title: "Computer Science / Intelligent Systems",
+    title: "B.Sc. Computer Science — Intelligent Systems",
     university: "Mälardalen University",
     formalTitle:
       "Degree of Bachelor of Science in Computer Science with Specialization in Intelligent Systems",
-    degreeDescriptor: "B.Sc. in Computer Science · Applied Artificial Intelligence",
+    degreeDescriptor: "AI / Computer Science focus",
     image: {
       src: examenPhoto.url,
       alt: "Rickard Sörlin with thesis colleagues and examiners at Mälardalen University",
@@ -243,8 +245,8 @@ export const milestones: TimelineMilestone[] = [
     track: "development",
     stage: "Applied AI · Human-Centred Design · Research",
     summary:
-      "Bachelor of Science in Computer Science with a specialisation in Intelligent Systems, developed alongside professional employment with periods of leave of absence for studies.",
-    cardAfterGroup: "2025 · Applied AI",
+      "Formal capability in artificial intelligence, software engineering and human-centred design, built on extensive industrial experience.",
+    presentation: "secondary",
     childrenLabel: "Development work",
     children: [
       {
@@ -314,12 +316,6 @@ export const milestones: TimelineMilestone[] = [
     ],
     
 
-    // Full-time for three years before the degree began. Without this the two
-    // cards standing side by side read as parallel from 2020.
-    preStudyNote: {
-      label: "2020–2023 · before the degree studies",
-      body: "Three years full-time in this role before the Computer Science studies began in 2023; from 2023 the degree ran alongside it, with periods of leave of absence.",
-    },
     childrenLabel: "Selected work during this role",
     children: [
       // Newest first, by the year each ended — the same axis the whole page

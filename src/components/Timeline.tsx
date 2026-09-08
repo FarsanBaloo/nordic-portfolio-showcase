@@ -1083,10 +1083,12 @@ function MilestoneCard({
   onToggleRole: (id: string) => void;
   className: string;
 }) {
+  const secondary = entry.presentation === "secondary";
   return (
     <article
       className={[
-        "night-card timeline-card-hover relative rounded-2xl p-5 transition-colors duration-500 hover:z-10 sm:p-6",
+        "night-card timeline-card-hover relative rounded-2xl transition-colors duration-500 hover:z-10",
+        secondary ? "p-4 sm:p-5" : "p-5 sm:p-6",
         className,
       ].join(" ")}
       style={{
@@ -1108,7 +1110,12 @@ function MilestoneCard({
         {entry.period}
         <span className="ml-2 text-night-subtle">· {trackLabel(entry.track)}</span>
       </p>
-      <h3 className="mt-2 font-display text-[24px] font-semibold leading-snug text-night-foreground sm:text-[25px]">
+      <h3
+        className={[
+          "mt-2 font-display font-semibold leading-snug text-night-foreground",
+          secondary ? "text-[20px] sm:text-[22px]" : "text-[24px] sm:text-[25px]",
+        ].join(" ")}
+      >
         {entry.title}
       </h3>
       {entry.university ? (
@@ -1132,10 +1139,17 @@ function MilestoneCard({
           {entry.stage}
         </p>
       ) : null}
-      <p className="mt-3 text-[16.5px] leading-relaxed text-night-body">{entry.summary}</p>
+      <p
+        className={[
+          "mt-3 leading-relaxed text-night-body",
+          secondary ? "text-[15px]" : "text-[16.5px]",
+        ].join(" ")}
+      >
+        {entry.summary}
+      </p>
 
       {entry.image ? (
-        <figure className="mt-5">
+        <figure className={secondary ? "mt-4 sm:max-w-[390px]" : "mt-5"}>
           <div className="overflow-hidden rounded-xl border border-night-border/70">
             <img
               src={entry.image.src}
@@ -1302,6 +1316,8 @@ function MilestoneRow({
             className={
               spansBothColumns
                 ? "min-[1100px]:mx-auto min-[1100px]:max-w-[720px]"
+                  : entry.presentation === "secondary"
+                    ? "min-[1100px]:max-w-[500px]"
                 : isDev
                   ? "min-[1100px]:max-w-[620px]"
                   : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
