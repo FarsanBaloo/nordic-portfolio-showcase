@@ -1206,7 +1206,7 @@ function MilestoneCard({
             onClick={() => onToggleRole(entry.roleId!)}
             className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium text-aurora-teal transition-opacity hover:opacity-80"
           >
-            {open ? "Hide role evidence" : "Explore role evidence"}
+            {open ? "Show less" : "Read more"}
             <span aria-hidden="true">{open ? "↑" : "↓"}</span>
           </button>
         </div>
