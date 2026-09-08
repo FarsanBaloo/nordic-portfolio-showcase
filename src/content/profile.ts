@@ -14,7 +14,7 @@ export const profile = {
   positioning:
     "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
-    "I bridge engineering and business — applied AI, software and platform engineering on one side, product and commercial reality on the other — grounded in deep domain knowledge of IoT and IIoT.",
+    "Bringing together 25 years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
   heroPrimary:
     "Every good product starts the same way: with the person who has the problem, the job they are actually trying to get done, and the people the solution has to work for. Finding that is what I do.",
   heroSupporting:
@@ -57,7 +57,7 @@ export const aboutParagraphs = [
 ];
 
 export const productPhilosophy =
-  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs out loud: for the customer, for engineering, and for the business. And no product is built alone — the best solutions come from teams that welcome different perspectives and deliver together.";
+  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs visible: for the customer, for engineering and for the business. No product is built alone. The best solutions emerge when different perspectives are heard, challenged constructively and brought together around a shared direction.";
 
 
 export const whatIBring = [
@@ -82,8 +82,32 @@ export const whatIBring = [
     body: "Hands-on work spanning RAG, Generative AI, forecasting, agentic AI, Interaction Design, prototyping, user testing and accessibility — validated with real users and real data.",
   },
   {
-    title: "Team Spirit & People",
-    body: "A team player driven by solving and delivering together — embracing different perspectives, disciplines and backgrounds. Years of front-line support taught me to listen first and adapt guidance to each person's needs.",
+    title: "Collaboration & Influence",
+    body: "Works by listening first, creating clarity from different perspectives and building alignment around the problem and the trade-offs. Experience across customers, field teams, Product Owners, engineering and R&D has required adapting communication to different audiences, influencing without relying on formal authority, and helping teams move from complex discussion toward practical decisions.",
+  },
+];
+
+/** Compact working principles shown on the About page after "What I bring". */
+export const howIWork = [
+  {
+    title: "Listen before defining",
+    body: "Understand the user's operational reality and the job that needs to be done before discussing features or technology.",
+  },
+  {
+    title: "Create clarity from complexity",
+    body: "Turn customer, business and technical input into understandable problems, options and priorities.",
+  },
+  {
+    title: "Build alignment",
+    body: "Bring customer, product, engineering and business perspectives together and make the trade-offs visible.",
+  },
+  {
+    title: "Influence through evidence",
+    body: "Use customer impact, operational consequences, technical feasibility and business value to build support for decisions rather than relying on formal authority.",
+  },
+  {
+    title: "Make technology serve the problem",
+    body: "Start with the user and the outcome, then determine whether AI, automation or another technical approach is actually justified.",
   },
 ];
 
@@ -102,7 +126,7 @@ export const journeyNarrative = {
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "That is what I bring to an AI product role: I start with the customer's problem — and I know the pains on both sides of the table, the users who live with the result and the teams who have to build and run it. And I know solutions are delivered together, by teams that embrace different perspectives.",
+    "That is what I bring to an AI product role: I start with the customer's problem — and I understand both sides of the table, the people who live with the result and the teams who have to build, deliver and support it. I listen before defining, make competing needs and trade-offs visible, and work across disciplines to create a direction people can understand and contribute to. I believe strongly that the best solutions are shaped together, when different perspectives are heard, challenged and brought into a shared direction.",
 };
 
 
@@ -110,19 +134,19 @@ export const journeyNarrative = {
 export const careerLens = [
   {
     title: "Customer & Business",
-    items: ["Customer Discovery", "Jobs to Be Done", "Stakeholder Pains", "Business Value"],
+    items: ["Customer Discovery", "Jobs to Be Done", "Problem Validation", "Business Value"],
   },
   {
-    title: "Product & Lifecycle",
-    items: ["Problem Validation", "Requirements", "Product Feedback", "Prioritisation"],
+    title: "Product & Strategy",
+    items: ["Product Vision", "Requirements / PRD", "Prioritisation", "Product Strategy"],
   },
   {
-    title: "Technology & Delivery",
-    items: ["Architecture", "Technical Feasibility", "Integration", "End-to-End Ownership"],
+    title: "Lifecycle & Collaboration",
+    items: ["Product Feedback", "Roadmap Input", "Release Readiness", "Stakeholder Alignment"],
   },
   {
-    title: "AI & Human-Centred Design",
-    items: ["Applied AI", "Product Discovery", "Interaction Design", "User Validation"],
+    title: "Technology & Human-Centred AI",
+    items: ["Technical Feasibility", "Architecture", "Applied AI", "User Validation"],
   },
 ];
 

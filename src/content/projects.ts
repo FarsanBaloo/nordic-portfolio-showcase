@@ -518,6 +518,7 @@ export const projects: Project[] = [
         heading: "Product / platform relevance",
         body: [
           "By combining forecasts with uncertainty ranges rather than a single predicted value, planners can make decisions with a clearer understanding of risk.",
+          "Product relevance: The work reinforced that an AI output is only useful when the uncertainty and limitations are presented in a way that supports the user's actual decision.",
         ],
         items: [
           "Demand-side flexibility",
@@ -844,6 +845,12 @@ export const projects: Project[] = [
           "Phased rollout from the pilot theatre to the remaining theatres, leaving the clinical team with a single operational interface they could trust in a mission-critical environment.",
         ],
       },
+      {
+        heading: "Product relevance",
+        body: [
+          "This was not only a technical integration problem. It required understanding how different users worked, reconciling operational and technical constraints, creating confidence in a shared direction and proving the solution before broader rollout.",
+        ],
+      },
     ],
     flow: {
       label: "From discovery to rollout",
@@ -937,6 +944,7 @@ export const projects: Project[] = [
         heading: "Product perspective",
         body: [
           "Demonstrates the shift from repeatedly solving individual customer problems toward turning recurring field needs into reusable platform functionality.",
+          "Product relevance: Recurring needs observed across customer environments were turned into a repeatable capability rather than solved as isolated one-off issues — combining operational insight, standardisation, reuse and deployment practicality.",
         ],
       },
     ],
