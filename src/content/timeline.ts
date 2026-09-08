@@ -304,6 +304,7 @@ export const milestones: TimelineMilestone[] = [
       "Where customer, technology and business meet — leading discovery and the trade-offs behind feasible, scalable solutions.",
     overviewBullets: [
       "Led customer-facing technical discovery — translated customer, operational and project needs into structured requirements, alternative architectures and product / solution options.",
+      "Developed and presented complex technical solution proposals to management, sales and customer stakeholders — translating operational requirements and technical constraints into clear options and trade-offs.",
       "Held end-to-end technical ownership — influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
       "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture.",
       "Contributed domain expertise at KTH Living Lab as Schneider's contact and EcoStruxure subject matter expert.",
@@ -316,6 +317,7 @@ export const milestones: TimelineMilestone[] = [
       "Technical-Commercial Trade-offs",
       "Mission-Critical Delivery",
       "Technical Leadership",
+      "Stakeholder Alignment",
     ],
     
 
