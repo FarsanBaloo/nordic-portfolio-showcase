@@ -82,8 +82,32 @@ export const whatIBring = [
     body: "Hands-on work spanning RAG, Generative AI, forecasting, agentic AI, Interaction Design, prototyping, user testing and accessibility — validated with real users and real data.",
   },
   {
-    title: "Team Spirit & People",
-    body: "A team player driven by solving and delivering together — embracing different perspectives, disciplines and backgrounds. Years of front-line support taught me to listen first and adapt guidance to each person's needs.",
+    title: "Collaboration & Influence",
+    body: "Works by listening first, creating clarity from different perspectives and building alignment around the problem and the trade-offs. Experience across customers, field teams, Product Owners, engineering and R&D has required adapting communication to different audiences, influencing without relying on formal authority, and helping teams move from complex discussion toward practical decisions.",
+  },
+];
+
+/** Compact working principles shown on the About page after "What I bring". */
+export const howIWork = [
+  {
+    title: "Listen before defining",
+    body: "Understand the user's operational reality and the job that needs to be done before discussing features or technology.",
+  },
+  {
+    title: "Create clarity from complexity",
+    body: "Turn customer, business and technical input into understandable problems, options and priorities.",
+  },
+  {
+    title: "Build alignment",
+    body: "Bring customer, product, engineering and business perspectives together and make the trade-offs visible.",
+  },
+  {
+    title: "Influence through evidence",
+    body: "Use customer impact, operational consequences, technical feasibility and business value to build support for decisions rather than relying on formal authority.",
+  },
+  {
+    title: "Make technology serve the problem",
+    body: "Start with the user and the outcome, then determine whether AI, automation or another technical approach is actually justified.",
   },
 ];
 
