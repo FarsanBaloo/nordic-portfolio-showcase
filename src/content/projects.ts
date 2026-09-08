@@ -324,7 +324,7 @@ export const projects: Project[] = [
         heading: "Whom",
         body: [
           "Building operators, facility managers, energy managers and technical teams responsible for understanding and improving building performance.",
-          "These users have very different levels of HVAC/BMS depth, and deep diagnostic expertise is scarce — complex cross-system investigation often depends on a small number of specialists.",
+          "These users have very different levels of HVAC/BMS depth, and deep diagnostic expertise may be limited or concentrated among a small number of specialists.",
         ],
       },
       {
@@ -338,7 +338,7 @@ export const projects: Project[] = [
           "Relationships that cross several systems",
           "Large amounts of operational data",
           "Difficulty identifying root causes",
-          "Dependency on scarce specialist domain knowledge",
+          "Dependency on limited specialist domain knowledge",
         ],
       },
       {
@@ -358,7 +358,7 @@ export const projects: Project[] = [
         body: ["The concept aims to support:"],
         items: [
           "Faster investigation of energy deviations",
-          "Reduced dependency on scarce specialist knowledge",
+          "Reduced dependency on limited specialist knowledge",
           "More understandable building behaviour",
           "More actionable operational data",
           "Better-informed energy decisions",
