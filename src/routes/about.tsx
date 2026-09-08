@@ -123,6 +123,19 @@ function AboutPage() {
         </Section>
 
         <Section>
+          <SectionHeading eyebrow="Principles" title="How I work" />
+          <ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {howIWork.map((item, i) => (
+              <li key={item.title} className="rounded-xl border border-border bg-card p-6">
+                <p className="font-mono text-xs text-primary">{String(i + 1).padStart(2, "0")}</p>
+                <h2 className="mt-2 text-base font-semibold">{item.title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section>
           <SectionHeading eyebrow="Focus" title="Target roles and core areas" />
           <div className="mt-6">
             <TagList items={profile.targetRoles} />
