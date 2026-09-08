@@ -585,16 +585,11 @@ function CaseTrackCard({
         </ul>
       ) : null}
 
-      <div className="mt-4">
-        <ProjectEvidenceSheet project={project} period={child.period}>
-          <button
-            type="button"
-            className="inline-flex min-h-[44px] items-center gap-2 text-[14.5px] font-medium transition-opacity hover:opacity-80"
-            style={{ color: accent }}
-          >
-            Open case study <span aria-hidden="true">→</span>
-          </button>
-        </ProjectEvidenceSheet>
+      {/* The full case study is this card's body — open by default, no sheet,
+          because Talking SCADA is the main product-management proof and the
+          card stretches the whole phase down to the progression band. */}
+      <div className="mt-6 border-t border-night-border/50 pt-6">
+        <CaseStudyBody project={project} bare />
       </div>
     </div>
   );
@@ -611,6 +606,7 @@ function PhaseBlock({
   reduced,
   promoteParent = true,
   side,
+  sideSticky = true,
 }: {
   group: { title?: string | undefined; items: TimelineChild[] };
   accent: string;
@@ -619,6 +615,9 @@ function PhaseBlock({
    *  no such parent, and promoting its first course would invent one. */
   promoteParent?: boolean;
   side?: ((activeCourse: string | null) => React.ReactNode) | undefined;
+  /** Sticky suits a short side card; the open continuous case is deliberately
+   *  tall and must scroll with the page instead of pinning to the viewport. */
+  sideSticky?: boolean;
 }) {
   const [activeCourse, setActiveCourse] = useState<string | null>(null);
   const parent = promoteParent
