@@ -7,7 +7,6 @@ import {
   availability,
   careerLens,
   journeyNarrative,
-  productPhilosophy,
   profile,
 } from "../content/profile";
 import { sortedProjects } from "../content/projects";
