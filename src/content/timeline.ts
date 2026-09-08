@@ -597,7 +597,7 @@ export const projectRoleContext: Record<
   },
   "kth-living-lab": {
     label: "My role",
-    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: platform subject-matter expertise supporting applied smart-building research and data-driven experimentation.",
+    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: Schneider's contact at KTH Live-In Lab and EcoStruxure subject matter expert — supporting KTH researchers with technical questions and engineering for their research on sustainable buildings and energy efficiency.",
   },
   "st-eriks": {
     label: "My role",
