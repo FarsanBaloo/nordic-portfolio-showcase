@@ -110,19 +110,19 @@ export const journeyNarrative = {
 export const careerLens = [
   {
     title: "Customer & Business",
-    items: ["Customer Discovery", "Jobs to Be Done", "Stakeholder Pains", "Business Value"],
+    items: ["Customer Discovery", "Jobs to Be Done", "Problem Validation", "Business Value"],
   },
   {
-    title: "Product & Lifecycle",
-    items: ["Problem Validation", "Requirements", "Product Feedback", "Prioritisation"],
+    title: "Product & Strategy",
+    items: ["Product Vision", "Requirements / PRD", "Prioritisation", "Product Strategy"],
   },
   {
-    title: "Technology & Delivery",
-    items: ["Architecture", "Technical Feasibility", "Integration", "End-to-End Ownership"],
+    title: "Lifecycle & Collaboration",
+    items: ["Product Feedback", "Roadmap Input", "Release Readiness", "Stakeholder Alignment"],
   },
   {
-    title: "AI & Human-Centred Design",
-    items: ["Applied AI", "Product Discovery", "Interaction Design", "User Validation"],
+    title: "Technology & Human-Centred AI",
+    items: ["Technical Feasibility", "Architecture", "Applied AI", "User Validation"],
   },
 ];
 
