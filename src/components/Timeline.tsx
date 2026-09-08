@@ -1504,26 +1504,31 @@ function MilestoneRow({
         </div>
       ) : null}
 
-      {childrenUnderCard ? null : (
+      {childrenUnderCard ? null : (() => {
+          // childrenOppositeSide swaps the column: professional children go
+          // right (col-start-3), dev children go left (col-start-1). The
+          // normal path keeps each track's children on its own side.
+          const childOnLeft = oppositeSide ? isDev : !isDev;
+          return (
         <div
           className={[
             "min-w-0 min-[1100px]:row-start-5",
-            isDev
-              ? "min-[1100px]:col-start-3 min-[1100px]:pl-10"
-              : "min-[1100px]:col-start-1 min-[1100px]:pr-10",
+            childOnLeft
+              ? "min-[1100px]:col-start-1 min-[1100px]:pr-10"
+              : "min-[1100px]:col-start-3 min-[1100px]:pl-10",
           ].join(" ")}
         >
           <div
             className={
-              isDev
-                ? "min-[1100px]:max-w-[620px]"
-                : "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+              childOnLeft
+                ? "min-[1100px]:ml-auto min-[1100px]:max-w-[620px]"
+                : "min-[1100px]:max-w-[620px]"
             }
           >
             <ChildColumn
               entry={entry}
               accent={accent}
-              side={isDev ? "right" : "left"}
+              side={childOnLeft ? "left" : "right"}
               reduced={reduced}
               consumedGroups={consumedGroups}
               {...(entry.cardAfterGroup
@@ -1547,7 +1552,8 @@ function MilestoneRow({
             />
           </div>
         </div>
-      )}
+          );
+      })()}
 
     </li>
   );
