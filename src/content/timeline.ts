@@ -570,8 +570,8 @@ export const milestones: TimelineMilestone[] = [
           "Technical Feasibility",
           "Adoption Considerations",
         ],
+      },
     ],
-
   },
   {
     id: "now",

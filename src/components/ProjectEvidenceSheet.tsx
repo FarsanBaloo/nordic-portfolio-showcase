@@ -11,14 +11,18 @@ import { projectRoleContext } from "../content/timeline";
 export function CaseStudyBody({
   project,
   period,
+  bare = false,
 }: {
   project: Project;
   period?: string | undefined;
+  /** Skip the title/org header when the surrounding card already carries it. */
+  bare?: boolean;
 }) {
   const role = projectRoleContext[project.slug];
 
   return (
     <div className="space-y-8">
+      {bare ? null : (
       <header className="space-y-3">
         <p className="font-mono text-[12px] uppercase leading-relaxed tracking-[0.11em] text-aurora-teal">
           {project.type}
@@ -39,6 +43,7 @@ export function CaseStudyBody({
           </p>
         ) : null}
       </header>
+      )}
 
       {role ? (
         <section className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">
@@ -73,15 +78,16 @@ export function CaseStudyBody({
 
       {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
 
-      {project.images?.slots.some((slot) => slot.src) ? (
-        <section>
-          <Eyebrow>Images</Eyebrow>
-          <ImageGallery
-            slots={project.images.slots.filter((slot) => slot.src)}
-            className="mt-4 grid gap-5 sm:grid-cols-2"
-          />
-        </section>
-      ) : null}
+      {(() => {
+        // In bare (inline) mode the surrounding card already shows the lead image.
+        const slots = project.images?.slots.filter((slot) => slot.src && !(bare && slot.lead));
+        return slots?.length ? (
+          <section>
+            <Eyebrow>Images</Eyebrow>
+            <ImageGallery slots={slots} className="mt-4 grid gap-5 sm:grid-cols-2" />
+          </section>
+        ) : null;
+      })()}
 
 
       {project.metrics?.length ? (
