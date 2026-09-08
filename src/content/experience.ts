@@ -329,6 +329,10 @@ export const roles: Role[] = [
         label: "Risk reduction",
         body: "Identified integration constraints, technical dependencies and long-term consequences early in order to reduce delivery risk, lifecycle risk and avoid unnecessary cost.",
       },
+      {
+        label: "Solution development & presentation",
+        body: "Developed and presented technical solution proposals for complex customer environments — translating operational requirements and technical constraints into clear options and trade-offs, and aligning internal management, sales and customer stakeholders around a shared direction.",
+      },
     ],
     flow: [
       "Customer Need",
