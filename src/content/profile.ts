@@ -14,7 +14,7 @@ export const profile = {
   positioning:
     "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
-    "I bridge engineering and business — applied AI, software and platform engineering on one side, product and commercial reality on the other — grounded in deep domain knowledge of IoT and IIoT.",
+    "Bringing together 25 years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
   heroPrimary:
     "Every good product starts the same way: with the person who has the problem, the job they are actually trying to get done, and the people the solution has to work for. Finding that is what I do.",
   heroSupporting:
