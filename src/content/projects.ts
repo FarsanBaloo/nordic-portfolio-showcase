@@ -627,7 +627,7 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["Industry", "Innovation", "Academic / Research"],
     teaser:
-      "Acted as Schneider Electric's contact and EcoStruxure subject matter expert at KTH Live-In Lab — an open innovation platform where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency.",
+      "KTH Live-In Lab is an open innovation platform where industry partners, KTH researchers and universities collaborate on sustainable buildings and energy through full-scale residential testbeds. Acted as Schneider Electric's contact and subject matter expert for EcoStruxure — Schneider Electric's building-management software that connects a building's technical systems (HVAC, lighting, energy, sensors) into one place — supporting researchers with technical questions and engineering.",
     tags: [
       "Smart Buildings",
       "IoT",
