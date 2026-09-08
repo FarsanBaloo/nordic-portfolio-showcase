@@ -7,7 +7,6 @@ import {
   availability,
   careerLens,
   journeyNarrative,
-  productPhilosophy,
   profile,
 } from "../content/profile";
 import { sortedProjects } from "../content/projects";
@@ -204,24 +203,6 @@ function Index() {
               ))}
             </div>
 
-            <figure className="philosophy-hero mt-14 p-8 sm:p-10">
-              <span
-                aria-hidden="true"
-                className="philosophy-quote-mark block text-6xl font-semibold"
-              >
-                “
-              </span>
-              <figcaption className="mb-2 flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.11em] text-night-muted">
-                <span
-                  aria-hidden="true"
-                  className="h-px w-8 bg-gradient-to-r from-aurora-teal to-aurora-violet"
-                />
-                Product philosophy
-              </figcaption>
-              <p className="text-balance-tight text-[16px] leading-relaxed text-night-body sm:text-lg">
-                {productPhilosophy}
-              </p>
-            </figure>
           </div>
         </div>
       </section>
