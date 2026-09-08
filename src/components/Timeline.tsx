@@ -10,7 +10,7 @@ import {
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
-import { ProjectEvidenceSheet } from "./ProjectEvidenceSheet";
+import { CaseStudyBody, ProjectEvidenceSheet } from "./ProjectEvidenceSheet";
 import {
   milestones,
   parallelBridge,
@@ -671,7 +671,13 @@ function PhaseBlock({
         <div className="hidden min-[1100px]:col-start-2 min-[1100px]:block" />
 
         {side ? (
-          <div className="min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1280px]:sticky min-[1280px]:top-[110px]">
+          <div
+            className={
+              sideSticky
+                ? "min-w-0 min-[1100px]:col-start-3 min-[1100px]:self-start min-[1100px]:pl-10 min-[1280px]:sticky min-[1280px]:top-[110px]"
+                : "min-w-0 min-[1100px]:col-start-3 min-[1100px]:pl-10"
+            }
+          >
             <div className="min-[1280px]:min-w-[480px] min-[1280px]:max-w-[560px]">
               {side(activeCourse)}
             </div>
@@ -1445,6 +1451,7 @@ function MilestoneRow({
             group={phase2}
             accent={accent}
             reduced={reduced}
+            sideSticky={false}
             side={
               caseChild
                 ? (activeCourse) => (
