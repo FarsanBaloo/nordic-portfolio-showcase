@@ -103,22 +103,6 @@ function Index() {
             ))}
           </ol>
 
-          <div className="mt-10 rounded-xl border border-night-border bg-white/5 p-6">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-night-muted">
-              Target / focus roles
-            </p>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {profile.targetRoles.map((role) => (
-                <li
-                  key={role}
-                  className="rounded-full border border-night-border px-3 py-1 text-sm text-night-foreground"
-                >
-                  {role}
-                </li>
-              ))}
-            </ul>
-          </div>
-
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/projects"
