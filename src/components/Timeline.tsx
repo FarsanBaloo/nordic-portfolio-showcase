@@ -1251,9 +1251,7 @@ function MilestoneRow({
   // the strip on the rail side without asking which track this is.
   // Declared AFTER `parallel` — a const read one line above its own
   // declaration is a ReferenceError, and this one would blank the whole view.
-  const oppositeSide = !!entry.childrenOppositeSide;
-  const childrenUnderCard =
-    (!!parallel || (!!entry.roleId && !!entry.children?.length)) && !oppositeSide;
+  const childrenUnderCard = !!parallel || (!!entry.roleId && !!entry.children?.length);
   const marker = entry.railMarker;
 
   return (
