@@ -570,13 +570,6 @@ export const milestones: TimelineMilestone[] = [
           "Technical Feasibility",
           "Adoption Considerations",
         ],
-      },
-      {
-        kind: "project",
-        slug: "multi-agent-ai",
-        datePrecision: "phase",
-        group: "AI platform / product concept",
-      },
     ],
 
   },
@@ -625,10 +618,6 @@ export const projectRoleContext: Record<
   "talking-scada": {
     label: "My focus",
     body: "Took an innovation opportunity through product discovery, requirements, MVP definition, product strategy and business-model thinking for AI-enabled SCADA/BMS operations.",
-  },
-  "multi-agent-ai": {
-    label: "My focus",
-    body: "Explored agentic AI as a reusable smart-building platform capability, connecting operator needs, data availability, technical feasibility and operational value.",
   },
   "planet-resande": {
     label: "My focus",
