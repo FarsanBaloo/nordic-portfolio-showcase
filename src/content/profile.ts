@@ -57,7 +57,7 @@ export const aboutParagraphs = [
 ];
 
 export const productPhilosophy =
-  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs out loud: for the customer, for engineering, and for the business. And no product is built alone — the best solutions come from teams that welcome different perspectives and deliver together.";
+  "A product succeeds when it does the job the customer actually has — for the people who actually use it. That means finding the pain before the solution, being honest about what the data can support, respecting how people work, and making the trade-offs visible: for the customer, for engineering and for the business. No product is built alone. The best solutions emerge when different perspectives are heard, challenged constructively and brought together around a shared direction.";
 
 
 export const whatIBring = [
