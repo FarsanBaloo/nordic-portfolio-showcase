@@ -943,6 +943,7 @@ export const projects: Project[] = [
         heading: "Product perspective",
         body: [
           "Demonstrates the shift from repeatedly solving individual customer problems toward turning recurring field needs into reusable platform functionality.",
+          "Product relevance: Recurring needs observed across customer environments were turned into a repeatable capability rather than solved as isolated one-off issues — combining operational insight, standardisation, reuse and deployment practicality.",
         ],
       },
     ],
