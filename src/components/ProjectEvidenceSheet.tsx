@@ -11,14 +11,18 @@ import { projectRoleContext } from "../content/timeline";
 export function CaseStudyBody({
   project,
   period,
+  bare = false,
 }: {
   project: Project;
   period?: string | undefined;
+  /** Skip the title/org header when the surrounding card already carries it. */
+  bare?: boolean;
 }) {
   const role = projectRoleContext[project.slug];
 
   return (
     <div className="space-y-8">
+      {bare ? null : (
       <header className="space-y-3">
         <p className="font-mono text-[12px] uppercase leading-relaxed tracking-[0.11em] text-aurora-teal">
           {project.type}
@@ -39,6 +43,7 @@ export function CaseStudyBody({
           </p>
         ) : null}
       </header>
+      )}
 
       {role ? (
         <section className="rounded-xl border border-night-border/60 bg-white/[0.04] p-5">
