@@ -228,12 +228,13 @@ export const roles: Role[] = [
       "Connected customer and operational needs with digital-platform capabilities, technical feasibility, delivery reality and business value across SCADA, HVAC, IoT, building automation, energy and mission-critical environments — making options and trade-offs explicit so customers, delivery teams and stakeholders could decide on a shared direction.",
     bullets: [
       "Led customer-facing technical discovery and solution definition for complex digital-platform initiatives.",
-      "Translated customer, operational and project needs into structured technical requirements, alternative architectures and scalable solution designs.",
+      "Developed and presented technical solution proposals for complex healthcare, pharmaceutical and other mission-critical environments to internal management, sales and customer stakeholders, translating operational requirements and technical constraints into clear solution options and trade-offs.",
       "Held end-to-end technical ownership from problem definition and requirements through architecture, integration, validation and delivery.",
       "Provided informal technical leadership — guiding engineering teams, peers and stakeholders toward sound technical direction through influence, mentorship and trusted authority rather than formal line management.",
-      "Worked across customers, sales, engineering and management to evaluate product and solution options while balancing lifecycle risk, technical feasibility, cost and commercial value — embracing different perspectives across disciplines to reach solutions the whole team could stand behind.",
+      "Worked cross-functionally with engineering, sales, management, customers and external stakeholders to align requirements, technical feasibility, delivery constraints and solution direction.",
       "Influenced technical prioritisation, solution direction, product selection and architectural trade-offs by balancing customer value, integration risk, scalability, reliability and operational constraints.",
       "Delivered mission-critical digital-platform integrations across data-centre, pharmaceutical and healthcare environments, including consolidating multiple systems into a unified HMI and edge-based architecture.",
+      "Translated operational workflows into user-facing digital control concepts, integrating HVAC, lighting, video and other building systems into coherent web-based interfaces.",
       "Represented Schneider Electric in KTH Living Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
       "Mentored technical teams in platform capabilities, system integration, solution design and technical constraints, improving consistency, scalability, maintainability and delivery quality.",
     ],
@@ -249,6 +250,15 @@ export const roles: Role[] = [
           "Operational constraints",
           "Platform capabilities and integration options",
           "Technical feasibility and business value",
+        ],
+      },
+      {
+        title: "Solution development & stakeholder presentation",
+        items: [
+          "Solution proposals for healthcare, pharmaceutical and mission-critical environments",
+          "Technical presentations to management, sales and customer stakeholders",
+          "Requirements translation into solution options and trade-offs",
+          "Cross-functional alignment across engineering, sales, management, customers and external stakeholders",
         ],
       },
       {
@@ -318,6 +328,10 @@ export const roles: Role[] = [
       {
         label: "Risk reduction",
         body: "Identified integration constraints, technical dependencies and long-term consequences early in order to reduce delivery risk, lifecycle risk and avoid unnecessary cost.",
+      },
+      {
+        label: "Solution development & presentation",
+        body: "Developed and presented technical solution proposals for complex customer environments — translating operational requirements and technical constraints into clear options and trade-offs, and aligning internal management, sales and customer stakeholders around a shared direction.",
       },
     ],
     flow: [
