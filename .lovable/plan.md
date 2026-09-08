@@ -10,7 +10,7 @@ The case currently reads as a generic "applied research collaboration". Public i
 
 2. Context section — rewrite to describe what the platform actually is: a KTH research centre and open innovation platform where industry partners, KTH researchers and other universities collaborate around full-scale testbeds in real residential buildings, with shared data and a structured project process. Keep the existing fact that testbed environments were connected to Schneider Electric's EcoStruxure IoT / digital-building platform.
 
-3. Contribution — keep every existing bullet (all factual), and make the open-innovation nature explicit: represented Schneider Electric as one of the centre's industry members, worked in cross-disciplinary constellations with KTH researchers and other partner companies.
+3. Contribution — keep every existing bullet (all factual), and make the open-innovation nature explicit: represented Schneider Electric as one of the centre's industry members, acted as subject matter expert for Schneider Electric's digital building-management platform and its ecosystem, supported KTH researchers with technical questions and with the engineering parts needed for their research on sustainable buildings and energy efficiency, and worked in cross-disciplinary constellations with KTH researchers and other partner companies.
 
 4. Product / innovation perspective — keep the existing two paragraphs, and add one sentence on what open innovation meant in practice: value came from combining several organisations' capabilities around a shared testbed, so ideas were assessed against both research ambition and what deployed industrial platforms can actually support.
 
