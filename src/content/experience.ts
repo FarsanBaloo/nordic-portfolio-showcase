@@ -253,6 +253,15 @@ export const roles: Role[] = [
         ],
       },
       {
+        title: "Solution development & stakeholder presentation",
+        items: [
+          "Solution proposals for healthcare, pharmaceutical and mission-critical environments",
+          "Technical presentations to management, sales and customer stakeholders",
+          "Requirements translation into solution options and trade-offs",
+          "Cross-functional alignment across engineering, sales, management, customers and external stakeholders",
+        ],
+      },
+      {
         title: "Architecture & technical ownership",
         items: [
           "Structured technical requirements",
