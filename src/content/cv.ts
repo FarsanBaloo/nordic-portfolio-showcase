@@ -89,18 +89,6 @@ export const cvSummary = [
 
 export const cvProjects = [
   {
-    title: "Multi-Agent AI Decision Support for Smart Building Platforms",
-    org: "Blekinge Institute of Technology (BTH)",
-    slug: "multi-agent-decision-support",
-    body: "Designed a multi-agent AI decision support concept for smart building and energy systems, translating real operator needs into platform capabilities for troubleshooting, root-cause analysis and energy optimisation.",
-    bullets: [
-      "Identified user problems around limited system visibility, manual troubleshooting and fragmented operational knowledge.",
-      "Designed a planner-based multi-agent architecture with six specialised agents for data retrieval, tool use and grounded answer generation.",
-      "Connected user needs, data availability, technical feasibility and operational value into a scalable AI-enabled platform concept.",
-    ],
-    tech: "LangGraph, LangChain, LangSmith, OpenAI/Anthropic APIs, GraphRAG, knowledge graphs, time-series data, ontology-based context.",
-  },
-  {
     title: "AI-Powered Troubleshooting Assistant",
     org: "Mälardalens Industrial Technology Center (MITC)",
     slug: "talking-systems",
