@@ -650,7 +650,7 @@ export const projects: Project[] = [
         heading: "Contribution",
         items: [
           "Represented Schneider Electric as one of the centre's industry members and acted as Schneider's contact at KTH Live-In Lab",
-          "Acted as subject matter expert for Schneider Electric's digital building-management platform and its ecosystem",
+          "Acted as subject matter expert for Schneider Electric's EcoStruxure Building Operation platform — the building-management software that monitors, controls and collects data from a building's technical systems — and its ecosystem",
           "Worked in cross-disciplinary constellations with KTH researchers and other partner companies",
           "Helped KTH researchers with technical questions and with the engineering parts needed for their research on sustainable buildings and energy efficiency",
           "Contributed building-automation and digital-platform expertise",
@@ -697,6 +697,7 @@ export const projects: Project[] = [
     links: [
       { label: "KTH Live-In Lab", href: "https://www.liveinlab.kth.se/en/start-1.1064463" },
       { label: "Centre and project partners", href: "https://www.liveinlab.kth.se/en/om-kth-live-in-lab/centrum-och-projektpartners-1.965775" },
+      { label: "Video: What is EcoStruxure Building Operation?", href: "https://www.youtube.com/watch?v=ieNdW6uAX_4" },
     ],
   },
   {
