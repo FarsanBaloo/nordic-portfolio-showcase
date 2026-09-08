@@ -168,8 +168,24 @@
     0 0 28px -4px color-mix(in oklab, var(--card-accent, #fff) 55%, transparent),
     0 26px 70px -22px color-mix(in oklab, var(--card-accent, #fff) 85%, transparent);
 }
+/* Large cards (e.g. the inline Talking SCADA case track) span several rows,
+   so a scale transform would overlap the boxes before and after. They get a
+   subtle lift with the same border/glow instead. */
+.timeline-card-hover-lg {
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+.timeline-card-hover-lg:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--card-accent, #fff) 70%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--card-accent, #fff) 35%, transparent),
+    0 0 28px -4px color-mix(in oklab, var(--card-accent, #fff) 55%, transparent),
+    0 26px 70px -22px color-mix(in oklab, var(--card-accent, #fff) 85%, transparent);
+}
 @media (prefers-reduced-motion: reduce) {
-  .timeline-card-hover:hover {
+  .timeline-card-hover:hover,
+  .timeline-card-hover-lg:hover {
     transform: none;
   }
 }
