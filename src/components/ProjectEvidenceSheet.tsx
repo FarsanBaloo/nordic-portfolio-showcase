@@ -78,15 +78,16 @@ export function CaseStudyBody({
 
       {project.flow ? <FlowSteps steps={project.flow.steps} label={project.flow.label} /> : null}
 
-      {project.images?.slots.some((slot) => slot.src) ? (
-        <section>
-          <Eyebrow>Images</Eyebrow>
-          <ImageGallery
-            slots={project.images.slots.filter((slot) => slot.src)}
-            className="mt-4 grid gap-5 sm:grid-cols-2"
-          />
-        </section>
-      ) : null}
+      {(() => {
+        // In bare (inline) mode the surrounding card already shows the lead image.
+        const slots = project.images?.slots.filter((slot) => slot.src && !(bare && slot.lead));
+        return slots?.length ? (
+          <section>
+            <Eyebrow>Images</Eyebrow>
+            <ImageGallery slots={slots} className="mt-4 grid gap-5 sm:grid-cols-2" />
+          </section>
+        ) : null;
+      })()}
 
 
       {project.metrics?.length ? (
