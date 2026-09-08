@@ -696,6 +696,7 @@ export const projects: Project[] = [
     },
     links: [
       { label: "KTH Live-In Lab", href: "https://www.liveinlab.kth.se/en/start-1.1064463" },
+      { label: "Centre and project partners", href: "https://www.liveinlab.kth.se/en/om-kth-live-in-lab/centrum-och-projektpartners-1.965775" },
     ],
   },
   {
