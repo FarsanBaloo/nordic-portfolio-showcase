@@ -20,8 +20,7 @@ export const profile = {
   heroSupporting:
     "Twenty-five years next to the customers who run complex systems — SCADA, BMS/HVAC, IoT, mission-critical operations — taught me to hear the pain behind every request and to weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support, designed to hold up in real use.",
   heroProof: [
-    "Customer depth: 25 years finding the job to be done behind every request",
-    "AI built and validated: RAG, forecasting and agentic assistants from degree and course work, tested with real users and real data",
+    "AI built and validated: RAG, forecasting and agentic assistants developed through degree and postgraduate work, tested with real users and real data",
     "B.Sc. in Computer Science (Intelligent Systems) plus advanced postgraduate AI — Natural Language Processing, Computer Vision and Autonomous Systems",
     "Postgraduate specialisation in Industrial Economics & Management — product & requirements management, strategy, business models and leadership",
   ],
