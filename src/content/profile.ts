@@ -14,22 +14,32 @@ export const profile = {
   positioning:
     "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
-    "Bringing together 25 years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
-  heroPrimary:
-    "Every good product starts the same way: with the person who has the problem, the job they are actually trying to get done, and the people the solution has to work for. Finding that is what I do.",
+    "25 years in customer-facing industrial digital environments — from requirements, system integration and delivery to platform feedback, solution direction and stakeholder alignment. Today I combine that experience with Product Management and applied AI to shape useful, feasible and scalable products.",
   heroSupporting:
     "Twenty-five years next to the customers who run complex systems — SCADA, BMS/HVAC, IoT, mission-critical operations — taught me to hear the pain behind every request and to weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support, designed to hold up in real use.",
   heroProof: [
-    "AI built and validated: RAG, forecasting and agentic assistants developed through degree and postgraduate work, tested with real users and real data",
-    "B.Sc. in Computer Science (Intelligent Systems).",
-    "Advanced postgraduate AI — Natural Language Processing, Computer Vision, Predictive Data Analytics and Autonomous Systems.",
-    "Postgraduate specialisation in Industrial Economics & Management — product & requirements management, strategy, business models and leadership",
+    {
+      label: "Digital solutions & stakeholder alignment",
+      body: "Shaped, presented and delivered complex building-automation solutions across healthcare, pharmaceutical and other mission-critical environments, working across engineering, sales, management and customer stakeholders to align operational needs, feasibility and trade-offs.",
+    },
+    {
+      label: "Product & lifecycle experience",
+      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D, contributing to prioritisation, release readiness and deployment.",
+    },
+    {
+      label: "Applied AI",
+      body: "Built and validated RAG, forecasting and agentic AI solutions through degree and postgraduate work, including testing with real users and real data.",
+    },
+    {
+      label: "Product, AI & business foundation",
+      body: "B.Sc. Computer Science (Intelligent Systems) plus postgraduate studies in advanced AI, Product Management, requirements, strategy, business models and Industrial Economics & Management.",
+    },
   ],
   progression: [
     "Industrial Systems",
     "Digital Platforms",
     "Product",
-    "AI",
+    "Applied AI",
   ],
 
   targetRoles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
