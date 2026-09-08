@@ -7,6 +7,7 @@ import { mainCapabilities } from "../content/capabilities";
 import {
   aboutParagraphs,
   availability,
+  howIWork,
   productPhilosophy,
   profile,
   whatIBring,
