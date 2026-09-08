@@ -133,6 +133,10 @@ export type TimelineMilestone = {
    *  anchored at 2023, and no grid row can put a card between two of its own
    *  groups. */
   cardAfterGroup?: string;
+  /** Render children on the OPPOSITE side of the rail from the parent card,
+   *  instead of under it on the same side. Used for a role whose projects are
+   *  easier to follow directly across the rail than stacked beneath it. */
+  childrenOppositeSide?: boolean;
 };
 
 /** Shown once, at the boundary between the two phases of the postgraduate
@@ -312,6 +316,7 @@ export const milestones: TimelineMilestone[] = [
       "Mission-Critical Delivery",
       "Technical Leadership",
     ],
+    childrenOppositeSide: true,
 
     // Full-time for three years before the degree began. Without this the two
     // cards standing side by side read as parallel from 2020.
