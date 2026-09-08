@@ -618,16 +618,16 @@ export const projects: Project[] = [
   },
   {
     slug: "kth-living-lab",
-    title: "KTH Living Lab",
-    subtitle: "Applied Smart-Building Innovation",
+    title: "KTH Live-In Lab",
+    subtitle: "Open innovation platform for smart buildings and energy",
     org: "Schneider Electric",
-    meta: "Project role: EcoStruxure Subject Matter Expert",
-    type: "Applied Research Collaboration",
+    meta: "Project role: EcoStruxure Subject Matter Expert · Schneider's contact at KTH Live-In Lab",
+    type: "Open Innovation Collaboration",
     priority: 5,
     flagship: true,
     categories: ["Industry", "Innovation", "Academic / Research"],
     teaser:
-      "Connected applied smart-building research with real industrial-platform capabilities and constraints as EcoStruxure subject matter expert.",
+      "Acted as Schneider Electric's contact and EcoStruxure subject matter expert at KTH Live-In Lab — an open innovation platform where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency.",
     tags: [
       "Smart Buildings",
       "IoT",
@@ -635,6 +635,8 @@ export const projects: Project[] = [
       "Energy Efficiency",
       "Platform Capability",
       "Feasibility",
+      "Open Innovation",
+      "Industry-Academia Collaboration",
     ],
     sections: [
       {
