@@ -1329,6 +1329,23 @@ function MilestoneRow({
                   <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
                 </div>
               ) : null}
+              {/* preStudyNote stays with the parent card when children are on
+                  the opposite side of the rail. */}
+              {oppositeSide && entry.preStudyNote ? (
+                <div
+                  className="mt-6 border-l pl-4"
+                  style={{
+                    borderColor: `color-mix(in oklab, ${accent} 45%, transparent)`,
+                  }}
+                >
+                  <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+                    {entry.preStudyNote.label}
+                  </p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-night-body">
+                    {entry.preStudyNote.body}
+                  </p>
+                </div>
+              ) : null}
             </div>
             {childrenUnderCard ? (
               <div className="min-w-0">
