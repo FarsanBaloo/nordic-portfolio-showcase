@@ -316,6 +316,7 @@ export const milestones: TimelineMilestone[] = [
       "Mission-Critical Delivery",
       "Technical Leadership",
     ],
+    childrenOppositeSide: true,
 
     // Full-time for three years before the degree began. Without this the two
     // cards standing side by side read as parallel from 2020.
