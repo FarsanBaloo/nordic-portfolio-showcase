@@ -14,7 +14,7 @@ export const profile = {
   positioning:
     "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
   bridge:
-    "25 years in customer-facing industrial digital environments — from requirements, system integration and delivery to platform feedback, solution direction and stakeholder alignment. Today I combine that experience with Product Management and applied AI to shape useful, feasible and scalable products.",
+    "25 years in customer-facing industrial digital environments — from requirements, system integration and delivery to product feedback, solution direction and stakeholder alignment. Today I combine that experience with Product Management, business and applied AI to shape useful, feasible and scalable products.",
   heroSupporting:
     "Twenty-five years next to the customers who run complex systems — SCADA, BMS/HVAC, IoT, mission-critical operations — taught me to hear the pain behind every request and to weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support, designed to hold up in real use.",
   heroProof: [
