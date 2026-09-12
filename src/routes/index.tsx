@@ -64,7 +64,7 @@ function Index() {
           <h1 className="mt-4 text-balance-tight text-5xl font-semibold text-night-foreground sm:text-6xl">
             {profile.name}
           </h1>
-          <p className="mt-3 text-lg text-night-foreground/90">{profile.descriptor}</p>
+          <p className="mt-3 text-lg text-night-foreground/90">{profile.homepageDescriptor}</p>
           <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
             <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
             {availability}
