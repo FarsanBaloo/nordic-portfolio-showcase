@@ -383,6 +383,23 @@ function StudyChildCard({
       {child.body2 ? (
         <p className="mt-2.5 text-[15.5px] leading-[1.6] text-[#D3DBE2]">{child.body2}</p>
       ) : null}
+      {child.applicationItems?.length ? (
+        <div className="mt-3">
+          {child.applicationHeading ? (
+            <p className="mb-2 text-[14.5px] font-semibold leading-relaxed text-[#F4F7F9]">
+              {child.applicationHeading}
+            </p>
+          ) : null}
+          <ul className="space-y-2 text-[14.5px] leading-[1.55] text-[#D3DBE2]">
+            {child.applicationItems.map((item) => (
+              <li key={item} className="flex gap-2.5">
+                <span aria-hidden="true" className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full" style={{ backgroundColor: accent }} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
       {child.scadaLink ? (
         <p
           className={[
@@ -551,12 +568,19 @@ function PhaseBlock({
   return (
     <section className="min-w-0">
       {group.title ? (
-        <h4
-          className="text-center font-mono text-[12px] uppercase tracking-[0.09em]"
-          style={{ color: accent }}
-        >
-          {group.title}
-        </h4>
+        <div className="mx-auto max-w-3xl text-center">
+          <h4
+            className="font-mono text-[12px] uppercase tracking-[0.09em]"
+            style={{ color: accent }}
+          >
+            {group.title}
+          </h4>
+          {group.items.find((item) => item.kind !== "project" && item.groupIntro)?.groupIntro ? (
+            <p className="mt-3 text-[15px] leading-relaxed text-night-body">
+              {group.items.find((item) => item.kind !== "project" && item.groupIntro)?.groupIntro}
+            </p>
+          ) : null}
+        </div>
       ) : null}
 
       {parent && parent.kind !== "project" ? (

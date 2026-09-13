@@ -65,4 +65,4 @@ export const courseApplications = {
     "Worked through user research, ideation, Figma prototyping and usability and accessibility evaluation in interaction-design coursework.",
     "Brought this technical and human-centred foundation into the later Talking SCADA concept.",
   ],
-} as const;
+};

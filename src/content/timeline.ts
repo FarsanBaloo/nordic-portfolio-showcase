@@ -1,4 +1,5 @@
 import { examenPhoto } from "../assets/local-images";
+import { advancedAiFoundationIntro, courseApplications } from "./course-applications";
 
 export type TimelineTrack = "professional" | "development" | "direction";
 
@@ -48,6 +49,9 @@ export type TimelineChild =
       relevance?: string;
       /** How this course contributed to the Talking SCADA product case. */
       scadaLink?: string;
+      applicationHeading?: string;
+      applicationItems?: string[];
+      groupIntro?: string;
       /** Small vertical progression chain rendered under the card. */
       chain?: string[];
       group?: string;
@@ -66,6 +70,9 @@ export type TimelineChild =
       body2?: string;
       relevance?: string;
       scadaLink?: string;
+      applicationHeading?: string;
+      applicationItems?: string[];
+      groupIntro?: string;
       chain?: string[];
       group?: string;
     };
@@ -286,6 +293,7 @@ export const milestones: TimelineMilestone[] = [
         ],
         body: "AI methods and reasoning, modelling and evaluation, neural networks and model training, and the engineering practice of building and maintaining AI systems.",
         body2: "Human-centred design worked end to end: user research and ideation, wireframes developed into high-fidelity prototypes in Figma, and evaluation of finished products through heuristic and accessibility review with usability validation against real users.",
+        applicationItems: courseApplications.bachelorCoursework,
         group: "Selected AI, software engineering and design coursework",
       },
     ],
@@ -364,15 +372,15 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: [
-          "New Product Development",
+          "New Product Development (NPD)",
+          "Product Requirements Document (PRD)",
           "Opportunity Identification",
           "Product Discovery",
           "Product Vision",
           "Feature Prioritisation",
           "MVP Definition",
         ],
-        scadaLink:
-          "Talking SCADA: opportunity identification, product discovery, concept development, product vision, value proposition, feature prioritisation and MVP definition.",
+        applicationItems: courseApplications.productManagement,
         group:
           "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
@@ -383,7 +391,9 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: [
-          "Product Requirements Document",
+          "System Requirements Document (SRD)",
+          "Requirements Traceability",
+          "Cost-Value-Risk",
           "System-Level Requirements",
           "Functional & Non-Functional Requirements",
           "Explainability",
@@ -391,8 +401,7 @@ export const milestones: TimelineMilestone[] = [
           "Requirements Prioritisation",
           "Technical Feasibility",
         ],
-        scadaLink:
-          "Talking SCADA: PRD, system-level, functional and non-functional requirements including explainability and reliability, requirements prioritisation and technical feasibility.",
+        applicationItems: courseApplications.requirementsManagement,
         group:
           "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
@@ -409,8 +418,7 @@ export const milestones: TimelineMilestone[] = [
           "Market Relevance",
           "Go-to-Market Planning",
         ],
-        scadaLink:
-          "Talking SCADA: product strategy, value proposition, business model development, market relevance and go-to-market planning.",
+        applicationItems: courseApplications.strategyBusinessModels,
         group:
           "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
@@ -421,8 +429,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Stakeholder Alignment", "Communication", "Cross-Functional Perspective"],
-        scadaLink:
-          "Talking SCADA: stakeholder alignment, communication and a cross-functional perspective on the concept.",
+        applicationItems: courseApplications.leadership,
         group:
           "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
@@ -439,8 +446,7 @@ export const milestones: TimelineMilestone[] = [
           "Development Planning",
           "Prioritisation / Delivery Thinking",
         ],
-        scadaLink:
-          "Talking SCADA: iterative concept refinement, MVP planning, development planning and product development governance.",
+        applicationItems: courseApplications.agile,
         group:
           "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
@@ -451,8 +457,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Business Value", "Technology / Business Perspective", "Sustainable Value"],
-        scadaLink:
-          "Talking SCADA: framed the concept in terms of business value and sustainable value from a combined technology and business perspective.",
+        applicationItems: courseApplications.industrialEconomics,
         group:
           "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
       },
@@ -464,8 +469,8 @@ export const milestones: TimelineMilestone[] = [
         org: "Aug 2025 – Jan 2026",
         topics: ["Strategic Innovation", "Applied Innovation", "Implementation"],
         body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership. Studied in parallel with the advanced AI foundation, forming the innovation and product bridge developed further at Blekinge Institute of Technology.",
-        body2:
-          "Talking SCADA — Concept Origin: developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could transform complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation that was later developed further through Product Management and Requirements work.",
+        applicationHeading: "Talking SCADA — concept origin in Innovation in Practice",
+        applicationItems: courseApplications.innovation,
         chain: [
           "Advanced AI",
           "Innovation Opportunity",
@@ -490,8 +495,8 @@ export const milestones: TimelineMilestone[] = [
           "Generative AI / Language Models",
         ],
         body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
-        relevance:
-          "Strengthened the ability to evaluate how modern language models can be adapted to domain-specific problems and how model capabilities, limitations and technical feasibility affect product decisions.",
+        applicationItems: courseApplications.nlp,
+        groupIntro: advancedAiFoundationIntro,
         group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
@@ -509,11 +514,7 @@ export const milestones: TimelineMilestone[] = [
           "Planning",
           "Reinforcement Learning",
         ],
-        body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control.",
-        body2:
-          "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
-        relevance:
-          "Built system-level understanding of AI around uncertainty, data quality, sensor limitations, real-time decisions and safety.",
+        applicationItems: courseApplications.autonomousSystems,
         group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
@@ -526,6 +527,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Predictive Analytics", "Machine Learning", "Prediction", "Decision Support"],
+        applicationItems: courseApplications.predictiveAnalytics,
         group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
@@ -538,6 +540,7 @@ export const milestones: TimelineMilestone[] = [
         variant: "compact",
         topics: [],
         signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
+        applicationItems: courseApplications.industrialImaging,
         group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
       },
       {
