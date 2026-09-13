@@ -575,9 +575,9 @@ function PhaseBlock({
           >
             {group.title}
           </h4>
-          {group.items.find((item) => item.kind !== "project" && item.groupIntro)?.groupIntro ? (
+          {group.items.find((item) => "groupIntro" in item && item.groupIntro)?.groupIntro ? (
             <p className="mt-3 text-[15px] leading-relaxed text-night-body">
-              {group.items.find((item) => item.kind !== "project" && item.groupIntro)?.groupIntro}
+              {group.items.find((item) => "groupIntro" in item && item.groupIntro)?.groupIntro}
             </p>
           ) : null}
         </div>

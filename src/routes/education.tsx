@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { examenPhoto } from "../assets/local-images";
 
 import { NightHero, Page, Section } from "../components/site";
-import { Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
+import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { capabilityNote, fullCapabilityMap } from "../content/capabilities";
 import { bachelor, certifications, earlierFoundation, postgraduate } from "../content/education";
 import { seo } from "../lib/site";
