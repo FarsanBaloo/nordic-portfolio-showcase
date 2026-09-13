@@ -1,10 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { NightHero, Page } from "../components/site";
-import { CaseStudyBody } from "../components/ProjectEvidenceSheet";
-import { Callout, Eyebrow, TagList } from "../components/ui-bits";
+import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "../components/ui-bits";
 import { ImageGallery } from "../components/ImageGallery";
-import { getProject, sortedProjects } from "../content/projects";
+import { getProject, sortedProjects, type CaseSubsection } from "../content/projects";
 import { OG_CARD, SITE_URL, absoluteUrl, seo } from "../lib/site";
 
 
@@ -80,6 +79,40 @@ function CaseNotFound() {
   );
 }
 
+function CaseSubsectionContent({ subsection }: { subsection: CaseSubsection }) {
+  return (
+    <div className="mt-6 space-y-3">
+      <h3 className="text-lg font-semibold">{subsection.heading}</h3>
+      {subsection.body?.map((paragraph) => (
+        <p key={paragraph} className="text-[15px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+      {subsection.items?.length ? <BulletList items={subsection.items} /> : null}
+      {subsection.quote ? (
+        <blockquote className="border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
+          {subsection.quote}
+        </blockquote>
+      ) : null}
+      {subsection.flow ? (
+        <FlowSteps steps={subsection.flow.steps} label={subsection.flow.label} />
+      ) : null}
+      {subsection.tags?.length ? <TagList items={subsection.tags} /> : null}
+      {subsection.links?.length ? (
+        <ul className="space-y-2 text-sm">
+          {subsection.links.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} target="_blank" rel="noreferrer" className="text-primary hover:underline">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 function CaseStudy() {
   const { project } = Route.useLoaderData();
   const index = sortedProjects.findIndex((p) => p.slug === project.slug);
@@ -118,7 +151,40 @@ function CaseStudy() {
       <Page>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_260px]">
           <article className="max-w-3xl space-y-12">
-            <CaseStudyBody project={project} bare />
+            {project.sections.map((section) => (
+              <section key={section.heading}>
+                <h2 className="text-2xl font-semibold">{section.heading}</h2>
+                {section.body?.map((p) => (
+                  <p key={p} className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                    {p}
+                  </p>
+                ))}
+                {section.items?.length ? (
+                  <div className="mt-5">
+                    <BulletList items={section.items} />
+                  </div>
+                ) : null}
+                {section.quote ? (
+                  <blockquote className="mt-5 border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
+                    {section.quote}
+                  </blockquote>
+                ) : null}
+                {section.subSections?.map((subsection) => (
+                  <CaseSubsectionContent key={subsection.heading} subsection={subsection} />
+                ))}
+              </section>
+            ))}
+
+            {project.flow ? (
+              <section>
+                <FlowSteps steps={project.flow.steps} label={project.flow.label} />
+                {project.valueTagline ? (
+                  <p className="mt-5 text-lg font-semibold text-foreground">
+                    {project.valueTagline}
+                  </p>
+                ) : null}
+              </section>
+            ) : null}
 
             {project.images?.slots.length ? (
               <section>

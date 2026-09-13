@@ -150,6 +150,9 @@ export function CaseStudyBody({
       {project.contributionNote ? (
         <Callout label="My contribution">{project.contributionNote}</Callout>
       ) : null}
+      {bare && project.footnote ? (
+        <p className="text-sm leading-relaxed text-night-muted">{project.footnote}</p>
+      ) : null}
 
       {project.links?.length ? (
         <div className="space-y-2">

@@ -364,7 +364,9 @@ export const projects: Project[] = [
       },
       {
         heading: "Product decisions & MVP scope",
-        body: ["The concept is shaped by three scope choices:"],
+        body: [
+          "The concept is shaped by three scope choices:",
+        ],
         items: [
           "A focused user problem: investigate unexplained energy deviations across interacting building systems.",
           "Human judgement: support investigation and informed decisions, with autonomous control outside the concept's scope.",
@@ -374,7 +376,6 @@ export const projects: Project[] = [
           {
             heading: "Why AI and a multi-agent approach?",
             body: [
-              "The conceptual MVP centres on a bounded investigation flow: review a deviation, understand relevant context, assess possible causes and identify a useful next investigation step.",
               "AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. A proposed validation question is whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity.",
             ],
           },
