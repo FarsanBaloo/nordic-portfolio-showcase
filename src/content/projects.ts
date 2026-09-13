@@ -295,13 +295,13 @@ export const projects: Project[] = [
     title: "Talking SCADA",
     subtitle: "Understanding hidden energy problems in buildings",
     org: "University of Skövde · Blekinge Institute of Technology",
-    meta: "Product case at Blekinge Institute of Technology · Aug 2025 – May 2026",
+    meta: "PRODUCT CASE AT BLEKINGE INSTITUTE OF TECHNOLOGY · AUG 2025 – MAY 2026",
     type: "Academic Product Case",
     priority: 2,
     flagship: true,
     categories: ["AI & Product", "Innovation", "Academic / Research"],
     teaser:
-      "An academic multi-agent AI decision-support concept connecting 20+ years of experience in building systems with product discovery, requirements, a conceptual MVP and business-model thinking to help people understand hidden energy problems in buildings.",
+      "An academic multi-agent AI decision-support concept for understanding hidden energy problems in buildings. I connected 20+ years of domain experience with user needs, product definition, MVP scope, requirements prioritisation, positioning and business-model development.",
     tags: [
       "Product Vision",
       "Product Discovery",
@@ -322,8 +322,8 @@ export const projects: Project[] = [
       {
         heading: "Overview & my contribution",
         body: [
-          "Talking SCADA is a multi-agent AI decision-support concept bringing together 20+ years of experience in building systems with studies in applied AI, innovation and product management. Refined course by course, the academic case connects user needs, requirements, technical feasibility and potential customer and business value around one aim: helping people understand and act on buildings' hidden energy problems.",
-          "I used the case to translate operational problems into user needs, a product vision, requirements, priorities and a conceptual MVP. I connected these with product strategy, business-model thinking and go-to-market considerations, making assumptions and trade-offs explicit.",
+          "Talking SCADA began in Innovation in Practice as a proposal for an AI-enabled service to help people understand hidden energy problems in buildings. I then refined the same concept through product, requirements and business coursework, combining 20+ years of domain experience with applied AI. The case now explores multi-agent decision support centred on human judgement.",
+          "Across the coursework, I produced an innovation report, a product protocol, a Product Requirements Document (PRD), a System Requirements Document (SRD) and a business plan. I connected these with value assessment, prioritisation, design artefacts and sourcing analysis to examine how user needs, technical choices and a viable offer could fit together.",
         ],
       },
       {
@@ -340,13 +340,13 @@ export const projects: Project[] = [
           {
             heading: "Whom",
             body: [
-              "The intended users are building operators, facility managers, energy managers and technical teams. Their HVAC/BMS expertise varies, and specialist knowledge may be concentrated among a small number of people.",
+              "The target market is commercial property owners and facility-management organisations operating building portfolios with existing SCADA/BMS systems. Intended users include building operators, facility managers, energy managers and service teams. Their HVAC/BMS expertise varies. The stakeholder analysis also considered system integrators, development teams and product/business stakeholders.",
             ],
           },
           {
             heading: "Pain",
             body: [
-              "Investigations can require navigating trends, alarms, configurations and relationships across several systems.",
+              "Investigations can require navigating trends, alarms, configurations and relationships across several systems. Users must combine information from different views and interpret relationships that may not be directly visible.",
             ],
           },
           {
@@ -362,7 +362,8 @@ export const projects: Project[] = [
           {
             heading: "What the concept is",
             body: [
-              "The concept explores an explanation and decision-support layer for SCADA/BMS platforms, bringing together operational data, historical behaviour, system relationships and domain context. It would help users assess likely causes and choose where to investigate next, while keeping operational decisions with people.",
+              "The concept explores an explanation and decision-support layer for SCADA/BMS platforms. The proposed design combines historical time-series data with a semantic representation of building systems and their relationships. User scenarios address energy increases and underperforming HVAC systems.",
+              "The intended interaction lets users ask a question, review possible causes and inspect references to the underlying sensors, alarms and system relationships before deciding what to do next. Direct control of physical building systems is outside the defined scope.",
             ],
           },
           {
@@ -383,40 +384,78 @@ export const projects: Project[] = [
       },
       {
         heading: "Product decisions & MVP scope",
-        body: [
-          "The concept is shaped by three scope choices:",
-        ],
-        items: [
-          "A focused user problem: investigate unexplained energy deviations across interacting building systems.",
-          "Human judgement: support investigation and informed decisions, with autonomous control outside the concept's scope.",
-          "Grounded explanations: connect possible causes to relevant operational data, historical behaviour and system relationships.",
-        ],
-        afterItemsBody: [
-          "The conceptual MVP centres on a bounded investigation flow: review a deviation, understand relevant context, assess possible causes and identify a useful next investigation step.",
-        ],
         subSections: [
+          {
+            heading: "NPD thinking & product protocol",
+            body: [
+              "I used the product protocol to work through New Product Development (NPD) questions: who the offer serves, how it would be used, what distinguishes it and what is needed to deliver and sustain it.",
+            ],
+            items: [
+              "Market and use context: target organisations, intended users, operating scenarios, positioning and timing.",
+              "The whole offer: core functionality, integration, onboarding, updates and ongoing service.",
+              "Delivery and viability: technical prerequisites, marketing, financial and regulatory requirements, strategic fit and risks.",
+            ],
+            afterItemsBody: [
+              "This connected the initial opportunity with a proposed product definition and the conditions for bringing it to market.",
+            ],
+          },
+          {
+            heading: "System definition & requirements traceability",
+            body: [
+              "In the System Requirements Document (SRD), I separated domain, functional, data, quality, platform and regulatory requirements and defined the system boundary. I linked documented stakeholder and elicitation findings to goals and requirement IDs, making the reasoning behind requirements traceable. The proposed layer remains read-only, with operational decisions left to people.",
+            ],
+          },
+          {
+            heading: "Prioritisation example",
+            body: [
+              "I ranked 22 requirements and used Cost-Value-Risk analysis to examine critical requirements and their dependencies. Explanation generation and abnormal-behaviour detection ranked highest because they carry core product value and substantial technical uncertainty. Data access and system context were identified as enabling requirements.",
+              "Explainability and usability were prioritised early for trust and adoption. The analysis also treated security and system boundaries as conditions that must be addressed from the start.",
+            ],
+          },
+          {
+            heading: "MVP definition",
+            body: [
+              "In the PRD, I defined an initial scope of integration with one SCADA system, diagnostics for selected HVAC subsystems, and a web-based conversational interface explaining energy anomalies. This gives the initial product evaluation a bounded operating context.",
+            ],
+          },
+          {
+            heading: "Success measures & acceptance criteria",
+            body: [
+              "I identified intended success measures around investigation time, energy waste and operational insight. The PRD includes acceptance criteria for natural-language queries, explanations of probable causes, response time and analysis of system relationships. I also specified quality requirements covering availability, usability, security, explainability and maintainability. These define what the product should achieve and what needs evaluation.",
+            ],
+          },
           {
             heading: "Why AI and a multi-agent approach?",
             body: [
-              "AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. A proposed validation question is whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity.",
+              "AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. Further validation should examine whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity.",
             ],
           },
         ],
       },
       {
         heading: "Value proposition & business assumptions",
-        body: ["The intended gains are:"],
-        items: [
-          "Less investigation effort and earlier identification of abnormal or inefficient behaviour.",
-          "More accessible domain knowledge and more understandable, actionable operational data.",
-          "Better-informed decisions about energy use.",
-        ],
+        body: ["The intended gains are less investigation effort, more accessible domain knowledge, earlier identification of abnormal behaviour and better-informed energy decisions."],
         subSections: [
           {
-            heading: "Business hypothesis",
+            heading: "Positioning & go-to-market",
             body: [
-              "Organisations responsible for building performance could value support that helps their teams investigate more efficiently and identify avoidable energy waste. This links clearer operational understanding for users with potential business value for the organisation.",
-              "Questions for market validation include who uses the support, who owns the purchasing decision, how it fits existing platform or service offers, and how delivery and support costs compare with expected value. Packaging, willingness to pay and adoption need to be examined alongside technical feasibility.",
+              "In the innovation report, I used PESTEL to examine external drivers and VRIO to assess resources and organisational capabilities. The analysis highlighted the need for cross-functional expertise, leadership support and a culture of learning.",
+              "In the product protocol and business plan, I explored competitive positioning around cross-system diagnostics and understandable explanations for operators. I outlined a proposed introduction through early adopters and system-integrator partnerships, supported by integration assistance, onboarding and ongoing service.",
+            ],
+          },
+          {
+            heading: "Business model, packaging & value assessment",
+            body: [
+              "I developed a Business Model Canvas and a business plan connecting customer segments, value propositions, partners and revenue streams. The proposed SaaS model uses subscriptions and tiered packaging, ranging from building-level explanations to advanced diagnostics and portfolio-level support. I also outlined development, cloud and maintenance cost drivers and initial investment needs.",
+              "Using Software Value Map, I assessed functionality, reliability and usability alongside development cost and architectural maintainability. The assessment highlighted the value of a usable interface and explainable decision support, while making the development effort and technical debt associated with analysis, integration and model improvement visible. These were estimates within the academic case.",
+            ],
+          },
+          {
+            heading: "Assets, knowledge & Make/Buy/Share",
+            body: [
+              "I examined how code, requirements, architecture, documentation and tacit domain knowledge could be maintained and reused. This included codification and personal knowledge-sharing as complementary approaches to preserving expertise.",
+              "I classified components as commodities, qualifiers or differentiators. I proposed concentrating internal development on domain-specific graph reasoning, root-cause analysis and traceable explanations, while using reusable AI components and externally sourced infrastructure where appropriate.",
+              "I also examined service-based revenue and the possibility of bundling the concept with existing platform or service offers. The commercial assumptions, pricing model and expected gains remain subject to market validation.",
             ],
           },
         ],
@@ -425,20 +464,28 @@ export const projects: Project[] = [
         heading: "Evidence & validation approach",
         subSections: [
           {
-            heading: "Academic work covered",
-            body: [
-              "The case brought together problem framing, product discovery, a product vision and value proposition, requirements/PRD work, feature prioritisation and a conceptual MVP. It also addressed technical feasibility, product strategy, business models, go-to-market and adoption considerations.",
+            heading: "Documented academic work",
+            items: [
+              "Innovation report with problem framing, PESTEL, VRIO, the Four Ps of innovation and a proposed Design Thinking approach.",
+              "Product protocol applying NPD thinking to the market, whole offer, delivery requirements, strategic fit and risks; a separate PRD specifying scenarios, requirements, MVP scope, intended success measures and acceptance criteria.",
+              "System Requirements Document (SRD) with stakeholder analysis, elicitation findings, requirements traceability, system boundaries, ranking and Cost-Value-Risk analysis.",
+              "Context diagram, conceptual data model, virtual window, interface mockup and task description.",
+              "Business Model Canvas, Software Value Map and business plan with positioning, packaging and proposed go-to-market.",
+              "Asset-management reflection, Make/Buy/Share analysis and an evaluation of open-source business-model options.",
             ],
           },
           {
-            heading: "Proposed validation approach",
-            items: [
-              "Compare supported investigations with existing workflows using representative users and building data.",
-              "Assess investigation time, usefulness of suggested next steps, clarity of evidence and users' ability to recognise uncertain or unsupported explanations.",
-              "Compare the multi-agent direction with a simpler baseline, considering quality, reliability, response time and operating cost.",
+            heading: "Documented elicitation",
+            body: [
+              "The initial innovation report proposed interviews, observation and prototyping within a Design Thinking approach. My later system requirements document records findings from interviews, observation and a simple chat-based prototype, and maps those findings to goals and requirements.",
+              "One documented observation was that investigations required combining multiple views and inferring relationships between systems. This informed requirements for graph context, combined data queries and referenced explanations.",
             ],
-            afterItemsBody: [
-              "The gains described above are intended outcomes whose extent would need to be established through evaluation.",
+          },
+          {
+            heading: "Further product validation",
+            body: [
+              "The business plan proposes MVP development, pilot installations, user evaluation, market validation and eventual commercial introduction. Further evaluation should assess investigation time, explanation quality, traceability and useful next steps with representative users and building data. It should also compare the multi-agent direction with a simpler baseline and examine operating costs and willingness to pay.",
+              "The coursework provides requirements, analyses and design artefacts. Quality targets and expected energy or business benefits require separate measurement.",
             ],
           },
         ],
@@ -446,9 +493,13 @@ export const projects: Project[] = [
       {
         heading: "How the case evolved",
         body: [
-          "AI foundation — Mälardalen University and subsequent advanced studies: a degree focused on applied AI, followed by studies in natural language processing, machine learning and data analytics, informed the language-interaction and technical-feasibility questions.",
-          "Innovation Management — University of Skövde: opportunity identification, problem framing and the initial concept explored how existing building-platform data could support operators and facility managers.",
-          "Product case — Blekinge Institute of Technology: the specialisation in Industrial Economics and Management connected the concept with New Product Development, Product Discovery, Requirements Engineering, prioritisation, MVP definition, product and portfolio strategy, business models and go-to-market. Agile delivery thinking, product-development governance and stakeholder communication helped structure the case.",
+          "Talking SCADA started with my project in Innovation in Practice. I framed the service opportunity, analysed external drivers and organisational capabilities, and proposed an approach to user-centred development. My domain experience and applied AI studies provided the technical foundation.",
+          "I then carried the same concept into coursework within my specialisation in Industrial Economics and Management at Blekinge Institute of Technology:",
+        ],
+        items: [
+          "Product Management: NPD thinking through a product protocol covering the market, whole offer, delivery and viability; a PRD defining scenarios, requirements, MVP scope and acceptance criteria.",
+          "Product & Requirements Management: SRD, elicitation, requirements traceability and prioritisation; separate digital-product value and asset/sourcing analyses using Software Value Map, Business Model Canvas and Make/Buy/Share.",
+          "Strategy & Business Models: a business plan connecting competitive positioning, packaging, revenue logic, partner channels, cost drivers and a proposed market-entry plan.",
         ],
         subSections: [
           {
@@ -456,13 +507,29 @@ export const projects: Project[] = [
             tags: [
               "Product Vision",
               "Product Discovery",
+              "Product Definition",
+              "Product Positioning",
+              "Stakeholder Analysis",
+              "Requirements Elicitation",
               "Jobs to Be Done",
               "Requirements / PRD",
+              "PRD & SRD",
+              "Requirements Traceability",
+              "Quality Requirements",
               "Prioritisation",
+              "Cost-Value-Risk",
               "Conceptual MVP",
               "Validation Planning",
+              "Success Measures",
+              "Acceptance Criteria",
+              "Explainability",
               "Product Strategy",
               "Business Model",
+              "Software Value Map",
+              "Business Model Canvas",
+              "Business Planning",
+              "Asset & Knowledge Management",
+              "Make/Buy/Share",
               "Go-to-Market",
               "Applied AI",
               "Multi-agent AI",
@@ -475,8 +542,8 @@ export const projects: Project[] = [
       {
         heading: "Reflection & next steps",
         body: [
-          "The case connected my operational experience with a more structured product approach: understanding the user's problem, defining scope, making assumptions and trade-offs visible, and examining how customer and business value could align.",
-          "Further work should test a narrow investigation flow with representative users and data, then use the findings to refine the requirements, MVP scope and value proposition.",
+          "The case reinforced that useful innovation depends on user understanding, organisational readiness and cross-functional collaboration. Across the later product and business work, I made choices about scope, priorities, differentiation and delivery more explicit.",
+          "Further work should evaluate a narrow investigation flow and use the findings to refine the requirements, MVP scope and business assumptions.",
         ],
       },
     ],

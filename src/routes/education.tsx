@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { examenPhoto } from "../assets/local-images";
 
 import { NightHero, Page, Section } from "../components/site";
-import { Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
+import { BulletList, Callout, Eyebrow, SectionHeading, TagList } from "../components/ui-bits";
 import { capabilityNote, fullCapabilityMap } from "../content/capabilities";
 import { bachelor, certifications, earlierFoundation, postgraduate } from "../content/education";
 import { seo } from "../lib/site";
@@ -54,6 +54,9 @@ function EducationPage() {
                       {entry.body2}
                     </p>
                   ) : null}
+                  {"applicationItems" in entry && entry.applicationItems?.length ? (
+                    <BulletList items={entry.applicationItems} />
+                  ) : null}
                   {"chain" in entry && entry.chain?.length ? (
                     <ol className="mt-4 space-y-1 text-sm text-muted-foreground">
                       {entry.chain.map((step, i) => (
@@ -72,8 +75,11 @@ function EducationPage() {
                     </p>
                     <h4 className="mt-1 text-sm font-semibold">{entry.projectCase.title}</h4>
                     <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                      {entry.projectCase.body}
+                      {"body" in entry.projectCase ? entry.projectCase.body : null}
                     </p>
+                    {"items" in entry.projectCase && entry.projectCase.items?.length ? (
+                      <BulletList items={entry.projectCase.items} />
+                    ) : null}
                   </div>
                 ) : null}
                 {entry.topics.length ? (
@@ -92,6 +98,9 @@ function EducationPage() {
                             <li key={item}>{item}</li>
                           ))}
                         </ul>
+                        {"applicationItems" in group && group.applicationItems?.length ? (
+                          <BulletList items={group.applicationItems} />
+                        ) : null}
                       </div>
                     ))}
                   </div>
@@ -124,6 +133,9 @@ function EducationPage() {
           <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
             {bachelor.summary}
           </p>
+          <div className="mt-5 max-w-3xl">
+            <BulletList items={bachelor.applicationItems} />
+          </div>
           <figure className="mt-8 max-w-3xl">
             <div className="overflow-hidden rounded-xl border border-border">
               <img
