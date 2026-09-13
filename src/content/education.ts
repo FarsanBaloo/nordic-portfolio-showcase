@@ -1,3 +1,5 @@
+import { advancedAiFoundationIntro, courseApplications, talkingScadaCourseCaseSummary } from "./course-applications";
+
 export type CourseGroup = { title: string; items: string[] };
 
 export const bachelor = {
@@ -10,6 +12,7 @@ export const bachelor = {
   summary:
     "Built formal Computer Science and Applied AI capabilities on top of extensive professional experience in industrial digital platforms and connected systems.",
   note: "The degree was completed before the postgraduate development period beginning in August 2025.",
+  applicationItems: courseApplications.bachelorCoursework,
 
   coursework: [
     {
@@ -83,7 +86,7 @@ export const postgraduate = {
       projectCase: {
         title: "Course project — Talking SCADA (product & requirements case)",
         period: "Aug 2025 – Jun 2026",
-        body: "Used Talking SCADA as a recurring academic product case to apply New Product Development, product discovery, digital product strategy and requirements engineering to an AI-enabled decision-support concept for building automation and SCADA/BMS environments. Applied methods across opportunity identification, product vision and value proposition, structured requirements management, feature prioritisation, MVP definition, product development governance, portfolio considerations, business model development and go-to-market planning — connecting customer needs and technical feasibility with sustainable business value.",
+        body: talkingScadaCourseCaseSummary,
       },
       topics: [],
       relevance: [],
@@ -92,6 +95,7 @@ export const postgraduate = {
         {
           title: "Industrial Economics and Management",
           items: ["Business value", "Technology and business perspective", "Sustainable value"],
+          applicationItems: courseApplications.industrialEconomics,
         },
         {
           title: "Strategy and Business Models in Technology-Intensive Businesses",
@@ -102,28 +106,34 @@ export const postgraduate = {
             "Market relevance",
             "Go-to-market planning",
           ],
+          applicationItems: courseApplications.strategyBusinessModels,
         },
         {
           title: "Product Management",
           items: [
-            "New Product Development",
+            "New Product Development (NPD)",
+            "Product Requirements Document (PRD)",
             "Opportunity identification",
             "Product discovery",
             "Product vision",
             "Feature prioritisation",
             "MVP definition",
           ],
+          applicationItems: courseApplications.productManagement,
         },
         {
           title: "Product and Requirements Management for Digital Environments",
           items: [
-            "Product Requirements Document",
+            "System Requirements Document (SRD)",
+            "Requirements Traceability",
+            "Cost-Value-Risk",
             "System-level requirements",
             "Functional and non-functional requirements",
             "Explainability and reliability",
             "Requirements prioritisation",
             "Technical feasibility",
           ],
+          applicationItems: courseApplications.requirementsManagement,
         },
         {
           title: "Agile Process and Project Management",
@@ -133,10 +143,12 @@ export const postgraduate = {
             "Development planning",
             "Product development governance",
           ],
+          applicationItems: courseApplications.agile,
         },
         {
           title: "Leadership in High-Technology and Knowledge-Intensive Organizations",
           items: ["Stakeholder alignment", "Communication", "Cross-functional perspective"],
+          applicationItems: courseApplications.leadership,
         },
       ],
     },
@@ -159,9 +171,9 @@ export const postgraduate = {
       ],
 
       projectCase: {
-        title: "Course project — Talking SCADA (concept origin)",
+        title: "Talking SCADA — concept origin in Innovation in Practice",
         period: "Aug 2025 – Jan 2026",
-        body: "Developed the initial concept for Talking SCADA, exploring how AI and existing operational data from building systems could turn complex system information into understandable insights and decision support for facility managers and operators. The work established the innovation opportunity and concept foundation later developed further through product management and requirements work.",
+        items: courseApplications.innovation,
       },
       topics: [
         "Strategic innovation",
@@ -181,7 +193,8 @@ export const postgraduate = {
       subtitle: "Natural Language Processing",
 
       period: "Aug 2025 – Jan 2026",
-      body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
+      body: advancedAiFoundationIntro,
+      applicationItems: courseApplications.nlp,
       topics: [
         "Natural Language Processing",
         "Transformer architectures",
@@ -191,12 +204,7 @@ export const postgraduate = {
         "Parameter-Efficient Fine-Tuning (PEFT)",
         "Low-Rank Adaptation (LoRA)",
       ],
-      relevance: [
-        "Technical feasibility",
-        "Domain-specific AI",
-        "Understanding model limitations",
-        "Collaboration with AI engineering teams",
-      ],
+      relevance: [],
     },
     {
       id: "umu",
@@ -207,9 +215,7 @@ export const postgraduate = {
       title: "Advanced-Level Studies in Artificial Intelligence",
       subtitle: "Autonomous Systems & Perception",
       period: "Jan 2026 – Jun 2026",
-      body: "Advanced-level studies in autonomous systems and machine perception, covering multi-sensor fusion, 3D perception, Bird's-Eye View representations, LiDAR point-cloud processing, object detection, trajectory and motion forecasting, path planning and reinforcement learning for adaptive control.",
-      body2:
-        "Explored how perception, prediction, planning and control are integrated to enable data-driven intelligent systems to interpret dynamic environments and support real-time decision-making.",
+      applicationItems: courseApplications.autonomousSystems,
 
       topics: [
         "Multi-sensor fusion",
@@ -222,14 +228,7 @@ export const postgraduate = {
         "Reinforcement learning",
         "Adaptive control",
       ],
-      relevance: [
-        "Data quality",
-        "Uncertainty",
-        "Sensor constraints",
-        "Real-time decisions",
-        "Safety",
-        "Model/system interaction",
-      ],
+      relevance: [],
     },
     {
       id: "mdu-pda",
@@ -239,7 +238,7 @@ export const postgraduate = {
       title: "Predictive Data Analytics",
       subtitle: "Second cycle · completed November 2025",
       period: "Completed Nov 2025",
-      body: "Second-cycle studies in predictive data analytics, machine learning and prediction for decision support.",
+      applicationItems: courseApplications.predictiveAnalytics,
       topics: ["Predictive analytics", "Machine learning", "Prediction", "Decision support"],
       relevance: [],
     },
@@ -251,7 +250,7 @@ export const postgraduate = {
       title: "Deep Learning for Industrial Imaging",
       subtitle: "Second cycle · completed December 2025",
       period: "Completed Dec 2025",
-      body: "Second-cycle studies in deep learning and computer vision applied to industrial imaging.",
+      applicationItems: courseApplications.industrialImaging,
       topics: ["Deep learning", "Computer vision", "Industrial imaging", "Industrial AI"],
       relevance: [],
     },
