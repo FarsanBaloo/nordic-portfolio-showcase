@@ -3,8 +3,47 @@ import { type ReactNode } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "./ui-bits";
 import { ImageGallery } from "./ImageGallery";
-import type { Project } from "../content/projects";
+import type { CaseSubsection, Project } from "../content/projects";
 import { projectRoleContext } from "../content/timeline";
+
+function CaseSubsectionBody({ subsection }: { subsection: CaseSubsection }) {
+  return (
+    <div className="space-y-3 pt-2">
+      <h5 className="text-base font-semibold text-night-foreground">{subsection.heading}</h5>
+      {subsection.body?.map((paragraph) => (
+        <p key={paragraph} className="text-[16px] leading-[1.65] text-night-body">
+          {paragraph}
+        </p>
+      ))}
+      {subsection.items?.length ? <BulletList items={subsection.items} /> : null}
+      {subsection.afterItemsBody?.map((paragraph) => (
+        <p key={paragraph} className="text-[16px] leading-[1.65] text-night-body">
+          {paragraph}
+        </p>
+      ))}
+      {subsection.quote ? (
+        <blockquote className="border-l-2 border-aurora-teal pl-4 text-[16px] italic leading-[1.65] text-night-foreground">
+          {subsection.quote}
+        </blockquote>
+      ) : null}
+      {subsection.flow ? (
+        <FlowSteps steps={subsection.flow.steps} label={subsection.flow.label} />
+      ) : null}
+      {subsection.tags?.length ? <TagList items={subsection.tags} night /> : null}
+      {subsection.links?.length ? (
+        <ul className="space-y-1.5 text-sm">
+          {subsection.links.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} target="_blank" rel="noreferrer" className="text-aurora-teal hover:underline">
+                {link.label} ↗
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 /** A compact, self-contained render of a full case study, reused by the
  *  timeline's side sheet so opening a project never leaves the story. */
@@ -52,12 +91,14 @@ export function CaseStudyBody({
         </section>
       ) : null}
 
-      <section>
-        <Eyebrow>Key technologies &amp; methods</Eyebrow>
-        <div className="mt-3">
-          <TagList items={project.tags} night />
-        </div>
-      </section>
+      {project.slug === "talking-scada" ? null : (
+        <section>
+          <Eyebrow>Key technologies &amp; methods</Eyebrow>
+          <div className="mt-3">
+            <TagList items={project.tags} night />
+          </div>
+        </section>
+      )}
 
       {project.sections.map((section) => (
         <section key={section.heading} className="space-y-3">
@@ -68,11 +109,19 @@ export function CaseStudyBody({
             </p>
           ))}
           {section.items?.length ? <BulletList items={section.items} /> : null}
+          {section.afterItemsBody?.map((paragraph) => (
+            <p key={paragraph} className="text-[16px] leading-[1.65] text-night-body">
+              {paragraph}
+            </p>
+          ))}
           {section.quote ? (
             <blockquote className="border-l-2 border-aurora-teal pl-4 text-[16px] italic leading-[1.65] text-night-foreground">
               {section.quote}
             </blockquote>
           ) : null}
+          {section.subSections?.map((subsection) => (
+            <CaseSubsectionBody key={subsection.heading} subsection={subsection} />
+          ))}
         </section>
       ))}
 
@@ -110,6 +159,9 @@ export function CaseStudyBody({
       {project.reflection ? <Callout label="Reflection">{project.reflection}</Callout> : null}
       {project.contributionNote ? (
         <Callout label="My contribution">{project.contributionNote}</Callout>
+      ) : null}
+      {bare && project.footnote ? (
+        <p className="text-sm leading-relaxed text-night-muted">{project.footnote}</p>
       ) : null}
 
       {project.links?.length ? (

@@ -3,7 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { NightHero, Page } from "../components/site";
 import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "../components/ui-bits";
 import { ImageGallery } from "../components/ImageGallery";
-import { getProject, sortedProjects } from "../content/projects";
+import { getProject, sortedProjects, type CaseSubsection } from "../content/projects";
 import { OG_CARD, SITE_URL, absoluteUrl, seo } from "../lib/site";
 
 
@@ -79,6 +79,45 @@ function CaseNotFound() {
   );
 }
 
+function CaseSubsectionContent({ subsection }: { subsection: CaseSubsection }) {
+  return (
+    <div className="mt-6 space-y-3">
+      <h3 className="text-lg font-semibold">{subsection.heading}</h3>
+      {subsection.body?.map((paragraph) => (
+        <p key={paragraph} className="text-[15px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+      {subsection.items?.length ? <BulletList items={subsection.items} /> : null}
+      {subsection.afterItemsBody?.map((paragraph) => (
+        <p key={paragraph} className="text-[15px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
+      {subsection.quote ? (
+        <blockquote className="border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
+          {subsection.quote}
+        </blockquote>
+      ) : null}
+      {subsection.flow ? (
+        <FlowSteps steps={subsection.flow.steps} label={subsection.flow.label} />
+      ) : null}
+      {subsection.tags?.length ? <TagList items={subsection.tags} /> : null}
+      {subsection.links?.length ? (
+        <ul className="space-y-2 text-sm">
+          {subsection.links.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} target="_blank" rel="noreferrer" className="text-primary hover:underline">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 function CaseStudy() {
   const { project } = Route.useLoaderData();
   const index = sortedProjects.findIndex((p) => p.slug === project.slug);
@@ -107,9 +146,11 @@ function CaseStudy() {
             {project.highlight}
           </p>
         ) : null}
-        <div className="mt-8">
-          <TagList items={project.tags} night />
-        </div>
+        {project.slug === "talking-scada" ? null : (
+          <div className="mt-8">
+            <TagList items={project.tags} night />
+          </div>
+        )}
       </NightHero>
 
       <Page>
@@ -128,11 +169,19 @@ function CaseStudy() {
                     <BulletList items={section.items} />
                   </div>
                 ) : null}
+                {section.afterItemsBody?.map((paragraph) => (
+                  <p key={paragraph} className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                    {paragraph}
+                  </p>
+                ))}
                 {section.quote ? (
                   <blockquote className="mt-5 border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
                     {section.quote}
                   </blockquote>
                 ) : null}
+                {section.subSections?.map((subsection) => (
+                  <CaseSubsectionContent key={subsection.heading} subsection={subsection} />
+                ))}
               </section>
             ))}
 
