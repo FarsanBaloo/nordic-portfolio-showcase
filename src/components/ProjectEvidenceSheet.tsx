@@ -16,6 +16,11 @@ function CaseSubsectionBody({ subsection }: { subsection: CaseSubsection }) {
         </p>
       ))}
       {subsection.items?.length ? <BulletList items={subsection.items} /> : null}
+      {subsection.afterItemsBody?.map((paragraph) => (
+        <p key={paragraph} className="text-[16px] leading-[1.65] text-night-body">
+          {paragraph}
+        </p>
+      ))}
       {subsection.quote ? (
         <blockquote className="border-l-2 border-aurora-teal pl-4 text-[16px] italic leading-[1.65] text-night-foreground">
           {subsection.quote}
@@ -104,6 +109,11 @@ export function CaseStudyBody({
             </p>
           ))}
           {section.items?.length ? <BulletList items={section.items} /> : null}
+          {section.afterItemsBody?.map((paragraph) => (
+            <p key={paragraph} className="text-[16px] leading-[1.65] text-night-body">
+              {paragraph}
+            </p>
+          ))}
           {section.quote ? (
             <blockquote className="border-l-2 border-aurora-teal pl-4 text-[16px] italic leading-[1.65] text-night-foreground">
               {section.quote}

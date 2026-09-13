@@ -89,6 +89,11 @@ function CaseSubsectionContent({ subsection }: { subsection: CaseSubsection }) {
         </p>
       ))}
       {subsection.items?.length ? <BulletList items={subsection.items} /> : null}
+      {subsection.afterItemsBody?.map((paragraph) => (
+        <p key={paragraph} className="text-[15px] leading-relaxed text-muted-foreground">
+          {paragraph}
+        </p>
+      ))}
       {subsection.quote ? (
         <blockquote className="border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
           {subsection.quote}
@@ -164,6 +169,11 @@ function CaseStudy() {
                     <BulletList items={section.items} />
                   </div>
                 ) : null}
+                {section.afterItemsBody?.map((paragraph) => (
+                  <p key={paragraph} className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                    {paragraph}
+                  </p>
+                ))}
                 {section.quote ? (
                   <blockquote className="mt-5 border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
                     {section.quote}

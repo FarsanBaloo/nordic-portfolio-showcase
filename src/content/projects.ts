@@ -37,6 +37,7 @@ export type CaseSection = {
   heading: string;
   body?: string[];
   items?: string[];
+  afterItemsBody?: string[];
   quote?: string;
   subSections?: CaseSubsection[];
 };
@@ -45,6 +46,7 @@ export type CaseSubsection = {
   heading: string;
   body?: string[];
   items?: string[];
+  afterItemsBody?: string[];
   quote?: string;
   flow?: { label: string; steps: string[] };
   tags?: string[];
@@ -372,6 +374,9 @@ export const projects: Project[] = [
           "Human judgement: support investigation and informed decisions, with autonomous control outside the concept's scope.",
           "Grounded explanations: connect possible causes to relevant operational data, historical behaviour and system relationships.",
         ],
+        afterItemsBody: [
+          "The conceptual MVP centres on a bounded investigation flow: review a deviation, understand relevant context, assess possible causes and identify a useful next investigation step.",
+        ],
         subSections: [
           {
             heading: "Why AI and a multi-agent approach?",
@@ -415,7 +420,7 @@ export const projects: Project[] = [
               "Assess investigation time, usefulness of suggested next steps, clarity of evidence and users' ability to recognise uncertain or unsupported explanations.",
               "Compare the multi-agent direction with a simpler baseline, considering quality, reliability, response time and operating cost.",
             ],
-            body: [
+            afterItemsBody: [
               "The gains described above are intended outcomes whose extent would need to be established through evaluation.",
             ],
           },
