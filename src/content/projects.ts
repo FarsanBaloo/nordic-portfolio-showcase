@@ -291,170 +291,172 @@ export const projects: Project[] = [
   {
     slug: "talking-scada",
     title: "Talking SCADA",
-    subtitle: "Academic AI Product Concept",
+    subtitle: "Understanding hidden energy problems in buildings",
     org: "University of Skövde · Blekinge Institute of Technology",
-    meta: "Innovation in Practice → Product & Requirements Management",
-    type: "AI / Innovation Product Concept",
+    meta: "Product case at Blekinge Institute of Technology · Aug 2025 – May 2026",
+    type: "Academic Product Case",
     priority: 2,
     flagship: true,
     categories: ["AI & Product", "Innovation", "Academic / Research"],
     teaser:
-      "A product concept exploring how AI could help buildings explain why their energy behaviour changed — carried from problem framing through discovery, requirements, MVP definition, product strategy and go-to-market.",
-    pitch: {
-      vision: "Today, buildings generate data. Tomorrow, buildings should explain themselves.",
-      explainer:
-        "Talking SCADA explores how AI could help turn complex building data into understandable explanations of energy deviations — helping users move from what changed? to why did it change? and where should I investigate?",
-    },
-    highlight:
-      "What if the building could explain why it is consuming more energy now than at the same time last year?",
+      "An academic multi-agent AI decision-support concept connecting 20+ years of experience in building systems with product discovery, requirements, a conceptual MVP and business-model thinking to help people understand hidden energy problems in buildings.",
     tags: [
       "Product Vision",
       "Product Discovery",
       "Jobs to Be Done",
-      "Problem Validation",
       "Requirements / PRD",
       "Prioritisation",
-      "MVP",
+      "Conceptual MVP",
+      "Validation Planning",
       "Product Strategy",
       "Business Model",
       "Go-to-Market",
       "Applied AI",
+      "Multi-agent AI",
       "SCADA",
       "BMS",
     ],
     sections: [
       {
-        heading: "Why",
+        heading: "Overview & my contribution",
         body: [
-          "Buildings account for a significant share of global energy use, and a modern building is not one system but many: heating, ventilation, cooling, HVAC controls, sensors, schedules, setpoints, energy management and other connected systems that all influence each other.",
-          "An energy deviation seen at building level may therefore have its cause somewhere else entirely — in a changed schedule or setpoint, an incorrect configuration, a faulty sensor, control sequences interacting unexpectedly, equipment running when it should not, or heating and cooling quietly working against each other.",
-          "The problem is not always a lack of data. The problem is understanding what the data means.",
+          "Talking SCADA is a multi-agent AI decision-support concept bringing together 20+ years of experience in building systems with studies in applied AI, innovation and product management. Refined course by course, the academic case connects user needs, requirements, technical feasibility and potential customer and business value around one aim: helping people understand and act on buildings' hidden energy problems.",
+          "I used the case to translate operational problems into user needs, a product vision, requirements, priorities and a conceptual MVP. I connected these with product strategy, business-model thinking and go-to-market considerations, making assumptions and trade-offs explicit.",
         ],
       },
       {
-        heading: "Whom",
+        heading: "Problem & users",
         body: [
-          "Building operators, facility managers, energy managers and technical teams responsible for understanding and improving building performance.",
-          "These users have very different levels of HVAC/BMS depth, and deep diagnostic expertise may be limited or concentrated among a small number of specialists.",
+          "Buildings account for a significant share of global energy use. A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management. These systems influence one another.",
+          "An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
+          "The challenge is often understanding what the data means and where to investigate.",
+          "The intended users are building operators, facility managers, energy managers and technical teams. Their HVAC/BMS expertise varies, and specialist knowledge may be concentrated among a small number of people. Investigations can require navigating trends, alarms, configurations and relationships across several systems.",
+        ],
+        subSections: [
+          {
+            heading: "Proposed job to be done",
+            quote:
+              "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act.",
+          },
         ],
       },
       {
-        heading: "Pain",
-        quote: "I can see that something changed, but I do not know why.",
+        heading: "Concept & proposed user journey",
         body: [
-          "Users may be able to see that energy consumption has changed without being able to quickly identify why. Investigation can require navigating trends, alarms, schedules, configurations and relationships across multiple systems, together with specialist HVAC/BMS knowledge.",
+          "The concept explores an explanation and decision-support layer for SCADA/BMS platforms, bringing together operational data, historical behaviour, system relationships and domain context. It would help users assess likely causes and choose where to investigate next, while keeping operational decisions with people.",
         ],
+        subSections: [
+          {
+            heading: "Proposed user journey",
+            flow: {
+              label: "Proposed user journey",
+              steps: [
+                "Energy deviation",
+                "What changed?",
+                "Cross-system context",
+                "Possible causes",
+                "Supporting evidence",
+                "Where should I investigate?",
+              ],
+            },
+          },
+        ],
+      },
+      {
+        heading: "Product decisions & MVP scope",
+        body: ["The concept is shaped by three scope choices:"],
         items: [
-          "Investigation effort and complexity",
-          "Relationships that cross several systems",
-          "Large amounts of operational data",
-          "Difficulty identifying root causes",
-          "Dependency on limited specialist domain knowledge",
+          "A focused user problem: investigate unexplained energy deviations across interacting building systems.",
+          "Human judgement: support investigation and informed decisions, with autonomous control outside the concept's scope.",
+          "Grounded explanations: connect possible causes to relevant operational data, historical behaviour and system relationships.",
+        ],
+        subSections: [
+          {
+            heading: "Why AI and a multi-agent approach?",
+            body: [
+              "The conceptual MVP centres on a bounded investigation flow: review a deviation, understand relevant context, assess possible causes and identify a useful next investigation step.",
+              "AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. A proposed validation question is whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity.",
+            ],
+          },
         ],
       },
       {
-        heading: "Job to be done",
-        quote:
-          "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act.",
-      },
-      {
-        heading: "What the concept is",
-        body: [
-          "Talking SCADA explores an AI-enabled explanation and decision-support layer for building platforms that could combine operational data, historical behaviour, system relationships and domain context to help explain likely causes of energy deviations.",
-          "The intent is to move the user from what changed? to why did it change? and then toward where should I investigate next? — decision support and context rather than autonomous control. Human judgement stays part of the decision.",
-        ],
-      },
-      {
-        heading: "Gain",
-        body: ["The concept aims to support:"],
+        heading: "Value proposition & business assumptions",
+        body: ["The intended gains are:"],
         items: [
-          "Faster investigation of energy deviations",
-          "Reduced dependency on limited specialist knowledge",
-          "More understandable building behaviour",
-          "More actionable operational data",
-          "Better-informed energy decisions",
-          "Earlier identification of abnormal or inefficient behaviour",
+          "Less investigation effort and earlier identification of abnormal or inefficient behaviour.",
+          "More accessible domain knowledge and more understandable, actionable operational data.",
+          "Better-informed decisions about energy use.",
+        ],
+        subSections: [
+          {
+            heading: "Business hypothesis",
+            body: [
+              "Organisations responsible for building performance could value support that helps their teams investigate more efficiently and identify avoidable energy waste. This links clearer operational understanding for users with potential business value for the organisation.",
+              "Questions for market validation include who uses the support, who owns the purchasing decision, how it fits existing platform or service offers, and how delivery and support costs compare with expected value. Packaging, willingness to pay and adoption need to be examined alongside technical feasibility.",
+            ],
+          },
         ],
       },
       {
-        heading: "Product vision",
-        body: [
-          "Talking SCADA explores a future where building platforms do more than display values, alarms and trends. They help users understand the behaviour behind them.",
-          "The goal is not to replace domain experts, but to make domain knowledge and system context more accessible and help more users investigate complex building behaviour.",
-          "AI should support the user by explaining evidence and relationships, not simply returning an unexplained answer.",
+        heading: "Evidence & validation approach",
+        subSections: [
+          {
+            heading: "Academic work covered",
+            body: [
+              "The case brought together problem framing, product discovery, a product vision and value proposition, requirements/PRD work, feature prioritisation and a conceptual MVP. It also addressed technical feasibility, product strategy, business models, go-to-market and adoption considerations.",
+            ],
+          },
+          {
+            heading: "Proposed validation approach",
+            items: [
+              "Compare supported investigations with existing workflows using representative users and building data.",
+              "Assess investigation time, usefulness of suggested next steps, clarity of evidence and users' ability to recognise uncertain or unsupported explanations.",
+              "Compare the multi-agent direction with a simpler baseline, considering quality, reliability, response time and operating cost.",
+            ],
+            body: [
+              "The gains described above are intended outcomes whose extent would need to be established through evaluation.",
+            ],
+          },
         ],
       },
       {
-        heading: "Why AI?",
+        heading: "How the case evolved",
         body: [
-          "AI was not the starting point. It became relevant only once the problem was understood: large amounts of operational information, historical behaviour, relationships between systems, contextual interpretation, domain knowledge and explanation all have to come together before a user can act.",
-          "That turned into a feasibility question rather than an assumption: can AI help make specialist building-domain reasoning more accessible to more users while keeping explanations grounded in actual building data and system context?",
+          "AI foundation — Mälardalen University and subsequent advanced studies: a degree focused on applied AI, followed by studies in natural language processing, machine learning and data analytics, informed the language-interaction and technical-feasibility questions.",
+          "Innovation Management — University of Skövde: opportunity identification, problem framing and the initial concept explored how existing building-platform data could support operators and facility managers.",
+          "Product case — Blekinge Institute of Technology: the specialisation in Industrial Economics and Management connected the concept with New Product Development, Product Discovery, Requirements Engineering, prioritisation, MVP definition, product and portfolio strategy, business models and go-to-market. Agile delivery thinking, product-development governance and stakeholder communication helped structure the case.",
+        ],
+        subSections: [
+          {
+            heading: "Methods & domains",
+            tags: [
+              "Product Vision",
+              "Product Discovery",
+              "Jobs to Be Done",
+              "Requirements / PRD",
+              "Prioritisation",
+              "Conceptual MVP",
+              "Validation Planning",
+              "Product Strategy",
+              "Business Model",
+              "Go-to-Market",
+              "Applied AI",
+              "Multi-agent AI",
+              "SCADA",
+              "BMS",
+            ],
+          },
         ],
       },
       {
-        heading: "Product work — Stage 1, initial concept (University of Skövde)",
+        heading: "Reflection & next steps",
         body: [
-          "Innovation work that established the opportunity and problem framing: how existing operational data from building systems could become understandable insight and decision support for facility managers and operators.",
-        ],
-        items: [
-          "Opportunity identification",
-          "Problem framing and validation",
-          "Understandable operational data",
-          "Facility-manager decision support",
-          "Operator support and troubleshooting",
-          "Use of existing platform data",
-          "Operational value",
-        ],
-      },
-      {
-        heading: "Product work — Stage 2, product case (Blekinge Institute of Technology)",
-        body: [
-          "Talking SCADA was then used as a recurring academic product case to apply New Product Development, Product Discovery, digital product strategy and Requirements Engineering to the concept.",
-        ],
-        items: [
-          "Product discovery",
-          "Product vision",
-          "Value proposition",
-          "Customer needs and jobs to be done",
-          "AI and technical feasibility",
-          "Product definition",
-          "Requirements management / PRD",
-          "Feature prioritisation",
-          "MVP definition",
-          "Validation thinking",
-          "Product-development governance",
-          "Product strategy and portfolio considerations",
-          "Business-model development",
-          "Market relevance",
-          "Go-to-market and adoption considerations",
-        ],
-      },
-      {
-        heading: "Product leadership perspective",
-        body: [
-          "The case also explores the less visible side of product work: bringing user, business and technical perspectives into the same decision process, making assumptions and trade-offs explicit, defining what the product should and should not do, and creating a direction that different stakeholders can understand and evaluate.",
-        ],
-      },
-      {
-        heading: "Product relevance",
-        body: [
-          "Talking SCADA is not primarily about creating another dashboard or chatbot. The core product opportunity is to help users move from seeing a deviation to understanding the likely reasons behind it.",
-          "The concept explores whether AI can help make complex building-domain reasoning more accessible while keeping explanations grounded in operational data, system context and human judgement.",
+          "The case connected my operational experience with a more structured product approach: understanding the user's problem, defining scope, making assumptions and trade-offs visible, and examining how customer and business value could align.",
+          "Further work should test a narrow investigation flow with representative users and data, then use the findings to refine the requirements, MVP scope and value proposition.",
         ],
       },
     ],
-    valueTagline: "From building data to building understanding.",
-    flow: {
-      label: "The user's path through a deviation",
-      steps: [
-        "Energy deviation",
-        "What changed?",
-        "Cross-system context",
-        "Why did it change?",
-        "Evidence-based explanation",
-        "Where should I investigate?",
-      ],
-    },
     images: {
       slots: [
         {
@@ -467,8 +469,6 @@ export const projects: Project[] = [
         },
       ],
     },
-    reflection:
-      "The Innovation Management work established the opportunity and problem framing; the product-management specialisation turned it into a structured product case. Two stages of the same concept, not two separate projects.",
     footnote:
       "Academic AI product case based on general industry and domain knowledge. It does not disclose confidential customer or employer information.",
   },
