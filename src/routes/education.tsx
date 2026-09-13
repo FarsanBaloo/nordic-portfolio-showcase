@@ -36,9 +36,16 @@ function EducationPage() {
             {postgraduate.entries.map((entry, index) => (
               <div key={entry.id}>
                 {entry.phase && entry.phase !== postgraduate.entries[index - 1]?.phase ? (
-                  <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {entry.phase}
-                  </p>
+                  <div className="mb-3">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                      {entry.phase}
+                    </p>
+                    {"groupIntro" in entry && entry.groupIntro ? (
+                      <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+                        {entry.groupIntro}
+                      </p>
+                    ) : null}
+                  </div>
                 ) : null}
                 <article className="rounded-xl border border-border bg-card p-6 sm:p-8">
                   <Eyebrow>{entry.period}</Eyebrow>

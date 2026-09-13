@@ -13,7 +13,7 @@ export const profile = {
   github: "https://github.com/FarsanBaloo",
   githubDisplay: "github.com/FarsanBaloo",
   positioning:
-    "AI Product Manager who turns customer pains in complex B2B environments into AI-enabled products that hold up in production.",
+    "Bridging user needs, technology and business through industrial platform experience, applied AI and product management.",
   bridge:
     "I start with the customer problem, not the technology. My 20+ years at Schneider Electric span complex B2B environments where customer and user needs, technology, delivery and business value meet. Today, I bring that experience together with applied AI, product management and offer strategy to shape useful, feasible and scalable solutions.",
   heroSupporting:

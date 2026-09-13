@@ -60,6 +60,12 @@ export type ProjectCategory =
   | "Academic / Research"
   | "Innovation";
 
+export type TimelineCaseContent = {
+  intro: string;
+  sections: CaseSection[];
+  ctaLabel: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -72,6 +78,7 @@ export type Project = {
   flagship: boolean;
   categories: ProjectCategory[];
   teaser: string;
+  timelineContent?: TimelineCaseContent;
   tags: string[];
   highlight?: string;
   /** Prominent product pitch shown above everything else in the hero. */
@@ -318,176 +325,156 @@ export const projects: Project[] = [
       "SCADA",
       "BMS",
     ],
+    timelineContent: {
+      intro: "A continuous academic product case combining 20+ years of domain experience with applied AI, product management and business studies. I developed the concept through problem framing, product definition, requirements, prioritisation and commercialisation planning.",
+      sections: [
+        {
+          heading: "Why",
+          body: ["Energy problems often arise from interactions between building systems. Changes in schedules, sensors, configurations or HVAC controls can be difficult to interpret. The opportunity is to help people understand these relationships and decide where to investigate."],
+        },
+        {
+          heading: "Who it is for — users & customers",
+          body: ["Intended users include building operators, facility managers, energy managers and maintenance teams. Potential customers include commercial property owners, facility-management organisations, enterprises managing multiple buildings, and public-sector organisations such as municipalities."],
+        },
+        {
+          heading: "Pain",
+          body: ["Users may see that energy consumption changed without understanding why. Investigation requires combining trends, alarms and configurations across multiple views, often relying on scarce specialist expertise."],
+        },
+        {
+          heading: "Proposed job to be done",
+          quote: "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act.",
+        },
+        {
+          heading: "What the concept is",
+          body: ["Talking SCADA explores multi-agent AI decision support combining operational time-series data, building-system relationships and domain context. Users would ask questions, examine possible causes and review supporting evidence before deciding what to do next."],
+        },
+        {
+          heading: "Intended gains",
+          body: ["Less investigation effort, more accessible domain knowledge, clearer explanations of abnormal behaviour and better-informed operational and energy decisions."],
+        },
+        {
+          heading: "My contribution",
+          items: [
+            "NPD & product definition: outlined a Product Innovation Charter (PIC), concept generation and evaluation, with proposed lead-user involvement and Go/No-Go criteria. Produced a product protocol and PRD covering the offer, user scenarios, MVP scope and acceptance criteria.",
+            "Discovery & system requirements: produced an SRD linking documented elicitation findings to goals and requirement IDs. Defined data, quality and integration requirements, with a context diagram, data model, interface mockup and user-task description.",
+            "Value assessment & prioritisation: connected the value proposition and product definition with requirements assessed using Software Value Map. Ranked 22 requirements and used Cost-Value-Risk to examine critical requirements, dependencies and uncertainty.",
+            "Business & offer strategy: developed a Business Model Canvas and business plan connecting customer segments, value propositions, customer relationships and delivery with proposed SaaS packaging, partner channels, revenue logic and cost drivers.",
+            "Assets & sourcing: examined reuse of technical assets and domain knowledge. Used Make/Buy/Share to distinguish reusable components from potential differentiators in domain reasoning and traceable explanations.",
+            "Commercialisation & lifecycle: planned technical and marketing readiness, proposed pilot use tests, customer-interest testing and staged rollout, followed by performance monitoring, feedback and product life-cycle decisions.",
+          ],
+        },
+        {
+          heading: "Key product decisions",
+          body: ["The proposed MVP focuses on one SCADA integration and selected HVAC subsystems. Decision support remains read-only, with direct control outside scope. Explainability and usability were prioritised early, alongside the data and system context needed to support useful explanations."],
+        },
+        {
+          heading: "Evidence & next validation step",
+          body: ["The coursework produced requirements, design artefacts, prioritisation and commercialisation plans. Further evaluation should assess investigation time, explanation quality, operating costs and willingness to pay, and compare the multi-agent direction with simpler support. Expected benefits remain to be measured."],
+        },
+        {
+          heading: "Origin & progression",
+          body: ["Started in Innovation in Practice and refined through Product Management, Product & Requirements Management and Strategy & Business Models, supported by my domain experience and AI studies."],
+        },
+      ],
+      ctaLabel: "Read the full case study",
+    },
     sections: [
       {
         heading: "Overview & my contribution",
         body: [
           "Talking SCADA began in Innovation in Practice as a proposal for an AI-enabled service to help people understand hidden energy problems in buildings. I then refined the same concept through product, requirements and business coursework, combining 20+ years of domain experience with applied AI. The case now explores multi-agent decision support centred on human judgement.",
-          "Across the coursework, I produced an innovation report, a product protocol, a Product Requirements Document (PRD), a System Requirements Document (SRD) and a business plan. I connected these with value assessment, prioritisation, design artefacts and sourcing analysis to examine how user needs, technical choices and a viable offer could fit together.",
+          "Across the coursework, I produced an innovation report, productification and commercialisation plans, a product protocol, a Product Requirements Document (PRD), a System Requirements Document (SRD) and a business plan. Further reports examined digital-product value and asset/sourcing strategy. I connected these to examine how user needs, technical choices, delivery and a viable offer could fit together.",
         ],
       },
       {
         heading: "Problem & users",
         subSections: [
-          {
-            heading: "Why",
-            body: [
-              "Buildings account for a significant share of global energy use. A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management. These systems influence one another.",
-              "An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
-              "The challenge is often understanding what the data means and where to investigate.",
-            ],
-          },
-          {
-            heading: "Whom",
-            body: [
-              "The target market is commercial property owners and facility-management organisations operating building portfolios with existing SCADA/BMS systems. Intended users include building operators, facility managers, energy managers and service teams. Their HVAC/BMS expertise varies. The stakeholder analysis also considered system integrators, development teams and product/business stakeholders.",
-            ],
-          },
-          {
-            heading: "Pain",
-            body: [
-              "Investigations can require navigating trends, alarms, configurations and relationships across several systems. Users must combine information from different views and interpret relationships that may not be directly visible.",
-            ],
-          },
-          {
-            heading: "Proposed job to be done",
-            quote:
-              "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act.",
-          },
+          { heading: "Why", body: [
+            "Buildings account for a significant share of global energy use. A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management. These systems influence one another.",
+            "An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
+            "The challenge is often understanding what the data means and where to investigate.",
+          ] },
+          { heading: "Whom", body: ["Intended users include building operators, facility managers, energy managers and technical service teams with different levels of HVAC/BMS expertise. Potential customer segments include commercial property owners, facility-management organisations, enterprises managing multiple buildings, and public-sector organisations such as municipalities. The stakeholder analysis also considered system integrators, development teams and product/business stakeholders."] },
+          { heading: "Pain", body: ["Investigations can require navigating trends, alarms, configurations and relationships across several systems. Users must combine information from different views and interpret relationships that may not be directly visible."] },
+          { heading: "Proposed job to be done", quote: "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act." },
         ],
       },
       {
         heading: "Concept & proposed user journey",
         subSections: [
-          {
-            heading: "What the concept is",
-            body: [
-              "The concept explores an explanation and decision-support layer for SCADA/BMS platforms. The proposed design combines historical time-series data with a semantic representation of building systems and their relationships. User scenarios address energy increases and underperforming HVAC systems.",
-              "The intended interaction lets users ask a question, review possible causes and inspect references to the underlying sensors, alarms and system relationships before deciding what to do next. Direct control of physical building systems is outside the defined scope.",
-            ],
-          },
-          {
-            heading: "Proposed user journey",
-            flow: {
-              label: "Proposed user journey",
-              steps: [
-                "Energy deviation",
-                "What changed?",
-                "Cross-system context",
-                "Possible causes",
-                "Supporting evidence",
-                "Where should I investigate?",
-              ],
-            },
-          },
+          { heading: "What the concept is", body: [
+            "The concept explores an explanation and decision-support layer for SCADA/BMS platforms. The proposed design combines historical time-series data with a semantic representation of building systems and their relationships. User scenarios address energy increases and underperforming HVAC systems.",
+            "The intended interaction lets users ask a question, review possible causes and inspect references to the underlying sensors, alarms and system relationships before deciding what to do next. Direct control of physical building systems is outside the defined scope.",
+          ] },
+          { heading: "Proposed user journey", flow: { label: "", steps: ["Energy deviation", "What changed?", "Cross-system context", "Possible causes", "Supporting evidence", "Where should I investigate?"] } },
         ],
       },
       {
         heading: "Product decisions & MVP scope",
         subSections: [
-          {
-            heading: "NPD thinking & product protocol",
-            body: [
-              "I used the product protocol to work through New Product Development (NPD) questions: who the offer serves, how it would be used, what distinguishes it and what is needed to deliver and sustain it.",
-            ],
-            items: [
-              "Market and use context: target organisations, intended users, operating scenarios, positioning and timing.",
-              "The whole offer: core functionality, integration, onboarding, updates and ongoing service.",
-              "Delivery and viability: technical prerequisites, marketing, financial and regulatory requirements, strategic fit and risks.",
-            ],
-            afterItemsBody: [
-              "This connected the initial opportunity with a proposed product definition and the conditions for bringing it to market.",
-            ],
-          },
-          {
-            heading: "System definition & requirements traceability",
-            body: [
-              "In the System Requirements Document (SRD), I separated domain, functional, data, quality, platform and regulatory requirements and defined the system boundary. I linked documented stakeholder and elicitation findings to goals and requirement IDs, making the reasoning behind requirements traceable. The proposed layer remains read-only, with operational decisions left to people.",
-            ],
-          },
-          {
-            heading: "Prioritisation example",
-            body: [
-              "I ranked 22 requirements and used Cost-Value-Risk analysis to examine critical requirements and their dependencies. Explanation generation and abnormal-behaviour detection ranked highest because they carry core product value and substantial technical uncertainty. Data access and system context were identified as enabling requirements.",
-              "Explainability and usability were prioritised early for trust and adoption. The analysis also treated security and system boundaries as conditions that must be addressed from the start.",
-            ],
-          },
-          {
-            heading: "MVP definition",
-            body: [
-              "In the PRD, I defined an initial scope of integration with one SCADA system, diagnostics for selected HVAC subsystems, and a web-based conversational interface explaining energy anomalies. This gives the initial product evaluation a bounded operating context.",
-            ],
-          },
-          {
-            heading: "Success measures & acceptance criteria",
-            body: [
-              "I identified intended success measures around investigation time, energy waste and operational insight. The PRD includes acceptance criteria for natural-language queries, explanations of probable causes, response time and analysis of system relationships. I also specified quality requirements covering availability, usability, security, explainability and maintainability. These define what the product should achieve and what needs evaluation.",
-            ],
-          },
-          {
-            heading: "Why AI and a multi-agent approach?",
-            body: [
-              "AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. Further validation should examine whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity.",
-            ],
-          },
+          { heading: "NPD opportunity, concept evaluation & product definition", body: ["I developed a productification plan applying New Product Development (NPD) thinking to Talking SCADA:"], items: [
+            "Opportunity identification: examined market pull, technology push and underused operational data, and outlined a Product Innovation Charter (PIC) covering background, focus, objectives and guidelines.",
+            "Concept generation: proposed lead-user involvement and cross-functional expertise to clarify what useful explanations and an appropriate service could look like.",
+            "Concept evaluation: examined originality, usefulness and producibility, and outlined technical and commercial screening criteria to support Go/No-Go decisions before committing further resources.",
+            "Product definition: produced a product protocol covering target market, use context, positioning, the whole offer, delivery requirements, financial and regulatory considerations, strategic fit and risks; a separate PRD specifies scenarios, requirements, MVP scope and acceptance criteria.",
+            "Development planning: considered parallel product, marketing and financial work, with iterative feedback, a clear team mandate and the capabilities needed for implementation.",
+          ], afterItemsBody: ["These are completed analyses and proposed development approaches within the academic case."] },
+          { heading: "System definition & requirements traceability", body: ["In the System Requirements Document (SRD), I separated domain, functional, data, quality, platform and regulatory requirements and defined the system boundary. I linked documented stakeholder and elicitation findings to goals and requirement IDs, making the reasoning behind requirements traceable. The proposed layer remains read-only, with operational decisions left to people."] },
+          { heading: "Prioritisation example", body: [
+            "I ranked 22 requirements and used Cost-Value-Risk analysis to examine critical requirements and their dependencies. Explanation generation and abnormal-behaviour detection ranked highest because they carry core product value and substantial technical uncertainty. Data access and system context were identified as enabling requirements.",
+            "Explainability and usability were prioritised early for trust and adoption. The analysis also treated security and system boundaries as conditions that must be addressed from the start.",
+          ] },
+          { heading: "MVP definition", body: ["In the PRD, I defined an initial scope of integration with one SCADA system, diagnostics for selected HVAC subsystems, and a web-based conversational interface explaining energy anomalies. This gives the initial product evaluation a bounded operating context."] },
+          { heading: "Success measures & acceptance criteria", body: ["I identified intended success measures around investigation time, energy waste and operational insight. The PRD includes acceptance criteria for natural-language queries, explanations of probable causes, response time and analysis of system relationships. I also specified quality requirements covering availability, usability, security, explainability and maintainability. These define what the product should achieve and what needs evaluation."] },
+          { heading: "Why AI and a multi-agent approach?", body: ["AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. Further validation should examine whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity."] },
         ],
       },
       {
         heading: "Value proposition & business assumptions",
         body: ["The intended gains are less investigation effort, more accessible domain knowledge, earlier identification of abnormal behaviour and better-informed energy decisions."],
         subSections: [
-          {
-            heading: "Positioning & go-to-market",
-            body: [
-              "In the innovation report, I used PESTEL to examine external drivers and VRIO to assess resources and organisational capabilities. The analysis highlighted the need for cross-functional expertise, leadership support and a culture of learning.",
-              "In the product protocol and business plan, I explored competitive positioning around cross-system diagnostics and understandable explanations for operators. I outlined a proposed introduction through early adopters and system-integrator partnerships, supported by integration assistance, onboarding and ongoing service.",
-            ],
-          },
-          {
-            heading: "Business model, packaging & value assessment",
-            body: [
-              "I developed a Business Model Canvas and a business plan connecting customer segments, value propositions, partners and revenue streams. The proposed SaaS model uses subscriptions and tiered packaging, ranging from building-level explanations to advanced diagnostics and portfolio-level support. I also outlined development, cloud and maintenance cost drivers and initial investment needs.",
-              "Using Software Value Map, I assessed functionality, reliability and usability alongside development cost and architectural maintainability. The assessment highlighted the value of a usable interface and explainable decision support, while making the development effort and technical debt associated with analysis, integration and model improvement visible. These were estimates within the academic case.",
-            ],
-          },
-          {
-            heading: "Assets, knowledge & Make/Buy/Share",
-            body: [
-              "I examined how code, requirements, architecture, documentation and tacit domain knowledge could be maintained and reused. This included codification and personal knowledge-sharing as complementary approaches to preserving expertise.",
-              "I classified components as commodities, qualifiers or differentiators. I proposed concentrating internal development on domain-specific graph reasoning, root-cause analysis and traceable explanations, while using reusable AI components and externally sourced infrastructure where appropriate.",
-              "I also examined service-based revenue and the possibility of bundling the concept with existing platform or service offers. The commercial assumptions, pricing model and expected gains remain subject to market validation.",
-            ],
-          },
+          { heading: "Positioning & go-to-market", body: [
+            "In the innovation report, I used PESTEL to examine external drivers and VRIO to assess resources and organisational capabilities. The analysis highlighted the need for cross-functional expertise, leadership support and a culture of learning.",
+            "In the product protocol and business plan, I explored competitive positioning around cross-system diagnostics and understandable explanations for operators. I outlined a proposed introduction through early adopters and system-integrator partnerships, supported by integration assistance, onboarding and ongoing service.",
+          ] },
+          { heading: "Business model, packaging & value assessment", body: [
+            "I used a Business Model Canvas to connect customer segments and value propositions with customer relationships, channels, key partners, activities and resources, cost structure and revenue streams. The proposed offer combines decision support with integration, ongoing support and continuous improvement.",
+            "The business plan explores subscriptions and tiered SaaS packaging, ranging from building-level explanations to advanced diagnostics and portfolio-level support. I also outlined development, cloud and maintenance cost drivers and initial investment needs.",
+            "I derived selected requirements from the value proposition and product definition, then used Software Value Map to assess functionality, reliability and usability alongside development cost and architectural maintainability. The assessment highlighted the value of a usable interface and explainable decision support, while making the development effort and technical debt associated with analysis, integration and model improvement visible. These were estimates within the academic case.",
+          ] },
+          { heading: "Assets, knowledge & Make/Buy/Share", body: [
+            "I examined how code, requirements, architecture, documentation and tacit domain knowledge could be maintained and reused. This included codification and personal knowledge-sharing as complementary approaches to preserving expertise.",
+            "I classified components as commodities, qualifiers or differentiators. I proposed concentrating internal development on domain-specific graph reasoning, root-cause analysis and traceable explanations, while using reusable AI components and externally sourced infrastructure where appropriate.",
+            "I also examined service-based revenue and the possibility of bundling the concept with existing platform or service offers. The commercial assumptions, pricing model and expected gains remain subject to market validation.",
+          ] },
+          { heading: "Commercialisation & product life cycle", body: [
+            "I developed a commercialisation plan covering parallel technical and marketing launch preparation. This connected integration and delivery capabilities with positioning, SaaS packaging, partner channels and proposed product-use testing.",
+            "I proposed a staged market introduction, including geographic rollout, followed by performance monitoring, corrective action and customer-feedback loops. The plan considers how pricing, marketing and feature priorities could evolve through introduction, growth, maturity and decline. These are proposed commercialisation and lifecycle activities.",
+          ] },
         ],
       },
       {
         heading: "Evidence & validation approach",
         subSections: [
-          {
-            heading: "Documented academic work",
-            items: [
-              "Innovation report with problem framing, PESTEL, VRIO, the Four Ps of innovation and a proposed Design Thinking approach.",
-              "Product protocol applying NPD thinking to the market, whole offer, delivery requirements, strategic fit and risks; a separate PRD specifying scenarios, requirements, MVP scope, intended success measures and acceptance criteria.",
-              "System Requirements Document (SRD) with stakeholder analysis, elicitation findings, requirements traceability, system boundaries, ranking and Cost-Value-Risk analysis.",
-              "Context diagram, conceptual data model, virtual window, interface mockup and task description.",
-              "Business Model Canvas, Software Value Map and business plan with positioning, packaging and proposed go-to-market.",
-              "Asset-management reflection, Make/Buy/Share analysis and an evaluation of open-source business-model options.",
-            ],
-          },
-          {
-            heading: "Documented elicitation",
-            body: [
-              "The initial innovation report proposed interviews, observation and prototyping within a Design Thinking approach. My later system requirements document records findings from interviews, observation and a simple chat-based prototype, and maps those findings to goals and requirements.",
-              "One documented observation was that investigations required combining multiple views and inferring relationships between systems. This informed requirements for graph context, combined data queries and referenced explanations.",
-            ],
-          },
-          {
-            heading: "Further product validation",
-            body: [
-              "The business plan proposes MVP development, pilot installations, user evaluation, market validation and eventual commercial introduction. Further evaluation should assess investigation time, explanation quality, traceability and useful next steps with representative users and building data. It should also compare the multi-agent direction with a simpler baseline and examine operating costs and willingness to pay.",
-              "The coursework provides requirements, analyses and design artefacts. Quality targets and expected energy or business benefits require separate measurement.",
-            ],
-          },
+          { heading: "Documented academic work", items: [
+            "Innovation report with problem framing, PESTEL, VRIO, the Four Ps of innovation and a proposed Design Thinking approach.",
+            "Productification plan with opportunity framing, a proposed PIC, concept generation, concept evaluation and development planning.",
+            "Commercialisation plan with technical and marketing readiness, proposed market tests, staged introduction and post-launch lifecycle considerations.",
+            "Product protocol covering the market, whole offer, delivery requirements, strategic fit and risks; a separate PRD specifying scenarios, requirements, MVP scope, intended success measures and acceptance criteria.",
+            "System Requirements Document (SRD) with stakeholder analysis, elicitation findings, requirements traceability, system boundaries, ranking and Cost-Value-Risk analysis.",
+            "Context diagram, conceptual data model, virtual window, interface mockup and task description.",
+            "Business Model Canvas, Software Value Map and business plan with positioning, packaging and proposed go-to-market.",
+            "Asset-management reflection, Make/Buy/Share analysis and an evaluation of open-source business-model options.",
+          ] },
+          { heading: "Documented elicitation", body: [
+            "The initial innovation report proposed interviews, observation and prototyping within a Design Thinking approach. My later system requirements document records findings from interviews, observation and a simple chat-based prototype, and maps those findings to goals and requirements.",
+            "One documented observation was that investigations required combining multiple views and inferring relationships between systems. This informed requirements for graph context, combined data queries and referenced explanations.",
+          ] },
+          { heading: "Further product validation", body: [
+            "The commercialisation plan and business plan propose pilot installations, product-use testing and market validation before wider introduction. I also considered speculative-sale testing: presenting a proposed product pitch to assess customer interest and willingness to adopt.",
+            "Further evaluation should assess investigation time, explanation quality, traceability and useful next steps with representative users and building data. It should compare the multi-agent direction with a simpler baseline and examine operating costs and willingness to pay.",
+            "The coursework provides requirements, analyses and design artefacts. Quality targets and expected energy or business benefits require separate measurement.",
+          ] },
         ],
       },
       {
@@ -497,47 +484,11 @@ export const projects: Project[] = [
           "I then carried the same concept into coursework within my specialisation in Industrial Economics and Management at Blekinge Institute of Technology:",
         ],
         items: [
-          "Product Management: NPD thinking through a product protocol covering the market, whole offer, delivery and viability; a PRD defining scenarios, requirements, MVP scope and acceptance criteria.",
+          "Product Management: productification and commercialisation plans covering the NPD process, concept evaluation, launch preparation and product life cycle, together with a product protocol and PRD defining the offer, scenarios, requirements, MVP scope and acceptance criteria.",
           "Product & Requirements Management: SRD, elicitation, requirements traceability and prioritisation; separate digital-product value and asset/sourcing analyses using Software Value Map, Business Model Canvas and Make/Buy/Share.",
           "Strategy & Business Models: a business plan connecting competitive positioning, packaging, revenue logic, partner channels, cost drivers and a proposed market-entry plan.",
         ],
-        subSections: [
-          {
-            heading: "Methods & domains",
-            tags: [
-              "Product Vision",
-              "Product Discovery",
-              "Product Definition",
-              "Product Positioning",
-              "Stakeholder Analysis",
-              "Requirements Elicitation",
-              "Jobs to Be Done",
-              "Requirements / PRD",
-              "PRD & SRD",
-              "Requirements Traceability",
-              "Quality Requirements",
-              "Prioritisation",
-              "Cost-Value-Risk",
-              "Conceptual MVP",
-              "Validation Planning",
-              "Success Measures",
-              "Acceptance Criteria",
-              "Explainability",
-              "Product Strategy",
-              "Business Model",
-              "Software Value Map",
-              "Business Model Canvas",
-              "Business Planning",
-              "Asset & Knowledge Management",
-              "Make/Buy/Share",
-              "Go-to-Market",
-              "Applied AI",
-              "Multi-agent AI",
-              "SCADA",
-              "BMS",
-            ],
-          },
-        ],
+        subSections: [{ heading: "Methods & domains", tags: ["PESTEL", "VRIO", "Design Thinking", "New Product Development (NPD)", "Product Innovation Charter (PIC)", "Concept Evaluation", "Product Vision", "Product Discovery", "Product Definition", "Product Positioning", "Stakeholder Analysis", "Requirements Elicitation", "Jobs to Be Done", "Requirements Management", "PRD & SRD", "Requirements Traceability", "Quality Requirements", "MVP Definition", "Success Measures", "Acceptance Criteria", "Explainability", "Prioritisation", "Cost-Value-Risk", "Software Value Map", "Business Model Canvas", "Business Planning", "Asset & Knowledge Management", "Make/Buy/Share", "Product Strategy", "Go-to-Market", "Commercialisation Planning", "Market Testing", "Product Life Cycle", "Applied AI", "Multi-agent AI", "SCADA", "BMS"] }],
       },
       {
         heading: "Reflection & next steps",

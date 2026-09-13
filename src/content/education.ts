@@ -71,7 +71,7 @@ export const postgraduate = {
   entries: [
     {
       id: "bth",
-      phase: "Phase 2 · Jan 2026 – Jun 2026 · Product · Industrial Economics · Requirements",
+      phase: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       institution: "Blekinge Institute of Technology",
       formalTitle:
         "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management",
@@ -113,6 +113,8 @@ export const postgraduate = {
           items: [
             "New Product Development (NPD)",
             "Product Requirements Document (PRD)",
+            "Commercialisation Planning",
+            "Product Life Cycle",
             "Opportunity identification",
             "Product discovery",
             "Product vision",
@@ -185,7 +187,7 @@ export const postgraduate = {
     },
     {
       id: "liu",
-      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      phase: "Phase 1 · Advanced AI Foundation",
       institution: "Linköping University",
       formalTitle:
         "Advanced-Level Studies in Artificial Intelligence: Natural Language Processing",
@@ -193,7 +195,7 @@ export const postgraduate = {
       subtitle: "Natural Language Processing",
 
       period: "Aug 2025 – Jan 2026",
-      body: advancedAiFoundationIntro,
+      groupIntro: advancedAiFoundationIntro,
       applicationItems: courseApplications.nlp,
       topics: [
         "Natural Language Processing",
@@ -208,7 +210,7 @@ export const postgraduate = {
     },
     {
       id: "umu",
-      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      phase: "Phase 1 · Advanced AI Foundation",
       institution: "Umeå University",
       formalTitle:
         "Advanced-Level Studies in Artificial Intelligence: Autonomous Systems & Perception",
@@ -232,7 +234,7 @@ export const postgraduate = {
     },
     {
       id: "mdu-pda",
-      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      phase: "Phase 1 · Advanced AI Foundation",
       institution: "Mälardalen University",
       formalTitle: "Predictive Data Analytics",
       title: "Predictive Data Analytics",
@@ -244,7 +246,7 @@ export const postgraduate = {
     },
     {
       id: "mdu-dlii",
-      phase: "Phase 1 · Aug 2025 – Jan 2026 · Advanced AI Foundation",
+      phase: "Phase 1 · Advanced AI Foundation",
       institution: "Mälardalen University",
       formalTitle: "Deep Learning for Industrial Imaging",
       title: "Deep Learning for Industrial Imaging",

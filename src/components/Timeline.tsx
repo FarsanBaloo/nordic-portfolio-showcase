@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useId, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   AnimatePresence,
   motion,
@@ -10,7 +11,7 @@ import {
 
 import { roles } from "../content/experience";
 import { getProject } from "../content/projects";
-import { CaseStudyBody, ProjectEvidenceSheet } from "./ProjectEvidenceSheet";
+import { ProjectEvidenceSheet } from "./ProjectEvidenceSheet";
 import {
   milestones,
   parallelBridge,
@@ -490,6 +491,8 @@ function CaseTrackCard({
 }) {
   const project = getProject(child.slug);
   if (!project) return null;
+  const timelineContent = project.timelineContent;
+  if (!timelineContent) return null;
   const slots = project.images?.slots;
   const caseLead = slots?.find((slot) => slot.src && slot.lead) ?? slots?.find((slot) => slot.src);
 
@@ -521,13 +524,49 @@ function CaseTrackCard({
           {child.note}
         </p>
       ) : null}
-      <p className="mt-3 text-[15.5px] leading-relaxed text-night-body">{project.teaser}</p>
+      <p className="mt-3 text-[15.5px] leading-relaxed text-night-body">
+        {timelineContent.intro}
+      </p>
 
-      {/* The full case study is this card's body — open by default, no sheet,
-          because Talking SCADA is the main product-management proof and the
-          card stretches the whole phase down to the progression band. */}
-      <div className="mt-6 border-t border-night-border/50 pt-6">
-        <CaseStudyBody project={project} bare />
+      <div className="mt-6 space-y-7 border-t border-night-border/50 pt-6">
+        {timelineContent.sections.map((section) => (
+          <section key={section.heading} className="space-y-3">
+            <h5 className="text-base font-semibold text-night-foreground">
+              {section.heading}
+            </h5>
+            {section.body?.map((paragraph) => (
+              <p key={paragraph} className="text-[15.5px] leading-[1.65] text-night-body">
+                {paragraph}
+              </p>
+            ))}
+            {section.items?.length ? (
+              <ul className="space-y-3">
+                {section.items.map((item) => (
+                  <li key={item} className="flex gap-2.5 text-[15px] leading-[1.6] text-night-body">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[0.65em] h-1 w-1 shrink-0 rounded-full"
+                      style={{ backgroundColor: accent }}
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {section.quote ? (
+              <blockquote className="border-l-2 border-aurora-teal pl-4 text-[15.5px] italic leading-[1.65] text-night-foreground">
+                {section.quote}
+              </blockquote>
+            ) : null}
+          </section>
+        ))}
+        <Link
+          to="/projects/$slug"
+          params={{ slug: project.slug }}
+          className="inline-flex min-h-11 items-center text-sm font-semibold text-aurora-teal hover:underline"
+        >
+          {timelineContent.ctaLabel} <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </div>
   );
