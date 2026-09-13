@@ -564,6 +564,7 @@ function PhaseBlock({
   const courses = group.items.filter(
     (i) => i !== parent && i.kind !== "project",
   ) as Extract<TimelineChild, { kind: "course" | "topics" }>[];
+  const groupIntro = courses.find((item) => item.groupIntro)?.groupIntro;
 
   return (
     <section className="min-w-0">
@@ -575,9 +576,9 @@ function PhaseBlock({
           >
             {group.title}
           </h4>
-          {group.items.find((item) => "groupIntro" in item && item.groupIntro)?.groupIntro ? (
+          {groupIntro ? (
             <p className="mt-3 text-[15px] leading-relaxed text-night-body">
-              {group.items.find((item) => "groupIntro" in item && item.groupIntro)?.groupIntro}
+              {groupIntro}
             </p>
           ) : null}
         </div>
