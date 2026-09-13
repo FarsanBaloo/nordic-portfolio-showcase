@@ -328,13 +328,27 @@ export const projects: Project[] = [
       },
       {
         heading: "Problem & users",
-        body: [
-          "Buildings account for a significant share of global energy use. A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management. These systems influence one another.",
-          "An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
-          "The challenge is often understanding what the data means and where to investigate.",
-          "The intended users are building operators, facility managers, energy managers and technical teams. Their HVAC/BMS expertise varies, and specialist knowledge may be concentrated among a small number of people. Investigations can require navigating trends, alarms, configurations and relationships across several systems.",
-        ],
         subSections: [
+          {
+            heading: "Why",
+            body: [
+              "Buildings account for a significant share of global energy use. A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management. These systems influence one another.",
+              "An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
+              "The challenge is often understanding what the data means and where to investigate.",
+            ],
+          },
+          {
+            heading: "Whom",
+            body: [
+              "The intended users are building operators, facility managers, energy managers and technical teams. Their HVAC/BMS expertise varies, and specialist knowledge may be concentrated among a small number of people.",
+            ],
+          },
+          {
+            heading: "Pain",
+            body: [
+              "Investigations can require navigating trends, alarms, configurations and relationships across several systems.",
+            ],
+          },
           {
             heading: "Proposed job to be done",
             quote:
@@ -344,10 +358,13 @@ export const projects: Project[] = [
       },
       {
         heading: "Concept & proposed user journey",
-        body: [
-          "The concept explores an explanation and decision-support layer for SCADA/BMS platforms, bringing together operational data, historical behaviour, system relationships and domain context. It would help users assess likely causes and choose where to investigate next, while keeping operational decisions with people.",
-        ],
         subSections: [
+          {
+            heading: "What the concept is",
+            body: [
+              "The concept explores an explanation and decision-support layer for SCADA/BMS platforms, bringing together operational data, historical behaviour, system relationships and domain context. It would help users assess likely causes and choose where to investigate next, while keeping operational decisions with people.",
+            ],
+          },
           {
             heading: "Proposed user journey",
             flow: {
