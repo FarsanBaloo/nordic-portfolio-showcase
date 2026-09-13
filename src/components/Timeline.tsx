@@ -499,13 +499,13 @@ function CaseTrackCard({
       style={{ borderLeft: `2px solid color-mix(in oklab, ${accent} 55%, transparent)`, ["--card-accent" as string]: accent }}
     >
       {caseLead?.src ? (
-        <div className="mb-3 hidden overflow-hidden rounded-lg border border-night-border/70 sm:block">
+        <div className="mb-3 block overflow-hidden rounded-lg border border-night-border/70">
           <img
             src={caseLead.src}
             alt={caseLead.alt ?? project.title}
             loading="lazy"
             decoding="async"
-            className="aspect-[16/9] w-full object-cover opacity-90"
+            className="aspect-[2/1] w-full object-cover opacity-90 sm:aspect-[16/9]"
           />
         </div>
       ) : null}
