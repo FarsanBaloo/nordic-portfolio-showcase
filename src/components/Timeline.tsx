@@ -464,50 +464,15 @@ function findCaseChild(entry: TimelineMilestone): CaseChild | undefined {
   return entry.children?.find((c) => c.kind === "project" && c.caseTrack) as CaseChild | undefined;
 }
 
-/** Compact grouped view of the continuous product case. */
-const caseStageGroups = [
-  { id: "opportunity", label: "Opportunity", stages: ["Innovation Opportunity", "Initial Concept"] },
-  { id: "ai", label: "AI & feasibility", stages: ["Language Interaction", "AI Feasibility"] },
-  {
-    id: "definition",
-    label: "Product definition",
-    stages: ["Product Discovery", "Product Vision", "Value Proposition"],
-  },
-  { id: "requirements", label: "Requirements", stages: ["PRD", "Requirements", "Prioritisation"] },
-  { id: "mvp", label: "MVP & validation", stages: ["Conceptual MVP", "Validation Approach"] },
-  {
-    id: "business",
-    label: "Business",
-    stages: ["Product Strategy", "Business Model", "Market Relevance", "Go-to-Market"],
-  },
-  {
-    id: "final",
-    label: "Final",
-    stages: ["Technical Feasibility", "Adoption Considerations"],
-  },
-] as const;
-
-const courseStageMap: Record<string, string[]> = {
-  "Product Management": ["definition", "mvp"],
-  "Product and Requirements Management for Digital Environments": ["requirements", "final"],
-  "Industrial Economics and Management": ["business"],
-  "Strategy and Business Models in Technology-Intensive Businesses": ["business"],
-  "Agile Process and Project Management": ["mvp", "requirements"],
-  "Leadership in High-Technology and Knowledge-Intensive Organizations": ["definition"],
-};
-
 function CaseTrackCard({
   child,
   accent,
-  activeCourse,
 }: {
   child: CaseChild;
   accent: string;
-  activeCourse: string | null;
 }) {
   const project = getProject(child.slug);
   if (!project) return null;
-  const activeGroups = activeCourse ? (courseStageMap[activeCourse] ?? []) : [];
   const slots = project.images?.slots;
   const caseLead = slots?.find((slot) => slot.src && slot.lead) ?? slots?.find((slot) => slot.src);
 
@@ -528,62 +493,18 @@ function CaseTrackCard({
         </div>
       ) : null}
       <p className="font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
-        Continuous product case
+        {project.type}
       </p>
       <h4 className="mt-2 font-display text-[23px] font-semibold leading-snug text-night-foreground">
         {project.title}
       </h4>
-      {child.continuityLabel ? (
-        <p className="mt-1 text-[16px] text-night-body">{child.continuityLabel}</p>
-      ) : null}
+      {project.subtitle ? <p className="mt-1 text-[16px] text-night-body">{project.subtitle}</p> : null}
       {child.note ? (
         <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
           {child.note}
         </p>
       ) : null}
       <p className="mt-3 text-[15.5px] leading-relaxed text-night-body">{project.teaser}</p>
-
-      <ol className="mt-5 space-y-3">
-        {caseStageGroups.map((g) => {
-          const on = activeGroups.includes(g.id);
-          return (
-            <li
-              key={g.id}
-              className="border-l pl-3 transition-colors duration-300"
-              style={{
-                borderColor: on
-                  ? accent
-                  : `color-mix(in oklab, ${accent} 22%, transparent)`,
-              }}
-            >
-              <p
-                className="font-mono text-[11.5px] uppercase tracking-[0.09em] transition-colors duration-300"
-                style={{ color: on ? accent : "var(--night-subtle, #8b97a8)" }}
-              >
-                {g.label}
-              </p>
-              <p
-                className={[
-                  "mt-1 text-[14.5px] leading-relaxed transition-colors duration-300",
-                  on ? "text-night-foreground" : "text-night-muted",
-                ].join(" ")}
-              >
-                {g.stages.join(" · ")}
-              </p>
-            </li>
-          );
-        })}
-      </ol>
-
-      {child.caseNotes?.length ? (
-        <ul className="mt-5 space-y-1.5 border-t border-night-border/50 pt-4">
-          {child.caseNotes.map((n) => (
-            <li key={n} className="text-[13.5px] leading-relaxed text-night-muted">
-              {n}
-            </li>
-          ))}
-        </ul>
-      ) : null}
 
       {/* The full case study is this card's body — open by default, no sheet,
           because Talking SCADA is the main product-management proof and the
@@ -1470,8 +1391,8 @@ function MilestoneRow({
             sideSticky={false}
             side={
               caseChild
-                ? (activeCourse) => (
-                    <CaseTrackCard child={caseChild} accent={accent} activeCourse={activeCourse} />
+                ? () => (
+                    <CaseTrackCard child={caseChild} accent={accent} />
                   )
                 : undefined
             }

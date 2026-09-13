@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { NightHero, Page } from "../components/site";
-import { BulletList, Callout, Eyebrow, FlowSteps, TagList } from "../components/ui-bits";
+import { CaseStudyBody } from "../components/ProjectEvidenceSheet";
+import { Callout, Eyebrow, TagList } from "../components/ui-bits";
 import { ImageGallery } from "../components/ImageGallery";
 import { getProject, sortedProjects } from "../content/projects";
 import { OG_CARD, SITE_URL, absoluteUrl, seo } from "../lib/site";
@@ -107,45 +108,17 @@ function CaseStudy() {
             {project.highlight}
           </p>
         ) : null}
-        <div className="mt-8">
-          <TagList items={project.tags} night />
-        </div>
+        {project.slug === "talking-scada" ? null : (
+          <div className="mt-8">
+            <TagList items={project.tags} night />
+          </div>
+        )}
       </NightHero>
 
       <Page>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_260px]">
           <article className="max-w-3xl space-y-12">
-            {project.sections.map((section) => (
-              <section key={section.heading}>
-                <h2 className="text-2xl font-semibold">{section.heading}</h2>
-                {section.body?.map((p) => (
-                  <p key={p} className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                    {p}
-                  </p>
-                ))}
-                {section.items?.length ? (
-                  <div className="mt-5">
-                    <BulletList items={section.items} />
-                  </div>
-                ) : null}
-                {section.quote ? (
-                  <blockquote className="mt-5 border-l-2 border-primary pl-5 text-[15px] italic leading-relaxed">
-                    {section.quote}
-                  </blockquote>
-                ) : null}
-              </section>
-            ))}
-
-            {project.flow ? (
-              <section>
-                <FlowSteps steps={project.flow.steps} label={project.flow.label} />
-                {project.valueTagline ? (
-                  <p className="mt-5 text-lg font-semibold text-foreground">
-                    {project.valueTagline}
-                  </p>
-                ) : null}
-              </section>
-            ) : null}
+            <CaseStudyBody project={project} bare />
 
             {project.images?.slots.length ? (
               <section>
