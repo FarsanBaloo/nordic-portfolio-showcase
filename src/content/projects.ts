@@ -38,6 +38,17 @@ export type CaseSection = {
   body?: string[];
   items?: string[];
   quote?: string;
+  subSections?: CaseSubsection[];
+};
+
+export type CaseSubsection = {
+  heading: string;
+  body?: string[];
+  items?: string[];
+  quote?: string;
+  flow?: { label: string; steps: string[] };
+  tags?: string[];
+  links?: { label: string; href: string }[];
 };
 
 export type ProjectCategory =
