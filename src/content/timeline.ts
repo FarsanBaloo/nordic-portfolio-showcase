@@ -291,8 +291,6 @@ export const milestones: TimelineMilestone[] = [
           "Figma Prototyping",
           "Usability Validation",
         ],
-        body: "AI methods and reasoning, modelling and evaluation, neural networks and model training, and the engineering practice of building and maintaining AI systems.",
-        body2: "Human-centred design worked end to end: user research and ideation, wireframes developed into high-fidelity prototypes in Figma, and evaluation of finished products through heuristic and accessibility review with usability validation against real users.",
         applicationItems: courseApplications.bachelorCoursework,
         group: "Selected AI, software engineering and design coursework",
       },
@@ -362,8 +360,7 @@ export const milestones: TimelineMilestone[] = [
         org: "Aug 2025 – Jun 2026",
         topics: [],
         body: "Building on the technical AI and innovation foundation, this specialisation focuses on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -374,6 +371,8 @@ export const milestones: TimelineMilestone[] = [
         signals: [
           "New Product Development (NPD)",
           "Product Requirements Document (PRD)",
+          "Commercialisation Planning",
+          "Product Life Cycle",
           "Opportunity Identification",
           "Product Discovery",
           "Product Vision",
@@ -381,8 +380,7 @@ export const milestones: TimelineMilestone[] = [
           "MVP Definition",
         ],
         applicationItems: courseApplications.productManagement,
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -402,8 +400,7 @@ export const milestones: TimelineMilestone[] = [
           "Technical Feasibility",
         ],
         applicationItems: courseApplications.requirementsManagement,
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -419,8 +416,7 @@ export const milestones: TimelineMilestone[] = [
           "Go-to-Market Planning",
         ],
         applicationItems: courseApplications.strategyBusinessModels,
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -430,8 +426,7 @@ export const milestones: TimelineMilestone[] = [
         topics: [],
         signals: ["Stakeholder Alignment", "Communication", "Cross-Functional Perspective"],
         applicationItems: courseApplications.leadership,
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -447,8 +442,7 @@ export const milestones: TimelineMilestone[] = [
           "Prioritisation / Delivery Thinking",
         ],
         applicationItems: courseApplications.agile,
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -458,8 +452,7 @@ export const milestones: TimelineMilestone[] = [
         topics: [],
         signals: ["Business Value", "Technology / Business Perspective", "Sustainable Value"],
         applicationItems: courseApplications.industrialEconomics,
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -477,8 +470,7 @@ export const milestones: TimelineMilestone[] = [
           "Talking SCADA — Initial Concept",
           "Product / Requirements Development",
         ],
-        group:
-          "Phase 2 · Aug 2025 – Jun 2026 · Product · Industrial Economics · Requirements · Delivery",
+        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
       },
       {
         kind: "course",
@@ -494,10 +486,9 @@ export const milestones: TimelineMilestone[] = [
           "PEFT / LoRA",
           "Generative AI / Language Models",
         ],
-        body: "Advanced-level studies covering Natural Language Processing, transformer architectures, domain adaptation, sentiment classification and PyTorch-based model implementation, with emphasis on adapting transformer models to domain-specific tasks using Parameter-Efficient Fine-Tuning (PEFT) and Low-Rank Adaptation (LoRA).",
         applicationItems: courseApplications.nlp,
         groupIntro: advancedAiFoundationIntro,
-        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -515,7 +506,7 @@ export const milestones: TimelineMilestone[] = [
           "Reinforcement Learning",
         ],
         applicationItems: courseApplications.autonomousSystems,
-        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -528,7 +519,7 @@ export const milestones: TimelineMilestone[] = [
         topics: [],
         signals: ["Predictive Analytics", "Machine Learning", "Prediction", "Decision Support"],
         applicationItems: courseApplications.predictiveAnalytics,
-        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Advanced AI Foundation",
       },
       {
         kind: "course",
@@ -541,7 +532,7 @@ export const milestones: TimelineMilestone[] = [
         topics: [],
         signals: ["Deep Learning", "Computer Vision", "Industrial Imaging", "Industrial AI"],
         applicationItems: courseApplications.industrialImaging,
-        group: "Phase 1 · Aug 2025 – Jun 2026 · Advanced AI Foundation",
+        group: "Phase 1 · Advanced AI Foundation",
       },
       {
         kind: "project",
