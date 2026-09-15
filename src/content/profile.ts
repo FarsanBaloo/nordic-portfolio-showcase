@@ -33,7 +33,7 @@ export const profile = {
     },
     {
       label: "Postgraduate Industrial Economics & Management",
-      body: "Product Management, Product & Requirements Management, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
+      body: "Industrial Economics and Management, Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
     },
   ],
   progression: [
@@ -43,7 +43,7 @@ export const profile = {
     "Applied AI",
   ],
 
-  targetRoles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
+  targetRoles: ["AI Product Manager", "Product Manager", "Product Owner", "Offer Manager"],
   summary: [
     "Product-oriented B2B industrial digital-platform professional with 25+ years of experience across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments. Combines deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management capabilities to conduct customer and technical discovery, validate high-value user problems, translate operational needs and data into product opportunities, and shape feasible, scalable solutions.",
     "Brings end-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders, contributing to prioritisation, feasibility assessment and technical and commercial trade-offs. Has turned recurring customer issues and real-world usage into product feedback and enhancement proposals while supporting release validation and deployment readiness.",
@@ -61,10 +61,10 @@ export const journeyIntro = [
 
 
 export const aboutParagraphs = [
-  "My professional foundation comes from working close to real systems, customers and operational constraints — not from slideware.",
+  "My professional foundation was built alongside customers, working with real systems and the operational constraints that shape their daily decisions.",
   "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams — listening in, meeting people where they were, and adapting guidance to each person and situation — while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
   "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value — often as the informal technical lead colleagues turned to when the trade-offs got hard, mentoring and guiding teams through complex deliveries.",
-  "Alongside that journey I deliberately expanded my capabilities — Computer Science, Interaction Design, applied AI, Innovation Management and postgraduate studies in Product Management, Strategy, Business Models, Requirements and Leadership. The direction from here is clear: roles where industrial domain depth, customer understanding, technical credibility, product thinking and AI come together to build products that are useful, feasible and scalable.",
+  "I expanded that foundation through a B.Sc. in Computer Science focused on applied AI at Mälardalen University, advanced AI studies and a specialisation in Industrial Economics and Management at Blekinge Institute of Technology. My motivation was to connect societal challenges and user needs with technology, product decisions and viable business models. Talking SCADA became a recurring academic case for bringing those perspectives together.",
 ];
 
 export const productPhilosophy =
@@ -82,7 +82,7 @@ export const whatIBring = [
   },
   {
     title: "Product Thinking",
-    body: "Problem validation, requirements, product and solution options, prioritisation input and lifecycle trade-offs — backed by postgraduate Product Management studies.",
+    body: "Connects product discovery, requirements, prioritisation and lifecycle decisions with customer and business value. Academic work includes NPD, PRD and SRD artefacts, MVP definition, value assessment and commercialisation planning.",
   },
   {
     title: "Technical Credibility",
@@ -90,7 +90,7 @@ export const whatIBring = [
   },
   {
     title: "Applied AI & Human-Centred Design",
-    body: "Hands-on work spanning RAG, Generative AI, forecasting, agentic AI, Interaction Design, prototyping, user testing and accessibility — validated with real users and real data.",
+    body: "Applied work in GenAI/RAG, wind-power forecasting and AI decision-support concepts, alongside interaction design, prototyping and accessibility evaluation. Experience includes testbed evaluation with users and modelling with real data.",
   },
   {
     title: "Collaboration & Influence",
@@ -134,9 +134,9 @@ export const journeyNarrative = {
     "Working with Global Product Support, Product Owners, R&D and market teams, I helped turn real-world usage into structured product feedback and justified enhancement proposals, prioritised critical issues and validated releases. I also led development of a reusable HVAC deviation-management digital product, sold to customers through the market organisation.",
     "As Senior Technical Advisor, I worked where customer needs, technology, delivery and business value meet. I led customer and technical discovery, developing and presenting technical solution proposals for complex healthcare, pharmaceutical and other mission-critical environments to internal management, sales teams and customer stakeholders. I weighed options against customer value, feasibility, lifecycle risk, reliability and cost. I held end-to-end technical responsibility from problem definition and requirements through solution architecture, integration, validation and delivery.",
     "I worked across engineering, sales, management, customers and external stakeholders, translating operational requirements and technical constraints into clear options and trade-offs and helping different perspectives align around a feasible direction. I was often the informal technical lead others turned to when those trade-offs became complex.",
-    "I wanted to help address societal challenges and understand both the possibilities and limitations of AI. In 2023, alongside my Senior Technical Advisor role, I began formal studies. I earned a degree focused on applied AI at Mälardalen University, followed by advanced studies in natural language processing, machine learning and data analytics.",
-    "I then pursued a specialisation in Industrial Economics and Management at Blekinge Institute of Technology to connect that technical understanding with user needs, product strategy and viable business models.",
-    "Talking SCADA began as a service-innovation concept in Innovation in Practice. I then refined it across product management, requirements management, strategy and business-model coursework, combining 20+ years of domain experience with applied AI. The concept explores how to help people understand hidden energy problems in buildings and decide what to investigate next. It brought my studies together around user needs, technical choices and potential customer and business value, with human judgement at the centre.",
+    "I wanted to help address societal challenges and understand what AI could realistically make possible. In 2023, during my time as Senior Technical Advisor, I began studies at Mälardalen University, earning a B.Sc. in Computer Science with a specialisation in Intelligent Systems and a focus on applied AI. I continued with advanced studies in natural language processing, machine learning and data analytics.",
+    "I pursued a specialisation in Industrial Economics and Management at Blekinge Institute of Technology to connect that technical understanding with user needs, product strategy and viable business models. Product management, requirements management, value-driven design, innovation and leadership helped me examine what should be built and how it could create lasting value.",
+    "Talking SCADA became the case through which I connected these perspectives. Starting in Innovation in Practice, I refined the same multi-agent AI decision-support concept through product, requirements, strategy and business-model coursework. Combining that learning with 20+ years of domain experience, I explored how to help people understand hidden energy problems in buildings and decide what to investigate next, connecting customer and business value while keeping human judgement central.",
     "I ask where AI adds value, what the data and operational environment can support, and when a simpler solution is the better product decision.",
   ],
   overlap:
