@@ -40,6 +40,7 @@ export type CaseSection = {
   afterItemsBody?: string[];
   quote?: string;
   subSections?: CaseSubsection[];
+  links?: { label: string; href: string }[];
 };
 
 export type CaseSubsection = {
@@ -85,6 +86,7 @@ export type Project = {
   categories: ProjectCategory[];
   teaser: string;
   timelineContent?: TimelineCaseContent;
+  timelineSummary?: TimelineSummary;
   tags: string[];
   highlight?: string;
   /** Prominent product pitch shown above everything else in the hero. */
