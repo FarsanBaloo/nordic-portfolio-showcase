@@ -37,7 +37,7 @@ export const profile = {
     },
     {
       label: "Postgraduate Industrial Economics & Management",
-      body: "Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
+      body: "Studies spanning Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
     },
   ],
   progression: [
