@@ -85,7 +85,7 @@ export const postgraduate = {
 
       projectCase: {
         title: "Course project — Talking SCADA (product & requirements case)",
-        period: "Aug 2025 – Jun 2026",
+        period: "Aug 2025 – May 2026",
         body: talkingScadaCourseCaseSummary,
       },
       topics: [],
@@ -166,10 +166,10 @@ export const postgraduate = {
       body2:
         "Studied in parallel with the advanced AI foundation, this formed the innovation and product bridge developed further at Blekinge Institute of Technology.",
       chain: [
-        "Advanced AI",
-        "Innovation Opportunity",
-        "Talking SCADA — Initial Concept",
-        "Product / Requirements Development",
+        "Domain experience & applied AI",
+        "Innovation in Practice — initial concept",
+        "Product & requirements development",
+        "Business & commercialisation planning",
       ],
 
       projectCase: {

@@ -2,32 +2,32 @@ export const advancedAiFoundationIntro =
   "These studies developed alongside the innovation and product coursework. They built the technical foundation I bring to Talking SCADA: understanding AI capabilities, limitations and the data and system conditions needed for useful decision support.";
 
 export const talkingScadaCourseCaseSummary =
-  "I used Talking SCADA as a recurring academic case, building on the innovation concept through NPD, product definition, system requirements and value assessment. Productification, commercialisation and business plans connected user needs and technical feasibility with delivery, market introduction and product life-cycle considerations.";
+  "I used Talking SCADA as a recurring academic case, carrying the original innovation opportunity into product definition, system requirements, value assessment and business planning. Each assignment added another perspective: what users need, what the system should do, what to prioritise and how the proposed offer could be delivered and sustained.";
 
 export const courseApplications = {
   innovation: [
-    "Framed the original Talking SCADA service concept around a familiar problem: understanding hidden energy deviations across interacting building systems.",
+    "Framed the original Talking SCADA service concept around hidden energy problems in interacting building systems, connecting a familiar user problem with energy efficiency and societal value.",
     "Used PESTEL, VRIO and the Four Ps of innovation to examine external drivers, organisational capabilities and the proposed service innovation.",
-    "Proposed a Design Thinking approach and considered cross-functional collaboration, leadership support and learning as conditions for implementation.",
+    "Proposed a Design Thinking approach and considered cross-functional collaboration, leadership support, psychological safety and learning as conditions for implementation.",
   ],
   productManagement: [
-    "Opportunity & innovation direction: applied New Product Development (NPD) thinking, examining market pull and technology push and outlining a Product Innovation Charter (PIC) to frame the opportunity, objectives and boundaries.",
-    "Concept generation & evaluation: planned lead-user involvement and cross-functional collaboration, and outlined technical and commercial screening criteria to support Go/No-Go decisions.",
-    "Product definition & development planning: produced a product protocol and PRD covering the offer, user scenarios, MVP scope, intended success measures and acceptance criteria. Connected development with marketing and financial planning.",
-    "Commercialisation & market testing: outlined technical and marketing launch preparation, positioning, tiered SaaS packaging and partner channels. Proposed pilot use tests and customer-interest testing before wider introduction.",
-    "Launch & lifecycle management: proposed a staged rollout, post-launch monitoring and customer-feedback loops, considering how pricing, marketing and feature priorities should evolve across the product life cycle.",
+    "Opportunity & direction: applied New Product Development (NPD) thinking and outlined a Product Innovation Charter (PIC) to connect market need, technical opportunity, objectives and boundaries.",
+    "Concept generation & evaluation: planned lead-user involvement and cross-functional collaboration, with technical and commercial screening criteria for proposed Go/No-Go decisions.",
+    "Product definition & development planning: produced a product protocol and Product Requirements Document (PRD) covering target users, the whole offer, scenarios, MVP scope, success measures and acceptance criteria. Considered product, marketing and financial work in parallel.",
+    "Commercialisation & market testing: planned technical and marketing readiness, positioning, SaaS packaging and partner channels. Proposed pilot use tests and customer-interest testing before wider introduction.",
+    "Launch & lifecycle: proposed staged rollout, performance monitoring and customer-feedback loops, with pricing, marketing and feature priorities evolving across the product life cycle.",
   ],
   requirementsManagement: [
-    "Product definition & business model: defined the product vision, functional and quality scope, intended users, UX approach and service model, supported by a Business Model Canvas.",
-    "System requirements & traceability: produced an SRD linking documented interview, observation and prototype findings to goals and requirement IDs, covering domain, functional, data and quality requirements, integration and system boundaries.",
-    "System and workflow specification: used a context diagram, conceptual data model, virtual window, interface mockup and task description to make the proposed system and user workflow concrete.",
-    "Value assessment & prioritisation: used Software Value Map to assess customer value alongside development effort and maintainability. Ranked 22 requirements and assessed critical requirements using Cost-Value-Risk, considering dependencies and uncertainty.",
-    "Assets & sourcing: examined technical assets, domain-knowledge reuse and open-source options, using Make/Buy/Share to distinguish reusable components from potential differentiators.",
+    "Product definition & business model: connected the vision, user needs, functional and quality scope, UX and service model through a Business Model Canvas.",
+    "System requirements & traceability: produced a System Requirements Document (SRD), linking documented interview, observation and prototype findings to goals and requirement IDs. Specified domain, functional, data, quality, integration and policy requirements.",
+    "System & workflow specification: used a context diagram, conceptual data model, virtual window, interface mockup and task description to define system boundaries and the investigation workflow.",
+    "Value-driven prioritisation: used Software Value Map to weigh functionality, reliability and usability against development effort and maintainability. Ranked 22 requirements and applied Cost-Value-Risk to critical requirements, considering dependencies and uncertainty.",
+    "Assets & sourcing: analysed reuse of technical assets and domain knowledge. Used Make/Buy/Share and commodity, qualifier and differentiator classifications to examine where to develop, reuse or source capabilities.",
   ],
   strategyBusinessModels: [
-    "Developed a Talking SCADA business plan linking customer segments and the value proposition with competitive positioning and strategic direction.",
-    "Proposed tiered SaaS packaging, revenue logic, partner channels and a go-to-market path from pilots to wider adoption.",
-    "Outlined cost drivers, investment needs and commercial risks, treating willingness to pay and financial viability as assumptions for further validation.",
+    "Developed a Talking SCADA business plan connecting customer segments, the value proposition and strategic direction, with proposed positioning around cross-system diagnostics and understandable operator explanations.",
+    "Proposed tiered SaaS packaging, revenue logic, partner channels and a go-to-market path supported by integration, onboarding and ongoing service.",
+    "Considered development, cloud and maintenance costs, investment needs and commercial risks, treating adoption, willingness to pay and financial viability as assumptions for further validation.",
   ],
   leadership: [
     "Explored how leadership and communication help different disciplines work towards a shared direction.",
