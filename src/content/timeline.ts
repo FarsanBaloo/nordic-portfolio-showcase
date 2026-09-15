@@ -540,7 +540,6 @@ export const milestones: TimelineMilestone[] = [
         datePrecision: "phase",
         group: "Continuous product case",
         caseTrack: true,
-        note: "Product case at Blekinge Institute of Technology · Aug 2025 – May 2026",
       },
     ],
   },
