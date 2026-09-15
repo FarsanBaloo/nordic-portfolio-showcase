@@ -541,6 +541,11 @@ function CaseTrackCard({
           {child.note}
         </p>
       ) : null}
+      {timelineContent.meta ? (
+        <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
+          {timelineContent.meta}
+        </p>
+      ) : null}
       <p className="mt-3 text-[15.5px] leading-relaxed text-night-body">
         {timelineContent.intro}
       </p>
@@ -574,6 +579,22 @@ function CaseTrackCard({
               <blockquote className="border-l-2 border-aurora-teal pl-4 text-[15.5px] italic leading-[1.65] text-night-foreground">
                 {section.quote}
               </blockquote>
+            ) : null}
+            {section.links?.length ? (
+              <ul className="space-y-1">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[13.5px] text-aurora-teal hover:underline"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             ) : null}
           </section>
         ))}
