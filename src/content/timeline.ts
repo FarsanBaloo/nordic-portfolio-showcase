@@ -313,7 +313,7 @@ export const milestones: TimelineMilestone[] = [
       "Developed and presented complex technical solution proposals to management, sales and customer stakeholders — translating operational requirements and technical constraints into clear options and trade-offs.",
       "Held end-to-end technical ownership — influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
       "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture.",
-      "Contributed domain expertise at KTH Living Lab as Schneider's contact and EcoStruxure subject matter expert.",
+      "Represented Schneider Electric at KTH Live-In Lab as its contact and an EcoStruxure Building Operation subject matter expert, supporting researchers with platform expertise and engineering input for sustainable buildings and energy efficiency.",
       "Provided informal technical leadership and mentoring across teams and disciplines — leading through influence rather than formal authority.",
     ],
     relevanceSignals: [
@@ -552,7 +552,7 @@ export const milestones: TimelineMilestone[] = [
     track: "direction",
     summary:
       "Bringing together 25 years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
-    roles: ["AI Product Manager", "AI Product Owner", "Offer Manager"],
+    roles: ["AI Product Manager", "Product Manager", "Product Owner", "Offer Manager"],
     now: true,
   },
 ];
@@ -568,7 +568,7 @@ export const projectRoleContext: Record<
   },
   "kth-living-lab": {
     label: "My role",
-    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: Schneider's contact at KTH Live-In Lab and EcoStruxure subject matter expert — supporting KTH researchers with technical questions and engineering for their research on sustainable buildings and energy efficiency.",
+    body: "Senior Technical Advisor — Digital Platforms, Schneider Electric: Schneider's contact at KTH Live-In Lab and EcoStruxure Building Operation subject matter expert — supporting KTH researchers with technical questions and engineering for their research on sustainable buildings and energy efficiency.",
   },
   "st-eriks": {
     label: "My role",
@@ -576,11 +576,11 @@ export const projectRoleContext: Record<
   },
   "hvac-monitoring": {
     label: "My role",
-    body: "Support Engineer / National Technical Expert, Schneider Electric: turned recurring operational HVAC needs into reusable monitoring, deviation-detection, alarm, trend and visualisation functionality.",
+    body: "Support Engineer / National Technical Expert, Schneider Electric: owned development of a reusable HVAC monitoring and deviation-management digital product, sold to customers through the market organisation.",
   },
   "wind-power-forecasting": {
     label: "My focus",
-    body: "Framed the forecasting work around decision support under uncertainty, developed and evaluated the modelling pipeline using real wind and weather data, and explored how probabilistic forecasts could support planning, optimisation and flexibility scenarios.",
+    body: "Co-authored the thesis with Fredrik Karlsson within an interdisciplinary Mälardalen University and Electrification Hub initiative. Developed and evaluated the wind-power forecasting pipeline for SE1 and SE3, with a focus on decision support under uncertainty.",
   },
   "talking-systems": {
     label: "My focus",

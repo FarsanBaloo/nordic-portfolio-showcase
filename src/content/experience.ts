@@ -235,7 +235,7 @@ export const roles: Role[] = [
       "Influenced technical prioritisation, solution direction, product selection and architectural trade-offs by balancing customer value, integration risk, scalability, reliability and operational constraints.",
       "Delivered mission-critical digital-platform integrations across data-centre, pharmaceutical and healthcare environments, including consolidating multiple systems into a unified HMI and edge-based architecture.",
       "Translated operational workflows into user-facing digital control concepts, integrating HVAC, lighting, video and other building systems into coherent web-based interfaces.",
-      "Represented Schneider Electric in KTH Living Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
+      "Represented Schneider Electric at KTH Live-In Lab as its contact and an EcoStruxure Building Operation subject matter expert, supporting researchers with platform expertise and engineering input for sustainable buildings and energy efficiency.",
       "Mentored technical teams in platform capabilities, system integration, solution design and technical constraints, improving consistency, scalability, maintainability and delivery quality.",
     ],
 
@@ -323,7 +323,7 @@ export const roles: Role[] = [
       },
       {
         label: "Research & innovation collaboration",
-        body: "Represented Schneider Electric in KTH Live-In Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
+        body: "Represented Schneider Electric at KTH Live-In Lab as its contact and an EcoStruxure Building Operation subject matter expert, supporting researchers with platform expertise and engineering input for sustainable buildings and energy efficiency.",
       },
       {
         label: "Risk reduction",
