@@ -29,7 +29,11 @@ export const profile = {
     },
     {
       label: "Applied AI & Computer Science",
-      body: "B.Sc. Computer Science (Intelligent Systems) plus advanced postgraduate AI in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems, with applied work in RAG, forecasting and agentic AI.",
+      body: "B.Sc. Computer Science (Intelligent Systems) with applied work in RAG, forecasting and agentic AI.",
+    },
+    {
+      label: "Advanced Postgraduate AI Studies",
+      body: "Advanced postgraduate studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems.",
     },
     {
       label: "Postgraduate Industrial Economics & Management",
