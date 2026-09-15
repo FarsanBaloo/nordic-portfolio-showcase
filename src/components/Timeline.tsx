@@ -285,7 +285,24 @@ function ProjectChildCard({
         {project.subtitle ? (
           <p className="mt-1 text-[13.5px] text-night-muted">{project.subtitle}</p>
         ) : null}
-        <p className="mt-2 text-[15px] leading-relaxed text-night-body">{project.teaser}</p>
+        {project.timelineSummary ? (
+          <>
+            <p className="mt-2 text-[15px] leading-relaxed text-night-body">
+              {project.timelineSummary.context}
+            </p>
+            <ul className="mt-3 space-y-2">
+              {project.timelineSummary.items.map((item) => (
+                <li key={item.label} className="text-[14.5px] leading-relaxed text-night-body">
+                  <span className="font-semibold text-night-foreground">{item.label}</span>
+                  {" — "}
+                  {item.body}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className="mt-2 text-[15px] leading-relaxed text-night-body">{project.teaser}</p>
+        )}
         {child.note ? (
           <p className="mt-2 font-mono text-[12px] uppercase tracking-[0.09em] text-night-subtle">
             {child.note}
