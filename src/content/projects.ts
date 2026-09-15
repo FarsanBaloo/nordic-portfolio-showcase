@@ -66,6 +66,12 @@ export type TimelineCaseContent = {
   ctaLabel: string;
 };
 
+/** Short, structured timeline-card content for ordinary project children. */
+export type TimelineSummary = {
+  context: string;
+  items: { label: string; body: string }[];
+};
+
 export type Project = {
   slug: string;
   title: string;
