@@ -32,12 +32,12 @@ export const profile = {
       body: "B.Sc. Computer Science (Intelligent Systems) with applied work in RAG, forecasting and agentic AI.",
     },
     {
-      label: "Advanced Postgraduate AI Studies",
-      body: "Advanced postgraduate studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems.",
+      label: "Postgraduate AI Studies",
+      body: "Advanced studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems.",
     },
     {
       label: "Postgraduate Industrial Economics & Management",
-      body: "Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
+      body: "Studies spanning Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
     },
   ],
   progression: [
