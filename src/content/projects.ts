@@ -1024,7 +1024,7 @@ export const projects: Project[] = [
     slug: "planet-resande",
     title: "PLANE(ra)T Resande",
     subtitle: "Sustainable Travel Decision-Support Concept",
-    org: "Interaction Design · MDU",
+    org: "Mälardalen University · Interaction Design",
     meta: "2024 · Team Project",
     type: "Team Project",
     year: "2024",
@@ -1102,7 +1102,7 @@ export const projects: Project[] = [
     ],
     flow: { label: "Design progression", steps: ["Ideation", "Paper Prototype", "User Testing", "Figma"] },
     contributionNote:
-      "My contribution: to be added. This was a team project — individual contribution is described only where it can be stated accurately.",
+      "Team project in Interaction Design. Individual contribution is described only where it can be stated accurately.",
     images: {
       intro: "Material from the ideation and prototyping work; Figma screens follow.",
       slots: [
@@ -1137,7 +1137,7 @@ export const projects: Project[] = [
     slug: "hallbar-halsa",
     title: "Hållbar Hälsa",
     subtitle: "Sustainable Health — Adaptive Wellbeing Service Concept",
-    org: "Interaction Design · MDU",
+    org: "Mälardalen University · Interaction Design",
     meta: "Team Project",
     type: "Team Project",
     priority: 10,
@@ -1218,7 +1218,7 @@ export const projects: Project[] = [
       steps: ["Set Goal", "Monitor", "Interpret", "Feedback", "Reflect", "Adapt Behaviour"],
     },
     contributionNote:
-      "My contribution: to be added. This was a team project, and the concept is an adaptive wellbeing service concept — not a production AI model.",
+      "Team project in Interaction Design. The result is an adaptive wellbeing service concept, not a production AI model.",
     images: {
       slots: [
         {
@@ -1248,14 +1248,14 @@ export const projects: Project[] = [
   {
     slug: "seeing-ai",
     title: "Seeing AI — Heuristic UX & Accessibility Evaluation",
-    org: "Interaction Design · MDU",
+    org: "Mälardalen University · Interaction Design",
     meta: "Individual Assignment",
     type: "Individual Assignment",
     priority: 11,
     flagship: false,
     categories: ["UX & Interaction", "Academic / Research"],
     teaser:
-      "An independent accessibility and heuristic evaluation of Microsoft's Seeing AI iOS application, with concrete design recommendations and a validation plan.",
+      "An independent academic accessibility and heuristic evaluation of Microsoft's Seeing AI iOS application — not a collaboration with Microsoft — with concrete design recommendations and a validation plan.",
     tags: [
       "Accessibility",
       "Heuristic Evaluation",
