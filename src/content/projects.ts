@@ -40,6 +40,7 @@ export type CaseSection = {
   afterItemsBody?: string[];
   quote?: string;
   subSections?: CaseSubsection[];
+  links?: { label: string; href: string }[];
 };
 
 export type CaseSubsection = {
@@ -61,9 +62,16 @@ export type ProjectCategory =
   | "Innovation";
 
 export type TimelineCaseContent = {
+  meta?: string;
   intro: string;
   sections: CaseSection[];
   ctaLabel: string;
+};
+
+/** Short, structured timeline-card content for ordinary project children. */
+export type TimelineSummary = {
+  context: string;
+  items: { label: string; body: string }[];
 };
 
 export type Project = {
@@ -79,6 +87,7 @@ export type Project = {
   categories: ProjectCategory[];
   teaser: string;
   timelineContent?: TimelineCaseContent;
+  timelineSummary?: TimelineSummary;
   tags: string[];
   highlight?: string;
   /** Prominent product pitch shown above everything else in the hero. */
@@ -326,15 +335,25 @@ export const projects: Project[] = [
       "BMS",
     ],
     timelineContent: {
-      intro: "A continuous academic product case combining 20+ years of domain experience with applied AI, product management and business studies. I developed the concept through problem framing, product definition, requirements, prioritisation and commercialisation planning.",
+      meta: "PRODUCT CASE AT BLEKINGE INSTITUTE OF TECHNOLOGY · AUG 2025 – MAY 2026",
+      intro: "A continuous academic product case combining 20+ years of domain experience with applied AI, product management and business studies. I refined the concept through problem framing, product definition, requirements, prioritisation and commercialisation planning.",
       sections: [
         {
           heading: "Why",
-          body: ["Energy problems often arise from interactions between building systems. Changes in schedules, sensors, configurations or HVAC controls can be difficult to interpret. The opportunity is to help people understand these relationships and decide where to investigate."],
+          body: [
+            "Buildings use around 40% of the energy consumed in the EU. Improving their energy performance matters for costs, energy security and climate impact.",
+            "Hidden waste can arise from incorrect schedules, faulty sensors, configuration issues or heating and cooling working against each other. Talking SCADA explores how to make these interacting causes understandable and help people decide where to investigate.",
+          ],
+          links: [
+            {
+              label: "Source: European Commission — energy use in buildings",
+              href: "https://energy.ec.europa.eu/topics/energy-efficiency/energy-efficient-buildings/energy-performance-buildings-directive_en",
+            },
+          ],
         },
         {
           heading: "Who it is for — users & customers",
-          body: ["Intended users include building operators, facility managers, energy managers and maintenance teams. Potential customers include commercial property owners, facility-management organisations, enterprises managing multiple buildings, and public-sector organisations such as municipalities."],
+          body: ["Intended users include building operators, facility managers, energy managers and maintenance teams. Potential customers include commercial property owners, facility-management organisations, enterprises managing multiple buildings and public-sector organisations such as municipalities."],
         },
         {
           heading: "Pain",
@@ -350,26 +369,34 @@ export const projects: Project[] = [
         },
         {
           heading: "Intended gains",
-          body: ["Less investigation effort, more accessible domain knowledge, clearer explanations of abnormal behaviour and better-informed operational and energy decisions."],
+          body: ["The concept aims to support:"],
+          items: [
+            "Lower energy costs and less waste through earlier identification of hidden inefficiencies, with potential reductions in operational emissions.",
+            "More accessible specialist knowledge, reducing dependence on individual experts and repeated external troubleshooting.",
+            "Clear explanations of likely causes, linked to relevant building data and system relationships.",
+            "Faster, better-informed decisions through natural-language interaction and clearer next steps.",
+            "Flexible, question-driven investigation across interconnected building systems.",
+            "Support for energy-performance goals and relevant reporting and compliance work.",
+          ],
         },
         {
           heading: "My contribution",
           items: [
-            "NPD & product definition: outlined a Product Innovation Charter (PIC), concept generation and evaluation, with proposed lead-user involvement and Go/No-Go criteria. Produced a product protocol and PRD covering the offer, user scenarios, MVP scope and acceptance criteria.",
-            "Discovery & system requirements: produced an SRD linking documented elicitation findings to goals and requirement IDs. Defined data, quality and integration requirements, with a context diagram, data model, interface mockup and user-task description.",
-            "Value assessment & prioritisation: connected the value proposition and product definition with requirements assessed using Software Value Map. Ranked 22 requirements and used Cost-Value-Risk to examine critical requirements, dependencies and uncertainty.",
-            "Business & offer strategy: developed a Business Model Canvas and business plan connecting customer segments, value propositions, customer relationships and delivery with proposed SaaS packaging, partner channels, revenue logic and cost drivers.",
-            "Assets & sourcing: examined reuse of technical assets and domain knowledge. Used Make/Buy/Share to distinguish reusable components from potential differentiators in domain reasoning and traceable explanations.",
-            "Commercialisation & lifecycle: planned technical and marketing readiness, proposed pilot use tests, customer-interest testing and staged rollout, followed by performance monitoring, feedback and product life-cycle decisions.",
+            "NPD & product definition: outlined a Product Innovation Charter (PIC) and concept evaluation, with proposed lead-user involvement and Go/No-Go criteria. Produced a product protocol and Product Requirements Document (PRD) covering the offer, scenarios, MVP scope and acceptance criteria.",
+            "Discovery & system requirements: translated documented needs for clearer cross-system explanations into a System Requirements Document (SRD), linking elicitation findings to goals and requirements. Specified system boundaries, data, quality, integration and user workflows.",
+            "Value assessment & prioritisation: used Software Value Map to weigh customer value against development effort and maintainability. Ranked 22 requirements and used Cost-Value-Risk to examine critical requirements and dependencies.",
+            "Business & offer strategy: developed a Business Model Canvas and business plan connecting customer segments, value propositions and delivery with proposed SaaS packaging, partner channels, revenue logic and cost drivers.",
+            "Assets & sourcing: examined reuse of technical assets and domain knowledge. Used Make/Buy/Share to identify reusable components and potential differentiators in domain reasoning and traceable explanations.",
+            "Commercialisation & lifecycle: planned technical and marketing readiness, proposed pilot use tests, customer-interest testing and staged rollout, with future performance monitoring, feedback and product life-cycle decisions.",
           ],
         },
         {
           heading: "Key product decisions",
-          body: ["The proposed MVP focuses on one SCADA integration and selected HVAC subsystems. Decision support remains read-only, with direct control outside scope. Explainability and usability were prioritised early, alongside the data and system context needed to support useful explanations."],
+          body: ["I bounded the proposed MVP to one SCADA integration and selected HVAC subsystems, with read-only decision support. Explanation generation and anomaly detection carry core value; explainability and usability support trust and adoption. Data access and system context enable the analysis. The proposed offer also includes integration, onboarding and ongoing support."],
         },
         {
           heading: "Evidence & next validation step",
-          body: ["The coursework produced requirements, design artefacts, prioritisation and commercialisation plans. Further evaluation should assess investigation time, explanation quality, operating costs and willingness to pay, and compare the multi-agent direction with simpler support. Expected benefits remain to be measured."],
+          body: ["The coursework produced requirements, design artefacts, prioritisation and commercialisation plans. Next, compare a narrow investigation workflow with existing tools and simpler AI support. Assess investigation time, explanation quality, customer value, service operating costs and willingness to pay. Energy, cost and emissions benefits remain to be measured."],
         },
         {
           heading: "Origin & progression",
@@ -390,11 +417,16 @@ export const projects: Project[] = [
         heading: "Problem & users",
         subSections: [
           { heading: "Why", body: [
-            "Buildings account for a significant share of global energy use. A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management. These systems influence one another.",
-            "An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
+            "Buildings use around 40% of the energy consumed in the EU, so improving their energy performance matters for operating costs, energy security and climate impact.",
+            "A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management, and these systems influence one another. An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
             "The challenge is often understanding what the data means and where to investigate.",
+          ], links: [
+            {
+              label: "Source: European Commission — energy performance of buildings",
+              href: "https://energy.ec.europa.eu/topics/energy-efficiency/energy-efficient-buildings/energy-performance-buildings-directive_en",
+            },
           ] },
-          { heading: "Whom", body: ["Intended users include building operators, facility managers, energy managers and technical service teams with different levels of HVAC/BMS expertise. Potential customer segments include commercial property owners, facility-management organisations, enterprises managing multiple buildings, and public-sector organisations such as municipalities. The stakeholder analysis also considered system integrators, development teams and product/business stakeholders."] },
+          { heading: "Who it is for — users & customers", body: ["Intended users include building operators, facility managers, energy managers and technical service teams with different levels of HVAC/BMS expertise. Potential customer segments include commercial property owners, facility-management organisations, enterprises managing multiple buildings, and public-sector organisations such as municipalities. The stakeholder analysis also considered system integrators, development teams and product/business stakeholders."] },
           { heading: "Pain", body: ["Investigations can require navigating trends, alarms, configurations and relationships across several systems. Users must combine information from different views and interpret relationships that may not be directly visible."] },
           { heading: "Proposed job to be done", quote: "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act." },
         ],
@@ -425,13 +457,22 @@ export const projects: Project[] = [
             "Explainability and usability were prioritised early for trust and adoption. The analysis also treated security and system boundaries as conditions that must be addressed from the start.",
           ] },
           { heading: "MVP definition", body: ["In the PRD, I defined an initial scope of integration with one SCADA system, diagnostics for selected HVAC subsystems, and a web-based conversational interface explaining energy anomalies. This gives the initial product evaluation a bounded operating context."] },
-          { heading: "Success measures & acceptance criteria", body: ["I identified intended success measures around investigation time, energy waste and operational insight. The PRD includes acceptance criteria for natural-language queries, explanations of probable causes, response time and analysis of system relationships. I also specified quality requirements covering availability, usability, security, explainability and maintainability. These define what the product should achieve and what needs evaluation."] },
+          { heading: "Success measures & acceptance criteria", body: ["I identified intended success measures around investigation time, energy waste and operational insight. The PRD includes acceptance criteria for natural-language queries, explanations of probable causes, response time and analysis of system relationships. The SRD sets separate quality targets for availability, usability, security, explainability, reliability and maintainability. These define what the product should achieve; none of them have been measured yet."] },
           { heading: "Why AI and a multi-agent approach?", body: ["AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. Further validation should examine whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity."] },
         ],
       },
       {
         heading: "Value proposition & business assumptions",
-        body: ["The intended gains are less investigation effort, more accessible domain knowledge, earlier identification of abnormal behaviour and better-informed energy decisions."],
+        body: ["The concept aims to support:"],
+        items: [
+          "Lower energy costs and less waste through earlier identification of hidden inefficiencies, with potential reductions in operational emissions.",
+          "More accessible specialist knowledge, reducing dependence on individual experts and repeated external troubleshooting.",
+          "Clear explanations of likely causes, linked to relevant building data and system relationships.",
+          "Faster, better-informed decisions through natural-language interaction and clearer next steps.",
+          "Flexible, question-driven investigation across interconnected building systems.",
+          "Support for energy-performance goals and relevant reporting and compliance work.",
+        ],
+        afterItemsBody: ["These are intended gains within the academic case, not measured outcomes."],
         subSections: [
           { heading: "Positioning & go-to-market", body: [
             "In the innovation report, I used PESTEL to examine external drivers and VRIO to assess resources and organisational capabilities. The analysis highlighted the need for cross-functional expertise, leadership support and a culture of learning.",
@@ -472,8 +513,8 @@ export const projects: Project[] = [
           ] },
           { heading: "Further product validation", body: [
             "The commercialisation plan and business plan propose pilot installations, product-use testing and market validation before wider introduction. I also considered speculative-sale testing: presenting a proposed product pitch to assess customer interest and willingness to adopt.",
-            "Further evaluation should assess investigation time, explanation quality, traceability and useful next steps with representative users and building data. It should compare the multi-agent direction with a simpler baseline and examine operating costs and willingness to pay.",
-            "The coursework provides requirements, analyses and design artefacts. Quality targets and expected energy or business benefits require separate measurement.",
+            "The next validation step is to run one narrow investigation workflow with representative users and real building data, comparing it with existing tools and with simpler analytical or retrieval-based support. It should assess investigation time, explanation quality, traceability, usefulness of next steps, customer value, service operating costs and willingness to pay.",
+            "The coursework provides requirements, analyses and design artefacts. Quality targets and expected energy, cost and emissions benefits require separate measurement.",
           ] },
         ],
       },
@@ -493,8 +534,8 @@ export const projects: Project[] = [
       {
         heading: "Reflection & next steps",
         body: [
-          "The case reinforced that useful innovation depends on user understanding, organisational readiness and cross-functional collaboration. Across the later product and business work, I made choices about scope, priorities, differentiation and delivery more explicit.",
-          "Further work should evaluate a narrow investigation flow and use the findings to refine the requirements, MVP scope and business assumptions.",
+          "Carrying one concept through innovation, product, requirements and business coursework showed how early framing decisions shape later scope, prioritisation and commercial assumptions. It also reinforced that useful innovation depends on user understanding, organisational readiness and cross-functional collaboration.",
+          "Next, I would validate a narrow investigation workflow with users and real building data, then use those findings to refine requirements, MVP scope, quality targets and business assumptions.",
         ],
       },
     ],
@@ -510,8 +551,7 @@ export const projects: Project[] = [
         },
       ],
     },
-    footnote:
-      "Academic AI product case based on general industry and domain knowledge. It does not disclose confidential customer or employer information.",
+    footnote: "Academic product case based on general industry and domain knowledge.",
   },
   {
     slug: "wind-power-forecasting",
