@@ -118,7 +118,16 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["AI & Product", "Academic / Research", "Innovation"],
     teaser:
-      "Discovery-led proof-of-concept AI assistant that explains industrial machine behaviour in natural language — validated with non-specialist users who resolved real incidents without waiting for specialist support.",
+      "Discovery-led proof-of-concept AI assistant that explains industrial machine behaviour in natural language, evaluated with non-specialist users in a smart-factory testbed.",
+    timelineSummary: {
+      context:
+        "Applied industrial AI project at Mälardalen Industrial Technology Center (MITC), a collaboration environment between Mälardalen University and industry.",
+      items: [
+        { label: "Problem", body: "Operators depend on specialists to interpret alarms, error codes and technical documentation, which delays troubleshooting." },
+        { label: "My contribution", body: "Led discovery with system owners and testbed operators, framed the concept around explainability and self-service, and built the proof of concept using retrieval-augmented generation over live machine data and documentation, deployed at the edge." },
+        { label: "Evaluation", body: "Non-specialist users worked through real incident scenarios in a smart-factory testbed, indicating that understandable explanations reduced the need to escalate to specialists." },
+      ],
+    },
     highlight:
       "What if industrial systems could explain themselves in natural language instead of cryptic error codes?",
     tags: [
@@ -565,7 +574,16 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["AI & Product", "Academic / Research"],
     teaser:
-      "An uncertainty-aware wind power forecasting capability designed for risk-aware energy planning rather than prediction accuracy alone.",
+      "Uncertainty-aware 48-hour wind power forecasting for SE1 and SE3, framed around risk-aware energy planning rather than prediction accuracy alone.",
+    timelineSummary: {
+      context:
+        "Bachelor thesis co-authored with Fredrik Karlsson within an interdisciplinary Mälardalen University and Electrification Hub initiative on electrification and energy systems.",
+      items: [
+        { label: "Problem", body: "Point forecasts say little about uncertainty, which makes planning, storage and flexibility decisions harder for energy planners." },
+        { label: "My contribution", body: "Built and evaluated the forecasting pipeline on real Swedish wind and weather data for SE1 and SE3, using a Temporal Fusion Transformer with quantile regression to produce uncertainty ranges." },
+        { label: "Product relevance", body: "An AI output is only useful when its uncertainty and limitations are presented in a way that supports the decision the user actually has to make." },
+      ],
+    },
     highlight:
       "Develop an uncertainty-aware forecasting capability designed for decision support, not just prediction.",
     tags: [
@@ -662,7 +680,16 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["Industry"],
     teaser:
-      "Digital-platform integration of a wider data-centre IIoT environment into a unified operational platform in a mission-critical setting.",
+      "Digital-platform integration of a wider data-centre IIoT environment into one unified operational platform in a mission-critical setting.",
+    timelineSummary: {
+      context:
+        "Mission-critical data-centre environment, delivered as Senior Technical Advisor — Digital Platforms at Schneider Electric.",
+      items: [
+        { label: "Problem", body: "A complex connected infrastructure had to be integrated reliably, without disrupting operational continuity." },
+        { label: "My contribution", body: "Technical discovery, customer and operational requirements, solution architecture, integration strategy and end-to-end technical ownership through validation and delivery." },
+        { label: "Trade-offs", body: "Balanced customer needs, integration complexity, lifecycle implications and long-term maintainability across systems and stakeholders." },
+      ],
+    },
     tags: [
       "Data Centre",
       "IIoT",
@@ -719,7 +746,16 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["Industry", "Innovation", "Academic / Research"],
     teaser:
-      "KTH Live-In Lab is an open innovation platform where industry partners, KTH researchers and universities collaborate on sustainable buildings and energy through full-scale residential testbeds. Acted as Schneider Electric's contact and subject matter expert for EcoStruxure — Schneider Electric's building-management software that connects a building's technical systems (HVAC, lighting, energy, sensors) into one place — supporting researchers with technical questions and engineering.",
+      "KTH Live-In Lab is an open innovation platform where industry partners, KTH researchers and universities collaborate on sustainable buildings and energy through full-scale residential testbeds. I took part through Schneider Electric as its contact and subject matter expert for EcoStruxure Building Operation — the building-management software that connects HVAC, lighting, energy and sensors into one place — supporting researchers with technical questions and engineering.",
+    timelineSummary: {
+      context:
+        "Open innovation platform at KTH with full-scale residential testbeds. I participated through Schneider Electric, not as a KTH employee.",
+      items: [
+        { label: "My role", body: "Schneider Electric's contact at the centre and subject matter expert for EcoStruxure Building Operation, its building-management software." },
+        { label: "My contribution", body: "Supported KTH researchers with platform expertise and the engineering parts of their research on sustainable buildings and energy efficiency, and explained what the platform could and could not support." },
+        { label: "Innovation perspective", body: "Ideas were assessed against both research ambition and what deployed industrial platforms can realistically support." },
+      ],
+    },
     tags: [
       "Smart Buildings",
       "IoT",
@@ -803,7 +839,16 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["Industry", "UX & Interaction"],
     teaser:
-      "Discovery with the customer inside an operating theatre, translated into a unified HMI that consolidated every room system on an edge architecture — proven in one theatre, then rolled out to the rest.",
+      "Discovery with the customer inside an operating theatre, translated into a unified interface that consolidated every room system on an edge architecture — proven in one theatre, then rolled out to the rest.",
+    timelineSummary: {
+      context:
+        "Mission-critical operating theatres at an eye-care centre of excellence, delivered as Senior Technical Advisor — Digital Platforms at Schneider Electric.",
+      items: [
+        { label: "Problem", body: "Surgeons, nurses and theatre staff had to work across scattered subsystems instead of one interface for the room and the procedure." },
+        { label: "My contribution", body: "Ran discovery inside a real operating theatre, translated the workflow into a tailored unified interface, and owned requirements, solution direction and integration of lighting, HVAC, CCTV, door-lock interlocks, nurse call and microscope video on an edge architecture." },
+        { label: "Outcome", body: "Proven in one theatre, including door-lock interlocks, then rolled out to the remaining theatres." },
+      ],
+    },
     tags: [
       "Healthcare",
       "Customer Discovery",
@@ -924,7 +969,16 @@ export const projects: Project[] = [
     flagship: false,
     categories: ["Industry", "AI & Product"],
     teaser:
-      "Recurring field needs turned into a reusable monitoring and deviation-management capability deployable across customer systems.",
+      "Recurring field needs turned into a reusable HVAC monitoring and deviation-management product, sold to customers through the market organisation.",
+    timelineSummary: {
+      context:
+        "Developed at Schneider Electric during my time as Support Engineer / National Technical Expert.",
+      items: [
+        { label: "Problem", body: "The same HVAC monitoring and deviation-management needs kept recurring and were solved again for each customer." },
+        { label: "My contribution", body: "Owned the development of a reusable product covering deviation detection, alarms, trend logging, visualisation and documentation, packaged for consistent deployment across customer systems." },
+        { label: "Product relevance", body: "An early shift from solving individual customer problems to turning recurring field needs into a repeatable offer." },
+      ],
+    },
     tags: [
       "HVAC",
       "Reusable Capability",
