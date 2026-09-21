@@ -587,7 +587,7 @@ export const projectRoleContext: Record<
   },
   "talking-scada": {
     label: "My focus",
-    body: "Took an innovation opportunity through product discovery, requirements, MVP definition, product strategy and business-model thinking for AI-enabled SCADA/BMS operations.",
+    body: "Took an innovation opportunity — letting a building explain its hidden energy waste in plain language — through product discovery, requirements, MVP definition, product strategy and business-model thinking for AI-enabled SCADA/BMS operations.",
   },
   "planet-resande": {
     label: "My focus",
