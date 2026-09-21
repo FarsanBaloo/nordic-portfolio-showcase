@@ -351,7 +351,7 @@ export const projects: Project[] = [
           heading: "Why",
           body: [
             "Buildings use around 40% of the energy consumed in the EU. Improving their energy performance matters for costs, energy security and climate impact.",
-            "Hidden waste can arise from incorrect schedules, faulty sensors, configuration issues or heating and cooling working against each other. Talking SCADA explores how to make these interacting causes understandable and help people decide where to investigate.",
+            "Hidden waste can arise from incorrect schedules, faulty sensors, configuration issues or heating and cooling working against each other. Talking SCADA explores how the building could describe that in plain language: where energy is being wasted, what is likely causing it and which action is worth considering — with the person responsible still making the decision.",
           ],
           links: [
             {
@@ -374,7 +374,7 @@ export const projects: Project[] = [
         },
         {
           heading: "What the concept is",
-          body: ["Talking SCADA explores multi-agent AI decision support combining operational time-series data, building-system relationships and domain context. Users would ask questions, examine possible causes and review supporting evidence before deciding what to do next."],
+          body: ["A layer on top of the building's existing control systems that answers questions in everyday language: what changed, why it is likely happening and what to look at next. Underneath, the concept explores multi-agent AI decision support combining operational time-series data, building-system relationships and domain context, so users can examine possible causes and review supporting evidence before deciding what to do."],
         },
         {
           heading: "Intended gains",
@@ -444,6 +444,7 @@ export const projects: Project[] = [
         heading: "Concept & proposed user journey",
         subSections: [
           { heading: "What the concept is", body: [
+            "In everyday terms: a way for the building to explain itself. Instead of reading trend curves and alarm lists, the person responsible asks a question and gets a plain-language answer about where energy is being wasted, what is likely causing it and what to look at next.",
             "The concept explores an explanation and decision-support layer for SCADA/BMS platforms. The proposed design combines historical time-series data with a semantic representation of building systems and their relationships. User scenarios address energy increases and underperforming HVAC systems.",
             "The intended interaction lets users ask a question, review possible causes and inspect references to the underlying sensors, alarms and system relationships before deciding what to do next. Direct control of physical building systems is outside the defined scope.",
           ] },
