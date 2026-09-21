@@ -318,7 +318,7 @@ export const projects: Project[] = [
   {
     slug: "talking-scada",
     title: "Talking SCADA",
-    subtitle: "Understanding hidden energy problems in buildings",
+    subtitle: "Letting buildings explain their hidden energy waste in plain language",
     org: "University of Skövde · Blekinge Institute of Technology",
     meta: "AUG 2025 – MAY 2026",
     type: "Academic Product Case",
@@ -326,7 +326,7 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["AI & Product", "Innovation", "Academic / Research"],
     teaser:
-      "Academic product case exploring how AI could help building operators understand hidden energy problems. I developed the concept from user need to MVP scope, requirements, prioritisation, positioning and business model, grounded in 20+ years of domain experience.",
+      "SCADA systems monitor and steer ventilation, heating, cooling and alarms in large buildings — but their data rarely explains why energy is being wasted. Academic product case exploring how AI could let the building answer that in plain language. I developed the concept from user need to MVP scope, requirements, prioritisation, positioning and business model, grounded in 20+ years of domain experience.",
     tags: [
       "Product Discovery",
       "Requirements / PRD",
@@ -345,7 +345,7 @@ export const projects: Project[] = [
     ],
     timelineContent: {
       meta: "PRODUCT CASE AT BLEKINGE INSTITUTE OF TECHNOLOGY · AUG 2025 – MAY 2026",
-      intro: "A continuous academic product case combining 20+ years of domain experience with applied AI, product management and business studies. I refined the concept through problem framing, product definition, requirements, prioritisation and commercialisation planning.",
+      intro: "SCADA systems monitor and steer ventilation, heating, cooling and alarms in large buildings. Talking SCADA explores how they could explain, in plain language, where energy is being wasted and why. A continuous academic product case combining 20+ years of domain experience with applied AI, product management and business studies. I refined the concept through problem framing, product definition, requirements, prioritisation and commercialisation planning.",
       sections: [
         {
           heading: "Why",
