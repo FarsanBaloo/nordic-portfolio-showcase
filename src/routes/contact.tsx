@@ -72,7 +72,7 @@ function ContactPage() {
         </div>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Email is the fastest way to reach me — I usually reply within a day.
+          Email is the best way to reach me.
         </p>
 
         <div className="mt-10 rounded-xl border border-border bg-card p-6 sm:p-8">

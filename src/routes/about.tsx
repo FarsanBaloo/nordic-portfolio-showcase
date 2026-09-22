@@ -15,9 +15,9 @@ import {
 
 import { seo } from "../lib/site";
 
-const title = "About Rickard Sörlin — Industrial Platforms, Product & AI";
+const title = "About Rickard Sörlin — AI Product Manager";
 const description =
-  "25+ years close to customers, industrial systems and digital platforms — now focused on AI-enabled products, offer management and product ownership.";
+  "AI Product Manager with 20+ years close to customers, industrial systems and digital platforms, combining product management, applied AI and offer strategy.";
 
 export const Route = createFileRoute("/about")({
   head: () => seo({ title, description, path: "/about", type: "profile" }),
