@@ -9,7 +9,7 @@ export const cvHeader = {
 };
 
 export const strengths = [
-  "25+ years across industrial digital platforms, connected systems, SCADA and mission-critical real-time environments, combining deep domain expertise with hands-on applied AI experience.",
+  "20+ years across industrial digital platforms, connected systems, SCADA and mission-critical real-time environments, combining deep domain expertise with hands-on applied AI experience.",
   "Identifies user needs, operational pain points and business challenges, translating them into technically feasible digital and AI-enabled solutions.",
   "Contributes to requirements definition, prioritisation, feasibility assessment, stakeholder alignment and solution direction across industrial digital platforms.",
   "Makes complex technology, constraints and trade-offs understandable and actionable across business, product, engineering, operations and customer stakeholders.",
@@ -83,11 +83,24 @@ export const coreSkills = [
 ];
 
 export const cvSummary = [
-  "Product-oriented B2B industrial digital-platform professional with 25+ years of experience across BMS/HVAC, SCADA, IoT/IIoT, energy and mission-critical real-time environments. Combines deep industrial domain and customer-facing delivery experience with hands-on applied AI and product management capabilities to conduct customer and technical discovery, validate high-value user problems, translate operational needs and data into product opportunities, and shape feasible, scalable solutions.",
+  "AI Product Manager with 20+ years of experience across BMS/HVAC, IoT/IIoT, energy and mission-critical real-time environments. SCADA software monitors and controls technical systems, measurements and alarms; this industrial foundation is combined with hands-on applied AI and product management capabilities to conduct discovery, validate high-value user problems and shape feasible, scalable solutions.",
   "Brings end-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders, contributing to prioritisation, feasibility assessment and technical and commercial trade-offs. Has turned recurring customer issues and real-world usage into product feedback and enhancement proposals while supporting release validation and deployment readiness. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
 ];
 
 export const cvProjects = [
+  {
+    title: "Talking SCADA — Academic Product Case",
+    org: "University of Skövde → Blekinge Institute of Technology · Aug 2025 – May 2026",
+    slug: "talking-scada",
+    body: "Explored how AI could let a building explain hidden energy waste, likely causes and useful next investigation steps in plain language while keeping operational decisions with people.",
+    bullets: [
+      "Framed the user problem, intended users and Jobs to Be Done for building operators, facility managers and energy teams.",
+      "Developed the concept from discovery through product definition, a bounded read-only MVP, PRD and SRD, requirements traceability and Cost-Value-Risk prioritisation.",
+      "Connected customer and business value through Software Value Map, Business Model Canvas, packaging, sourcing and staged commercialisation planning.",
+      "Defined the next validation step with representative users and real building data; intended energy, cost and emissions gains remain unmeasured.",
+    ],
+    tech: "Conceptual multi-agent decision support using operational time-series data, building-system relationships and domain context; a design direction to compare with simpler support.",
+  },
   {
     title: "AI-Powered Troubleshooting Assistant",
     org: "Mälardalens Industrial Technology Center (MITC)",
@@ -133,7 +146,7 @@ export const cvExperience = [
       "Reduced delivery and lifecycle risk by identifying integration constraints, technical dependencies, and long-term consequences early and validating proposed solutions with stakeholders.",
       "Delivered mission-critical digital platform integrations across data-centre, pharmaceutical, and healthcare environments, including consolidating multiple systems into a unified HMI and edge-based architecture.",
       "Translated operational workflows into user-facing digital control concepts, integrating HVAC, lighting, video and other building systems into coherent web-based interfaces.",
-      "Represented Schneider Electric in KTH Living Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
+      "Represented Schneider Electric in KTH Live-In Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
       "Mentored technical teams in platform capabilities, system integration, solution design, and technical constraints, improving consistency, scalability, maintainability, and delivery quality.",
     ],
   },

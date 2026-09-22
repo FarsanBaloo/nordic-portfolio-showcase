@@ -15,9 +15,9 @@ import {
 import { availability, profile } from "../content/profile";
 import { seo } from "../lib/site";
 
-const title = "CV — Rickard Sörlin | Product Owner, AI & Industrial Digital Platforms";
+const title = "CV — Rickard Sörlin | AI Product Manager";
 const description =
-  "Full résumé of Rickard Sörlin: 25+ years in SCADA, BMS, IIoT and energy platforms, combined with applied AI, product management and requirements management. Print or save as PDF.";
+  "Full résumé of Rickard Sörlin, AI Product Manager: 20+ years in SCADA, BMS, IIoT and energy platforms, combined with applied AI, product and requirements management.";
 
 export const Route = createFileRoute("/cv")({
   head: () => seo({ title, description, path: "/cv", type: "profile" }),
@@ -119,7 +119,7 @@ function CvPage() {
           ))}
         </div>
 
-        <Heading>Selected AI projects</Heading>
+        <Heading>Selected product & AI projects</Heading>
         <div className="mt-4 space-y-6">
           {cvProjects.map((project) => (
             <section key={project.slug} className="cv-block">

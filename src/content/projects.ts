@@ -326,7 +326,7 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["AI & Product", "Innovation", "Academic / Research"],
     teaser:
-      "SCADA systems monitor and steer ventilation, heating, cooling and alarms in large buildings — but their data rarely explains why energy is being wasted. Academic product case exploring how AI could let the building answer that in plain language. I developed the concept from user need to MVP scope, requirements, prioritisation, positioning and business model, grounded in 20+ years of domain experience.",
+      "Academic product case exploring how AI could help SCADA systems — software that monitors and controls a building's ventilation, heating, cooling, measurements and alarms — explain hidden energy waste, likely causes and next investigation steps in plain language. I developed the concept from user need to MVP scope, requirements, prioritisation, positioning and business model; it is not a launched product.",
     tags: [
       "Product Discovery",
       "Requirements / PRD",
@@ -344,8 +344,8 @@ export const projects: Project[] = [
       "BMS",
     ],
     timelineContent: {
-      meta: "PRODUCT CASE AT BLEKINGE INSTITUTE OF TECHNOLOGY · AUG 2025 – MAY 2026",
-      intro: "SCADA systems monitor and steer ventilation, heating, cooling and alarms in large buildings. Talking SCADA explores how they could explain, in plain language, where energy is being wasted and why. A continuous academic product case combining 20+ years of domain experience with applied AI, product management and business studies. I refined the concept through problem framing, product definition, requirements, prioritisation and commercialisation planning.",
+      meta: "ACADEMIC PRODUCT CASE · SKÖVDE → BTH · AUG 2025 – MAY 2026",
+      intro: "SCADA systems monitor and steer ventilation, heating, cooling, measurements and alarms in large buildings. Talking SCADA explores how they could explain, in plain language, where energy is being wasted, why it may be happening and what to investigate next. Grounded in 20+ years of domain experience, I developed this academic concept through problem framing, product definition, requirements, prioritisation and commercialisation planning; it is not a launched product.",
       sections: [
         {
           heading: "Why",
@@ -409,7 +409,7 @@ export const projects: Project[] = [
         },
         {
           heading: "Origin & progression",
-          body: ["Started in Innovation in Practice and refined through Product Management, Product & Requirements Management and Strategy & Business Models, supported by my domain experience and AI studies."],
+          body: ["Started in Innovation in Practice at the University of Skövde and refined through Product Management, Product & Requirements Management and Strategy & Business Models at Blekinge Institute of Technology. The case runs from August 2025 to May 2026 within a BTH specialisation continuing to June 2026 and broader postgraduate studies continuing to July 2026."],
         },
       ],
       ctaLabel: "Read the full case study",
@@ -418,7 +418,7 @@ export const projects: Project[] = [
       {
         heading: "Overview & my contribution",
         body: [
-          "Talking SCADA began in Innovation in Practice as a proposal for an AI-enabled service to help people understand hidden energy problems in buildings. I then refined the same concept through product, requirements and business coursework, combining 20+ years of domain experience with applied AI. The case now explores multi-agent decision support centred on human judgement.",
+          "Talking SCADA began in Innovation in Practice at the University of Skövde as a proposal for an AI-enabled service to help people understand hidden energy problems in buildings. I then refined the same academic concept through product, requirements and business coursework at Blekinge Institute of Technology, building on my industrial domain grounding and applied AI studies. The case explores multi-agent decision support centred on human judgement; it is not a launched product.",
           "Across the coursework, I produced an innovation report, productification and commercialisation plans, a product protocol, a Product Requirements Document (PRD), a System Requirements Document (SRD) and a business plan. Further reports examined digital-product value and asset/sourcing strategy. I connected these to examine how user needs, technical choices, delivery and a viable offer could fit together.",
         ],
       },
@@ -532,7 +532,7 @@ export const projects: Project[] = [
         heading: "How the case evolved",
         body: [
           "Talking SCADA started with my project in Innovation in Practice. I framed the service opportunity, analysed external drivers and organisational capabilities, and proposed an approach to user-centred development. My domain experience and applied AI studies provided the technical foundation.",
-          "I then carried the same concept into coursework within my specialisation in Industrial Economics and Management at Blekinge Institute of Technology:",
+          "I then carried the same concept into coursework within my specialisation in Industrial Economics and Management at Blekinge Institute of Technology. The Talking SCADA case runs from August 2025 to May 2026, within the BTH specialisation continuing to June 2026 and broader postgraduate studies continuing to July 2026:",
         ],
         items: [
           "Product Management: productification and commercialisation plans covering the NPD process, concept evaluation, launch preparation and product life cycle, together with a product protocol and PRD defining the offer, scenarios, requirements, MVP scope and acceptance criteria.",

@@ -10,7 +10,7 @@ import { seo } from "../lib/site";
 
 const title = "Projects & Case Studies — Rickard Sörlin";
 const description =
-  "Applied industrial AI, SCADA and building-platform work, interaction design and innovation projects — each documented from problem to validated result.";
+  "Applied industrial AI, SCADA and building-platform work, interaction design and innovation projects — each documented from problem to evidence, learning or next validation step.";
 
 export const Route = createFileRoute("/projects/")({
   head: () => seo({ title, description, path: "/projects" }),
