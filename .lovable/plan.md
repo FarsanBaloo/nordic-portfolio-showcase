@@ -41,7 +41,16 @@ Delete the "Industrial Economics and Management" group from the BTH entry's `gro
 },
 ```
 
-The other five groups in the BTH entry stay unchanged. The BTH entry's `body2` (which describes the specialisation as a whole, naming "Industrial Economics and Management" among the covered areas) stays unchanged — it describes the specialisation, not a course.
+The other five groups in the BTH entry stay unchanged.
+
+**The specialisation itself stays correctly lifted** — it is not a course, so it should not appear as a course card. It remains visible through:
+
+- `formalTitle`: "Advanced-Level Specialization in Industrial Economics, Product & Requirements Management"
+- `subtitle`: "Product · Requirements · Strategy · Leadership"
+- `phase`: "Phase 2 · Product · Industrial Economics · Requirements · Delivery"
+- `body2`: names "Industrial Economics and Management" as one of the specialisation's covered areas, alongside Strategy and Business Models, Product Management, Product and Requirements Management, Agile Process and Project Management, and Leadership.
+
+These describe the specialisation as a whole and are unchanged.
 
 ### 3. Cleanup — `src/content/course-applications.ts` (lines 42–45)
 
