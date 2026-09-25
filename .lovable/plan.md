@@ -18,7 +18,7 @@ The specialisation covers Strategy & Business Models (already named in `heroProo
 ## Why this works
 - Opens with the *why* (whole career creating products/services; now closer to customer, solution-first, value creation) before the *what* (specialisation + skills).
 - Keeps "Industrial Economics and Management" and "Blekinge Institute of Technology" named, so the specialisation stays correctly lifted.
-- Keeps the existing PM-vocabulary: product management, requirements, value-driven design, innovation, leadership, product and offer management.
+- Keeps and extends the existing vocabulary: product management, requirements, value-driven design, innovation, **strategy and business models**, leadership, product and offer management.
 - Adds the customer/problem-first thread that matches the emphasis paragraph and the user's PM positioning.
 - Stays one paragraph, ~70 words — modest growth from ~45, still compact.
 
