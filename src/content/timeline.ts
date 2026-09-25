@@ -535,8 +535,8 @@ export const milestones: TimelineMilestone[] = [
   },
   {
     id: "nordic-technical-support-expert",
-    railMarker: { label: "OCT 2026", kind: "major", verified: true },
-    period: "Oct 2026–Present",
+    railMarker: { label: "2026", kind: "major", verified: true },
+    period: "2026–Present",
     datePrecision: "verified-range",
     title: "Nordic Technical Support Expert",
     subtitle: "Building Management Systems",
