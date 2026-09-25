@@ -16,29 +16,29 @@ export const profile = {
   positioning:
     "Bridging user needs, technology and business through industrial platform experience, applied AI and product management.",
   bridge:
-    "I start with the customer's problem, not the solution. My 20+ years at Schneider Electric span complex B2B environments — where customer and user needs, technology, delivery and business value meet. In my current Nordic role, I connect strategic customer needs, platform quality and R&D prioritisation while continuing to develop toward Product Management and Offer Management.",
+    "I start with the customer's problem, not the solution. For 20+ years at Schneider Electric I have worked where customer needs, technology, delivery and business value meet. Today I connect Nordic customer needs with platform quality and R&D prioritisation — and I am building toward Product and Offer Management.",
   heroSupporting:
     "More than 20 years next to the customers who run complex systems — including SCADA software that monitors and controls technical systems, measurements and alarms — taught me to hear the pain behind every request and weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support and designed to hold up in real use.",
   heroProof: [
     {
       label: "Customer discovery & solution direction",
-      body: "Led customer-facing technical discovery and shaped, presented and delivered complex digital building-automation solutions across healthcare, pharmaceutical and other mission-critical environments, working across engineering, sales, management and customer stakeholders to align operational needs, feasibility and trade-offs.",
+      body: "Led technical discovery and shaped, presented and delivered digital building solutions for healthcare, pharmaceutical and other mission-critical customers — aligning needs, feasibility and trade-offs across engineering, sales and management.",
     },
     {
       label: "Product feedback, prioritisation & lifecycle",
-      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D. The current Nordic role continues this across the Nordic region — routing EcoStruxure Building Operation and edge IoT ecosystem cases back to R&D, prioritised by customer impact, technical risk and business relevance.",
+      body: "Turn recurring field issues into structured product feedback and enhancement proposals with R&D for EcoStruxure Building Operation and its edge IoT ecosystem — prioritised by customer impact, technical risk and business relevance.",
     },
     {
       label: "Applied AI & Computer Science",
-      body: "B.Sc. in Computer Science (Intelligent Systems) at Mälardalen University, with applied work in RAG, forecasting and agentic AI.",
+      body: "B.Sc. in Computer Science (Intelligent Systems), Mälardalen University — applied work in RAG, forecasting and agentic AI.",
     },
     {
       label: "Postgraduate AI Studies",
-      body: "Advanced university studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems — across Umeå, Linköping and Mälardalen universities.",
+      body: "University studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems at Umeå, Linköping and Mälardalen.",
     },
     {
       label: "Postgraduate Industrial Economics & Management",
-      body: "University specialisation at Blekinge Institute of Technology spanning Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
+      body: "Blekinge Institute of Technology — Product Management, Requirements, Strategy & Business Models, Innovation, Agile Project Management, Portfolio Strategy and Leadership.",
     },
   ],
   progression: [
