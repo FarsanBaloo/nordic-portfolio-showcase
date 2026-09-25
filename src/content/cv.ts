@@ -135,7 +135,7 @@ export const cvExperience = [
   {
     role: "Nordic Technical Support Expert — Building Management Systems",
     org: "Schneider Electric",
-    period: "Oct 2026 – Present",
+    period: "2026 – Present",
     summary:
       "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency.",
     bullets: [
