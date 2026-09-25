@@ -26,7 +26,7 @@ export const profile = {
     },
     {
       label: "Product feedback, prioritisation & lifecycle",
-      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D. The current Nordic role extends this into regional oversight and prioritisation of defects and improvements by customer impact, technical risk and business relevance.",
+      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D. The current Nordic role continues this for the Nordic region — turning recurring field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
     },
     {
       label: "Applied AI & Computer Science",
