@@ -129,7 +129,7 @@ export const howIWork = [
 ];
 
 export const contactIntro =
-  "Interested in opportunities around AI-enabled products, Offer Management, Product Management, Product Ownership and industrial / B2B digital platforms.";
+  "Currently working as Nordic Technical Support Expert within Building Management Systems, while developing a long-term direction toward AI-enabled Product Management and Offer Management for industrial B2B digital platforms.";
 
 /** Editorial narrative shown at the top of the Journey page. */
 export const journeyNarrative = {
