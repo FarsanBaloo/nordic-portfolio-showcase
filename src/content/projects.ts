@@ -572,18 +572,14 @@ export const projects: Project[] = [
       {
         heading: "Context",
         body: [
-          "As renewable-energy penetration increases, reliable wind-power forecasting becomes increasingly important for energy planning, storage optimisation and demand-side flexibility.",
-          "Traditional point forecasts provide limited information about uncertainty and risk.",
+          "As renewable energy grows, energy planners depend on wind-power forecasts for planning, storage and flexibility decisions. But a traditional point forecast — one number per hour — says nothing about how wrong it might be, and it is exactly that uncertainty that makes planning hard.",
+          "That became the real question of the thesis: not how do we predict wind power most accurately, but how do we give planners a forecast they can actually make risk-aware decisions on?",
         ],
       },
       {
         heading: "Discovery & framing",
-        items: [
-          "Decision-making under uncertainty",
-          "Risk-aware planning",
-          "Digital energy",
-          "Platform integration considerations",
-          "Decision support rather than model accuracy alone",
+        body: [
+          "We framed the work around decision-making under uncertainty rather than model accuracy alone — treating the forecast as decision support for risk-aware planning in digital energy, with an eye on how such a capability could fit into energy platforms.",
         ],
       },
       {
@@ -670,25 +666,24 @@ export const projects: Project[] = [
       {
         heading: "Context",
         body: [
-          "Mission-critical data-centre environment requiring reliable integration of complex connected infrastructure.",
+          "In a mission-critical data centre, nothing can stop. The customer ran a complex IIoT environment of connected systems that all had to keep operating while being brought together — integration had to happen without ever putting operational continuity at risk.",
         ],
       },
       {
         heading: "Summary",
         body: [
-          "Delivered digital-platform integration of the wider data-centre IIoT environment into a unified operational platform.",
+          "I led the integration of the wider data-centre IIoT environment into one unified operational platform — step by step, from discovery and requirements through architecture and validation, with the live environment running throughout.",
         ],
       },
       {
         heading: "Contribution",
+        body: [
+          "End-to-end technical ownership of the integration, working closely with the customer and across teams:",
+        ],
         items: [
-          "Customer and operational requirements",
-          "Technical discovery",
-          "Solution architecture",
-          "Integration strategy",
-          "Technical ownership",
+          "Customer and operational requirements, and technical discovery",
+          "Solution architecture and integration strategy",
           "Platform capability assessment",
-          "Technical coordination",
           "Validation and delivery",
           "Stakeholder alignment",
           "Lifecycle and reliability considerations",
@@ -738,7 +733,7 @@ export const projects: Project[] = [
       {
         heading: "Context",
         body: [
-          "KTH Live-In Lab is a research centre and open innovation platform where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency, using full-scale testbeds in real residential buildings.",
+          "Most building research happens in simulations or labs. KTH Live-In Lab is different: an open innovation platform where industry partners, KTH researchers and other universities test sustainable-building and energy ideas in full-scale testbeds inside real residential buildings — with real systems, real data and real constraints.",
           "Several testbeds ran on EcoStruxure Building Operation — Schneider Electric's building-management software that connects HVAC, lighting, energy and sensors into one place for monitoring, control and data. That data made the lab's energy research possible.",
         ],
       },
@@ -950,7 +945,7 @@ export const projects: Project[] = [
       {
         heading: "Summary",
         body: [
-          "Developed a reusable HVAC monitoring / deviation-management capability based on recurring operational needs across customer environments.",
+          "Working close to customers, I kept seeing the same need return: monitoring HVAC systems and catching deviations before they became problems. Each time it was solved again, from scratch, for that customer. Instead of solving it one more time, I developed a reusable monitoring and deviation-management capability — packaged so it could be deployed consistently across customer systems and sold through the market organisation.",
         ],
       },
       {
