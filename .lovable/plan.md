@@ -1,7 +1,7 @@
-# Återställ "Now · Direction"-noden i tidslinjen
+# Återställ "Now · Direction"-nod + trimma Nordic-kortet
 
 ## Bakgrund
-Den tidigare "Now"-noden (`id: "now"`, `now: true`) renderades som ett centrerat "Now · Direction"-kort högstast i tidslinjen (newest-first) med syntes-text och målroll-chip: AI Product Manager, Product Manager, Product Owner, Offer Manager. Den ersattes av Nordic Technical Support Expert-kortet (Okt 2026–Present). Användaren vill ha båda: Nordic-kortet kvar som konkret roll, **och** Now-noden återställd som riktningssyntes.
+Den tidigare "Now"-noden (`id: "now"`, `now: true`) renderades som ett centrerat "Now · Direction"-kort högstast i tidslinjen (newest-first) med syntes-text och målroll-chip: AI Product Manager, Product Manager, Product Owner, Offer Manager. Den ersattes av Nordic Technical Support Expert-kortet (Okt 2026–Present). Användaren vill ha båda: Nordic-kortet kvar som konkret roll, **och** Now-noden återställd som riktningssyntes. Samtidigt ska Nordic-kortet trimmas: ta bort den minst PM-relevanta punkten (support-punkten) så kortet lyfter produkt/offer-snår snarare än support-tekniker.
 
 ## Ändring (endast `src/content/timeline.ts`)
 Lägg tillbaka Now-milestone:n som **sista element** i `milestones`-arrayen (efter Nordic-posten), så den renderas högstast vid newest-first-ordning.
