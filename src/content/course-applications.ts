@@ -39,10 +39,6 @@ export const courseApplications = {
     "Used Talking SCADA to consider how a limited first scope could be refined through feedback and prioritisation.",
     "Focused on what to learn next and how evidence could change the development plan.",
   ],
-  industrialEconomics: [
-    "Connected technology choices with business value and sustainable value creation.",
-    "Used Talking SCADA to consider value for building users alongside the organisation's ability to deliver and sustain the proposed service.",
-  ],
   nlp: [
     "Studied transformers, sentiment classification and domain adaptation, with PyTorch implementation and PEFT/LoRA.",
     "Strengthened my understanding of language-model capabilities, limitations and adaptation to domain-specific tasks.",

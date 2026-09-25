@@ -446,16 +446,6 @@ export const milestones: TimelineMilestone[] = [
       },
       {
         kind: "course",
-        title: "Industrial Economics and Management",
-        university: "Blekinge Institute of Technology",
-        variant: "compact",
-        topics: [],
-        signals: ["Business Value", "Technology / Business Perspective", "Sustainable Value"],
-        applicationItems: courseApplications.industrialEconomics,
-        group: "Phase 2 · Product · Industrial Economics · Requirements · Delivery",
-      },
-      {
-        kind: "course",
         title: "Innovation Management",
         university: "University of Skövde",
         formalTitle: "Advanced-Level Studies in Innovation Management",
