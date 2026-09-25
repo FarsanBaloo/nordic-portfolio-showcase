@@ -18,7 +18,7 @@ export const profile = {
   bridge:
     "I start with the customer's problem, not the solution. For 20+ years at Schneider Electric I have worked where customer needs, technology, delivery and business value meet. Today I connect Nordic customer needs with platform quality and R&D prioritisation — and I am building toward Product and Offer Management.",
   heroSupporting:
-    "More than 20 years next to the customers who run complex systems — including SCADA software that monitors and controls technical systems, measurements and alarms — taught me to hear the pain behind every request and weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support and designed to hold up in real use.",
+    "More than 20 years next to the customers who run complex systems — including SCADA software that monitors technical systems, measurements and alarms — taught me to hear the pain behind every request and weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support and designed to hold up in real use.",
   heroProof: [
     {
       label: "Customer discovery & solution direction",

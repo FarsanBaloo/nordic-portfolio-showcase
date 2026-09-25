@@ -135,7 +135,7 @@ export const cvExperience = [
     org: "Schneider Electric",
     period: "2026 – Present",
     summary:
-      "Nordic responsibility for strategic customers and prioritisation of defects and improvements with R&D for EcoStruxure Building Operation and its edge-controller ecosystem.",
+      "Nordic responsibility for strategic customers and prioritisation of defects and improvements with R&D for EcoStruxure Building Operation and its edge-controller ecosystem, in an international, English-speaking environment.",
     bullets: [
       "Own the largest and most strategic VIP customers across the Nordic region.",
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
@@ -186,13 +186,13 @@ export const cvEducation = [
     institution: "Blekinge Institute of Technology",
     period: "2025 – 2026",
     detail:
-      "Courses: Product Management & Portfolio Strategy, Strategy & Business Models, Leadership, Product Requirement Management, Agile Process & Project Management.",
+      "Courses: Product Management & Portfolio Strategy, Strategy & Business Models, Leadership, Product Requirement Management, Agile Process & Project Management (Scrum).",
   },
   {
     title: "Postgraduate Studies in Innovation Management (Advanced level)",
     institution: "University of Skövde",
     period: "2025 – 2026",
-    detail: "Courses: Innovation in Practise.",
+    detail: "Courses: Innovation in Practice.",
   },
   {
     title: "Postgraduate Specialisation in Artificial Intelligence (Advanced level)",

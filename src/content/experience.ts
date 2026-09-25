@@ -353,7 +353,7 @@ export const roles: Role[] = [
     subtitle: "Building Management Systems",
     stage: "Nordic Customer Insight, Platform Quality & Prioritisation",
     summary:
-      "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency.",
+      "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency — in an international, English-speaking environment.",
     bullets: [
       "Own the largest and most strategic VIP customers across the Nordic region.",
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
