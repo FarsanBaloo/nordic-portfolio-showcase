@@ -404,7 +404,7 @@ export const roles: Role[] = [
           "Defect and improvement prioritisation",
           "Customer and business impact",
           "Technical risk and urgency",
-          "Structured feedback and escalation to R&D",
+          "Structured product feedback & enhancement proposals",
           "Priority Nordic business needs",
         ],
       },
