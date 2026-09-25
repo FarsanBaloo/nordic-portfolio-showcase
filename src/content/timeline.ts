@@ -554,6 +554,7 @@ export const milestones: TimelineMilestone[] = [
     ],
     relevanceSignals: [
       "Nordic Market Insight",
+      "Product Feedback & Enhancement Proposals",
       "Defect & Enhancement Prioritisation",
       "Strategic Customer Ownership",
       "R&D Collaboration",
