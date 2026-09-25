@@ -22,7 +22,16 @@ Lägg tillbaka Now-milestone:n som **sista element** i `milestones`-arrayen (eft
 
 - Inga andra fält ändras. Text och roller återställs ordagrant från den tidigare versionen.
 - `track: "direction"` är en giltig `TimelineTrack`; NowRow-komponenten (`entry.now`) renderar kortet centrerat över båda spåren med "Now · Direction"-etikett och professional-accent.
-- Nordic-kortet (Okt 2026–Present) ligger kvar oförändrat som näst överst.
+- Nordic-kortet (Okt 2026–Present) ligger kvar som näst överst, men trimmas (se nedan).
+
+## Trim av Nordic-kortet (`src/content/timeline.ts`, id `nordic-technical-support-expert`)
+Ta bort den första overviewBullets-punkten — den låter mest som support-tekniker och minst som PM/offer:
+
+> ~~Deliver technical support and solve complex BMS and EcoStruxure issues for technicians, EcoXpert partners and Level 2 advanced support engineers across the Nordic region.~~
+
+De tre kvarvarande punkterna (VIP-kunder, structured product feedback & enhancement proposals, mentoring Level 2) bär PM/offer/lifecycle-signalen. `relevanceSignals` behålls oförändrad — de är redan produkt-/prioriterings-/lifecycle-inriktade.
+
+## Ärlighet
 
 ## Ärlighet
 Now-kortet är riktning/syntes, inte en formell titel. Det är konsekvent med hero ("Developing toward Product & Offer Management") och emphasis-stycket. "Direction"-kvalifiern i etiketten gör att målrollerna läses som riktning, inte som nuvarande titel.
