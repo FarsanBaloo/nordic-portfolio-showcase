@@ -32,8 +32,7 @@ Ta bort den första overviewBullets-punkten — den låter mest som support-tekn
 De tre kvarvarande punkterna (VIP-kunder, structured product feedback & enhancement proposals, mentoring Level 2) bär PM/offer/lifecycle-signalen. `relevanceSignals` behålls oförändrad — de är redan produkt-/prioriterings-/lifecycle-inriktade.
 
 ## Ärlighet
-
-## Ärlighet
+Now-kortet är riktning/syntes, inte en formell titel. Det är konsekvent med hero ("Developing toward Product & Offer Management") och emphasis-stycket. "Direction"-kvalifiern i etiketten gör att målrollerna läses som riktning, inte som nuvarande titel.
 Now-kortet är riktning/syntes, inte en formell titel. Det är konsekvent med hero ("Developing toward Product & Offer Management") och emphasis-stycket. "Direction"-kvalifiern i etiketten gör att målrollerna läses som riktning, inte som nuvarande titel.
 
 ## Verifiering
