@@ -81,7 +81,7 @@ export const postgraduate = {
       period: "Aug 2025 – Jun 2026",
       body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
       body2:
-        "Advanced-level specialization covering Industrial Economics and Management, Strategy and Business Models in Technology-Intensive Businesses, Product Management, Product and Requirements Management for Digital Environments, Agile Process and Project Management, and Leadership in High-Technology and Knowledge-Intensive Organizations.",
+        "Advanced-level specialisation spanning Product Management, Requirements Management, Strategy & Business Models, Agile Process & Project Management and Leadership.",
 
       projectCase: {
         title: "Course project — Talking SCADA (product & requirements case)",
@@ -191,10 +191,8 @@ export const postgraduate = {
         "Natural Language Processing",
         "Transformer architectures",
         "Domain adaptation",
-        "Sentiment classification",
         "PyTorch",
-        "Parameter-Efficient Fine-Tuning (PEFT)",
-        "Low-Rank Adaptation (LoRA)",
+        "PEFT / LoRA",
       ],
       relevance: [],
     },
