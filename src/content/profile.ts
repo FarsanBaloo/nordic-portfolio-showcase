@@ -144,7 +144,7 @@ export const journeyNarrative = {
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "That is what I bring to product management and offer strategy: I start with the customer's problem — and I understand both sides of the table, the people who live with the result and the teams who have to build, deliver and support it. I listen before defining, make competing needs and trade-offs visible, and work across disciplines to create a direction people can understand and contribute to. I believe strongly that the best solutions are shaped together, when different perspectives are heard, challenged and brought into a shared direction.",
+    "That is what I bring to product management and offer strategy: I start with the customer's problem, and I understand both sides of the table — the people who live with the result and the teams who have to build, deliver and support it. I listen before defining, make trade-offs visible, and work across disciplines to create a direction people can understand and contribute to.",
 };
 
 
