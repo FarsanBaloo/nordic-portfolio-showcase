@@ -79,9 +79,7 @@ export const postgraduate = {
         "Advanced-Level Specialisation in Industrial Economics, Product & Requirements Management",
       subtitle: "Product · Requirements · Strategy · Leadership",
       period: "Aug 2025 – Jun 2026",
-      body: "Building on the technical AI and innovation foundation, this phase focused on how customer needs and technology opportunities become viable products, requirements, business models and sustainable value.",
-      body2:
-        "Advanced-level specialisation spanning Product Management, Requirements Management, Strategy & Business Models, Agile Process & Project Management and Leadership.",
+      body: "Building on the technical AI and innovation foundation, this specialisation covers product strategy, business models, requirements, commercialisation and leadership — how customer needs and technology opportunities become viable products and sustainable value.",
 
       projectCase: {
         title: "Course project — Talking SCADA (product & requirements case)",
