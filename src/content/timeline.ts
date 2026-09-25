@@ -177,16 +177,16 @@ export const milestones: TimelineMilestone[] = [
     roleId: "project-engineer",
     stage: "Customer Needs · Requirements · Delivery Reality",
     summary:
-      "Ten years face to face with the people who run the systems — turning their needs into working platforms and standing beside them at go-live.",
+      "Ten years face to face with the people who run the systems — turning their needs into working solutions and standing beside them at go-live.",
     overviewBullets: [
-      "Gathered operational needs from property managers, operations technicians, facility teams, project managers and end users, and turned them into implementation-ready system designs and configurations.",
-      "Managed smaller customer projects and technical work packages, and held technical ownership of large-scale building-automation and integrated-control projects from design and programming through integration, testing, commissioning and operational handover.",
-      "Acted as quality tester with R&D on the IoT building-automation platform, and mentored engineers on platform capabilities, integration patterns and scalable, maintainable solution design.",
+      "Gathered needs from property managers, technicians, facility teams and end users, and turned them into implementation-ready designs.",
+      "Held technical ownership of large building-automation projects — from design through integration, testing and handover — and managed smaller projects end to end.",
+      "Quality-tested the IoT building-automation platform with R&D and mentored engineers in scalable, maintainable solution design.",
     ],
     relevanceSignals: [
       "Customer Needs",
       "Requirements",
-      "Project & Work-Package Ownership",
+      "Project Ownership",
       "End-to-End Delivery",
       "Platform Quality",
     ],
@@ -204,19 +204,18 @@ export const milestones: TimelineMilestone[] = [
     roleId: "support-engineer",
     stage: "Customer Insight · Product Lifecycle · Release Readiness",
     summary:
-      "National expert carrying the customer's recurring pains into product feedback, lifecycle decisions and release readiness — listening in, adapting to each person, and solving problems together with the field teams.",
+      "National expert turning customers' recurring pains into product feedback, lifecycle decisions and release readiness.",
     overviewBullets: [
-      "Owned the development of a reusable HVAC deviation-management capability — detection, alarms, logging and visualisation — turning operational data into actionable insight and enabling consistent deployment across customer systems.",
-      "Turned recurring customer issues and real-world usage into structured product feedback and enhancement proposals, justified on customer impact, business value and market needs — working with Product Owners, Global Product Support and R&D.",
-      "Prioritised critical issues by operational impact, urgency and technical risk, and performed root-cause analysis separating implementation problems from product defects.",
-      "Collaborated with R&D as quality tester for the building-automation platform — supporting release validation, deployment readiness and controlled rollout.",
+      "Owned a reusable HVAC deviation-management capability — detection, alarms, logging and visualisation — turning operational data into actionable insight across customer systems.",
+      "Turned recurring customer issues into structured product feedback and enhancement proposals with Product Owners, Global Product Support and R&D — justified by customer impact and business value.",
+      "Prioritised critical issues by impact and risk, separated implementation problems from product defects, and supported release validation and controlled rollout.",
     ],
     relevanceSignals: [
       "Capability Ownership",
       "Customer Insight",
       "Product Feedback",
+      "Prioritisation",
       "Release Readiness",
-      "Enhancement Proposals",
     ],
 
     childrenLabel: "Selected product / platform capability",
@@ -309,20 +308,15 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Where customer, technology and business meet — leading discovery and the trade-offs behind feasible, scalable solutions.",
     overviewBullets: [
-      "Led customer-facing technical discovery — translated customer, operational and project needs into structured requirements, alternative architectures and product / solution options.",
-      "Developed and presented complex technical solution proposals to management, sales and customer stakeholders — translating operational requirements and technical constraints into clear options and trade-offs.",
-      "Held end-to-end technical ownership — influenced prioritisation, product selection and architectural trade-offs, balancing customer value, technical feasibility, lifecycle risk, cost and commercial value.",
-      "Delivered mission-critical platform integrations across data-centre, pharmaceutical and healthcare environments — including consolidation into a unified HMI and edge-based architecture.",
-      "Represented Schneider Electric at KTH Live-In Lab as its contact and an EcoStruxure Building Operation subject matter expert, supporting researchers with platform expertise and engineering input for sustainable buildings and energy efficiency.",
-      "Provided informal technical leadership and mentoring across teams and disciplines — leading through influence rather than formal authority.",
+      "Led customer-facing discovery — turned operational needs into requirements, alternative architectures and solution options, presented to management, sales and customers.",
+      "Held end-to-end technical ownership of mission-critical data-centre, pharmaceutical and healthcare deliveries — weighing customer value, feasibility, lifecycle risk, cost and commercial value.",
+      "Represented Schneider Electric at KTH Live-In Lab as EcoStruxure Building Operation expert, and led across teams through influence and mentoring rather than formal authority.",
     ],
     relevanceSignals: [
       "Customer Discovery",
-      "Requirements",
-      "Product / Solution Options",
+      "Solution Options",
       "Technical-Commercial Trade-offs",
       "Mission-Critical Delivery",
-      "Technical Leadership",
       "Stakeholder Alignment",
     ],
     
@@ -547,17 +541,15 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Nordic responsibility connecting complex customer and partner needs with platform quality, R&D collaboration and prioritisation for EcoStruxure Building Operation and its edge-controller ecosystem.",
     overviewBullets: [
-      "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of their operational context.",
-      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
-      "Support and mentor Level 2 advanced support engineers across the Nordic region through knowledge sharing, technical guidance and case escalation, strengthening capability across the team.",
+      "Own the largest, most strategic VIP customers — technical depth, clear communication and an understanding of their operations.",
+      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem — prioritised with R&D by customer impact, technical risk and business relevance.",
+      "Mentor Level 2 advanced support engineers across the Nordic region through guidance, knowledge sharing and escalation.",
     ],
     relevanceSignals: [
       "Nordic Market Insight",
       "Product Feedback & Enhancement Proposals",
-      "Defect & Enhancement Prioritisation",
-      "Strategic Customer Ownership",
-      "R&D Collaboration",
-      "Platform Lifecycle",
+      "Prioritisation with R&D",
+      "Strategic Customers",
       "Mentoring",
     ],
   },
@@ -568,7 +560,7 @@ export const milestones: TimelineMilestone[] = [
     title: "Product & AI Direction",
     track: "direction",
     summary:
-      "Bringing together 20+ years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
+      "20+ years of customer and platform experience, combined with product discovery, strategy and applied AI — to shape products that are useful, feasible and viable.",
     roles: ["AI Product Manager", "Product Manager", "Product Owner", "Offer Manager"],
     now: true,
   },
