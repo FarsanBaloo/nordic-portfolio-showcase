@@ -438,8 +438,8 @@ export const projects: Project[] = [
         heading: "Concept & proposed user journey",
         subSections: [
           { heading: "What the concept is", body: [
-            "A way for the building to explain itself: the person responsible asks a question and gets a plain-language answer about where energy is wasted, the likely cause and what to check next.",
-            "Technically, an explanation layer for SCADA/BMS combining time-series data with a semantic model of building systems. Users can inspect the sensors, alarms and relationships behind each answer. It does not control physical systems.",
+            "In everyday terms, a way for the building to explain itself: instead of reading trend curves and alarm lists, the person responsible asks a question and gets a plain-language answer about where energy is wasted, the likely cause and what to check next.",
+            "Technically, an explanation layer for SCADA/BMS combining time-series data with a semantic model of building systems. Users can inspect the sensors, alarms and relationships behind each answer before deciding what to do next. It does not control physical systems.",
           ] },
           { heading: "Proposed user journey", flow: { label: "", steps: ["Energy deviation", "What changed?", "Cross-system context", "Possible causes", "Supporting evidence", "Where should I investigate?"] } },
         ],
