@@ -135,10 +135,13 @@ export const postgraduate = {
         {
           title: "Agile Process and Project Management",
           items: [
+            "Agile process",
+            "Scrum",
             "Iterative concept refinement",
             "MVP planning",
             "Development planning",
             "Product development governance",
+            "Prioritisation / delivery thinking",
           ],
           applicationItems: courseApplications.agile,
         },

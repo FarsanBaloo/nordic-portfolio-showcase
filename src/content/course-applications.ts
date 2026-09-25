@@ -36,9 +36,9 @@ export const courseApplications = {
     "Built a personal leadership development plan with structured self-reflection — mapping my own strengths and growth areas against the leadership behaviours that fit technical, knowledge-intensive environments.",
   ],
   agile: [
-    "Connected iterative development with MVP planning and product-development governance.",
-    "Used Talking SCADA to consider how a limited first scope could be refined through feedback and prioritisation.",
-    "Focused on what to learn next and how evidence could change the development plan.",
+    "Applied agile and Scrum practices to iterative concept refinement — breaking work into short cycles, refining scope through feedback, and using MVP planning to test the riskiest assumptions first.",
+    "Used Talking SCADA to plan a limited first scope and decide what to learn next — sequencing work so evidence could change priorities and the development plan.",
+    "Connected development planning with project management and product-development governance — tracking progress, dependencies and delivery risk so a direction stays viable to build and deliver.",
   ],
   nlp: [
     "Studied transformers, sentiment classification and domain adaptation, with PyTorch implementation and PEFT/LoRA.",
