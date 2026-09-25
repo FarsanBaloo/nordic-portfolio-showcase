@@ -1,7 +1,7 @@
-# Återställ "Now · Direction"-noden i tidslinjen
+# Återställ "Now · Direction"-nod + trimma Nordic-kortet
 
 ## Bakgrund
-Den tidigare "Now"-noden (`id: "now"`, `now: true`) renderades som ett centrerat "Now · Direction"-kort högstast i tidslinjen (newest-first) med syntes-text och målroll-chip: AI Product Manager, Product Manager, Product Owner, Offer Manager. Den ersattes av Nordic Technical Support Expert-kortet (Okt 2026–Present). Användaren vill ha båda: Nordic-kortet kvar som konkret roll, **och** Now-noden återställd som riktningssyntes.
+Den tidigare "Now"-noden (`id: "now"`, `now: true`) renderades som ett centrerat "Now · Direction"-kort högstast i tidslinjen (newest-first) med syntes-text och målroll-chip: AI Product Manager, Product Manager, Product Owner, Offer Manager. Den ersattes av Nordic Technical Support Expert-kortet (Okt 2026–Present). Användaren vill ha båda: Nordic-kortet kvar som konkret roll, **och** Now-noden återställd som riktningssyntes. Samtidigt ska Nordic-kortet trimmas: ta bort den minst PM-relevanta punkten (support-punkten) så kortet lyfter produkt/offer-snår snarare än support-tekniker.
 
 ## Ändring (endast `src/content/timeline.ts`)
 Lägg tillbaka Now-milestone:n som **sista element** i `milestones`-arrayen (efter Nordic-posten), så den renderas högstast vid newest-first-ordning.
@@ -22,9 +22,17 @@ Lägg tillbaka Now-milestone:n som **sista element** i `milestones`-arrayen (eft
 
 - Inga andra fält ändras. Text och roller återställs ordagrant från den tidigare versionen.
 - `track: "direction"` är en giltig `TimelineTrack`; NowRow-komponenten (`entry.now`) renderar kortet centrerat över båda spåren med "Now · Direction"-etikett och professional-accent.
-- Nordic-kortet (Okt 2026–Present) ligger kvar oförändrat som näst överst.
+- Nordic-kortet (Okt 2026–Present) ligger kvar som näst överst, men trimmas (se nedan).
+
+## Trim av Nordic-kortet (`src/content/timeline.ts`, id `nordic-technical-support-expert`)
+Ta bort den första overviewBullets-punkten — den låter mest som support-tekniker och minst som PM/offer:
+
+> ~~Deliver technical support and solve complex BMS and EcoStruxure issues for technicians, EcoXpert partners and Level 2 advanced support engineers across the Nordic region.~~
+
+De tre kvarvarande punkterna (VIP-kunder, structured product feedback & enhancement proposals, mentoring Level 2) bär PM/offer/lifecycle-signalen. `relevanceSignals` behålls oförändrad — de är redan produkt-/prioriterings-/lifecycle-inriktade.
 
 ## Ärlighet
+Now-kortet är riktning/syntes, inte en formell titel. Det är konsekvent med hero ("Developing toward Product & Offer Management") och emphasis-stycket. "Direction"-kvalifiern i etiketten gör att målrollerna läses som riktning, inte som nuvarande titel.
 Now-kortet är riktning/syntes, inte en formell titel. Det är konsekvent med hero ("Developing toward Product & Offer Management") och emphasis-stycket. "Direction"-kvalifiern i etiketten gör att målrollerna läses som riktning, inte som nuvarande titel.
 
 ## Verifiering
