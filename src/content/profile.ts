@@ -16,7 +16,7 @@ export const profile = {
   positioning:
     "Bridging user needs, technology and business through industrial platform experience, applied AI and product management.",
   bridge:
-    "I start with the customer problem, not the solution. My 20+ years at Schneider Electric span complex B2B environments where customer and user needs, technology, delivery and business value meet. In my current Nordic role, I connect strategic customer needs, platform quality and R&D prioritisation while continuing to develop toward Product Management and Offer Management.",
+    "I start with the customer's problem, not the solution. My 20+ years at Schneider Electric span complex B2B environments — where customer and user needs, technology, delivery and business value meet. In my current Nordic role, I connect strategic customer needs, platform quality and R&D prioritisation while continuing to develop toward Product Management and Offer Management.",
   heroSupporting:
     "More than 20 years next to the customers who run complex systems — including SCADA software that monitors and controls technical systems, measurements and alarms — taught me to hear the pain behind every request and weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support and designed to hold up in real use.",
   heroProof: [
@@ -26,7 +26,7 @@ export const profile = {
     },
     {
       label: "Product feedback, prioritisation & lifecycle",
-      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D. The current Nordic role continues this for the Nordic region — turning recurring field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
+      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D. The current Nordic role continues this across the Nordic region — routing EcoStruxure Building Operation and edge IoT ecosystem cases back to R&D, prioritised by customer impact, technical risk and business relevance.",
     },
     {
       label: "Applied AI & Computer Science",
