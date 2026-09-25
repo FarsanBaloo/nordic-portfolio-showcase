@@ -547,7 +547,7 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Nordic responsibility connecting complex customer and partner needs with platform quality, R&D collaboration and prioritisation for EcoStruxure Building Operation and its edge-controller ecosystem.",
     overviewBullets: [
-      "Deliver technical support and solve complex BMS and EcoStruxure issues for technicians and EcoXpert partners across the Nordic region.",
+      "Deliver technical support and solve complex BMS and EcoStruxure issues for technicians, EcoXpert partners and Level 2 advanced support engineers across the Nordic region.",
       "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of their operational context.",
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
       "Mentor Technical Support colleagues through knowledge sharing and guidance, strengthening capability across the team.",
