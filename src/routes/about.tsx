@@ -6,7 +6,7 @@ import { BulletList, SectionHeading, TagList } from "../components/ui-bits";
 import { mainCapabilities } from "../content/capabilities";
 import {
   aboutParagraphs,
-  availability,
+  careerStatus,
   howIWork,
   productPhilosophy,
   profile,
@@ -33,7 +33,7 @@ function AboutPage() {
         </p>
         <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
           <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
-          {availability}
+          {careerStatus}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <a

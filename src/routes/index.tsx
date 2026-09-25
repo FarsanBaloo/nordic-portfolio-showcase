@@ -4,7 +4,7 @@ import { LinkedinIcon } from "../components/brand-icons";
 import { PortraitFrame } from "../components/site";
 import { Timeline } from "../components/Timeline";
 import {
-  availability,
+  careerStatus,
   careerLens,
   journeyNarrative,
   profile,
@@ -15,7 +15,7 @@ import { seo } from "../lib/site";
 
 const title = "Rickard Sörlin — AI Product Manager, from Control Cabinets to AI Products";
 const description =
-  "AI Product Manager with 20+ years close to customers using SCADA software, IoT and mission-critical operations — now shaping useful, feasible and scalable AI-enabled products.";
+  "Rickard Sörlin is a Nordic Technical Support Expert with 20+ years in SCADA, BMS and industrial digital platforms, developing toward AI Product and Offer Management.";
 
 
 export const Route = createFileRoute("/")({
@@ -29,7 +29,8 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: profile.name,
-          jobTitle: profile.descriptor,
+          jobTitle: profile.currentRole,
+          worksFor: { "@type": "Organization", name: "Schneider Electric" },
           email: `mailto:${profile.email}`,
           telephone: "+46730795308",
           address: { "@type": "PostalAddress", addressLocality: "Stockholm", addressCountry: "SE" },
@@ -67,7 +68,7 @@ function Index() {
           <p className="mt-3 text-lg text-night-foreground/90">{profile.homepageDescriptor}</p>
           <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
             <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
-            {availability}
+            {careerStatus}
           </p>
 
           <p className="mt-8 max-w-3xl rounded-lg border border-aurora-teal/30 bg-aurora-teal/5 px-4 py-3 text-[15px] leading-relaxed text-night-foreground">

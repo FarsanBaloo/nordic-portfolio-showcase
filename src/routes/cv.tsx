@@ -12,7 +12,7 @@ import {
   cvSummary,
   strengths,
 } from "../content/cv";
-import { availability, profile } from "../content/profile";
+import { careerStatus, profile } from "../content/profile";
 import { seo } from "../lib/site";
 
 const title = "CV — Rickard Sörlin | AI Product Manager";
@@ -88,7 +88,7 @@ function CvPage() {
               </a>
             </li>
           </ul>
-          <p className="mt-4 text-sm font-medium text-primary">{availability}</p>
+          <p className="mt-4 text-sm font-medium text-primary">{careerStatus}</p>
         </header>
 
         <Heading>Profile</Heading>

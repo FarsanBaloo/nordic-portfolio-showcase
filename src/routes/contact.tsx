@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { GithubIcon, LinkedinIcon } from "../components/brand-icons";
 import { NightHero, Page } from "../components/site";
 import { TagList } from "../components/ui-bits";
-import { availability, contactIntro, profile } from "../content/profile";
+import { careerStatus, contactIntro, profile } from "../content/profile";
 import { seo } from "../lib/site";
 
 type Channel = {
@@ -17,7 +17,7 @@ type Channel = {
 
 const title = "Contact Rickard Sörlin";
 const description =
-  "Get in touch about AI product management, product ownership, offer management and industrial B2B digital platform roles.";
+  "Contact Rickard Sörlin, Nordic Technical Support Expert focused on industrial B2B digital platforms and developing toward Product and Offer Management.";
 
 export const Route = createFileRoute("/contact")({
   head: () => seo({ title, description, path: "/contact" }),
@@ -49,7 +49,7 @@ function ContactPage() {
       <NightHero eyebrow="Contact" title="Let's talk" intro={contactIntro}>
         <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-aurora-teal/40 bg-aurora-teal/10 px-3.5 py-1.5 text-sm text-night-foreground">
           <span aria-hidden="true" className="h-2 w-2 rounded-full bg-aurora-teal" />
-          {availability}
+          {careerStatus}
         </p>
       </NightHero>
 
@@ -76,7 +76,7 @@ function ContactPage() {
         </p>
 
         <div className="mt-10 rounded-xl border border-border bg-card p-6 sm:p-8">
-          <h2 className="text-lg font-semibold">Roles of interest</h2>
+          <h2 className="text-lg font-semibold">Long-term professional direction</h2>
           <div className="mt-4">
             <TagList items={profile.targetRoles} />
           </div>

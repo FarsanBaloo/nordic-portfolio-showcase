@@ -6,3 +6,4 @@
 - [x] Samordna AI Product Manager-positionering och 20+ years genom hela portfolion
 - [x] Förtydliga Talking SCADA som akademiskt huvudcase och förklara SCADA i klarspråk
 - [x] Samordna webb-CV och nedladdningsbar PDF samt genomför slutlig kvalitetskontroll
+- [x] Lägg till Nordic Technical Support Expert genom tidslinje, berättelse och båda CV-versionerna
