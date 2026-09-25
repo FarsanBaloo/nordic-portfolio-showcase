@@ -152,9 +152,7 @@ export const postgraduate = {
       title: "Advanced-Level Studies in Innovation Management",
       subtitle: "Innovation in Practice",
       period: "Aug 2025 – Jan 2026",
-      body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership.",
-      body2:
-        "Studied in parallel with the advanced AI foundation, this formed the innovation and product bridge developed further at Blekinge Institute of Technology.",
+      body: "Focused on strategic innovation, applied innovation processes, implementation and innovation leadership — studied in parallel with the advanced AI foundation as the innovation and product bridge developed further at Blekinge Institute of Technology.",
       chain: [
         "Domain experience & applied AI",
         "Innovation in Practice — initial concept",
@@ -167,12 +165,7 @@ export const postgraduate = {
         period: "Aug 2025 – Jan 2026",
         items: courseApplications.innovation,
       },
-      topics: [
-        "Strategic innovation",
-        "Applied innovation processes",
-        "Implementation",
-        "Innovation leadership",
-      ],
+      topics: [],
       relevance: [],
     },
     {
