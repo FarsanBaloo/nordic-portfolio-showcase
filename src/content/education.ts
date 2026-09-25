@@ -93,11 +93,6 @@ export const postgraduate = {
 
       groups: [
         {
-          title: "Industrial Economics and Management",
-          items: ["Business value", "Technology and business perspective", "Sustainable value"],
-          applicationItems: courseApplications.industrialEconomics,
-        },
-        {
           title: "Strategy and Business Models in Technology-Intensive Businesses",
           items: [
             "Product strategy",
