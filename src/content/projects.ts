@@ -473,7 +473,7 @@ export const projects: Project[] = [
             "PESTEL and VRIO framed external drivers and capabilities. Positioning centres on cross-system diagnostics and understandable explanations, introduced through early adopters and system-integrator partners with onboarding and ongoing service.",
           ] },
           { heading: "Business model & value assessment", body: [
-            "A Business Model Canvas links segments, value proposition, channels, partners, costs and revenue. The business plan proposes tiered SaaS packaging from building-level explanations to portfolio diagnostics.",
+            "A Business Model Canvas connects customer segments and value propositions with channels, partners, costs and revenue. The proposed offer combines decision support with integration, onboarding and ongoing service; the business plan proposes tiered SaaS packaging from building-level explanations to portfolio diagnostics.",
             "Software Value Map weighed usability and explainability against development cost and technical debt — estimates within the academic case.",
           ] },
           { heading: "Assets & Make/Buy/Share", body: [
