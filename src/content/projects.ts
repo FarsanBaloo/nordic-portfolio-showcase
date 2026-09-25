@@ -600,17 +600,12 @@ export const projects: Project[] = [
       {
         heading: "Product / platform relevance",
         body: [
-          "By combining forecasts with uncertainty ranges rather than a single predicted value, planners can make decisions with a clearer understanding of risk.",
-          "Product relevance: The work reinforced that an AI output is only useful when the uncertainty and limitations are presented in a way that supports the user's actual decision.",
+          "Uncertainty ranges instead of a single value let planners decide with a clearer view of risk. An AI output is only useful when its uncertainty is presented in a way that supports the user's actual decision.",
         ],
         items: [
-          "Demand-side flexibility",
-          "EV charging",
-          "Smart-building load optimisation",
-          "Industrial load shifting",
-          "Storage optimisation",
-          "Planning and load balancing",
-          "Risk-aware decisions",
+          "Demand-side flexibility and EV charging",
+          "Smart-building and industrial load shifting",
+          "Storage optimisation and load balancing",
         ],
       },
     ],
@@ -719,7 +714,7 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["Industry", "Innovation", "Academic / Research"],
     teaser:
-      "KTH Live-In Lab is an open innovation platform where industry partners, KTH researchers and universities collaborate on sustainable buildings and energy through full-scale residential testbeds. I took part through Schneider Electric as its contact and subject matter expert for EcoStruxure Building Operation — the building-management software that connects HVAC, lighting, energy and sensors into one place — supporting researchers with technical questions and engineering.",
+      "Open innovation platform where industry and KTH researchers test sustainable-building ideas in real residential buildings. I was Schneider Electric's contact and expert for EcoStruxure Building Operation — the software that connects HVAC, lighting, energy and sensors in one place — supporting researchers with technical questions and engineering.",
     timelineSummary: {
       context:
         "Open innovation platform at KTH with full-scale residential testbeds. I participated through Schneider Electric, not as a KTH employee.",
@@ -743,32 +738,23 @@ export const projects: Project[] = [
       {
         heading: "Context",
         body: [
-          "KTH Live-In Lab is a research centre and open innovation platform at KTH where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency. It offers full-scale testbeds in real residential buildings, shared data and a structured project process — designed to increase the pace of innovation in the construction and real-estate sector.",
-          "Several test environments were connected to Schneider Electric's EcoStruxure Building Operation platform — Schneider Electric's software platform for building management, which connects a building's technical systems (HVAC, lighting, energy, sensors and more) into one place for monitoring, control and data. That platform data is what made the lab's smart-building and energy research possible. My role was to be Schneider Electric's contact at KTH Live-In Lab.",
+          "KTH Live-In Lab is a research centre and open innovation platform where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency, using full-scale testbeds in real residential buildings.",
+          "Several testbeds ran on EcoStruxure Building Operation — Schneider Electric's building-management software that connects HVAC, lighting, energy and sensors into one place for monitoring, control and data. That data made the lab's energy research possible.",
         ],
       },
       {
         heading: "Contribution",
         items: [
-          "Represented Schneider Electric as one of the centre's industry members and acted as Schneider's contact at KTH Live-In Lab",
-          "Acted as subject matter expert for Schneider Electric's EcoStruxure Building Operation platform — the building-management software that monitors, controls and collects data from a building's technical systems — and its ecosystem",
-          "Worked in cross-disciplinary constellations with KTH researchers and other partner companies",
-          "Helped KTH researchers with technical questions and with the engineering parts needed for their research on sustainable buildings and energy efficiency",
-          "Contributed building-automation and digital-platform expertise",
-          "Explained what the platform could support and where its constraints were",
-          "Assessed what was technically possible",
-          "Helped translate research ideas into feasible platform solutions",
-          "Contributed solution ideas for applied research",
-          "Connected research requirements with platform capabilities, architecture and operational reality",
-          "Contributed to exploration of smart buildings, energy efficiency, IoT, digital-building concepts and emerging technologies",
+          "Schneider Electric's contact at KTH Live-In Lab and subject matter expert for EcoStruxure Building Operation and its ecosystem.",
+          "Helped KTH researchers with technical questions and the engineering parts of their research.",
+          "Explained what the platform could support and where its constraints were.",
+          "Translated research ideas into feasible platform solutions, working with researchers and partner companies.",
         ],
       },
       {
         heading: "Product / innovation perspective",
         body: [
-          "The collaboration connected research opportunities with real industrial-platform capabilities and constraints, helping transform ideas into technically feasible applied solutions.",
-          "Collaboration relevance: Worked at the boundary between applied research and real industrial-platform constraints, contributing domain expertise while balancing experimental ambition with what could realistically work in deployed systems.",
-          "Open innovation in practice: value came from combining several organisations' capabilities around a shared testbed, so ideas were assessed against both research ambition and what deployed industrial platforms can actually support.",
+          "Open innovation in practice: value came from combining several organisations' capabilities around a shared testbed — balancing research ambition with what deployed industrial platforms can realistically support.",
         ],
       },
     ],
