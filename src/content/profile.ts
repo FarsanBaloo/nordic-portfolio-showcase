@@ -1,6 +1,7 @@
 export const profile = {
   name: "Rickard Sörlin",
   descriptor: "AI Product Manager — Industrial Platforms, SCADA & Applied AI",
+  currentRole: "Nordic Technical Support Expert — Building Management Systems",
   homepageDescriptor: "AI Product Management & Offer Strategy — Digital Platforms",
   secondaryDescriptor:
     "Industrial Digital Platforms · Product Thinking · AI-Enabled Products",
@@ -15,7 +16,7 @@ export const profile = {
   positioning:
     "Bridging user needs, technology and business through industrial platform experience, applied AI and product management.",
   bridge:
-    "I start with the customer problem, not the solution. My 20+ years at Schneider Electric span complex B2B environments where customer and user needs, technology, delivery and business value meet. Today, I bring that experience together with applied AI, product management and offer strategy to shape useful, feasible and scalable solutions.",
+    "I start with the customer problem, not the solution. My 20+ years at Schneider Electric span complex B2B environments where customer and user needs, technology, delivery and business value meet. In my current Nordic role, I connect strategic customer needs, platform quality and R&D prioritisation while continuing to develop toward Product Management and Offer Management.",
   heroSupporting:
     "More than 20 years next to the customers who run complex systems — including SCADA software that monitors and controls technical systems, measurements and alarms — taught me to hear the pain behind every request and weigh it against the teams who build and run the result. Today I build AI-enabled products that way: tested with real users, honest about what the data can support and designed to hold up in real use.",
   heroProof: [
@@ -25,7 +26,7 @@ export const profile = {
     },
     {
       label: "Product feedback, prioritisation & lifecycle",
-      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D, contributing to prioritisation, roadmap input, release readiness and deployment.",
+      body: "Turned recurring customer and field issues into structured product feedback and enhancement proposals with Product Owners and R&D. The current Nordic role extends this into regional oversight and prioritisation of defects and improvements by customer impact, technical risk and business relevance.",
     },
     {
       label: "Applied AI & Computer Science",
@@ -68,6 +69,7 @@ export const aboutParagraphs = [
   "My professional foundation was built alongside customers, working with real systems and the operational constraints that shape their daily decisions.",
   "I started as a customer-facing Project Engineer working with requirements, system design, programming, integration, commissioning and end-to-end implementation. I later became a national digital-platform technical expert, supporting customers and field teams — understanding their situations and adapting guidance to each person and context — while working close to platform quality, product lifecycle, QA, release validation and deployment readiness.",
   "As Senior Technical Advisor, my work increasingly connected customer needs, project delivery, technology and business. I led technical discovery, translated operational requirements into scalable architectures and solution directions, held end-to-end technical ownership and helped evaluate product and solution alternatives by balancing technical feasibility, lifecycle risk, reliability, cost and commercial value — often as the informal technical lead colleagues turned to when the trade-offs got hard, mentoring and guiding teams through complex deliveries.",
+  "As Nordic Technical Support Expert within Building Management Systems, I now support technicians and EcoXpert partners across the Nordic region and take ownership of major strategic customers. The role also brings a Nordic view into collaboration with R&D: overseeing and prioritising defects and improvement needs according to customer impact, technical risk and relevance to priority Nordic business, while mentoring colleagues and strengthening shared support capability.",
   "I expanded that foundation through a B.Sc. in Computer Science focused on applied AI at Mälardalen University, advanced AI studies and a specialisation in Industrial Economics and Management at Blekinge Institute of Technology. My motivation was to connect societal challenges and user needs with technology, product decisions and viable business models. Talking SCADA became the recurring academic case where those perspectives met: making the data behind a building's ventilation, heating, cooling and alarms understandable, so the people responsible can see where energy is wasted and decide what to do about it.",
 ];
 
@@ -138,6 +140,7 @@ export const journeyNarrative = {
     "Working with Global Product Support, Product Owners, R&D and market teams, I helped turn real-world usage into structured product feedback and justified enhancement proposals, prioritised critical issues and validated releases. I also led development of a reusable HVAC deviation-management digital product, sold to customers through the market organisation.",
     "As Senior Technical Advisor, I worked where customer needs, technology, delivery and business value meet. I led customer and technical discovery, developing and presenting technical solution proposals for complex healthcare, pharmaceutical and other mission-critical environments to internal management, sales teams and customer stakeholders. I weighed options against customer value, feasibility, lifecycle risk, reliability and cost. I held end-to-end technical responsibility from problem definition and requirements through solution architecture, integration, validation and delivery.",
     "I worked across engineering, sales, management, customers and external stakeholders, translating operational requirements and technical constraints into clear options and trade-offs and helping different perspectives align around a feasible direction. I was often the informal technical lead others turned to when those trade-offs became complex.",
+    "In October 2026, I moved into the Nordic Technical Support Expert role for Building Management Systems. Alongside complex support and strategic VIP-customer ownership, I oversee and prioritise Nordic defects and improvement needs with R&D for EcoStruxure Building Operation — the digital platform for controlling, monitoring and improving the energy efficiency of buildings — and its ecosystem of edge controllers. This brings regional customer and market insight closer to platform-quality and lifecycle decisions, while mentoring colleagues across Technical Support.",
     "I wanted to help address societal challenges and understand what AI could realistically make possible. In 2023, during my time as Senior Technical Advisor, I began studies at Mälardalen University, earning a B.Sc. in Computer Science with a specialisation in Intelligent Systems and a focus on applied AI. I continued with advanced studies in natural language processing, machine learning and data analytics.",
     "I pursued a specialisation in Industrial Economics and Management at Blekinge Institute of Technology to connect that technical understanding with user needs, product strategy and viable business models. Product management, requirements management, value-driven design, innovation and leadership helped me examine what should be built and how it could create lasting value.",
     "Talking SCADA became the case where these perspectives came together. SCADA systems are the control systems that monitor and steer ventilation, heating, cooling, measurements and alarms in large buildings — rich in data, but hard to interpret. Starting in Innovation in Practice at the University of Skövde, I refined the multi-agent AI decision-support concept through product, requirements, strategy and business-model coursework at Blekinge Institute of Technology: letting the building explain, in plain language, where energy is being wasted, what is likely causing it and what to look at next. Grounded in 20+ years of domain experience, the case connected customer and business value while keeping human judgement in the decision.",
@@ -170,6 +173,6 @@ export const careerLens = [
   },
 ];
 
-/** Short availability signal shown in the hero, on /contact and on the CV. */
-export const availability =
-  "Open to AI Product Manager / Product Manager / Product Owner / Offer Manager roles — Stockholm or remote";
+/** Current professional status shown in the hero, on /contact and on the CV. */
+export const careerStatus =
+  "Nordic Technical Support Expert · Developing toward Product & Offer Management";

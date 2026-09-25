@@ -87,7 +87,7 @@ export const roles: Role[] = [
     notes: [
       {
         label: "Platform quality context",
-        body: "Collaborated with R&D as a quality tester for EcoStruxureWare Building Operation / platform functionality, identifying defects, validating functionality and supporting platform improvement. This was collaboration in a QA / validation context, not an R&D role.",
+        body: "Collaborated with R&D as a quality tester for EcoStruxure Building Operation platform functionality, identifying defects, validating functionality and supporting platform improvement. This was collaboration in a QA / validation context, not an R&D role.",
       },
     ],
     progression:
@@ -359,6 +359,108 @@ export const roles: Role[] = [
       "Mentoring",
     ],
 
+  },
+  {
+    id: "nordic-technical-support-expert",
+    title: "Nordic Technical Support Expert",
+    company: "Schneider Electric",
+    period: "Oct 2026–Present",
+    subtitle: "Building Management Systems",
+    stage: "Nordic Customer Insight, Platform Quality & Prioritisation",
+    summary:
+      "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency.",
+    bullets: [
+      "Deliver technical support and solve complex Building Management System issues for technicians and EcoXpert partners across the Nordic region.",
+      "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of each customer's operational context.",
+      "Oversee and prioritise Nordic defects and improvement needs with R&D, weighing customer impact, technical risk and relevance to priority Nordic business.",
+      "Document cases and solutions to strengthen the shared knowledge base, improve future support and make recurring product and ecosystem needs visible.",
+      "Mentor Technical Support colleagues through knowledge sharing and guidance, helping strengthen capability across the team.",
+    ],
+    detailGroups: [
+      {
+        title: "Nordic technical support",
+        items: [
+          "Complex BMS troubleshooting",
+          "Technicians and EcoXpert partners",
+          "Case ownership and escalation",
+          "Efficient resolution and communication",
+          "Nordic collaboration",
+        ],
+      },
+      {
+        title: "Strategic customer ownership",
+        items: [
+          "Largest and most strategic VIP customers",
+          "Customer needs and operational context",
+          "Clear, situation-adapted communication",
+          "Response time and problem resolution",
+          "Customer satisfaction",
+        ],
+      },
+      {
+        title: "Product & offer relevance",
+        items: [
+          "Nordic market and customer insight",
+          "Defect and improvement prioritisation",
+          "Customer and business impact",
+          "Technical risk and urgency",
+          "Structured feedback and escalation to R&D",
+          "Priority Nordic business needs",
+        ],
+      },
+      {
+        title: "Platform & ecosystem",
+        items: [
+          "EcoStruxure Building Operation",
+          "Edge controllers and connected field systems",
+          "Building control and monitoring",
+          "HVAC and energy efficiency",
+          "Platform quality and lifecycle",
+        ],
+      },
+      {
+        title: "Mentoring & capability building",
+        items: [
+          "Technical guidance",
+          "Knowledge sharing",
+          "Case and solution documentation",
+          "Shared support capability",
+          "Colleague development",
+        ],
+      },
+    ],
+    notes: [
+      {
+        label: "Product and offer connection",
+        body: "The role provides a Nordic view of recurring customer needs, product defects, improvement opportunities and business priorities. It contributes structured input to R&D and platform decisions without implying formal product ownership.",
+      },
+      {
+        label: "Platform context",
+        body: "EcoStruxure Building Operation is Schneider Electric's digital platform for controlling, monitoring and improving the energy efficiency of buildings, connected to an ecosystem of edge controllers and field systems.",
+      },
+    ],
+    flow: [
+      "Nordic Customer & Partner Need",
+      "Technical Investigation",
+      "Impact & Risk Assessment",
+      "Defect / Improvement Priority",
+      "R&D Collaboration",
+      "Resolution & Shared Learning",
+    ],
+    progression:
+      "This role extends customer-facing technical depth into Nordic market insight, strategic-account responsibility and evidence-based prioritisation — strengthening the bridge toward future Product and Offer Management responsibility.",
+    tags: [
+      "Nordic Market Insight",
+      "Strategic Customer Ownership",
+      "Defect & Enhancement Prioritisation",
+      "R&D Collaboration",
+      "Platform Lifecycle",
+      "EcoStruxure Building Operation",
+      "Edge Controllers",
+      "BMS/HVAC",
+      "Energy Efficiency",
+      "Mentoring",
+    ],
   },
 ];
 

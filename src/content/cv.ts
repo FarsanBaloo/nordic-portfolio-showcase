@@ -10,6 +10,7 @@ export const cvHeader = {
 
 export const strengths = [
   "20+ years across industrial digital platforms, connected systems, SCADA and mission-critical real-time environments, combining deep domain expertise with hands-on applied AI experience.",
+  "Nordic responsibility for strategic customers, complex technical support and prioritisation of platform defects and improvements with R&D.",
   "Identifies user needs, operational pain points and business challenges, translating them into technically feasible digital and AI-enabled solutions.",
   "Contributes to requirements definition, prioritisation, feasibility assessment, stakeholder alignment and solution direction across industrial digital platforms.",
   "Makes complex technology, constraints and trade-offs understandable and actionable across business, product, engineering, operations and customer stakeholders.",
@@ -83,8 +84,8 @@ export const coreSkills = [
 ];
 
 export const cvSummary = [
-  "AI Product Manager with 20+ years of experience across BMS/HVAC, IoT/IIoT, energy and mission-critical real-time environments. SCADA software monitors and controls technical systems, measurements and alarms; this industrial foundation is combined with hands-on applied AI and product management capabilities to conduct discovery, validate high-value user problems and shape feasible, scalable solutions.",
-  "Brings end-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders, contributing to prioritisation, feasibility assessment and technical and commercial trade-offs. Has turned recurring customer issues and real-world usage into product feedback and enhancement proposals while supporting release validation and deployment readiness. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
+  "AI Product Manager by professional direction and Nordic Technical Support Expert by current role, with 20+ years of experience across BMS/HVAC, IoT/IIoT, energy and mission-critical real-time environments. SCADA software monitors and controls technical systems, measurements and alarms; this industrial foundation is combined with hands-on applied AI and product management capabilities to conduct discovery, validate high-value user problems and shape feasible, scalable solutions.",
+  "Brings end-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders. The current Nordic role adds strategic-customer ownership and responsibility for assessing and prioritising regional defects and improvement needs by customer impact, technical risk and business relevance. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
 ];
 
 export const cvProjects = [
@@ -131,6 +132,21 @@ export const cvProjects = [
 ];
 
 export const cvExperience = [
+  {
+    role: "Nordic Technical Support Expert — Building Management Systems",
+    org: "Schneider Electric",
+    period: "Oct 2026 – Present",
+    summary:
+      "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency.",
+    bullets: [
+      "Deliver technical support and solve complex BMS and EcoStruxure issues for technicians and EcoXpert partners across the Nordic region.",
+      "Take ownership of the largest and most strategic VIP customers, adapting communication and technical guidance to each customer's operational context.",
+      "Oversee and prioritise Nordic defects and improvement needs with R&D based on customer impact, technical risk, urgency and relevance to priority Nordic business.",
+      "Manage and escalate cases requiring deeper technical expertise or cross-functional collaboration, with clear documentation of cases and solutions.",
+      "Contribute Nordic market and customer insight to platform-quality and lifecycle discussions for EcoStruxure Building Operation and its edge-controller ecosystem.",
+      "Mentor Technical Support colleagues through knowledge sharing and guidance to strengthen overall team capability.",
+    ],
+  },
   {
     role: "Senior Technical Advisor — Digital Platforms",
     org: "Schneider Electric",
