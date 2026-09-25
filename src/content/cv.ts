@@ -141,7 +141,7 @@ export const cvExperience = [
     bullets: [
       "Deliver technical support and solve complex BMS and EcoStruxure issues for technicians and EcoXpert partners across the Nordic region.",
       "Take ownership of the largest and most strategic VIP customers, adapting communication and technical guidance to each customer's operational context.",
-      "Oversee and prioritise Nordic defects and improvement needs with R&D based on customer impact, technical risk, urgency and relevance to priority Nordic business.",
+      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk, urgency and relevance to priority Nordic business.",
       "Manage and escalate cases requiring deeper technical expertise or cross-functional collaboration, with clear documentation of cases and solutions.",
       "Contribute Nordic market and customer insight to platform-quality and lifecycle discussions for EcoStruxure Building Operation and its edge-controller ecosystem.",
       "Mentor Technical Support colleagues through knowledge sharing and guidance to strengthen overall team capability.",
