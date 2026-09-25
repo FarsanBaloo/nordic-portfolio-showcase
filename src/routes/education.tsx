@@ -99,7 +99,10 @@ function EducationPage() {
                   <div className="mt-6 grid gap-5 sm:grid-cols-2">
                     {entry.groups.map((group) => (
                       <div key={group.title}>
-                        <h4 className="text-sm font-semibold">{group.title}</h4>
+                        <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                          Course
+                        </p>
+                        <h4 className="mt-1 text-sm font-semibold">{group.title}</h4>
                         <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
                           {group.items.map((item) => (
                             <li key={item}>{item}</li>
