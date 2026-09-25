@@ -345,7 +345,7 @@ export const projects: Project[] = [
     ],
     timelineContent: {
       meta: "ACADEMIC PRODUCT CASE · SKÖVDE → BTH · AUG 2025 – MAY 2026",
-      intro: "SCADA systems monitor and steer ventilation, heating, cooling, measurements and alarms in large buildings. Talking SCADA explores how they could explain, in plain language, where energy is being wasted, why it may be happening and what to investigate next. Grounded in 20+ years of domain experience, I developed this academic concept through problem framing, product definition, requirements, prioritisation and commercialisation planning; it is not a launched product.",
+      intro: "SCADA systems monitor ventilation, heating, cooling, measurements and alarms in large buildings. Talking SCADA explores how they could explain, in plain language, where energy is being wasted, why it may be happening and what to investigate next. Grounded in 20+ years of domain experience, I developed this academic concept through problem framing, product definition, requirements, prioritisation and commercialisation planning; it is not a launched product.",
       sections: [
         {
           heading: "Why",
