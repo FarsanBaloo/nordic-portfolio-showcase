@@ -448,9 +448,9 @@ export const projects: Project[] = [
         heading: "Product decisions & MVP scope",
         subSections: [
           { heading: "NPD & product definition", items: [
-            "Opportunity: market pull, technology push and underused operational data, framed in a Product Innovation Charter (PIC).",
-            "Concept evaluation: usefulness and producibility, with technical and commercial Go/No-Go criteria.",
-            "Product definition: product protocol (market, whole offer, strategic fit, risks) and a PRD with scenarios, requirements, MVP scope and acceptance criteria.",
+            "Opportunity: market pull, technology push and underused operational data, framed in a Product Innovation Charter (PIC) covering background, focus and direction.",
+            "Concept evaluation: originality, usefulness and producibility, with technical and commercial Go/No-Go criteria to decide before committing further resources.",
+            "Product definition: product protocol (market, whole offer, strategic fit, risks) and a PRD with scenarios, requirements, MVP scope and acceptance criteria, with parallel product, marketing and financial work and iterative feedback.",
           ] },
           { heading: "Requirements & traceability", body: ["The SRD separates domain, functional, data, quality and regulatory requirements, defines the system boundary, and links elicitation findings to goals and requirement IDs. The layer stays read-only; decisions stay with people."] },
           { heading: "Prioritisation", body: ["I ranked 22 requirements and used Cost-Value-Risk on the critical ones. Explanation generation and anomaly detection ranked highest — core value and highest uncertainty. Data access and system context are enablers; explainability, usability and security were prioritised from the start."] },
