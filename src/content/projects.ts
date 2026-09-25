@@ -345,13 +345,12 @@ export const projects: Project[] = [
     ],
     timelineContent: {
       meta: "ACADEMIC PRODUCT CASE · SKÖVDE → BTH · AUG 2025 – MAY 2026",
-      intro: "SCADA systems monitor ventilation, heating, cooling, measurements and alarms in large buildings. Talking SCADA explores how they could explain, in plain language, where energy is being wasted, why it may be happening and what to investigate next. Grounded in 20+ years of domain experience, I developed this academic concept through problem framing, product definition, requirements, prioritisation and commercialisation planning; it is not a launched product.",
+      intro: "SCADA systems monitor ventilation, heating, cooling, measurements and alarms in large buildings. Talking SCADA explores how they could explain in plain language where energy is wasted, why, and what to investigate next. I developed this academic concept from problem framing to requirements, prioritisation and commercialisation planning; it is not a launched product.",
       sections: [
         {
           heading: "Why",
           body: [
-            "Buildings use around 40% of the energy consumed in the EU. Improving their energy performance matters for costs, energy security and climate impact.",
-            "Hidden waste can arise from incorrect schedules, faulty sensors, configuration issues or heating and cooling working against each other. Talking SCADA explores how the building could describe that in plain language: where energy is being wasted, what is likely causing it and which action is worth considering — with the person responsible still making the decision.",
+            "Buildings use around 40% of the EU's energy. Hidden waste — wrong schedules, faulty sensors, heating and cooling working against each other — often goes unnoticed. Talking SCADA lets the building explain it, while the person responsible still decides.",
           ],
           links: [
             {
@@ -362,54 +361,50 @@ export const projects: Project[] = [
         },
         {
           heading: "Who it is for — users & customers",
-          body: ["Intended users include building operators, facility managers, energy managers and maintenance teams. Potential customers include commercial property owners, facility-management organisations, enterprises managing multiple buildings and public-sector organisations such as municipalities."],
+          body: ["Users: building operators, facility, energy and maintenance teams. Customers: property owners, facility-management companies, multi-site enterprises and municipalities."],
         },
         {
           heading: "Pain",
-          body: ["Users may see that energy consumption changed without understanding why. Investigation requires combining trends, alarms and configurations across multiple views, often relying on scarce specialist expertise."],
+          body: ["Users see energy use change without knowing why. Finding out means combining trends, alarms and settings across many views — often relying on scarce specialists."],
         },
         {
           heading: "Proposed job to be done",
-          quote: "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act.",
+          quote: "When my building uses more energy than expected, help me understand what changed, why, and where to investigate — so I can act without manually analysing every system.",
         },
         {
           heading: "What the concept is",
-          body: ["A layer on top of the building's existing control systems that answers questions in everyday language: what changed, why it is likely happening and what to look at next. Underneath, the concept explores multi-agent AI decision support combining operational time-series data, building-system relationships and domain context, so users can examine possible causes and review supporting evidence before deciding what to do."],
+          body: ["A layer on top of existing control systems that answers questions in everyday language. Underneath, multi-agent AI decision support combines time-series data, system relationships and domain context — and shows the evidence so users can judge before acting."],
         },
         {
           heading: "Intended gains",
-          body: ["The concept aims to support:"],
           items: [
-            "Lower energy costs and less waste through earlier identification of hidden inefficiencies, with potential reductions in operational emissions.",
-            "More accessible specialist knowledge, reducing dependence on individual experts and repeated external troubleshooting.",
-            "Clear explanations of likely causes, linked to relevant building data and system relationships.",
-            "Faster, better-informed decisions through natural-language interaction and clearer next steps.",
-            "Flexible, question-driven investigation across interconnected building systems.",
-            "Support for energy-performance goals and relevant reporting and compliance work.",
+            "Lower energy costs and emissions through earlier detection of hidden waste.",
+            "Specialist knowledge made accessible — less dependence on individual experts.",
+            "Clear, evidence-linked explanations and faster, better-informed decisions.",
+            "Support for energy-performance goals and reporting.",
           ],
         },
         {
           heading: "My contribution",
           items: [
-            "NPD & product definition: outlined a Product Innovation Charter (PIC) and concept evaluation, with proposed lead-user involvement and Go/No-Go criteria. Produced a product protocol and Product Requirements Document (PRD) covering the offer, scenarios, MVP scope and acceptance criteria.",
-            "Discovery & system requirements: translated documented needs for clearer cross-system explanations into a System Requirements Document (SRD), linking elicitation findings to goals and requirements. Specified system boundaries, data, quality, integration and user workflows.",
-            "Value assessment & prioritisation: used Software Value Map to weigh customer value against development effort and maintainability. Ranked 22 requirements and used Cost-Value-Risk to examine critical requirements and dependencies.",
-            "Business & offer strategy: developed a Business Model Canvas and business plan connecting customer segments, value propositions and delivery with proposed SaaS packaging, partner channels, revenue logic and cost drivers.",
-            "Assets & sourcing: examined reuse of technical assets and domain knowledge. Used Make/Buy/Share to identify reusable components and potential differentiators in domain reasoning and traceable explanations.",
-            "Commercialisation & lifecycle: planned technical and marketing readiness, proposed pilot use tests, customer-interest testing and staged rollout, with future performance monitoring, feedback and product life-cycle decisions.",
+            "NPD & product definition: Product Innovation Charter, concept evaluation with Go/No-Go criteria, product protocol and PRD with MVP scope and acceptance criteria.",
+            "Discovery & requirements: System Requirements Document linking user needs to goals, boundaries, data, integration and workflows.",
+            "Value & prioritisation: ranked 22 requirements with Software Value Map and Cost-Value-Risk.",
+            "Business & offer strategy: Business Model Canvas and business plan — segments, value proposition, SaaS packaging, partner channels, revenue and cost.",
+            "Commercialisation & lifecycle: Make/Buy/Share, pilot tests, staged rollout and feedback loops.",
           ],
         },
         {
           heading: "Key product decisions",
-          body: ["I bounded the proposed MVP to one SCADA integration and selected HVAC subsystems, with read-only decision support. Explanation generation and anomaly detection carry core value; explainability and usability support trust and adoption. Data access and system context enable the analysis. The proposed offer also includes integration, onboarding and ongoing support."],
+          body: ["MVP bounded to one SCADA integration and selected HVAC subsystems, read-only. Explanations and anomaly detection carry the core value; explainability builds trust. The offer includes integration, onboarding and support."],
         },
         {
           heading: "Evidence & next validation step",
-          body: ["The coursework produced requirements, design artefacts, prioritisation and commercialisation plans. Next, compare a narrow investigation workflow with existing tools and simpler AI support. Assess investigation time, explanation quality, customer value, service operating costs and willingness to pay. Energy, cost and emissions benefits remain to be measured."],
+          body: ["Coursework produced requirements, design artefacts and plans. Next: test a narrow workflow against existing tools and simpler AI — measuring investigation time, explanation quality, operating cost and willingness to pay. Energy and cost benefits remain to be measured."],
         },
         {
           heading: "Origin & progression",
-          body: ["Started in Innovation in Practice at the University of Skövde and refined through Product Management, Product & Requirements Management and Strategy & Business Models at Blekinge Institute of Technology. The case runs from August 2025 to May 2026 within a BTH specialisation continuing to June 2026 and broader postgraduate studies continuing to July 2026."],
+          body: ["Started in Innovation in Practice (University of Skövde), refined through Product Management, Requirements Management and Strategy & Business Models at Blekinge Institute of Technology, Aug 2025 – May 2026."],
         },
       ],
       ctaLabel: "Read the full case study",
