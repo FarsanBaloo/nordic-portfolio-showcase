@@ -547,7 +547,6 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Nordic responsibility connecting complex customer and partner needs with platform quality, R&D collaboration and prioritisation for EcoStruxure Building Operation and its edge-controller ecosystem.",
     overviewBullets: [
-      "Deliver technical support and solve complex BMS and EcoStruxure issues for technicians, EcoXpert partners and Level 2 advanced support engineers across the Nordic region.",
       "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of their operational context.",
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
       "Support and mentor Level 2 advanced support engineers across the Nordic region through knowledge sharing, technical guidance and case escalation, strengthening capability across the team.",
@@ -561,6 +560,17 @@ export const milestones: TimelineMilestone[] = [
       "Platform Lifecycle",
       "Mentoring",
     ],
+  },
+  {
+    id: "now",
+    railMarker: { label: "NOW", kind: "major", verified: true },
+    datePrecision: "unspecified",
+    title: "Product & AI Direction",
+    track: "direction",
+    summary:
+      "Bringing together 20+ years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
+    roles: ["AI Product Manager", "Product Manager", "Product Owner", "Offer Manager"],
+    now: true,
   },
 ];
 
