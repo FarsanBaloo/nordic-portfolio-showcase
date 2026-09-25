@@ -58,7 +58,7 @@ function EducationPage() {
                   </p>
                   {"body2" in entry && entry.body2 ? (
                     <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                      {entry.body2}
+                      {entry.body2 as string}
                     </p>
                   ) : null}
                   {"applicationItems" in entry && entry.applicationItems?.length ? (
