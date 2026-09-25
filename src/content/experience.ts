@@ -421,7 +421,7 @@ export const roles: Role[] = [
       {
         title: "Mentoring & capability building",
         items: [
-          "Technical guidance",
+          "Level 2 advanced support engineers",
           "Knowledge sharing",
           "Case and solution documentation",
           "Shared support capability",
