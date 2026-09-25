@@ -145,7 +145,7 @@ export const journeyNarrative = {
   overlap:
     "Professional and academic development overlapped in calendar time; some study periods were undertaken during leave of absence from my professional role.",
   emphasis:
-    "That is what I bring to product management and offer strategy: I start with the customer's problem, not the solution — and let the right solution follow from there. I understand both sides: the people who run complex buildings and mission-critical environments, and the teams who build, deliver and support them. I listen before defining, validate before committing, make trade-offs visible, and weigh customer value, commercial value and business-model fit alongside feasibility — so a direction is not only desirable to build, but viable to offer and sustain.",
+    "That is what I bring to product management and offer strategy: I start with the customer's problem, not the solution — and let the right solution follow from there. I understand both sides: the people who run complex buildings and mission-critical environments, and the teams who build, deliver and support them. I have hands-on experience with applied AI — RAG, forecasting, agentic systems — and I know what it can realistically support and where human judgement must stay central. I listen before defining, validate before committing, make trade-offs visible, and weigh customer value, commercial value and business-model fit alongside feasibility — so a direction is not only desirable to build, but viable to offer and sustain.",
 };
 
 
