@@ -414,7 +414,7 @@ export const projects: Project[] = [
         heading: "Overview & my contribution",
         body: [
           "Talking SCADA began in Innovation in Practice (University of Skövde) as an AI-enabled service to help people understand hidden energy problems in buildings. I refined the same concept through product, requirements and business coursework at Blekinge Institute of Technology. It explores multi-agent decision support centred on human judgement; it is not a launched product.",
-          "Deliverables: innovation report, productification and commercialisation plans, product protocol, PRD, SRD, business plan, and value and sourcing analyses — together showing how user needs, technical choices, delivery and a viable offer fit.",
+          "The work builds on my industrial domain grounding and applied AI studies. Across the coursework I produced an innovation report, productification and commercialisation plans, a product protocol, a PRD, an SRD, a business plan, and value and sourcing analyses — connecting user needs, technical choices, delivery and a viable offer to see how they fit together.",
         ],
       },
       {
@@ -438,8 +438,8 @@ export const projects: Project[] = [
         heading: "Concept & proposed user journey",
         subSections: [
           { heading: "What the concept is", body: [
-            "A way for the building to explain itself: the person responsible asks a question and gets a plain-language answer about where energy is wasted, the likely cause and what to check next.",
-            "Technically, an explanation layer for SCADA/BMS combining time-series data with a semantic model of building systems. Users can inspect the sensors, alarms and relationships behind each answer. It does not control physical systems.",
+            "In everyday terms, a way for the building to explain itself: instead of reading trend curves and alarm lists, the person responsible asks a question and gets a plain-language answer about where energy is wasted, the likely cause and what to check next.",
+            "Technically, an explanation layer for SCADA/BMS combining time-series data with a semantic model of building systems. Users can inspect the sensors, alarms and relationships behind each answer before deciding what to do next. It does not control physical systems.",
           ] },
           { heading: "Proposed user journey", flow: { label: "", steps: ["Energy deviation", "What changed?", "Cross-system context", "Possible causes", "Supporting evidence", "Where should I investigate?"] } },
         ],
@@ -448,9 +448,9 @@ export const projects: Project[] = [
         heading: "Product decisions & MVP scope",
         subSections: [
           { heading: "NPD & product definition", items: [
-            "Opportunity: market pull, technology push and underused operational data, framed in a Product Innovation Charter (PIC).",
-            "Concept evaluation: usefulness and producibility, with technical and commercial Go/No-Go criteria.",
-            "Product definition: product protocol (market, whole offer, strategic fit, risks) and a PRD with scenarios, requirements, MVP scope and acceptance criteria.",
+            "Opportunity: market pull, technology push and underused operational data, framed in a Product Innovation Charter (PIC) covering background, focus and direction.",
+            "Concept evaluation: originality, usefulness and producibility, with technical and commercial Go/No-Go criteria to decide before committing further resources.",
+            "Product definition: product protocol (market, whole offer, strategic fit, risks) and a PRD with scenarios, requirements, MVP scope and acceptance criteria, with parallel product, marketing and financial work and iterative feedback.",
           ] },
           { heading: "Requirements & traceability", body: ["The SRD separates domain, functional, data, quality and regulatory requirements, defines the system boundary, and links elicitation findings to goals and requirement IDs. The layer stays read-only; decisions stay with people."] },
           { heading: "Prioritisation", body: ["I ranked 22 requirements and used Cost-Value-Risk on the critical ones. Explanation generation and anomaly detection ranked highest — core value and highest uncertainty. Data access and system context are enablers; explainability, usability and security were prioritised from the start."] },
@@ -473,7 +473,7 @@ export const projects: Project[] = [
             "PESTEL and VRIO framed external drivers and capabilities. Positioning centres on cross-system diagnostics and understandable explanations, introduced through early adopters and system-integrator partners with onboarding and ongoing service.",
           ] },
           { heading: "Business model & value assessment", body: [
-            "A Business Model Canvas links segments, value proposition, channels, partners, costs and revenue. The business plan proposes tiered SaaS packaging from building-level explanations to portfolio diagnostics.",
+            "A Business Model Canvas connects customer segments and value propositions with channels, partners, costs and revenue. The proposed offer combines decision support with integration, onboarding and ongoing service; the business plan proposes tiered SaaS packaging from building-level explanations to portfolio diagnostics.",
             "Software Value Map weighed usability and explainability against development cost and technical debt — estimates within the academic case.",
           ] },
           { heading: "Assets & Make/Buy/Share", body: [
@@ -495,7 +495,7 @@ export const projects: Project[] = [
             "Business Model Canvas, Software Value Map, business plan and Make/Buy/Share analysis.",
           ] },
           { heading: "Documented elicitation", body: [
-            "Interviews, observation and a simple chat-based prototype showed that investigations required combining multiple views and inferring system relationships — which shaped requirements for graph context and referenced explanations.",
+            "Interviews, observation and a simple chat-based prototype showed that investigations required combining multiple views and inferring system relationships. This observation shaped requirements for graph context and referenced explanations — so users could see the evidence behind each answer.",
           ] },
           { heading: "Next validation step", body: [
             "Run one narrow workflow with representative users and real building data, compared with existing tools and simpler AI. Measure investigation time, explanation quality, customer value, operating cost and willingness to pay. Energy and cost benefits remain to be measured.",
