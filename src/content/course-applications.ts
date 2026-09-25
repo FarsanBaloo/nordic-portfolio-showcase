@@ -11,13 +11,12 @@ export const courseApplications = {
     "Proposed a Design Thinking approach, with cross-functional collaboration, leadership support and psychological safety as conditions for implementation.",
   ],
   productManagement: [
-    "Opportunity & direction: applied New Product Development (NPD) thinking and outlined a Product Innovation Charter (PIC) — framing market need, technical opportunity and the boundaries for what to build next.",
-    "Product strategy & vision: shaped a product vision and strategy for Talking SCADA — turning the opportunity into a direction to build toward, positioned so its value is clear to customers and the business.",
+    "Opportunity, vision & strategy: applied New Product Development (NPD) thinking and a Product Innovation Charter (PIC) to frame market need, technical opportunity and boundaries — then shaped a product vision and strategy for Talking SCADA, positioned so its value is clear to customers and the business.",
     "Concept generation & evaluation: planned lead-user involvement and cross-functional collaboration, with technical and commercial screening criteria for Go/No-Go decisions.",
     "Product definition & business model: connected vision, user needs, functional and quality scope, UX and service model through a Business Model Canvas — linking product definition to how the offer creates and captures value.",
     "Development planning & PRD: produced a product protocol and Product Requirements Document (PRD) covering target users, the whole offer, scenarios, MVP scope, success measures and acceptance criteria.",
-    "Commercialisation & market testing: planned readiness, positioning, SaaS packaging and partner channels, with pilot use tests and customer-interest testing before wider introduction.",
-    "Launch & lifecycle: proposed staged rollout, performance monitoring and customer-feedback loops, with pricing, marketing and feature priorities evolving across the product life cycle.",
+    "Commercialisation, launch & lifecycle: planned positioning, SaaS packaging and partner channels with pilot use tests before wider introduction, then a staged rollout with performance monitoring and customer-feedback loops across the product life cycle.",
+
   ],
   requirementsManagement: [
     "System requirements & traceability: produced a System Requirements Document (SRD) linking interview, observation and prototype findings to goals and requirement IDs — domain, functional, data, quality, integration and policy requirements.",
