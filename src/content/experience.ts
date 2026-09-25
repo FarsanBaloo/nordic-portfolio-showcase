@@ -364,7 +364,7 @@ export const roles: Role[] = [
     id: "nordic-technical-support-expert",
     title: "Nordic Technical Support Expert",
     company: "Schneider Electric",
-    period: "Oct 2026–Present",
+    period: "2026–Present",
     subtitle: "Building Management Systems",
     stage: "Nordic Customer Insight, Platform Quality & Prioritisation",
     summary:
