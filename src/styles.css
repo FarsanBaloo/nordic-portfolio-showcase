@@ -423,9 +423,10 @@
     color: #111 !important;
   }
   .aurora-backdrop,
+  .aurora-sky,
   .aurora-ray,
   .aurora-starfield,
-  header,
+  .site-header,
   footer,
   nav,
   .cv-actions,

@@ -15,7 +15,7 @@ import { seo } from "../lib/site";
 
 const title = "Rickard Sörlin — AI Product Manager, from Control Cabinets to AI Products";
 const description =
-  "The story of 25 years next to the customers who run SCADA, IoT and mission-critical operations — and how it became a career in AI-enabled products.";
+  "AI Product Manager with 20+ years close to customers using SCADA software, IoT and mission-critical operations — now shaping useful, feasible and scalable AI-enabled products.";
 
 
 export const Route = createFileRoute("/")({

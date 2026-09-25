@@ -550,7 +550,7 @@ export const milestones: TimelineMilestone[] = [
     title: "Product & AI Direction",
     track: "direction",
     summary:
-      "Bringing together 25 years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
+      "Bringing together 20+ years of customer and industrial-platform experience with product discovery, requirements, prioritisation, strategy, lifecycle judgement and applied AI — working across customer, engineering and business perspectives to shape useful, feasible and scalable products.",
     roles: ["AI Product Manager", "Product Manager", "Product Owner", "Offer Manager"],
     now: true,
   },
