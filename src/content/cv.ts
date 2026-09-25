@@ -9,12 +9,10 @@ export const cvHeader = {
 };
 
 export const strengths = [
-  "20+ years across industrial digital platforms, connected systems, SCADA and mission-critical real-time environments, combining deep domain expertise with hands-on applied AI experience.",
-  "Nordic responsibility for strategic customers, complex technical support and prioritisation of platform defects and improvements with R&D.",
-  "Identifies user needs, operational pain points and business challenges, translating them into technically feasible digital and AI-enabled solutions.",
-  "Contributes to requirements definition, prioritisation, feasibility assessment, stakeholder alignment and solution direction across industrial digital platforms.",
-  "Makes complex technology, constraints and trade-offs understandable and actionable across business, product, engineering, operations and customer stakeholders.",
-  "Provides technical leadership and mentoring across solution design, system integration, platform scalability, maintainability and delivery quality.",
+  "20+ years across industrial digital platforms, connected systems, SCADA and mission-critical environments, combined with hands-on applied AI.",
+  "Starts from the customer's problem: discovery, requirements, prioritisation and feasibility before committing to a solution.",
+  "Turns recurring field issues into structured product feedback and enhancement proposals with Product Owners and R&D.",
+  "Makes technology, constraints and trade-offs understandable across business, engineering, R&D, sales and customers.",
 ];
 
 export const coreSkills = [
@@ -84,8 +82,8 @@ export const coreSkills = [
 ];
 
 export const cvSummary = [
-  "AI Product Manager by professional direction and Nordic Technical Support Expert by current role, with 20+ years of experience across BMS/HVAC, IoT/IIoT, energy and mission-critical real-time environments. SCADA software monitors and controls technical systems, measurements and alarms; this industrial foundation is combined with hands-on applied AI and product management capabilities to conduct discovery, validate high-value user problems and shape feasible, scalable solutions.",
-  "Brings end-to-end technical ownership and cross-functional experience across Product Owners, engineering, R&D and business stakeholders. The current Nordic role adds strategic-customer ownership and responsibility for assessing and prioritising regional defects and improvement needs by customer impact, technical risk and business relevance. Postgraduate studies in AI, product management, strategy and industrial economics reinforce this practical experience.",
+  "AI Product Manager by professional direction and Nordic Technical Support Expert by current role, with 20+ years across BMS/HVAC, IoT/IIoT, energy and mission-critical environments. Combines industrial domain depth with applied AI and product management to validate real user problems and shape feasible, viable solutions.",
+  "Experienced in end-to-end technical ownership and cross-functional work with Product Owners, R&D, engineering and sales. Postgraduate studies in AI, product management, strategy and business models reinforce this practice.",
 ];
 
 export const cvProjects = [
@@ -137,13 +135,11 @@ export const cvExperience = [
     org: "Schneider Electric",
     period: "2026 – Present",
     summary:
-      "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency.",
+      "Nordic responsibility for strategic customers and prioritisation of defects and improvements with R&D for EcoStruxure Building Operation and its edge-controller ecosystem.",
     bullets: [
-      "Take ownership of the largest and most strategic VIP customers, adapting communication and technical guidance to each customer's operational context.",
-      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk, urgency and relevance to priority Nordic business.",
-      "Manage and escalate cases requiring deeper technical expertise or cross-functional collaboration, with clear documentation of cases and solutions.",
-      "Contribute Nordic market and customer insight to platform-quality and lifecycle discussions for EcoStruxure Building Operation and its edge-controller ecosystem.",
-      "Support and mentor Level 2 advanced support engineers across the Nordic region through knowledge sharing, technical guidance and case escalation to strengthen overall team capability.",
+      "Own the largest and most strategic VIP customers across the Nordic region.",
+      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
+      "Support and mentor Level 2 advanced support engineers across the Nordic region through escalation, technical guidance and knowledge sharing.",
     ],
   },
   {
@@ -151,18 +147,11 @@ export const cvExperience = [
     org: "Schneider Electric",
     period: "2020 – 2025",
     summary:
-      "Connected customer and operational needs with digital platform capabilities, technical feasibility, delivery reality, and business value across SCADA, HVAC, IoT, building automation, energy, and mission-critical environments.",
+      "Led customer and technical discovery for complex digital platform solutions across healthcare, pharmaceutical, data-centre and other mission-critical environments.",
     bullets: [
-      "Drove technical discovery and solution definition for complex digital platform initiatives, evaluating customer needs, operational constraints, platform capabilities, integration options, feasibility, and business value.",
-      "Developed and presented technical solution proposals for complex healthcare, pharmaceutical and other mission-critical environments to internal management, sales and customer stakeholders, translating operational requirements and technical constraints into clear solution options and trade-offs.",
-      "Worked cross-functionally with engineering, sales, management, customers and external stakeholders to align requirements, technical feasibility, delivery constraints and solution direction.",
-      "Held end-to-end technical ownership for complex digital platform solutions, driving technical decisions from problem definition and requirements through solution direction, integration, validation, and delivery.",
-      "Influenced technical prioritisation, solution direction, product selection, and architectural trade-offs by balancing customer value, technical feasibility, integration risk, scalability, reliability, and operational constraints.",
-      "Reduced delivery and lifecycle risk by identifying integration constraints, technical dependencies, and long-term consequences early and validating proposed solutions with stakeholders.",
-      "Delivered mission-critical digital platform integrations across data-centre, pharmaceutical, and healthcare environments, including consolidating multiple systems into a unified HMI and edge-based architecture.",
-      "Translated operational workflows into user-facing digital control concepts, integrating HVAC, lighting, video and other building systems into coherent web-based interfaces.",
-      "Represented Schneider Electric in KTH Live-In Lab, contributing domain expertise and technical input on digital-platform capabilities for building energy efficiency.",
-      "Mentored technical teams in platform capabilities, system integration, solution design, and technical constraints, improving consistency, scalability, maintainability, and delivery quality.",
+      "Developed and presented technical solution proposals to internal management, sales and customer stakeholders, weighing customer value, feasibility, lifecycle risk and cost.",
+      "Held end-to-end technical ownership from problem definition and requirements through integration, validation and delivery.",
+      "Aligned engineering, sales and customers around a shared solution direction; represented Schneider Electric at KTH Live-In Lab and mentored technical teams.",
     ],
   },
   {
@@ -170,16 +159,11 @@ export const cvExperience = [
     org: "Schneider Electric",
     period: "2013 – 2020",
     summary:
-      "National technical expert for Sweden working across customer environments, field engineers, Product Owners, Global Product Support, R&D and market teams, supporting Schneider Electric's digital building and industrial platforms across SCADA, automation, energy and connected system environments.",
+      "Sweden's national technical expert for a digital building platform and its ecosystem of edge controllers, working with Product Owners, Global Product Support and R&D.",
     bullets: [
-      "Prioritised and coordinated critical technical issues based on operational impact, urgency, customer need and technical risk, working across field engineers, Advanced Solution Support, system architects, Global Product Support, R&D and market teams.",
-      "Performed root-cause analysis of complex customer and project issues, distinguishing implementation problems from potential product defects and escalating verified defects to Global Product Support and R&D.",
-      "Translated recurring issues and real-world usage patterns into structured product feedback and usability-improvement input for platform development.",
-      "Submitted and justified enhancement proposals based on customer impact, business value and market needs, contributing to continuous platform improvement and roadmap-relevant input.",
-      "Owned the development of a reusable HVAC deviation-management capability for the market organisation, combining deviation detection, alarms, logging, and visualisation to turn operational data into actionable insights, support troubleshooting and energy optimisation, and enable consistent deployment across customer systems.",
-      "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment readiness and controlled rollout risk assessments with engineering and product stakeholders.",
-      "Co-developed digital support tools and troubleshooting workflows with the market organisation and engineering teams, supporting engineer productivity, knowledge sharing and platform adoption.",
-      "Collaborated with R&D as a quality tester for Schneider Electric's building-automation platform, identifying defects, validating functionality and contributing product-improvement feedback.",
+      "Turned recurring field issues into structured product feedback and enhancement proposals, prioritised critical defects and validated releases with R&D.",
+      "Owned a reusable HVAC deviation-management capability that turned operational data into actionable insight for troubleshooting and energy optimisation.",
+      "Supported product lifecycle through release validation, deployment readiness and rollout risk assessment.",
     ],
   },
   {
@@ -187,14 +171,11 @@ export const cvExperience = [
     org: "Schneider Electric",
     period: "2003 – 2013",
     summary:
-      "Delivered and implemented digital-platform and connected-system solutions in close collaboration with customers and operational teams across building automation, energy and industrial environments.",
+      "Delivered digital solutions for building operation and energy optimisation in close collaboration with customers and operational teams.",
     bullets: [
-      "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations.",
-      "Held technical ownership for large-scale building-automation and integrated-control projects, from system design, configuration and programming through integration, testing, commissioning, documentation and operational handover.",
-      "Worked with property managers, operations technicians, facility teams, project managers and end users to gather and translate operational needs into implementation-ready configurations and system designs.",
-      "Collaborated with R&D as a quality tester for Schneider Electric's IoT building-automation platform, identifying defects, validating functionality and supporting platform improvement.",
-      "Participated in a local technology network to strengthen engineering capability, knowledge sharing and adoption of new platform functionality.",
-      "Mentored technical teams on platform capabilities, integration patterns and scalable solution design, improving consistency, maintainability and alignment between architecture, delivery and operational needs.",
+      "Worked with customers on discovery and requirements, translating operational needs into solution design.",
+      "Held technical ownership from solution design through delivery and operational handover.",
+      "Collaborated with R&D as a quality tester and mentored teams on platform capabilities.",
     ],
   },
 ];
