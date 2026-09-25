@@ -413,35 +413,33 @@ export const projects: Project[] = [
       {
         heading: "Overview & my contribution",
         body: [
-          "Talking SCADA began in Innovation in Practice at the University of Skövde as a proposal for an AI-enabled service to help people understand hidden energy problems in buildings. I then refined the same academic concept through product, requirements and business coursework at Blekinge Institute of Technology, building on my industrial domain grounding and applied AI studies. The case explores multi-agent decision support centred on human judgement; it is not a launched product.",
-          "Across the coursework, I produced an innovation report, productification and commercialisation plans, a product protocol, a Product Requirements Document (PRD), a System Requirements Document (SRD) and a business plan. Further reports examined digital-product value and asset/sourcing strategy. I connected these to examine how user needs, technical choices, delivery and a viable offer could fit together.",
+          "Talking SCADA began in Innovation in Practice (University of Skövde) as an AI-enabled service to help people understand hidden energy problems in buildings. I refined the same concept through product, requirements and business coursework at Blekinge Institute of Technology. It explores multi-agent decision support centred on human judgement; it is not a launched product.",
+          "Deliverables: innovation report, productification and commercialisation plans, product protocol, PRD, SRD, business plan, and value and sourcing analyses — together showing how user needs, technical choices, delivery and a viable offer fit.",
         ],
       },
       {
         heading: "Problem & users",
         subSections: [
           { heading: "Why", body: [
-            "Buildings use around 40% of the energy consumed in the EU, so improving their energy performance matters for operating costs, energy security and climate impact.",
-            "A modern building combines heating, ventilation, cooling, controls, sensors, schedules and energy management, and these systems influence one another. An energy deviation may arise from an altered schedule or setpoint, an incorrect configuration, a faulty sensor, equipment running unnecessarily or conflicting control sequences. Heating and cooling may even work against each other.",
-            "The challenge is often understanding what the data means and where to investigate.",
+            "Buildings use around 40% of the EU's energy. Heating, ventilation, cooling, sensors and schedules influence each other, so a deviation can come from a changed setpoint, a faulty sensor, equipment running unnecessarily or heating and cooling working against each other.",
+            "The challenge is understanding what the data means and where to investigate.",
           ], links: [
             {
               label: "Source: European Commission — energy performance of buildings",
               href: "https://energy.ec.europa.eu/topics/energy-efficiency/energy-efficient-buildings/energy-performance-buildings-directive_en",
             },
           ] },
-          { heading: "Who it is for — users & customers", body: ["Intended users include building operators, facility managers, energy managers and technical service teams with different levels of HVAC/BMS expertise. Potential customer segments include commercial property owners, facility-management organisations, enterprises managing multiple buildings, and public-sector organisations such as municipalities. The stakeholder analysis also considered system integrators, development teams and product/business stakeholders."] },
-          { heading: "Pain", body: ["Investigations can require navigating trends, alarms, configurations and relationships across several systems. Users must combine information from different views and interpret relationships that may not be directly visible."] },
-          { heading: "Proposed job to be done", quote: "When my building uses more energy than expected, help me understand what changed, why it changed and where I should investigate, so I do not have to manually analyse every interacting system before I can act." },
+          { heading: "Who it is for — users & customers", body: ["Users: building operators, facility and energy managers and service teams with varying HVAC/BMS expertise. Customers: property owners, facility-management companies, multi-site enterprises and municipalities. System integrators and development teams were also considered."] },
+          { heading: "Pain", body: ["Investigations mean navigating trends, alarms and settings across several systems and interpreting relationships that are not directly visible."] },
+          { heading: "Proposed job to be done", quote: "When my building uses more energy than expected, help me understand what changed, why, and where to investigate — so I can act without manually analysing every system." },
         ],
       },
       {
         heading: "Concept & proposed user journey",
         subSections: [
           { heading: "What the concept is", body: [
-            "In everyday terms: a way for the building to explain itself. Instead of reading trend curves and alarm lists, the person responsible asks a question and gets a plain-language answer about where energy is being wasted, what is likely causing it and what to look at next.",
-            "The concept explores an explanation and decision-support layer for SCADA/BMS platforms. The proposed design combines historical time-series data with a semantic representation of building systems and their relationships. User scenarios address energy increases and underperforming HVAC systems.",
-            "The intended interaction lets users ask a question, review possible causes and inspect references to the underlying sensors, alarms and system relationships before deciding what to do next. Direct control of physical building systems is outside the defined scope.",
+            "A way for the building to explain itself: the person responsible asks a question and gets a plain-language answer about where energy is wasted, the likely cause and what to check next.",
+            "Technically, an explanation layer for SCADA/BMS combining time-series data with a semantic model of building systems. Users can inspect the sensors, alarms and relationships behind each answer. It does not control physical systems.",
           ] },
           { heading: "Proposed user journey", flow: { label: "", steps: ["Energy deviation", "What changed?", "Cross-system context", "Possible causes", "Supporting evidence", "Where should I investigate?"] } },
         ],
@@ -449,53 +447,40 @@ export const projects: Project[] = [
       {
         heading: "Product decisions & MVP scope",
         subSections: [
-          { heading: "NPD opportunity, concept evaluation & product definition", body: ["I developed a productification plan applying New Product Development (NPD) thinking to Talking SCADA:"], items: [
-            "Opportunity identification: examined market pull, technology push and underused operational data, and outlined a Product Innovation Charter (PIC) covering background, focus, objectives and guidelines.",
-            "Concept generation: proposed lead-user involvement and cross-functional expertise to clarify what useful explanations and an appropriate service could look like.",
-            "Concept evaluation: examined originality, usefulness and producibility, and outlined technical and commercial screening criteria to support Go/No-Go decisions before committing further resources.",
-            "Product definition: produced a product protocol covering target market, use context, positioning, the whole offer, delivery requirements, financial and regulatory considerations, strategic fit and risks; a separate PRD specifies scenarios, requirements, MVP scope and acceptance criteria.",
-            "Development planning: considered parallel product, marketing and financial work, with iterative feedback, a clear team mandate and the capabilities needed for implementation.",
-          ], afterItemsBody: ["These are completed analyses and proposed development approaches within the academic case."] },
-          { heading: "System definition & requirements traceability", body: ["In the System Requirements Document (SRD), I separated domain, functional, data, quality, platform and regulatory requirements and defined the system boundary. I linked documented stakeholder and elicitation findings to goals and requirement IDs, making the reasoning behind requirements traceable. The proposed layer remains read-only, with operational decisions left to people."] },
-          { heading: "Prioritisation example", body: [
-            "I ranked 22 requirements and used Cost-Value-Risk analysis to examine critical requirements and their dependencies. Explanation generation and abnormal-behaviour detection ranked highest because they carry core product value and substantial technical uncertainty. Data access and system context were identified as enabling requirements.",
-            "Explainability and usability were prioritised early for trust and adoption. The analysis also treated security and system boundaries as conditions that must be addressed from the start.",
+          { heading: "NPD & product definition", items: [
+            "Opportunity: market pull, technology push and underused operational data, framed in a Product Innovation Charter (PIC).",
+            "Concept evaluation: usefulness and producibility, with technical and commercial Go/No-Go criteria.",
+            "Product definition: product protocol (market, whole offer, strategic fit, risks) and a PRD with scenarios, requirements, MVP scope and acceptance criteria.",
           ] },
-          { heading: "MVP definition", body: ["In the PRD, I defined an initial scope of integration with one SCADA system, diagnostics for selected HVAC subsystems, and a web-based conversational interface explaining energy anomalies. This gives the initial product evaluation a bounded operating context."] },
-          { heading: "Success measures & acceptance criteria", body: ["I identified intended success measures around investigation time, energy waste and operational insight. The PRD includes acceptance criteria for natural-language queries, explanations of probable causes, response time and analysis of system relationships. The SRD sets separate quality targets for availability, usability, security, explainability, reliability and maintainability. These define what the product should achieve; none of them have been measured yet."] },
-          { heading: "Why AI and a multi-agent approach?", body: ["AI is explored for making operational information and specialist domain context easier to interpret. The multi-agent approach is a design direction within the concept. Further validation should examine whether it offers enough benefit over simpler analytical or retrieval-based support to justify additional complexity."] },
+          { heading: "Requirements & traceability", body: ["The SRD separates domain, functional, data, quality and regulatory requirements, defines the system boundary, and links elicitation findings to goals and requirement IDs. The layer stays read-only; decisions stay with people."] },
+          { heading: "Prioritisation", body: ["I ranked 22 requirements and used Cost-Value-Risk on the critical ones. Explanation generation and anomaly detection ranked highest — core value and highest uncertainty. Data access and system context are enablers; explainability, usability and security were prioritised from the start."] },
+          { heading: "MVP definition", body: ["One SCADA integration, selected HVAC subsystems and a web-based conversational interface explaining energy anomalies."] },
+          { heading: "Success measures", body: ["Intended measures: investigation time, energy waste and operational insight, with acceptance criteria and quality targets for explainability, reliability and security. None have been measured yet."] },
+          { heading: "Why AI and multi-agent?", body: ["AI makes operational data and specialist context easier to interpret. Validation should show whether multi-agent gives enough benefit over simpler retrieval-based support to justify the complexity."] },
         ],
       },
       {
         heading: "Value proposition & business assumptions",
-        body: ["The concept aims to support:"],
         items: [
-          "Lower energy costs and less waste through earlier identification of hidden inefficiencies, with potential reductions in operational emissions.",
-          "More accessible specialist knowledge, reducing dependence on individual experts and repeated external troubleshooting.",
-          "Clear explanations of likely causes, linked to relevant building data and system relationships.",
-          "Faster, better-informed decisions through natural-language interaction and clearer next steps.",
-          "Flexible, question-driven investigation across interconnected building systems.",
-          "Support for energy-performance goals and relevant reporting and compliance work.",
+          "Lower energy costs and emissions through earlier detection of hidden waste.",
+          "Specialist knowledge made accessible — less dependence on individual experts.",
+          "Clear, evidence-linked explanations and faster, better-informed decisions.",
+          "Support for energy-performance goals and reporting.",
         ],
-        afterItemsBody: ["These are intended gains within the academic case, not measured outcomes."],
+        afterItemsBody: ["Intended gains, not measured outcomes."],
         subSections: [
           { heading: "Positioning & go-to-market", body: [
-            "In the innovation report, I used PESTEL to examine external drivers and VRIO to assess resources and organisational capabilities. The analysis highlighted the need for cross-functional expertise, leadership support and a culture of learning.",
-            "In the product protocol and business plan, I explored competitive positioning around cross-system diagnostics and understandable explanations for operators. I outlined a proposed introduction through early adopters and system-integrator partnerships, supported by integration assistance, onboarding and ongoing service.",
+            "PESTEL and VRIO framed external drivers and capabilities. Positioning centres on cross-system diagnostics and understandable explanations, introduced through early adopters and system-integrator partners with onboarding and ongoing service.",
           ] },
-          { heading: "Business model, packaging & value assessment", body: [
-            "I used a Business Model Canvas to connect customer segments and value propositions with customer relationships, channels, key partners, activities and resources, cost structure and revenue streams. The proposed offer combines decision support with integration, ongoing support and continuous improvement.",
-            "The business plan explores subscriptions and tiered SaaS packaging, ranging from building-level explanations to advanced diagnostics and portfolio-level support. I also outlined development, cloud and maintenance cost drivers and initial investment needs.",
-            "I derived selected requirements from the value proposition and product definition, then used Software Value Map to assess functionality, reliability and usability alongside development cost and architectural maintainability. The assessment highlighted the value of a usable interface and explainable decision support, while making the development effort and technical debt associated with analysis, integration and model improvement visible. These were estimates within the academic case.",
+          { heading: "Business model & value assessment", body: [
+            "A Business Model Canvas links segments, value proposition, channels, partners, costs and revenue. The business plan proposes tiered SaaS packaging from building-level explanations to portfolio diagnostics.",
+            "Software Value Map weighed usability and explainability against development cost and technical debt — estimates within the academic case.",
           ] },
-          { heading: "Assets, knowledge & Make/Buy/Share", body: [
-            "I examined how code, requirements, architecture, documentation and tacit domain knowledge could be maintained and reused. This included codification and personal knowledge-sharing as complementary approaches to preserving expertise.",
-            "I classified components as commodities, qualifiers or differentiators. I proposed concentrating internal development on domain-specific graph reasoning, root-cause analysis and traceable explanations, while using reusable AI components and externally sourced infrastructure where appropriate.",
-            "I also examined service-based revenue and the possibility of bundling the concept with existing platform or service offers. The commercial assumptions, pricing model and expected gains remain subject to market validation.",
+          { heading: "Assets & Make/Buy/Share", body: [
+            "Build in-house where it differentiates — domain graph reasoning, root-cause analysis, traceable explanations — and reuse AI components and external infrastructure elsewhere. Pricing and gains remain subject to market validation.",
           ] },
-          { heading: "Commercialisation & product life cycle", body: [
-            "I developed a commercialisation plan covering parallel technical and marketing launch preparation. This connected integration and delivery capabilities with positioning, SaaS packaging, partner channels and proposed product-use testing.",
-            "I proposed a staged market introduction, including geographic rollout, followed by performance monitoring, corrective action and customer-feedback loops. The plan considers how pricing, marketing and feature priorities could evolve through introduction, growth, maturity and decline. These are proposed commercialisation and lifecycle activities.",
+          { heading: "Commercialisation & life cycle", body: [
+            "Parallel technical and marketing launch preparation, staged rollout, performance monitoring and feedback loops, with pricing and features evolving across the product life cycle.",
           ] },
         ],
       },
@@ -503,44 +488,36 @@ export const projects: Project[] = [
         heading: "Evidence & validation approach",
         subSections: [
           { heading: "Documented academic work", items: [
-            "Innovation report with problem framing, PESTEL, VRIO, the Four Ps of innovation and a proposed Design Thinking approach.",
-            "Productification plan with opportunity framing, a proposed PIC, concept generation, concept evaluation and development planning.",
-            "Commercialisation plan with technical and marketing readiness, proposed market tests, staged introduction and post-launch lifecycle considerations.",
-            "Product protocol covering the market, whole offer, delivery requirements, strategic fit and risks; a separate PRD specifying scenarios, requirements, MVP scope, intended success measures and acceptance criteria.",
-            "System Requirements Document (SRD) with stakeholder analysis, elicitation findings, requirements traceability, system boundaries, ranking and Cost-Value-Risk analysis.",
-            "Context diagram, conceptual data model, virtual window, interface mockup and task description.",
-            "Business Model Canvas, Software Value Map and business plan with positioning, packaging and proposed go-to-market.",
-            "Asset-management reflection, Make/Buy/Share analysis and an evaluation of open-source business-model options.",
+            "Innovation report — problem framing, PESTEL, VRIO, Design Thinking.",
+            "Productification and commercialisation plans — PIC, concept evaluation, market tests, lifecycle.",
+            "Product protocol and PRD — offer, scenarios, MVP scope, success measures, acceptance criteria.",
+            "SRD — stakeholders, elicitation, traceability, Cost-Value-Risk; context diagram, data model and mockups.",
+            "Business Model Canvas, Software Value Map, business plan and Make/Buy/Share analysis.",
           ] },
           { heading: "Documented elicitation", body: [
-            "The initial innovation report proposed interviews, observation and prototyping within a Design Thinking approach. My later system requirements document records findings from interviews, observation and a simple chat-based prototype, and maps those findings to goals and requirements.",
-            "One documented observation was that investigations required combining multiple views and inferring relationships between systems. This informed requirements for graph context, combined data queries and referenced explanations.",
+            "Interviews, observation and a simple chat-based prototype showed that investigations required combining multiple views and inferring system relationships — which shaped requirements for graph context and referenced explanations.",
           ] },
-          { heading: "Further product validation", body: [
-            "The commercialisation plan and business plan propose pilot installations, product-use testing and market validation before wider introduction. I also considered speculative-sale testing: presenting a proposed product pitch to assess customer interest and willingness to adopt.",
-            "The next validation step is to run one narrow investigation workflow with representative users and real building data, comparing it with existing tools and with simpler analytical or retrieval-based support. It should assess investigation time, explanation quality, traceability, usefulness of next steps, customer value, service operating costs and willingness to pay.",
-            "The coursework provides requirements, analyses and design artefacts. Quality targets and expected energy, cost and emissions benefits require separate measurement.",
+          { heading: "Next validation step", body: [
+            "Run one narrow workflow with representative users and real building data, compared with existing tools and simpler AI. Measure investigation time, explanation quality, customer value, operating cost and willingness to pay. Energy and cost benefits remain to be measured.",
           ] },
         ],
       },
       {
         heading: "How the case evolved",
         body: [
-          "Talking SCADA started with my project in Innovation in Practice. I framed the service opportunity, analysed external drivers and organisational capabilities, and proposed an approach to user-centred development. My domain experience and applied AI studies provided the technical foundation.",
-          "I then carried the same concept into coursework within my specialisation in Industrial Economics and Management at Blekinge Institute of Technology. The Talking SCADA case runs from August 2025 to May 2026, within the BTH specialisation continuing to June 2026 and broader postgraduate studies continuing to July 2026:",
+          "From Innovation in Practice at Skövde, the concept continued through my Industrial Economics and Management specialisation at Blekinge Institute of Technology (Aug 2025 – May 2026):",
         ],
         items: [
-          "Product Management: productification and commercialisation plans covering the NPD process, concept evaluation, launch preparation and product life cycle, together with a product protocol and PRD defining the offer, scenarios, requirements, MVP scope and acceptance criteria.",
-          "Product & Requirements Management: SRD, elicitation, requirements traceability and prioritisation; separate digital-product value and asset/sourcing analyses using Software Value Map, Business Model Canvas and Make/Buy/Share.",
-          "Strategy & Business Models: a business plan connecting competitive positioning, packaging, revenue logic, partner channels, cost drivers and a proposed market-entry plan.",
+          "Product Management: NPD, concept evaluation, product protocol, PRD, launch and life cycle.",
+          "Product & Requirements Management: SRD, traceability, prioritisation, Software Value Map and Make/Buy/Share.",
+          "Strategy & Business Models: business plan with positioning, packaging, revenue logic and market entry.",
         ],
-        subSections: [{ heading: "Methods & domains", tags: ["PESTEL", "VRIO", "Design Thinking", "New Product Development (NPD)", "Product Innovation Charter (PIC)", "Concept Evaluation", "Product Vision", "Product Discovery", "Product Definition", "Product Positioning", "Stakeholder Analysis", "Requirements Elicitation", "Jobs to Be Done", "Requirements Management", "PRD & SRD", "Requirements Traceability", "Quality Requirements", "Value-Driven Design", "Reliability", "MVP Definition", "Success Measures", "Acceptance Criteria", "Explainability", "Prioritisation", "Cost-Value-Risk", "Software Value Map", "Business Model Canvas", "Business Planning", "Asset & Knowledge Management", "Make/Buy/Share", "Product Strategy", "Go-to-Market", "Commercialisation Planning", "Market Testing", "Validation Planning", "Product Life Cycle", "Applied AI", "Multi-agent AI", "SCADA", "BMS"] }],
+        subSections: [{ heading: "Methods & domains", tags: ["PESTEL", "VRIO", "Design Thinking", "NPD", "PIC", "Product Vision", "Product Discovery", "Jobs to Be Done", "PRD & SRD", "Requirements Traceability", "MVP Definition", "Acceptance Criteria", "Cost-Value-Risk", "Software Value Map", "Business Model Canvas", "Make/Buy/Share", "Go-to-Market", "Product Life Cycle", "Multi-agent AI", "SCADA", "BMS"] }],
       },
       {
         heading: "Reflection & next steps",
         body: [
-          "Carrying one concept through innovation, product, requirements and business coursework showed how early framing decisions shape later scope, prioritisation and commercial assumptions. It also reinforced that useful innovation depends on user understanding, organisational readiness and cross-functional collaboration.",
-          "Next, I would validate a narrow investigation workflow with users and real building data, then use those findings to refine requirements, MVP scope, quality targets and business assumptions.",
+          "Carrying one concept through innovation, product, requirements and business work showed how early framing shapes later scope, priorities and commercial assumptions — and that useful innovation depends on user understanding and cross-functional collaboration.",
         ],
       },
     ],
@@ -623,17 +600,12 @@ export const projects: Project[] = [
       {
         heading: "Product / platform relevance",
         body: [
-          "By combining forecasts with uncertainty ranges rather than a single predicted value, planners can make decisions with a clearer understanding of risk.",
-          "Product relevance: The work reinforced that an AI output is only useful when the uncertainty and limitations are presented in a way that supports the user's actual decision.",
+          "Uncertainty ranges instead of a single value let planners decide with a clearer view of risk. An AI output is only useful when its uncertainty is presented in a way that supports the user's actual decision.",
         ],
         items: [
-          "Demand-side flexibility",
-          "EV charging",
-          "Smart-building load optimisation",
-          "Industrial load shifting",
-          "Storage optimisation",
-          "Planning and load balancing",
-          "Risk-aware decisions",
+          "Demand-side flexibility and EV charging",
+          "Smart-building and industrial load shifting",
+          "Storage optimisation and load balancing",
         ],
       },
     ],
@@ -742,7 +714,7 @@ export const projects: Project[] = [
     flagship: true,
     categories: ["Industry", "Innovation", "Academic / Research"],
     teaser:
-      "KTH Live-In Lab is an open innovation platform where industry partners, KTH researchers and universities collaborate on sustainable buildings and energy through full-scale residential testbeds. I took part through Schneider Electric as its contact and subject matter expert for EcoStruxure Building Operation — the building-management software that connects HVAC, lighting, energy and sensors into one place — supporting researchers with technical questions and engineering.",
+      "Open innovation platform where industry and KTH researchers test sustainable-building ideas in real residential buildings. I was Schneider Electric's contact and expert for EcoStruxure Building Operation — the software that connects HVAC, lighting, energy and sensors in one place — supporting researchers with technical questions and engineering.",
     timelineSummary: {
       context:
         "Open innovation platform at KTH with full-scale residential testbeds. I participated through Schneider Electric, not as a KTH employee.",
@@ -766,32 +738,23 @@ export const projects: Project[] = [
       {
         heading: "Context",
         body: [
-          "KTH Live-In Lab is a research centre and open innovation platform at KTH where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency. It offers full-scale testbeds in real residential buildings, shared data and a structured project process — designed to increase the pace of innovation in the construction and real-estate sector.",
-          "Several test environments were connected to Schneider Electric's EcoStruxure Building Operation platform — Schneider Electric's software platform for building management, which connects a building's technical systems (HVAC, lighting, energy, sensors and more) into one place for monitoring, control and data. That platform data is what made the lab's smart-building and energy research possible. My role was to be Schneider Electric's contact at KTH Live-In Lab.",
+          "KTH Live-In Lab is a research centre and open innovation platform where industry partners, KTH researchers and other universities collaborate on sustainable buildings and energy efficiency, using full-scale testbeds in real residential buildings.",
+          "Several testbeds ran on EcoStruxure Building Operation — Schneider Electric's building-management software that connects HVAC, lighting, energy and sensors into one place for monitoring, control and data. That data made the lab's energy research possible.",
         ],
       },
       {
         heading: "Contribution",
         items: [
-          "Represented Schneider Electric as one of the centre's industry members and acted as Schneider's contact at KTH Live-In Lab",
-          "Acted as subject matter expert for Schneider Electric's EcoStruxure Building Operation platform — the building-management software that monitors, controls and collects data from a building's technical systems — and its ecosystem",
-          "Worked in cross-disciplinary constellations with KTH researchers and other partner companies",
-          "Helped KTH researchers with technical questions and with the engineering parts needed for their research on sustainable buildings and energy efficiency",
-          "Contributed building-automation and digital-platform expertise",
-          "Explained what the platform could support and where its constraints were",
-          "Assessed what was technically possible",
-          "Helped translate research ideas into feasible platform solutions",
-          "Contributed solution ideas for applied research",
-          "Connected research requirements with platform capabilities, architecture and operational reality",
-          "Contributed to exploration of smart buildings, energy efficiency, IoT, digital-building concepts and emerging technologies",
+          "Schneider Electric's contact at KTH Live-In Lab and subject matter expert for EcoStruxure Building Operation and its ecosystem.",
+          "Helped KTH researchers with technical questions and the engineering parts of their research.",
+          "Explained what the platform could support and where its constraints were.",
+          "Translated research ideas into feasible platform solutions, working with researchers and partner companies.",
         ],
       },
       {
         heading: "Product / innovation perspective",
         body: [
-          "The collaboration connected research opportunities with real industrial-platform capabilities and constraints, helping transform ideas into technically feasible applied solutions.",
-          "Collaboration relevance: Worked at the boundary between applied research and real industrial-platform constraints, contributing domain expertise while balancing experimental ambition with what could realistically work in deployed systems.",
-          "Open innovation in practice: value came from combining several organisations' capabilities around a shared testbed, so ideas were assessed against both research ambition and what deployed industrial platforms can actually support.",
+          "Open innovation in practice: value came from combining several organisations' capabilities around a shared testbed — balancing research ambition with what deployed industrial platforms can realistically support.",
         ],
       },
     ],
