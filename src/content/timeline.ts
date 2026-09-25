@@ -549,11 +549,12 @@ export const milestones: TimelineMilestone[] = [
     overviewBullets: [
       "Deliver technical support and solve complex BMS and EcoStruxure issues for technicians and EcoXpert partners across the Nordic region.",
       "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of their operational context.",
-      "Oversee and prioritise Nordic defects and improvement needs with R&D, weighing customer impact, technical risk and relevance to priority Nordic business.",
+      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
       "Mentor Technical Support colleagues through knowledge sharing and guidance, strengthening capability across the team.",
     ],
     relevanceSignals: [
       "Nordic Market Insight",
+      "Product Feedback & Enhancement Proposals",
       "Defect & Enhancement Prioritisation",
       "Strategic Customer Ownership",
       "R&D Collaboration",

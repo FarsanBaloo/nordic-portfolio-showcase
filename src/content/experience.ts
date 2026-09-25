@@ -372,7 +372,7 @@ export const roles: Role[] = [
     bullets: [
       "Deliver technical support and solve complex Building Management System issues for technicians and EcoXpert partners across the Nordic region.",
       "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of each customer's operational context.",
-      "Oversee and prioritise Nordic defects and improvement needs with R&D, weighing customer impact, technical risk and relevance to priority Nordic business.",
+      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
       "Document cases and solutions to strengthen the shared knowledge base, improve future support and make recurring product and ecosystem needs visible.",
       "Mentor Technical Support colleagues through knowledge sharing and guidance, helping strengthen capability across the team.",
     ],
@@ -404,7 +404,7 @@ export const roles: Role[] = [
           "Defect and improvement prioritisation",
           "Customer and business impact",
           "Technical risk and urgency",
-          "Structured feedback and escalation to R&D",
+          "Structured product feedback & enhancement proposals",
           "Priority Nordic business needs",
         ],
       },
