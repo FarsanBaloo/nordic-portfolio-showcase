@@ -30,15 +30,15 @@ export const profile = {
     },
     {
       label: "Applied AI & Computer Science",
-      body: "B.Sc. Computer Science (Intelligent Systems) with applied work in RAG, forecasting and agentic AI.",
+      body: "B.Sc. in Computer Science (Intelligent Systems) at Mälardalen University, with applied work in RAG, forecasting and agentic AI.",
     },
     {
       label: "Postgraduate AI Studies",
-      body: "Advanced studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems.",
+      body: "Advanced university studies in Natural Language Processing, Predictive Data Analytics, Computer Vision and Autonomous Systems — across Umeå, Linköping and Mälardalen universities.",
     },
     {
       label: "Postgraduate Industrial Economics & Management",
-      body: "Studies spanning Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
+      body: "University specialisation at Blekinge Institute of Technology spanning Product Management, Product & Requirements Management, value-driven design, Strategy & Business Models, Innovation Management, Agile Process & Project Management, Product & Portfolio Strategy and Leadership.",
     },
   ],
   progression: [
