@@ -29,12 +29,9 @@ export const roles: Role[] = [
     summary:
       "Customer-facing Project Engineer where understanding the customer's operational reality came before designing the solution — delivering digital-platform, building-automation and connected-system solutions from requirements through system design, implementation, integration, commissioning, testing and operational handover.",
     bullets: [
-      "Worked with property managers, operations technicians, facility teams, project managers and end users to gather and translate operational needs into implementation-ready configurations and system designs.",
-      "Managed smaller customer projects and technical work packages while supporting project managers and delivery teams on larger, more complex installations — succeeding together as one delivery team.",
-      "Held technical ownership for large-scale building-automation and integrated-control projects, from system design, configuration and programming through integration, testing, commissioning, documentation and operational handover.",
-      "Collaborated with R&D as a quality tester for the IoT building-automation platform, identifying defects, validating functionality and supporting platform improvement.",
-      "Participated in a local technology network to strengthen engineering capability, knowledge sharing and adoption of new platform functionality.",
-      "Mentored technical teams on platform capabilities, integration patterns and scalable solution design, improving consistency, maintainability and alignment between architecture, delivery and operational needs.",
+      "Worked with customers on discovery and requirements, translating operational needs into solution design.",
+      "Held technical ownership from solution design through delivery and operational handover.",
+      "Collaborated with R&D as a quality tester and mentored teams on platform capabilities.",
     ],
 
     detailGroups: [
@@ -120,14 +117,9 @@ export const roles: Role[] = [
     summary:
       "Customer-facing national technical expert supporting complex platform environments while working close to real-world product usage, platform lifecycle, product quality, release validation and deployment readiness — built on listening in and adapting the support to each customer's and colleague's needs.",
     bullets: [
-      "Solved problems together with field engineers and customers — listening to each person's situation and adapting guidance, troubleshooting and tooling to their needs, experience level and context.",
-      "Owned the development of a reusable HVAC deviation-management capability for the market organisation, combining deviation detection, alarms, logging and visualisation to turn operational data into actionable insights and enable consistent deployment across customer systems.",
-      "Prioritised and coordinated critical technical issues based on operational impact, urgency, customer need and technical risk, working across field engineers, Advanced Solution Support, system architects, Global Product Support, R&D and market teams.",
-      "Performed root-cause analysis of complex customer and project issues, distinguishing implementation problems from potential product defects and escalating verified defects to Global Product Support and R&D.",
-      "Translated recurring issues and real-world usage patterns into structured product feedback and usability-improvement input, and submitted enhancement proposals justified on customer impact, business value and market needs.",
-      "Supported platform lifecycle and adoption readiness through release validation, defect identification, deployment readiness and controlled rollout risk assessments with engineering and product stakeholders.",
-      "Co-developed digital support tools and troubleshooting workflows with the market organisation and engineering teams, supporting engineer productivity, knowledge sharing and platform adoption.",
-      "Collaborated with R&D as a quality tester for Schneider Electric's building-automation platform, identifying defects, validating functionality and contributing product-improvement feedback.",
+      "Turned recurring field issues into structured product feedback and enhancement proposals, prioritised critical defects and validated releases with R&D.",
+      "Owned a reusable HVAC deviation-management capability that turned operational data into actionable insight for troubleshooting and energy optimisation.",
+      "Supported product lifecycle through release validation, deployment readiness and rollout risk assessment.",
     ],
 
     detailGroups: [
@@ -227,16 +219,9 @@ export const roles: Role[] = [
     summary:
       "Connected customer and operational needs with digital-platform capabilities, technical feasibility, delivery reality and business value across SCADA, HVAC, IoT, building automation, energy and mission-critical environments — making options and trade-offs explicit so customers, delivery teams and stakeholders could decide on a shared direction.",
     bullets: [
-      "Led customer-facing technical discovery and solution definition for complex digital-platform initiatives.",
-      "Developed and presented technical solution proposals for complex healthcare, pharmaceutical and other mission-critical environments to internal management, sales and customer stakeholders, translating operational requirements and technical constraints into clear solution options and trade-offs.",
-      "Held end-to-end technical ownership from problem definition and requirements through architecture, integration, validation and delivery.",
-      "Provided informal technical leadership — guiding engineering teams, peers and stakeholders toward sound technical direction through influence, mentorship and trusted authority rather than formal line management.",
-      "Worked cross-functionally with engineering, sales, management, customers and external stakeholders to align requirements, technical feasibility, delivery constraints and solution direction.",
-      "Influenced technical prioritisation, solution direction, product selection and architectural trade-offs by balancing customer value, integration risk, scalability, reliability and operational constraints.",
-      "Delivered mission-critical digital-platform integrations across data-centre, pharmaceutical and healthcare environments, including consolidating multiple systems into a unified HMI and edge-based architecture.",
-      "Translated operational workflows into user-facing digital control concepts, integrating HVAC, lighting, video and other building systems into coherent web-based interfaces.",
-      "Represented Schneider Electric at KTH Live-In Lab as its contact and an EcoStruxure Building Operation subject matter expert, supporting researchers with platform expertise and engineering input for sustainable buildings and energy efficiency.",
-      "Mentored technical teams in platform capabilities, system integration, solution design and technical constraints, improving consistency, scalability, maintainability and delivery quality.",
+      "Developed and presented technical solution proposals to internal management, sales and customer stakeholders, weighing customer value, feasibility, lifecycle risk and cost.",
+      "Held end-to-end technical ownership from problem definition and requirements through integration, validation and delivery.",
+      "Aligned engineering, sales and customers around a shared solution direction; represented Schneider Electric at KTH Live-In Lab and mentored technical teams.",
     ],
 
     detailGroups: [
@@ -370,10 +355,9 @@ export const roles: Role[] = [
     summary:
       "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency.",
     bullets: [
-      "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of each customer's operational context.",
-      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
-      "Document cases and solutions to strengthen the shared knowledge base, improve future support and make recurring product and ecosystem needs visible.",
-      "Support and mentor Level 2 advanced support engineers across the Nordic region through knowledge sharing, technical guidance and case escalation, helping strengthen capability across the team.",
+      "Own the largest and most strategic VIP customers across the Nordic region.",
+      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
+      "Support and mentor Level 2 advanced support engineers across the Nordic region through escalation, technical guidance and knowledge sharing.",
     ],
     detailGroups: [
       {
