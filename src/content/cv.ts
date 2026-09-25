@@ -144,7 +144,7 @@ export const cvExperience = [
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk, urgency and relevance to priority Nordic business.",
       "Manage and escalate cases requiring deeper technical expertise or cross-functional collaboration, with clear documentation of cases and solutions.",
       "Contribute Nordic market and customer insight to platform-quality and lifecycle discussions for EcoStruxure Building Operation and its edge-controller ecosystem.",
-      "Mentor Technical Support colleagues through knowledge sharing and guidance to strengthen overall team capability.",
+      "Support and mentor Level 2 advanced support engineers across the Nordic region through knowledge sharing, technical guidance and case escalation to strengthen overall team capability.",
     ],
   },
   {
