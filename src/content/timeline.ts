@@ -539,7 +539,7 @@ export const milestones: TimelineMilestone[] = [
     roleId: "nordic-technical-support-expert",
     stage: "Nordic Customer Insight · Platform Quality · Prioritisation",
     summary:
-      "Nordic responsibility connecting complex customer and partner needs with platform quality, R&D collaboration and prioritisation for EcoStruxure Building Operation and its edge-controller ecosystem.",
+      "Nordic responsibility connecting complex customer and partner needs with platform quality, R&D collaboration and prioritisation for EcoStruxure Building Operation and its edge-controller ecosystem — in an international, English-speaking environment.",
     overviewBullets: [
       "Own the largest, most strategic VIP customers — technical depth, clear communication and an understanding of their operations.",
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem — prioritised with R&D by customer impact, technical risk and business relevance.",
