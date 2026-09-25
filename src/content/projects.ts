@@ -495,7 +495,7 @@ export const projects: Project[] = [
             "Business Model Canvas, Software Value Map, business plan and Make/Buy/Share analysis.",
           ] },
           { heading: "Documented elicitation", body: [
-            "Interviews, observation and a simple chat-based prototype showed that investigations required combining multiple views and inferring system relationships — which shaped requirements for graph context and referenced explanations.",
+            "Interviews, observation and a simple chat-based prototype showed that investigations required combining multiple views and inferring system relationships. This observation shaped requirements for graph context and referenced explanations — so users could see the evidence behind each answer.",
           ] },
           { heading: "Next validation step", body: [
             "Run one narrow workflow with representative users and real building data, compared with existing tools and simpler AI. Measure investigation time, explanation quality, customer value, operating cost and willingness to pay. Energy and cost benefits remain to be measured.",
