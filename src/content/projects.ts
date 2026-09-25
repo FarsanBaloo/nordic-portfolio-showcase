@@ -414,7 +414,7 @@ export const projects: Project[] = [
         heading: "Overview & my contribution",
         body: [
           "Talking SCADA began in Innovation in Practice (University of Skövde) as an AI-enabled service to help people understand hidden energy problems in buildings. I refined the same concept through product, requirements and business coursework at Blekinge Institute of Technology. It explores multi-agent decision support centred on human judgement; it is not a launched product.",
-          "Deliverables: innovation report, productification and commercialisation plans, product protocol, PRD, SRD, business plan, and value and sourcing analyses — together showing how user needs, technical choices, delivery and a viable offer fit.",
+          "The work builds on my industrial domain grounding and applied AI studies. Across the coursework I produced an innovation report, productification and commercialisation plans, a product protocol, a PRD, an SRD, a business plan, and value and sourcing analyses — connecting user needs, technical choices, delivery and a viable offer to see how they fit together.",
         ],
       },
       {
