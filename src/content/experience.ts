@@ -374,7 +374,7 @@ export const roles: Role[] = [
       "Take ownership of the largest and most strategic VIP customers, combining technical depth with clear communication and an understanding of each customer's operational context.",
       "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritising defects and improvements with R&D by customer impact, technical risk and relevance to priority Nordic business.",
       "Document cases and solutions to strengthen the shared knowledge base, improve future support and make recurring product and ecosystem needs visible.",
-      "Mentor Technical Support colleagues through knowledge sharing and guidance, helping strengthen capability across the team.",
+      "Support and mentor Level 2 advanced support engineers across the Nordic region through knowledge sharing, technical guidance and case escalation, helping strengthen capability across the team.",
     ],
     detailGroups: [
       {
