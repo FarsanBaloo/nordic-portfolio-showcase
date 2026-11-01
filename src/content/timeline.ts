@@ -537,6 +537,7 @@ export const milestones: TimelineMilestone[] = [
     org: "Schneider Electric",
     track: "professional",
     roleId: "nordic-technical-support-expert",
+    roleEvidenceOpenByDefault: true,
     stage: "Customer Insight · Product Quality · Technical Leadership",
     summary:
       "Nordic responsibility for complex technical escalations and customer feedback across EcoStruxure Building Operation and Edge IoT controllers, connecting customer and partner needs with product quality and continuous improvement.",
