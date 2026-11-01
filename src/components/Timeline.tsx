@@ -839,10 +839,15 @@ function RoleEvidence({
   roleId,
   open,
   reduced,
+  variant = "card",
 }: {
   roleId: string;
   open: boolean;
   reduced: boolean;
+  /** "card" is the standalone panel under the card; "inline" is the same
+   *  content rendered as a section INSIDE the role card itself, for roles
+   *  whose evidence is always open. */
+  variant?: "card" | "inline";
 }) {
   const role = roles.find((r) => r.id === roleId);
   if (!role) return null;
@@ -858,7 +863,13 @@ function RoleEvidence({
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="overflow-hidden"
         >
-          <div className="night-card mt-6 rounded-2xl p-5 sm:p-7">
+          <div
+            className={
+              variant === "inline"
+                ? "mt-5 border-t border-night-border/50 pt-5"
+                : "night-card mt-6 rounded-2xl p-5 sm:p-7"
+            }
+          >
             <div
               className="grid gap-x-8 gap-y-6"
               style={{ gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))" }}
@@ -1096,6 +1107,7 @@ function MilestoneCard({
   open,
   panelId,
   onToggleRole,
+  reduced,
   className,
 }: {
   entry: TimelineMilestone;
@@ -1104,6 +1116,7 @@ function MilestoneCard({
   open: boolean;
   panelId: string;
   onToggleRole: (id: string) => void;
+  reduced: boolean;
   className: string;
 }) {
   const secondary = entry.presentation === "secondary";
@@ -1218,6 +1231,14 @@ function MilestoneCard({
             </li>
           ))}
         </ul>
+      ) : null}
+
+      {/* Roles whose evidence is always open render it INSIDE the card, as
+          one continuous card — not as a separate box below it. */}
+      {entry.roleId && entry.roleEvidenceOpenByDefault ? (
+        <div id={panelId}>
+          <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} variant="inline" />
+        </div>
       ) : null}
 
       {entry.roleId && !entry.roleEvidenceOpenByDefault ? (
@@ -1354,14 +1375,12 @@ function MilestoneRow({
                 open={open}
                 panelId={panelId}
                 onToggleRole={onToggleRole}
+                reduced={reduced}
                 className=""
               />
-              {/* Under the card, not in a grid row of its own: the child column
-                  sits between the two, so a row further down put the evidence
-                  below the role's OWN projects. Same placement as the parallel
-                  card's, which is the point — this is one rule, at both of its
-                  sites. */}
-              {entry.roleId ? (
+              {/* Below the card only for roles whose evidence toggles. Roles
+                  with always-open evidence render it inside the card itself. */}
+              {entry.roleId && !entry.roleEvidenceOpenByDefault ? (
                 <div id={panelId}>
                   <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
                 </div>
@@ -1431,13 +1450,14 @@ function MilestoneRow({
                 open={!!parallel.roleId && (openRoleId === parallel.roleId || !!parallel.roleEvidenceOpenByDefault)}
                 panelId={`${panelId}-parallel`}
                 onToggleRole={onToggleRole}
+                reduced={reduced}
                 className=""
               />
-              {/* Directly under its own card, not in a row of its own further
-                  down the grid: the evidence is what fills the tall column
-                  beside the studies, and a panel two screens below the button
-                  that opens it is not "under the role". */}
-              {parallel.roleId ? (
+              {/* Toggled roles: directly under its own card, not in a row of
+                  its own further down the grid — a panel two screens below the
+                  button that opens it is not "under the role". Always-open
+                  roles render inside their card instead. */}
+              {parallel.roleId && !parallel.roleEvidenceOpenByDefault ? (
                 <div id={`${panelId}-parallel`}>
                   <RoleEvidence
                     roleId={parallel.roleId}
@@ -1564,6 +1584,7 @@ function MilestoneRow({
                                   open={open}
                                   panelId={panelId}
                                   onToggleRole={onToggleRole}
+                                  reduced={reduced}
                                   className=""
                                 />
                               ),
