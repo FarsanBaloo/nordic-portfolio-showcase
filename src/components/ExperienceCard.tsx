@@ -48,13 +48,17 @@ export function ExperienceCard({ role }: { role: Role }) {
         </Disclosure>
       </div>
 
-      <p className="mt-6 text-sm italic leading-relaxed text-muted-foreground">
-        {role.progression}
-      </p>
+      {role.progression ? (
+        <p className="mt-6 text-sm italic leading-relaxed text-muted-foreground">
+          {role.progression}
+        </p>
+      ) : null}
 
-      <div className="mt-5">
-        <TagList items={role.tags} />
-      </div>
+      {role.tags?.length ? (
+        <div className="mt-5">
+          <TagList items={role.tags} />
+        </div>
+      ) : null}
     </article>
   );
 }
