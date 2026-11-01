@@ -6,8 +6,10 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+
 
 import appCss from "../styles.css?url";
 import { Header, Footer } from "../components/site";
