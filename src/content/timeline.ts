@@ -549,7 +549,6 @@ export const milestones: TimelineMilestone[] = [
     relevanceSignals: [
       "Voice of Customer",
       "Product Insights & Enhancement Proposals",
-      "Prioritisation with R&D",
       "Strategic Global Customers",
       "Technical Leadership",
     ],
