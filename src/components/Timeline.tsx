@@ -1375,14 +1375,12 @@ function MilestoneRow({
                 open={open}
                 panelId={panelId}
                 onToggleRole={onToggleRole}
+                reduced={reduced}
                 className=""
               />
-              {/* Under the card, not in a grid row of its own: the child column
-                  sits between the two, so a row further down put the evidence
-                  below the role's OWN projects. Same placement as the parallel
-                  card's, which is the point — this is one rule, at both of its
-                  sites. */}
-              {entry.roleId ? (
+              {/* Below the card only for roles whose evidence toggles. Roles
+                  with always-open evidence render it inside the card itself. */}
+              {entry.roleId && !entry.roleEvidenceOpenByDefault ? (
                 <div id={panelId}>
                   <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} />
                 </div>
