@@ -1584,6 +1584,7 @@ function MilestoneRow({
                                   open={open}
                                   panelId={panelId}
                                   onToggleRole={onToggleRole}
+                                  reduced={reduced}
                                   className=""
                                 />
                               ),
