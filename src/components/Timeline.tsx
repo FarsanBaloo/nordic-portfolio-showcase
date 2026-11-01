@@ -1233,6 +1233,14 @@ function MilestoneCard({
         </ul>
       ) : null}
 
+      {/* Roles whose evidence is always open render it INSIDE the card, as
+          one continuous card — not as a separate box below it. */}
+      {entry.roleId && entry.roleEvidenceOpenByDefault ? (
+        <div id={panelId}>
+          <RoleEvidence roleId={entry.roleId} open={open} reduced={reduced} variant="inline" />
+        </div>
+      ) : null}
+
       {entry.roleId && !entry.roleEvidenceOpenByDefault ? (
         <div className="mt-5 border-t border-night-border/50 pt-4">
           <button
