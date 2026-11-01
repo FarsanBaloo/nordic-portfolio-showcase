@@ -1107,6 +1107,7 @@ function MilestoneCard({
   open,
   panelId,
   onToggleRole,
+  reduced,
   className,
 }: {
   entry: TimelineMilestone;
@@ -1115,6 +1116,7 @@ function MilestoneCard({
   open: boolean;
   panelId: string;
   onToggleRole: (id: string) => void;
+  reduced: boolean;
   className: string;
 }) {
   const secondary = entry.presentation === "secondary";
