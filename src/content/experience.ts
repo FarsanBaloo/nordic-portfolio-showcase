@@ -349,15 +349,17 @@ export const roles: Role[] = [
     id: "nordic-technical-support-expert",
     title: "Nordic Technical Support Expert",
     company: "Schneider Electric",
-    period: "2026–Present",
+    period: "Oct 2026–Present",
     subtitle: "Building Management Systems",
-    stage: "Nordic Customer Insight, Platform Quality & Prioritisation",
+    stage: "Customer Insight · Product Quality · Technical Leadership",
     summary:
-      "Nordic responsibility for complex technical support, strategic customer ownership and structured prioritisation of defects and improvements for EcoStruxure Building Operation and its ecosystem of edge controllers for building control and energy efficiency — in an international, English-speaking environment.",
+      "Nordic responsibility for complex technical escalations and customer feedback across EcoStruxure Building Operation and Edge IoT controllers, connecting customer and partner needs with product quality and continuous improvement.",
     bullets: [
-      "Own the largest and most strategic VIP customers across the Nordic region.",
-      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
-      "Support and mentor Level 2 advanced support engineers across the Nordic region through escalation, technical guidance and knowledge sharing.",
+      "Translate recurring field issues, customer and partner feedback and operational needs into structured product insights, quality requirements and enhancement proposals.",
+      "Collaborate with Customer Satisfaction & Quality (CS&Q), Global Expert Support and R&D on product defects, quality trends and enhancement opportunities, with prioritisation input based on customer impact, technical risk and business relevance.",
+      "Act as Nordic technical expert for designated strategic global customers in the data centre, pharmaceutical and healthcare sectors, clarifying business-critical operational requirements and addressing complex product issues.",
+      "Support root cause investigations, follow up corrective actions and validate implemented solutions with CS&Q and R&D, feeding verified findings back into continuous product improvement.",
+      "Mentor and guide engineers across Sweden, Norway, Denmark and Finland as an informal technical lead.",
     ],
     detailGroups: [
       {
