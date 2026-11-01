@@ -133,13 +133,13 @@ export const cvExperience = [
   {
     role: "Nordic Technical Support Expert — Building Management Systems",
     org: "Schneider Electric",
-    period: "2026 – Present",
+    period: "Oct 2026 – Present",
     summary:
-      "Nordic responsibility for strategic customers and prioritisation of defects and improvements with R&D for EcoStruxure Building Operation and its edge-controller ecosystem, in an international, English-speaking environment.",
+      "Nordic responsibility for complex technical escalations and customer feedback across EcoStruxure Building Operation and Edge IoT controllers, connecting customer and partner needs with product quality and continuous improvement.",
     bullets: [
-      "Own the largest and most strategic VIP customers across the Nordic region.",
-      "Turn recurring Nordic field cases into structured product feedback and enhancement proposals for EcoStruxure Building Operation and its edge IoT ecosystem, prioritised with R&D by customer impact, technical risk and business relevance.",
-      "Support and mentor Level 2 advanced support engineers across the Nordic region through escalation, technical guidance and knowledge sharing.",
+      "Translate recurring field issues, customer and partner feedback into structured product insights, quality requirements and enhancement proposals.",
+      "Collaborate with CS&Q, Global Expert Support and R&D on defects, quality trends and prioritisation input; act as Nordic technical expert for designated strategic global customers in data centre, pharmaceutical and healthcare sectors.",
+      "Mentor and guide engineers across Sweden, Norway, Denmark and Finland as an informal technical lead.",
     ],
   },
   {
