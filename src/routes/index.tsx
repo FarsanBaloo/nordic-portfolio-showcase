@@ -154,9 +154,6 @@ function Index() {
                   {p}
                 </p>
               ))}
-              <p className="text-[17.5px] font-semibold leading-[1.7] text-night-foreground">
-                {journeyNarrative.emphasis}
-              </p>
             </div>
 
             <div className="mt-14 grid gap-x-10 gap-y-8 sm:grid-cols-2">
