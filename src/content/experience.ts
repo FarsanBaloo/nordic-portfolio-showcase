@@ -15,8 +15,8 @@ export type Role = {
   detailGroups: DetailGroup[];
   notes?: { label: string; body: string }[];
   flow?: string[];
-  progression: string;
-  tags: string[];
+  progression?: string;
+  tags?: string[];
 };
 
 export const roles: Role[] = [
