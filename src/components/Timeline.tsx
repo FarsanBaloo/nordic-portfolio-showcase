@@ -1450,13 +1450,14 @@ function MilestoneRow({
                 open={!!parallel.roleId && (openRoleId === parallel.roleId || !!parallel.roleEvidenceOpenByDefault)}
                 panelId={`${panelId}-parallel`}
                 onToggleRole={onToggleRole}
+                reduced={reduced}
                 className=""
               />
-              {/* Directly under its own card, not in a row of its own further
-                  down the grid: the evidence is what fills the tall column
-                  beside the studies, and a panel two screens below the button
-                  that opens it is not "under the role". */}
-              {parallel.roleId ? (
+              {/* Toggled roles: directly under its own card, not in a row of
+                  its own further down the grid — a panel two screens below the
+                  button that opens it is not "under the role". Always-open
+                  roles render inside their card instead. */}
+              {parallel.roleId && !parallel.roleEvidenceOpenByDefault ? (
                 <div id={`${panelId}-parallel`}>
                   <RoleEvidence
                     roleId={parallel.roleId}
