@@ -1220,7 +1220,7 @@ function MilestoneCard({
         </ul>
       ) : null}
 
-      {entry.roleId ? (
+      {entry.roleId && !entry.roleEvidenceOpenByDefault ? (
         <div className="mt-5 border-t border-night-border/50 pt-4">
           <button
             type="button"
@@ -1254,7 +1254,7 @@ function MilestoneRow({
   const accent = accentFor(entry.track);
   const isDev = entry.track === "development";
   const panelId = useId();
-  const open = !!entry.roleId && openRoleId === entry.roleId;
+  const open = !!entry.roleId && (openRoleId === entry.roleId || !!entry.roleEvidenceOpenByDefault);
   const caseChild = findCaseChild(entry);
   const groups = groupChildren(entry.children ?? []);
   const phase2 = caseChild ? groups.find((g) => /^phase 2/i.test(g.title ?? "")) : undefined;
@@ -1428,7 +1428,7 @@ function MilestoneRow({
                 entry={parallel}
                 accent={accentFor(parallel.track)}
                 active={active}
-                open={!!parallel.roleId && openRoleId === parallel.roleId}
+                open={!!parallel.roleId && (openRoleId === parallel.roleId || !!parallel.roleEvidenceOpenByDefault)}
                 panelId={`${panelId}-parallel`}
                 onToggleRole={onToggleRole}
                 className=""
@@ -1441,7 +1441,7 @@ function MilestoneRow({
                 <div id={`${panelId}-parallel`}>
                   <RoleEvidence
                     roleId={parallel.roleId}
-                    open={openRoleId === parallel.roleId}
+                    open={openRoleId === parallel.roleId || !!parallel.roleEvidenceOpenByDefault}
                     reduced={reduced}
                   />
                 </div>
@@ -1582,9 +1582,7 @@ function MilestoneRow({
 
 export function Timeline() {
   const reduced = !!useReducedMotion();
-  const [openRoleId, setOpenRoleId] = useState<string | null>(
-    () => milestones.find((m) => m.roleEvidenceOpenByDefault)?.roleId ?? null,
-  );
+  const [openRoleId, setOpenRoleId] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
