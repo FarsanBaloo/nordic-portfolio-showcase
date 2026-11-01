@@ -536,11 +536,16 @@ export const milestones: TimelineMilestone[] = [
     subtitle: "Building Management Systems",
     org: "Schneider Electric",
     track: "professional",
-    roleId: "nordic-technical-support-expert",
-    roleEvidenceOpenByDefault: true,
     stage: "Customer Insight · Product Quality · Technical Leadership",
     summary:
       "Nordic responsibility for complex technical escalations and customer feedback across EcoStruxure Building Operation and Edge IoT controllers, connecting customer and partner needs with product quality and continuous improvement.",
+    overviewBullets: [
+      "**Voice of Customer & Product Insights** \u2014 Translate recurring field issues, customer and partner feedback, and operational needs into structured product insights, quality requirements and enhancement proposals.",
+      "**Product Improvement & Cross-Functional Collaboration** \u2014 Collaborate with Customer Satisfaction & Quality (CS&Q), Global Expert Support and R&D to assess product defects, recurring quality trends and enhancement opportunities. Provide prioritisation input based on customer impact, technical risk and business relevance.",
+      "**Strategic Customer Engagement** \u2014 Act as a Nordic technical expert for designated strategic global customers in the data centre, pharmaceutical and healthcare sectors, clarifying business-critical operational requirements and addressing complex product issues.",
+      "**Quality Investigations & Solution Validation** \u2014 Support root cause investigations, follow up corrective actions and validate implemented solutions in collaboration with CS&Q and R&D, feeding verified findings back into continuous product improvement.",
+      "**Nordic Technical Leadership & Knowledge Sharing** \u2014 Mentor and guide engineers across Sweden, Norway, Denmark and Finland as an informal technical lead. Share technical knowledge and facilitate collaboration between regional support, strategic customers, CS&Q, Global Expert Support and R&D.",
+    ],
   },
   {
     id: "now",

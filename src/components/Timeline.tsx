@@ -1213,7 +1213,16 @@ function MilestoneCard({
                 className="mt-[9px] h-1 w-1 shrink-0 rounded-full"
                 style={{ backgroundColor: accent }}
               />
-              {b}
+              {b.startsWith("**") && b.indexOf("**", 2) > 0 ? (
+                <span>
+                  <strong className="font-semibold text-night-foreground">
+                    {b.slice(2, b.indexOf("**", 2))}
+                  </strong>
+                  {b.slice(b.indexOf("**", 2) + 2)}
+                </span>
+              ) : (
+                b
+              )}
             </li>
           ))}
         </ul>
