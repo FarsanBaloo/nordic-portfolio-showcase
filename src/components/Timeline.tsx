@@ -839,10 +839,15 @@ function RoleEvidence({
   roleId,
   open,
   reduced,
+  variant = "card",
 }: {
   roleId: string;
   open: boolean;
   reduced: boolean;
+  /** "card" is the standalone panel under the card; "inline" is the same
+   *  content rendered as a section INSIDE the role card itself, for roles
+   *  whose evidence is always open. */
+  variant?: "card" | "inline";
 }) {
   const role = roles.find((r) => r.id === roleId);
   if (!role) return null;
@@ -858,7 +863,13 @@ function RoleEvidence({
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="overflow-hidden"
         >
-          <div className="night-card mt-6 rounded-2xl p-5 sm:p-7">
+          <div
+            className={
+              variant === "inline"
+                ? "mt-5 border-t border-night-border/50 pt-5"
+                : "night-card mt-6 rounded-2xl p-5 sm:p-7"
+            }
+          >
             <div
               className="grid gap-x-8 gap-y-6"
               style={{ gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))" }}
