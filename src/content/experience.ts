@@ -15,8 +15,8 @@ export type Role = {
   detailGroups: DetailGroup[];
   notes?: { label: string; body: string }[];
   flow?: string[];
-  progression: string;
-  tags: string[];
+  progression?: string;
+  tags?: string[];
 };
 
 export const roles: Role[] = [
@@ -394,36 +394,6 @@ export const roles: Role[] = [
           "Share technical knowledge and facilitate collaboration between regional support, strategic customers, CS&Q, Global Expert Support and R&D.",
         ],
       },
-    ],
-    notes: [
-      {
-        label: "Role mandate",
-        body: "Nordic responsibility for complex technical escalations and customer feedback across EcoStruxure Building Operation and Edge IoT controllers — connecting customer and partner needs with product quality and continuous improvement. Contributes structured input to product quality decisions without implying formal product ownership.",
-      },
-      {
-        label: "Platform context",
-        body: "EcoStruxure Building Operation is Schneider Electric's digital platform for controlling, monitoring and improving the energy efficiency of buildings, connected to an ecosystem of edge controllers and field systems.",
-      },
-    ],
-    flow: [
-      "Nordic Customer & Partner Need",
-      "Voice of Customer & Product Insights",
-      "CS&Q · Global Expert Support · R&D",
-      "Quality Investigation & Solution Validation",
-      "Prioritisation & Enhancement Proposals",
-      "Continuous Product Improvement",
-    ],
-    progression:
-      "This role connects complex technical escalations, strategic customer engagement and Nordic technical leadership — turning verified field insight into product quality and continuous improvement while strengthening the bridge toward Product and Offer Management.",
-    tags: [
-      "Voice of Customer",
-      "Product Insights & Enhancement Proposals",
-      "Prioritisation Input",
-      "Strategic Global Customers",
-      "Quality Investigations",
-      "Solution Validation",
-      "Technical Leadership",
-      "CS&Q · Global Expert Support · R&D",
     ],
   },
 ];
