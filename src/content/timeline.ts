@@ -541,7 +541,7 @@ export const milestones: TimelineMilestone[] = [
     summary:
       "Nordic responsibility for complex technical escalations and customer feedback across EcoStruxure Building Operation and Edge IoT controllers, connecting customer and partner needs with product quality and continuous improvement.",
     overviewBullets: [
-      "Translate recurring field issues, customer and partner feedback into structured product insights, quality requirements and enhancement proposals.",
+      "Translate recurring field issues, customer and partner feedback, and operational needs into structured product insights, quality requirements and enhancement proposals.",
       "Collaborate with CS&Q, Global Expert Support and R&D on defects, quality trends and prioritisation input by customer impact, technical risk and business relevance.",
       "Mentor and guide engineers across Sweden, Norway, Denmark and Finland as an informal technical lead.",
     ],
